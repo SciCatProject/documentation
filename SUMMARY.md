@@ -2,7 +2,7 @@
 
 * [Home](README.md)
 * [General](General/README.md)
-    * [Development Methodology](Development_Methodology/README.md)
+    * [Development Methodology](General/Development_Methodology/README.md)
     * [Deployment](General/deployment.md)
 * [Catanie](Catanie/README.md)
     * [Testing](Catanie/Testing/README.md)
