@@ -29,23 +29,11 @@ def list_files(startpath):
         level = len(split_path)
         title = split_path[-1]
         print(level)
+        entry = ""
         title = title if title else "Home"
-        print(title)
-        # print(dirs)
-        # for k,d in enumerate(dirs):
-        #     print(k, d) 
-        # print(dirs)
-        # print(files)
-        # for entry in root:
-        #     if entry in ignore:
-        #         del entry
-        # level = root.replace(startpath, '').count(os.sep)
-        # indent = ' ' * 4 * (level)
-        # print('{}{}/'.format(indent, os.path.basename(root)))
-        # subindent = ' ' * 4 * (level + 1)
-        # for f in files:
-        #     print('{}{}'.format(subindent, f))
-
+        entry = "* [{0}]({1})".format(title, root + '/README.md')
+        print(entry)
+        
 
 
 print("Generating")
