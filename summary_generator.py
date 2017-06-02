@@ -33,7 +33,6 @@ def list_files(startpath):
         title = title if title else "Home"
         entry = "* [{0}]({1})".format(title, root + '/README.md')
         print(entry)
-        
 
 
 print("Generating")
