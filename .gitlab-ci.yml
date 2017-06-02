@@ -1,5 +1,5 @@
 # requiring the environment of NodeJS 4.2.2
-image: node:4.2.2
+image: node:6
 
 # add 'node_modules' to cache for speeding up builds
 cache:
