@@ -22,6 +22,10 @@ git push origin master
 git branch -d <branch_name>
 ```
 
+## Working locally
+
+The general git advice for working locally is to commit often. Not every commit needs to be pushed immediately but it is worth ensuring that the remote is never too far behind your local. Always be sure to pull **before** you push and test all merge conflicts once you have fixed them. NOTE: The angular cli (and webpack) will provide feedback on unhandled merges so it is worth using! For detailed info on best practices [this](https://sethrobertson.github.io/GitBestPractices/) is a great guide.
+
 ### No-FF (TL;DR - THIS SHOULD ALWAYS BE USED)
 
 No-ff is a vital flag because it forces a merge commit to be inserted into the history of the main branch, without it, merge will try and fast forward the HEAD of the branch to the latest commit. In essence, without this flag, there will **not** be a visible merge commit in the history,

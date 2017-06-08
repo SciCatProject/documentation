@@ -2,11 +2,9 @@ import os
 
 ROOT_DIR = './'
 
-ignore = ['node_modules', '_book', '.git']
-folders = []
-files = []
+ignore = ['node_modules', '_book', '.git', 'img']
 
-summary = ""
+summary = "# Summary \n\n"
 
 # def scan(dir, name):
 #     print(dir, name)
@@ -21,21 +19,27 @@ summary = ""
 #             files.append(entry.path)
 
 def list_files(startpath):
+    """Scan all dirs for md files and generate contents."""
+    global summary
     for root, dirs, files in os.walk(startpath):
         dirs[:] = [x for x in dirs if x not in ignore]
-        # print(root)
-        # print(files)
         split_path = root.split('/')
         level = len(split_path)
         title = split_path[-1]
-        print(level)
-        entry = ""
         title = title if title else "Home"
-        entry = "* [{0}]({1})".format(title, root + '/README.md')
-        print(entry)
+        summary += "{0}* [{1}]({2}) \n".format(' ' * (1), title, root + '/README.md')
+        md_files  = [x for x  in files if 'md' in x.lower() and not 'readme' in x.lower() and not 'summary' in x.lower()]
+        for f in md_files:
+            f_name = f.lower().replace('_', ' ').replace('.md', '').title()
+            summary += "{0}* [{1}]({2}) \n".format(' ' * (level*1), f_name, os.path.join(root, f))
+    return summary
 
 
-print("Generating")
-list_files('./')
-print('Folders:')
-print(summary)
+def save_output(contents):
+    """Save contents of md files found to summmary md file"""
+    with open('SUMMARY.md', 'w') as out:
+        out.write(contents)
+
+print("Generating SUMMARY")
+txt = list_files('./')
+save_output(txt)
