@@ -13,6 +13,19 @@ yum install mongodb-org-server
 
 The needed database will be created automatically when the API server starts. Follow this [description](https://docs.mongodb.com/manual/tutorial/enable-authentication/) to enable authenticated access to the Mongo DB.
 
+You will also require a RabbitMQ instance installed on your system. The production deployment will use its own in the Kubernetes cloud but it is required for local setup. Files can be dowlnloaded [here](http://www.rabbitmq.com/install-rpm.html).
+
+```
+dnf install erlang
+```
+Download rpm
+
+```
+rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+        yum install rabbitmq-server-3.6.10-1.noarch.rpm
+systemctl start rabbitmq-server
+```
+
 ## Get code
 ```
 git clone https://gitlab.psi.ch/MELANIE/catamel.git
