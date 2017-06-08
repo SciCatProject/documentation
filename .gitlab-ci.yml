@@ -8,7 +8,7 @@ cache:
 
 before_script:
   - npm install gitbook-cli -g # install gitbook 
-  - npm install gitook-plugin-theme-api
+  - npm install gitbook-plugin-theme-api
   - gitbook fetch latest # fetch latest stable version
   #- gitbook fetch pre # fetch latest pre-release version
   #- gitbook fetch 2.6.7 # fetch specific version
