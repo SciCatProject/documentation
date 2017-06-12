@@ -27,7 +27,7 @@ def list_files(startpath):
         level = len(split_path)
         title = split_path[-1]
         title = title if title else "Home"
-        summary += "{0}* [{1}]({2}) \n".format(' ' * (1), title, root + '/README.md')
+        summary += "{0}* [{1}]({2}) \n".format(' ' * (level), title, root + '/README.md')
         md_files  = [x for x  in files if 'md' in x.lower() and not 'readme' in x.lower() and not 'summary' in x.lower()]
         for f in md_files:
             f_name = f.lower().replace('_', ' ').replace('.md', '').title()
