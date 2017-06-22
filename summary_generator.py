@@ -31,7 +31,7 @@ def list_files(startpath):
         md_files  = [x for x  in files if 'md' in x.lower() and not 'readme' in x.lower() and not 'summary' in x.lower()]
         for f in md_files:
             f_name = f.lower().replace('_', ' ').replace('.md', '').title()
-            summary += "{0}* [{1}]({2}) \n".format(' ' * (level*1), f_name, os.path.join(root, f))
+            summary += "{0}* [{1}]({2}) \n".format(' ' * (level*2), f_name, os.path.join(root, f))
     return summary
 
 
