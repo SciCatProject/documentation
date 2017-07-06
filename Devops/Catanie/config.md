@@ -1,4 +1,3 @@
-
 # Running locally
 
 `git clone git@gitlab.psi.ch:MELANIE/catanie.git && cd catanie`
@@ -15,7 +14,7 @@ Access [here](http://localhost:4200) once running.
 
 # Running with Docker
 
-The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.
+The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard \*nix commands are available.
 
 `git clone git@gitlab.psi.ch:MELANIE/catanie.git && cd catanie`
 
@@ -27,6 +26,8 @@ You should see the container begin and print out the URL, this is retrieved dyna
 
 # Running with Kubernetes
 
+For kubernetes, you will need the `kubectl` binary., which can be found [here.](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+
 ## Locally with Minikube
 
 TODO
@@ -34,3 +35,4 @@ TODO
 ## On a cluster
 
 TODO
+
