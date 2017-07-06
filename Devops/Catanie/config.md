@@ -37,7 +37,7 @@ server {
     listen 80;
     root /usr/share/html;
     index index.html;
-    
+
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -47,10 +47,9 @@ server {
 1. Build the dist with `ng build -prod -op dist/prod`
 2. `sudo docker build -t registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION .`
 3. `sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION`
+4. `envsubst < catanie-deployment.yaml | kubectl apply -f - --validate=false`
 
-
-
-
+   1. The YAML file is located in the `scripts` folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified
 
 ## Locally with Minikube
 
