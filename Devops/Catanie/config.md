@@ -49,7 +49,7 @@ server {
 3. `sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION`
 4. `envsubst < catanie-deployment.yaml | kubectl apply -f - --validate=false`
 
-   1. The YAML file is located in the `scripts` folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified
+   1. The YAML file is located in the `scripts` folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified. This is currently being worked on.
 
 ## Locally with Minikube
 
