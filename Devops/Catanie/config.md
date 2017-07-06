@@ -26,7 +26,7 @@ You should see the container begin and print out the URL, this is retrieved dyna
 
 # Running with Kubernetes
 
-For kubernetes, you will need the `kubectl` binary., which can be found [here.](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+For kubernetes, you will need the `kubectl` binary., which can be found [here.](https://kubernetes.io/docs/tasks/tools/install-kubectl/) The configuration for the binary should be found in the `secrets` repo for your organisation and you will need to export it as `KUBECONFIG`, you can check this with `kubectl version` and ensure both client and server have versions.
 
 ## Locally with Minikube
 
