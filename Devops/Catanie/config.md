@@ -28,6 +28,8 @@ You should see the container begin and print out the URL, this is retrieved dyna
 
 For kubernetes, you will need the `kubectl` binary., which can be found [here.](https://kubernetes.io/docs/tasks/tools/install-kubectl/) The configuration for the binary should be found in the `secrets` repo for your organisation and you will need to export it as `KUBECONFIG`, you can check this with `kubectl version` and ensure both client and server have versions.
 
+The docker image for Angular can either contain the Angular CLI development server, or an Nginx server that serves static files built by webpack.
+
 ## Locally with Minikube
 
 TODO
