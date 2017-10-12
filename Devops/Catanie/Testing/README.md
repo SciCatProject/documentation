@@ -41,6 +41,8 @@ As of Chrome 59, a [headless](https://developers.google.com/web/updates/2017/04/
 
 NOTE: Protractor does not support versions of Node beyond 7 because the v8 API made breaking changes.
 
+You can run with `npm run e2e` or `protractor` but **YOU MUST** specify the environment as well `--environment=qa`
+
 Useful Links
 
 * [Testing Components](http://chariotsolutions.com/blog/post/testing-angular-2-components-unit-tests-testcomponentbuilder/)
@@ -52,8 +54,50 @@ An e2e test should be used to test the functionality as if a user is utilising i
 
 ### Page Objects
 
-We can create a `PAGE.po.ts` file to encapsulate common actions for a page and import it throughout our testing.
+We can create a `PAGE.po.ts` file to encapsulate common actions for a page and import it throughout our testing. For example, a login page object would navigate to the login page and provide methods for `login`, `logout` etc by entering text in the correct elements. You can see this in the `e2e` folder within the repo.
 
+### e2e Spec
+
+This is where the actual tests are written, with an example below:
+
+```javascript
+
+describe('catanie Dashboard', function() {
+  let lp: LoginPage;
+  let page: DashboardPage;
+
+  beforeAll(() => {
+    lp = new LoginPage();
+    lp.navigateTo().then(() => {
+      lp.enterDetails(browser.params.login.user, browser.params.login.pwd);
+      lp.login();
+      browser.sleep(2000);
+      page = new DashboardPage();
+      page.navigateTo();
+    });
+  });
+
+  it('should be on correct page', () => {
+    expect(browser.getCurrentUrl()).toContain('datasets');
+  });
+
+  it('should have an active home menu item', () => {
+    expect(element(by.css('.active.item')).getText()).toContain('Home');
+  });
+
+  it('should change active menu item', () => {
+    const eos = element(by.partialLinkText('End of Shift'));
+    eos.click();
+    expect(eos.getAttribute('class')).toContain('active');
+  });
+});
+```
+
+We can execute specific actions before each/any test is run, as well as retrieving elements by almost any means necessary. Note that there is a lot of specific support for Angular as well, which you can read about in the Protractor docs.
+
+### Element Explorer
+
+Running protractor with `--elementExplorer` opens up your pages with Protractor and gives you a CLI to test out element queries and interactions with them.
 
 # Unit (Jasmine, run by Karma)
 
