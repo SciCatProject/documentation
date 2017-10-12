@@ -36,15 +36,26 @@ As of Chrome 59, a [headless](https://developers.google.com/web/updates/2017/04/
     },
 ```
 
-# Unit (Jasmine, run by Karma)
 
 # E2E ([Protractor](http://www.protractortest.org/#/))
+
+NOTE: Protractor does not support versions of Node beyond 7 because the v8 API made breaking changes.
 
 Useful Links
 
 * [Testing Components](http://chariotsolutions.com/blog/post/testing-angular-2-components-unit-tests-testcomponentbuilder/)
 * [Testing Services](http://chariotsolutions.com/blog/post/testing-http-services-angular-2-jasmine/)
-* 
+
+## Testing Structure
+
+An e2e test should be used to test the functionality as if a user is utilising it. They test a whole `story`, such as logging in or searching for an item. Protractor provides excellent element selection facilities for this functionality. Most of these tests can be written by simply redirecting the browser to relevant URLs, but this makes it hard to test complex interactions.
+
+### Page Objects
+
+We can create a `PAGE.po.ts` file to encapsulate common actions for a page and import it throughout our testing.
+
+
+# Unit (Jasmine, run by Karma)
 
 ## Testing Components
 
