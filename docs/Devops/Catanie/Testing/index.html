@@ -396,25 +396,6 @@
             
 
             
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.12.1" data-path="../../../docs/Devops/ngrx.md">
-            
-                <span>
-            
-                    
-                    Ngrx
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
         </li>
     
         <li class="chapter " data-level="1.3.13" data-path="../../../docs/Devops/Catanie/README.md">
@@ -706,6 +687,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4.7" data-path="../../Catamel/Testing/">
+            
+                <a href="../../Catamel/Testing/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -784,6 +778,7 @@
 </code></pre>
 <h1 id="e2e-protractor">E2E (<a href="http://www.protractortest.org/#/" target="_blank">Protractor</a>)</h1>
 <p>NOTE: Protractor does not support versions of Node beyond 7 because the v8 API made breaking changes.</p>
+<p>You can run with <code>npm run e2e</code> or <code>protractor</code> but <strong>YOU MUST</strong> specify the environment as well <code>--environment=qa</code></p>
 <p>Useful Links</p>
 <ul>
 <li><a href="http://chariotsolutions.com/blog/post/testing-angular-2-components-unit-tests-testcomponentbuilder/" target="_blank">Testing Components</a></li>
@@ -792,7 +787,43 @@
 <h2 id="testing-structure">Testing Structure</h2>
 <p>An e2e test should be used to test the functionality as if a user is utilising it. They test a whole <code>story</code>, such as logging in or searching for an item. Protractor provides excellent element selection facilities for this functionality. Most of these tests can be written by simply redirecting the browser to relevant URLs, but this makes it hard to test complex interactions.</p>
 <h3 id="page-objects">Page Objects</h3>
-<p>We can create a <code>PAGE.po.ts</code> file to encapsulate common actions for a page and import it throughout our testing.</p>
+<p>We can create a <code>PAGE.po.ts</code> file to encapsulate common actions for a page and import it throughout our testing. For example, a login page object would navigate to the login page and provide methods for <code>login</code>, <code>logout</code> etc by entering text in the correct elements. You can see this in the <code>e2e</code> folder within the repo.</p>
+<h3 id="e2e-spec">e2e Spec</h3>
+<p>This is where the actual tests are written, with an example below:</p>
+<pre><code class="lang-javascript">
+describe(<span class="hljs-string">&apos;catanie Dashboard&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> lp: LoginPage;
+  <span class="hljs-keyword">let</span> page: DashboardPage;
+
+  beforeAll(() =&gt; {
+    lp = <span class="hljs-keyword">new</span> LoginPage();
+    lp.navigateTo().then(() =&gt; {
+      lp.enterDetails(browser.params.login.user, browser.params.login.pwd);
+      lp.login();
+      browser.sleep(<span class="hljs-number">2000</span>);
+      page = <span class="hljs-keyword">new</span> DashboardPage();
+      page.navigateTo();
+    });
+  });
+
+  it(<span class="hljs-string">&apos;should be on correct page&apos;</span>, () =&gt; {
+    expect(browser.getCurrentUrl()).toContain(<span class="hljs-string">&apos;datasets&apos;</span>);
+  });
+
+  it(<span class="hljs-string">&apos;should have an active home menu item&apos;</span>, () =&gt; {
+    expect(element(by.css(<span class="hljs-string">&apos;.active.item&apos;</span>)).getText()).toContain(<span class="hljs-string">&apos;Home&apos;</span>);
+  });
+
+  it(<span class="hljs-string">&apos;should change active menu item&apos;</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> eos = element(by.partialLinkText(<span class="hljs-string">&apos;End of Shift&apos;</span>));
+    eos.click();
+    expect(eos.getAttribute(<span class="hljs-string">&apos;class&apos;</span>)).toContain(<span class="hljs-string">&apos;active&apos;</span>);
+  });
+});
+</code></pre>
+<p>We can execute specific actions before each/any test is run, as well as retrieving elements by almost any means necessary. Note that there is a lot of specific support for Angular as well, which you can read about in the Protractor docs.</p>
+<h3 id="element-explorer">Element Explorer</h3>
+<p>Running protractor with <code>--elementExplorer</code> opens up your pages with Protractor and gives you a CLI to test out element queries and interactions with them.</p>
 <h1 id="unit-jasmine-run-by-karma">Unit (Jasmine, run by Karma)</h1>
 <h2 id="testing-components">Testing Components</h2>
 <p>Often, when testing a component or a piece of UX, then we would want to test all the functionality. In most cases, this is not necessary and results in testing more than just the one component. In the case of Angular, that could be things like the router module or a custom service. These things can be mocked in the <code>Spec</code> file to ensure that we do not end up importing more than we need.</p>
@@ -867,7 +898,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing","level":"1.4.3","depth":2,"next":{"title":"General","level":"1.4.4","depth":2,"path":"Devops/General/README.md","ref":"./Devops/General/README.md","articles":[{"title":"Data Model","level":"1.4.4.1","depth":3,"path":"Devops/General/data_model.md","ref":"./Devops/General/data_model.md","articles":[]},{"title":"Contribution-Guide","level":"1.4.4.2","depth":3,"path":"Devops/General/contribution-guide.md","ref":"./Devops/General/contribution-guide.md","articles":[]},{"title":"Deployment","level":"1.4.4.3","depth":3,"path":"Devops/General/deployment.md","ref":"./Devops/General/deployment.md","articles":[]}]},"previous":{"title":"Config","level":"1.4.2.1","depth":3,"path":"Devops/Catanie/config.md","ref":"./Devops/Catanie/config.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Testing/README.md","mtime":"2017-10-12T07:30:40.552Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-12T07:41:51.195Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing","level":"1.4.3","depth":2,"next":{"title":"General","level":"1.4.4","depth":2,"path":"Devops/General/README.md","ref":"./Devops/General/README.md","articles":[{"title":"Data Model","level":"1.4.4.1","depth":3,"path":"Devops/General/data_model.md","ref":"./Devops/General/data_model.md","articles":[]},{"title":"Contribution-Guide","level":"1.4.4.2","depth":3,"path":"Devops/General/contribution-guide.md","ref":"./Devops/General/contribution-guide.md","articles":[]},{"title":"Deployment","level":"1.4.4.3","depth":3,"path":"Devops/General/deployment.md","ref":"./Devops/General/deployment.md","articles":[]}]},"previous":{"title":"Config","level":"1.4.2.1","depth":3,"path":"Devops/Catanie/config.md","ref":"./Devops/Catanie/config.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Testing/README.md","mtime":"2017-10-12T08:07:12.736Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-12T08:34:37.190Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -22,7 +22,6 @@
      * [fontawesome](./docs/gitbook/fonts/fontawesome/README.md) 
     * [gitbook-plugin-sharing](./docs/gitbook/gitbook-plugin-sharing/README.md) 
    * [Devops](./docs/Devops/README.md) 
-      * [Ngrx](./docs/Devops/ngrx.md) 
     * [Catanie](./docs/Devops/Catanie/README.md) 
      * [Testing](./docs/Devops/Catanie/Testing/README.md) 
     * [General](./docs/Devops/General/README.md) 
@@ -42,3 +41,4 @@
    * [Catamel](./Devops/Catamel/README.md) 
       * [Config](./Devops/Catamel/config.md) 
       * [Data Models And Urls](./Devops/Catamel/Data Models and URLs.md) 
+    * [Testing](./Devops/Catamel/Testing/README.md) 
