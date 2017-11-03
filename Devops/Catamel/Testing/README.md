@@ -17,3 +17,7 @@ or
 ## Tests
 
 Some tests to cover the Users API and the RawDataset API have been written but more are needed. There is a LoginUtils file that supports the retrieval of tokens and everything else is documented in the Swagger file
+
+## Environment
+
+If this is being run independently of an infrastructure then you should provide the `NODE_ENV` to be `test`.
