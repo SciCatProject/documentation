@@ -29,6 +29,17 @@ Those working outside of PSI \(or those that want their code to be reviewed befo
 
 When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `master` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
 
+## Once Merged
+
+When your code has been merged by the assignee, you will receive an email and you can then do the following commands
+
+```
+git pull origin master #always make sure you are up to date
+git branch -d <branch_name> #remove local branch
+```
+
+
+
 ## Working locally
 
 The general git advice for working locally is to commit often. Not every commit needs to be pushed immediately but it is worth ensuring that the remote is never too far behind your local. Always be sure to pull **before** you push and test all merge conflicts once you have fixed them. NOTE: The angular cli \(and webpack\) will provide feedback on unhandled merges so it is worth using! For detailed info on best practices [this](https://sethrobertson.github.io/GitBestPractices/) is a great guide.
