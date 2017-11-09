@@ -16,8 +16,8 @@ git checkout -b <branch_name>
 git add <changed files>
 git commit -m '<message>'
 git push origin <branch_name> #needed if you are creating a merge request
-git checkout master 
 # Do not do below steps if collaborating or needing a code review
+git checkout master 
 git merge --no-ff <branch_name>
 git push origin master
 git branch -d <branch_name>
