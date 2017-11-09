@@ -26,11 +26,9 @@ git branch -d <branch_name>
 
 ## Collaborators and Code Review
 
-Those working outside of PSI \(or those that want their code to be reviewed before merging\), do **not** merge directly into master and ignore the last 3 steps above
+Those working outside of PSI \(or those that want their code to be reviewed before merging\), do **not** merge directly into master and ignore the last 3 steps above.
 
-
-
-
+When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `master` as the target.
 
 ## 
 
