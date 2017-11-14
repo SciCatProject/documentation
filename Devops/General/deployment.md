@@ -1,5 +1,4 @@
-
-The details in this section can apply to both Catamel and Catanie. 
+The details in this section can apply to both Catamel and Catanie.
 
 Inside each repository, there are folders that contain either:
 
@@ -12,10 +11,10 @@ When we say deployment, we mean deploying an application or service from your lo
 
 For the Data Catalogue project, the deployment pipeline requires the following:
 
-1. An application or service (Catanie or Catamel)
+1. An application or service \(Catanie or Catamel\)
 2. A `dockerfile`
 3. A docker registry
-4. A `yaml` file for deploying the docker file to Kubernetes (from the registry) 
+4. A `yaml` file for deploying the docker file to Kubernetes \(from the registry\)  OR a Helm chart
 5. Connection to your kubernetes server, through `kubectl`
 
 ## Current Status
