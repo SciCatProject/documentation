@@ -19,7 +19,7 @@ For the Data Catalogue project, the deployment pipeline requires the following:
 
 ## Current Status
 
-Currently, there is no CI setup for any of the repos in the `DaCat` project. Once this has been configured, a `.gitlab-ci.yml` file will be used to perform the steps outlined below.
+Currently, there is no CI setup for any of the repos in the `DaCat` project.
 
 ## How?
 
