@@ -29,6 +29,8 @@ Those working outside of PSI \(or those that want their code to be reviewed befo
 
 When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `master` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
 
+**NOTE** When a new branch is opened it **must** be opened from the `master` branch. Merge requests opened from other branches will not be accepted.
+
 ## Once Merged
 
 When your code has been merged by the assignee, you will receive an email and you can then do the following commands
@@ -37,8 +39,6 @@ When your code has been merged by the assignee, you will receive an email and yo
 git pull origin master #always make sure you are up to date
 git branch -d <branch_name> #remove local branch
 ```
-
-
 
 ## Working locally
 
