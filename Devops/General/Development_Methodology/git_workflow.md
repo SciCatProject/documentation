@@ -1,6 +1,8 @@
-# Workflow
+# Git Flow Workflow
 
-Currently, this project is being developed by following a variation of the [one flow](http://endoflineblog.com/oneflow-a-git-branching-model-and-workflow) model.
+![](https://images.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-ct9MmWf5gJk%2FU2Pe9V8A5GI%2FAAAAAAAAAT0%2F0Y-XvAb9RB8%2Fs1600%2Fgitflow-orig-diagram.png&f=1)
+
+Currently, this project is being developed by following a variation of the [git flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model.
 
 In summary, the following branches should exist and be in the following states:  
 1. `master` - always ready to deploy \(manual/time delayed integrations from the `develop` branch\)  
