@@ -3,7 +3,8 @@
 Currently, this project is being developed by following a variation of the [one flow](http://endoflineblog.com/oneflow-a-git-branching-model-and-workflow) model.
 
 In summary, the following branches should exist and be in the following states:  
-1. `master` - always ready to deploy  
+1. `master` - always ready to deploy \(manual/time delayed integrations from the develop branch\)  
+2. `develop` - merge hotfixes and features into this \(this should map to a corresponding development environment on your system\)  
 2. `hotfix/<bug_name` - forks from master to fix a known issue \(this issue should be documented in the repository and a branch can be created from within Gitlab  
 3. `feature/<feature_name>` - forks from master to a feature branch, explained [here](https://gitlab.psi.ch/help/workflow/workflow.md)
 
