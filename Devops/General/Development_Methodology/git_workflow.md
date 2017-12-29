@@ -5,10 +5,41 @@ Currently, this project is being developed by following a variation of the [one 
 In summary, the following branches should exist and be in the following states:  
 1. `master` - always ready to deploy \(manual/time delayed integrations from the `develop` branch\)  
 2. `develop` - merge hotfixes and features into this \(this should map to a corresponding development environment on your system\)  
-2. `hotfix/<bug_name` - forks from master to fix a known issue \(this issue should be documented in the repository and a branch can be created from within Gitlab  
-3. `feature/<feature_name>` - forks from master to a feature branch, explained [here](https://gitlab.psi.ch/help/workflow/workflow.md)
+3. `hotfix/<bug_name` - forks from master to fix a known issue \(this issue should be documented in the repository and a branch can be created from within Gitlab  
+4. `feature/<feature_name>` - forks from master to a feature branch, explained [here](https://gitlab.psi.ch/help/workflow/workflow.md)
 
-## Branching out and back into master
+### Releases
+
+A release branch should be created if:
+
+* A fixed release cycle has been set
+* A number of features or hotfixes have been incorporated and a release is needed.
+
+Releases should be merged into the master branch and **tagged** with the version number of that release. It goes without saying that a release branch should not be created unless the develop branch is passing all tests.
+
+
+
+## Sample Workflow - Creating a feature
+
+```
+git pull origin develop
+git checkout -b feature/feature_name
+# Do some work
+git add <changed files>
+git commit -m 'COMMIT MESSAGE'
+git checkout develop
+git merge --no-ff feature/feature_name
+git branch -D feature/feature_name
+# TO RELEASE (ONCE TESTED ON DEVELOP)
+git checkout -b release/0.1.1
+git merge --no-ff develop
+git checkout master
+git merge --no-ff release/0.1.1
+git branch -D release/0.1.1
+
+```
+
+## Branching out and back into develop
 
 ```
 # Ensure master is up to date with a pull
