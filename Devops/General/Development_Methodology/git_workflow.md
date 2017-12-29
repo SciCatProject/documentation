@@ -3,7 +3,7 @@
 Currently, this project is being developed by following a variation of the [one flow](http://endoflineblog.com/oneflow-a-git-branching-model-and-workflow) model.
 
 In summary, the following branches should exist and be in the following states:  
-1. `master` - always ready to deploy \(manual/time delayed integrations from the develop branch\)  
+1. `master` - always ready to deploy \(manual/time delayed integrations from the `develop` branch\)  
 2. `develop` - merge hotfixes and features into this \(this should map to a corresponding development environment on your system\)  
 2. `hotfix/<bug_name` - forks from master to fix a known issue \(this issue should be documented in the repository and a branch can be created from within Gitlab  
 3. `feature/<feature_name>` - forks from master to a feature branch, explained [here](https://gitlab.psi.ch/help/workflow/workflow.md)
@@ -12,15 +12,15 @@ In summary, the following branches should exist and be in the following states:
 
 ```
 # Ensure master is up to date with a pull
-git pull origin master
+git pull origin develop
 git checkout -b <branch_name>
 git add <changed files>
 git commit -m '<message>'
 git push origin <branch_name> #needed if you are creating a merge request
 # Do not do below steps if collaborating or needing a code review
-git checkout master 
+git checkout develop 
 git merge --no-ff <branch_name>
-git push origin master
+git push origin develop
 git branch -d <branch_name>
 ```
 
