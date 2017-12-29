@@ -17,8 +17,6 @@ A release branch should be created if:
 
 Releases should be merged into the master branch and **tagged** with the version number of that release. It goes without saying that a release branch should not be created unless the develop branch is passing all tests.
 
-
-
 ## Sample Workflow - Creating a feature
 
 ```
@@ -30,34 +28,20 @@ git commit -m 'COMMIT MESSAGE'
 git checkout develop
 git merge --no-ff feature/feature_name
 git branch -D feature/feature_name
+
 # TO RELEASE (ONCE TESTED ON DEVELOP)
 git checkout -b release/0.1.1
 git merge --no-ff develop
 git checkout master
 git merge --no-ff release/0.1.1
 git branch -D release/0.1.1
-
 ```
 
-## Branching out and back into develop
 
-```
-# Ensure master is up to date with a pull
-git pull origin develop
-git checkout -b <branch_name>
-git add <changed files>
-git commit -m '<message>'
-git push origin <branch_name> #needed if you are creating a merge request
-# Do not do below steps if collaborating or needing a code review
-git checkout develop 
-git merge --no-ff <branch_name>
-git push origin develop
-git branch -d <branch_name>
-```
 
 ## Collaborators and Code Review
 
-Those working outside of PSI \(or those that want their code to be reviewed before merging\), do **not** merge directly into master or develop branches and ignore the last 3 steps above.
+**All **those involved with development on a project should follow this process exactly. This would mean no committing directly to the master or develop branches and \(unless absolutely necessary\) merge requests should be opened in Gitlab and assigned to anyone that is not yourself. 
 
 When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `develop` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
 
@@ -97,7 +81,7 @@ Once a feature is complete \(and tested locally\), it should be merged into the 
 
 ## Current status:
 
-There is no CI set up for any of these projects, but it would need to be linked into Kubernetes.
+CI is in the process of being implemented and should be prioritised at each site.
 
 # Useful git commands
 
