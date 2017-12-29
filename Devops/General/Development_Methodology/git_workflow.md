@@ -37,11 +37,9 @@ git merge --no-ff release/0.1.1
 git branch -D release/0.1.1
 ```
 
-
-
 ## Collaborators and Code Review
 
-**All **those involved with development on a project should follow this process exactly. This would mean no committing directly to the master or develop branches and \(unless absolutely necessary\) merge requests should be opened in Gitlab and assigned to anyone that is not yourself. 
+**All **those involved with development on a project should follow this process exactly. This would mean no committing directly to the master or develop branches and \(unless absolutely necessary\) merge requests should be opened in Gitlab and assigned to anyone that is not yourself.
 
 When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `develop` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
 
@@ -77,7 +75,7 @@ Some sites have mentioned that simply using a `git pull` \(which is essentially 
 
 However, it should be noted that `git fetch origin` and `git rebase --preserve-merges origin/<branch_name>` will ensure that a history is maintained and merge conflicts are avoided where possible.
 
-Once a feature is complete \(and tested locally\), it should be merged into the latest version of `master` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
+Once a feature is complete \(and tested locally\), it should be merged into the latest version of `master (following the release cycle outlined above)` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
 
 ## Current status:
 
