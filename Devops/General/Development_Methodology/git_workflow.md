@@ -28,9 +28,9 @@ git branch -d <branch_name>
 
 Those working outside of PSI \(or those that want their code to be reviewed before merging\), do **not** merge directly into master or develop branches and ignore the last 3 steps above.
 
-When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `master` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
+When your branch has been pushed up to the origin \([https://gitlab.psi.ch](https://gitlab.psi.ch)\), then please open a merge request with your branch name as the source and the `develop` as the target. You can then assign the merge request to somone else within your development team. If you do not know who that is then please assign it to someone working at PSI.
 
-**NOTE** When a new branch is opened it **must** be opened from the `master` branch. Merge requests opened from other branches will not be accepted.
+**NOTE** When a new branch is opened it **must** be opened from the `develop` branch. Merge requests opened from other branches will not be accepted.
 
 ## Once Merged
 
