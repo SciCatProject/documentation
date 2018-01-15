@@ -10,13 +10,11 @@ For information about the development method we follow, please check [Developmen
 
 ## Issues
 
-
-
 ## Merge Requests
 
 There should be **no** pushing directly to the `master` or `develop` branches. To implement a fix, one should open a branch with the naming: `hotfix/ISSUE-NAME` from the `develop` branch and complete all work there. When it is complete, a Merge Request should be opened that follows this template:
 
-```
+```markdown
 ## Description
 
 ## Motivation 
@@ -41,10 +39,6 @@ Link to any open issues here
 
 ## Extra Information/Screenshots
 ```
-
-
-
-
 
 
 
