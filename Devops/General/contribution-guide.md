@@ -10,6 +10,27 @@ For information about the development method we follow, please check [Developmen
 
 ## Issues
 
+Issues are handled within the Gitlab Issue tracker and should follow the template:
+
+```markdown
+## Issue Name
+
+### Summary
+
+### Steps to Reproduce
+
+### Current Behaviour
+
+### Expected Behaviour
+
+### Extra Details
+
+Here you should include details about the system (if it is unique) and possible information about a fix (feel free to link to code where relevant). Screenshots/GIFs are also fine here.
+
+```
+
+
+
 ## Merge Requests
 
 There should be **no** pushing directly to the `master` or `develop` branches. To implement a fix, one should open a branch with the naming: `hotfix/ISSUE-NAME` from the `develop` branch and complete all work there. When it is complete, a Merge Request should be opened that follows this template:
@@ -39,6 +60,10 @@ Link to any open issues here
 
 ## Extra Information/Screenshots
 ```
+
+When the request is created, it should be assigned to any other appropriate team member with `develop` as the target branch. Tests **must** be written for all features/changes made and any major changes should be updated in the `docs` repo.
+
+
 
 
 
