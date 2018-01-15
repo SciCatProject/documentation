@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Config · GitBook</title>
+        <title>Ngrx · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Testing/" />
+    <link rel="next" href="Development_Methodology/" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="psi_urls.html" />
     
 
     </head>
@@ -178,9 +178,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="../General/">
+        <li class="chapter " data-level="1.2.3" data-path="./">
             
-                <a href="../General/">
+                <a href="./">
             
                     
                     General
@@ -192,9 +192,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="../General/data_model.html">
+        <li class="chapter " data-level="1.2.3.1" data-path="data_model.html">
             
-                <a href="../General/data_model.html">
+                <a href="data_model.html">
             
                     
                     Data Model
@@ -205,9 +205,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.2" data-path="../General/deployment.html">
+        <li class="chapter " data-level="1.2.3.2" data-path="deployment.html">
             
-                <a href="../General/deployment.html">
+                <a href="deployment.html">
             
                     
                     Deployment
@@ -218,9 +218,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" data-path="../General/contribution-guide.html">
+        <li class="chapter " data-level="1.2.3.3" data-path="contribution-guide.html">
             
-                <a href="../General/contribution-guide.html">
+                <a href="contribution-guide.html">
             
                     
                     Contribution-Guide
@@ -231,9 +231,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.4" data-path="../General/psi_urls.html">
+        <li class="chapter " data-level="1.2.3.4" data-path="psi_urls.html">
             
-                <a href="../General/psi_urls.html">
+                <a href="psi_urls.html">
             
                     
                     Psi Urls
@@ -244,9 +244,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.5" data-path="../General/ngrx.html">
+        <li class="chapter active" data-level="1.2.3.5" data-path="ngrx.html">
             
-                <a href="../General/ngrx.html">
+                <a href="ngrx.html">
             
                     
                     Ngrx
@@ -262,9 +262,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="../General/Development_Methodology/">
+        <li class="chapter " data-level="1.2.4" data-path="Development_Methodology/">
             
-                <a href="../General/Development_Methodology/">
+                <a href="Development_Methodology/">
             
                     
                     Development_Methodology
@@ -276,9 +276,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.4.1" data-path="../General/Development_Methodology/git_workflow.html">
+        <li class="chapter " data-level="1.2.4.1" data-path="Development_Methodology/git_workflow.html">
             
-                <a href="../General/Development_Methodology/git_workflow.html">
+                <a href="Development_Methodology/git_workflow.html">
             
                     
                     Git Workflow
@@ -294,9 +294,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5" data-path="./">
+        <li class="chapter " data-level="1.2.5" data-path="../Catanie/">
             
-                <a href="./">
+                <a href="../Catanie/">
             
                     
                     Catanie
@@ -308,9 +308,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.5.1" data-path="config.html">
+        <li class="chapter " data-level="1.2.5.1" data-path="../Catanie/config.html">
             
-                <a href="config.html">
+                <a href="../Catanie/config.html">
             
                     
                     Config
@@ -326,9 +326,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="Testing/">
+        <li class="chapter " data-level="1.2.6" data-path="../Catanie/Testing/">
             
-                <a href="Testing/">
+                <a href="../Catanie/Testing/">
             
                     
                     Testing
@@ -477,7 +477,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Config</a>
+        <a href="../.." >Ngrx</a>
     </h1>
 </div>
 
@@ -492,46 +492,55 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="running-locally">Running locally</h1>
-<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
-<p><code>npm install</code></p>
-<p>Note: Now that Angular cli has reached V1, it has been recommended to keep the module local to each project. This means that you will need to access it here:</p>
-<p><code>./node_modules/@angular/cli/bin/ng serve</code></p>
-<p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
-<p>Access <a href="http://localhost:4200" target="_blank">here</a> once running.</p>
-<h1 id="running-with-docker">Running with Docker</h1>
-<p>The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
-<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
-<p><code>docker built -t &lt;tag&gt; .</code></p>
-<p><code>docker run &lt;tag&gt;</code></p>
-<p>You should see the container begin and print out the URL, this is retrieved dynamically based on the IP of the container. Changing it to localhost or 0.0.0.0 <strong>will</strong> break it.</p>
-<h1 id="running-with-kubernetes">Running with Kubernetes</h1>
-<p>For kubernetes, you will need the <code>kubectl</code> binary., which can be found <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here.</a> The configuration for the binary should be found in the <code>secrets</code> repo for your organisation and you will need to export it as <code>KUBECONFIG</code>, you can check this with <code>kubectl version</code> and ensure both client and server have versions.</p>
-<p>The docker image for Angular can either contain the Angular CLI development server, or an Nginx server that serves static files built by webpack.</p>
-<p>Using the default nginx docker image means that all URLs are not mapped, this means one needs to provide a custom config file:</p>
-<pre><code>server {
-    listen 80;
-    root /usr/share/html;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-</code></pre><ol>
-<li>Build the dist with <code>ng build -prod -op dist/prod</code></li>
-<li><code>sudo docker build -t registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION .</code></li>
-<li><code>sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION</code></li>
-<li><p><code>envsubst &lt; catanie-deployment.yaml | kubectl apply -f - --validate=false</code></p>
+                                <h4 id="services">Services</h4>
+<p>Before the store, we had to import the service into every component that needed it and make calls when the user performed an action. Yep, we put them in the store so each component only imports one thing (the store).</p>
+<h2 id="ngrx">NGRX</h2>
+<p>OK, so, every part of the <code>store</code> is split into <code>slices</code>. I can see hangouts so feel free to jump in with interruptions or questions (or tell me to skip something). </p>
+<p>LB stands for loopback. When loopback generates a library for Angular and Python it puts literally everything in there. Models, services, the whole lot. In catanie, this is put into the <code>shared/sdk</code> folder.</p>
+<p>Nope, not the state, we have had to make that manually. Not everything loopback provides we need and not everything needs to be in the store. Anything in the SDK folder should not be edited because it will just overwrite it when a new one is generated (there are exceptions when the Typescript is out of date)</p>
+<p>If we have a piece of information we want to put into the store, we need to consider the following 4 things.</p>
+<p>NGRX provides the store capabilities, yeah. Action, State etc are all provided by NGRX. Yep, it is. The store is an immutable object.</p>
+<h3 id="actions">Actions</h3>
+<p>What can be performed. For Jobs, it could be CREATE, CANCEL. We also have  RETRIEVE for viewing the jobs on the Jobs page later. These kind of tie in with the HTTP verbs (but not always, because the store does not have to retrieve anything from the server).</p>
+<p>One of the more common examples of the store is a counter. Storing a number in localstorage and increasing it with an INCREMENT action. The way we have done it, each action is essentially a class that can have a payload, that payload will be the changes to make to the store.</p>
+<h3 id="state">State</h3>
+<p>The state, once created, makes up the store and (ideally) should remain fixed. Each <code>slice</code> of state makes up the whole store. I.e. a <code>users</code> slice could also have a <code>movies</code> slice and a <code>cinema locations</code> slice. All of those things together make up the store. Yep, a slice is like a part of the object. The structure may be easier to see like this:</p>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rootReducer</span>(<span class="hljs-params">state: any, action: Action</span>) </span>{
+    <span class="hljs-keyword">return</span> combineReducers({
+        user: userReducer,
+        datasets: datasetsReducer,
+        dashboardUI: dashboardUIReducer,
+        jobs: jobsReducer
+    })(state, action);
+</code></pre>
+<p>So, we have a root reducer here that makes up all of our <code>slices</code> and creates the final store. To access jobs, for example, we would write <code>root.jobs.propery</code>. Ideally, the store should be normalised as much as possible and not have too many nested objects. </p>
+<p>The state folder we have shows all the slices we put into the store. It is worth noting that we define two things here: </p>
 <ol>
-<li>The YAML file is located in the <code>scripts</code> folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified. This is currently being worked on.</li>
+<li>an interface for the slice</li>
+<li>an initial state with initial values (this makes it easy to reset the store if we need to)</li>
 </ol>
-</li>
+<h3 id="reducers">Reducers</h3>
+<p>Yep, we combine every reducer into a single root and we access it through there.</p>
+<p>Because the store itself is immutable, we cannot access the slices directly, this is where we use reducers. A reducer is essentially an operator that is listening for calls and performing an action when it comes in.</p>
+<p>In super simple terms, it is a huge switch statement that goes against basic programming conventions (because we <code>return</code> from each case instead of <code>breaking</code>).</p>
+<p>In the user example, we have a few actions. The most important thing to note is <strong>never return a modified version of the store</strong>. You must always return a brand spanking new object made from the current state of the store and the new value you want to modify.</p>
+<p>If you never want to run long standing operations (i.e. server calls), these are the only things you need and every action can just be written to describe their function (i.e. DELETE_TABLE_ROW).</p>
+<p>But, if you want long operations, then this is where effects come in!</p>
+<h3 id="effects">Effects</h3>
+<p>An effect is similar to a reducer in that it listens for <code>actions</code> but it also returns an action. This means that we generally follow the convention of:</p>
+<ol>
+<li>REQUEST - Name of action</li>
+<li>REQUEST_COMPLETE - Called when the call is complete</li>
+<li>REQUEST_FAILED</li>
 </ol>
-<h2 id="locally-with-minikube">Locally with Minikube</h2>
-<p>TODO</p>
-<h2 id="on-a-cluster">On a cluster</h2>
-<p>TODO</p>
+<p>For example, the login effect for a user is maybe the best one.</p>
+<p>The login button is clicked and the LOGIN action is fired. We do nothing with this in the reducer because it changes nothing. However, the effect does listn for it. The default state is that a user is not logged in so nothing changes. Once the user is verified and stored in the state, that is where we make a change.</p>
+<p>The services that we used to call from the components should now be removed and centralised into the relevant effects. In the User example, we grab the <code>payload</code> using the <code>map</code> statement.</p>
+<p>We then call the <code>login</code> method within the service and pass in the user detais.</p>
+<p>SUCCESS? Then we fire the LOGIN_COMPLETE action and send a payload of the new user. The payload just contains the user and the reducer make the change for us.</p>
+<p>Our reducer subscribes to LOGIN_COMPLETE, builds a new store from the current one and the newly logged in user. Any component that needs to know about this change subscribes to that slice (i.e. the login page) and performs some checks.</p>
+<p>FAILURE? Then we fire LOGIN_FAILED and a message to show. Since we actually check the user credentials against 2 sources, we do not fire a failure immediately. We fire an AD_LOGIN action to try logging in with Active Drectory/LDAP. This calls a second effect that tries our next source and then fires a COMPLETE if it was successful. If it fails, the FAILED is fired and the user is informed.</p>
+<p>TL;DR - Actions in the front end will <code>dispatch</code> an action to the relevant slice of the store, this will then be picked up by the <code>reducer</code> or the <code>effect</code> (depending on the name of the action). Changes are carried out and a new store is returned. Relevant parts of the app subscribe to that slice to be informed of changes. </p>
 
                                 
                                 </section>
@@ -565,7 +574,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Config","level":"1.2.5.1","depth":3,"next":{"title":"Testing","level":"1.2.6","depth":2,"path":"Devops/Catanie/Testing/README.md","ref":"./Devops/Catanie/Testing/README.md","articles":[]},"previous":{"title":"Catanie","level":"1.2.5","depth":2,"path":"Devops/Catanie/README.md","ref":"./Devops/Catanie/README.md","articles":[{"title":"Config","level":"1.2.5.1","depth":3,"path":"Devops/Catanie/config.md","ref":"./Devops/Catanie/config.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/config.md","mtime":"2017-11-26T09:50:33.046Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T10:28:40.255Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ngrx","level":"1.2.3.5","depth":3,"next":{"title":"Development_Methodology","level":"1.2.4","depth":2,"path":"Devops/General/Development_Methodology/README.md","ref":"./Devops/General/Development_Methodology/README.md","articles":[{"title":"Git Workflow","level":"1.2.4.1","depth":3,"path":"Devops/General/Development_Methodology/git_workflow.md","ref":"./Devops/General/Development_Methodology/git_workflow.md","articles":[]}]},"previous":{"title":"Psi Urls","level":"1.2.3.4","depth":3,"path":"Devops/General/psi_urls.md","ref":"./Devops/General/psi_urls.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/General/ngrx.md","mtime":"2017-11-26T09:50:33.066Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T10:28:40.255Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

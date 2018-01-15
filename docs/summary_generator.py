@@ -2,7 +2,7 @@ import os
 
 ROOT_DIR = './'
 
-ignore = ['node_modules', '_book', '.git', 'img']
+ignore = ['node_modules', '_book', '.git', 'img', 'docs']
 
 summary = "# Summary \n\n"
 
