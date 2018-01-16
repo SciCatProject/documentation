@@ -27,9 +27,8 @@ git checkout -b feature/feature_name
 # Do some work
 git add <changed files>
 git commit -m 'COMMIT MESSAGE'
-git checkout develop
-git merge --no-ff feature/feature_name
-git branch -D feature/feature_name
+git push origin feature/feature_name 
+# Open merge request on gitlab.psi.ch, assign to someone else in team
 
 # TO RELEASE (ONCE TESTED ON DEVELOP)
 git checkout -b release/0.1.1
