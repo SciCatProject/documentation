@@ -76,7 +76,7 @@ Some sites have mentioned that simply using a `git pull` \(which is essentially 
 
 However, it should be noted that `git fetch origin` and `git rebase --preserve-merges origin/<branch_name>` will ensure that a history is maintained and merge conflicts are avoided where possible.
 
-Once a feature is complete \(and tested locally\), it should be merged into the latest version of `master (following the release cycle outlined above)` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
+Once a feature is complete \(and tested locally\), it should be merged into the latest version of `develop (following the release cycle outlined above)` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
 
 ## Current status:
 
@@ -88,8 +88,4 @@ CI is in the process of being implemented and should be prioritised at each site
 * `git fetch -p` -  Update branches from remote and remove deleted branches locally
 * `git merge --no-ff <branch>` -  Merge branch into current branch
 * `git branch -d <branch>` -  Remove branch once merged 
-
-## Considerations
-
-Issues with git flow have been documented \([see here](https://gitlab.psi.ch/help/workflow/gitlab_flow.md), [here](http://endoflineblog.com/gitflow-considered-harmful)\). The idea of following the `Google` approach is an option and uses one single branch `master` instead of pulling into develop. Used correctly, this could allow for a clearer idea of continuous delivery and removes one extra layer of abstraction.
 
