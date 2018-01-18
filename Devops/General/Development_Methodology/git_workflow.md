@@ -89,3 +89,30 @@ CI is in the process of being implemented and should be prioritised at each site
 * `git merge --no-ff <branch>` -  Merge branch into current branch
 * `git branch -d <branch>` -  Remove branch once merged 
 
+## Git Flow Plugin
+
+Support for the git flow commands as an extension to git can be found here:
+
+[https://github.com/nvie/gitflow](https://github.com/nvie/gitflow)
+
+This does mean that the `master` and `develop` branches cannot be protected as they need to be pushed to from the local repository.
+
+### Quickstart
+
+```
+git flow init (accept all prompts)
+
+#feature
+git flow feature start NAME
+# commits etc
+git push origin feature/NAME # open merge request on Gitlab here
+
+#release
+git flow release start vVERSION_NUMBER
+# commits and bump version number
+git flow release finish vVERSION_NUMBER
+git push origin --all # OR git push origin master
+```
+
+
+
