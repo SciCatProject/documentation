@@ -19,6 +19,7 @@
         * [Git Workflow](./Devops/General/Development_Methodology/git_workflow.md) 
    * [Catanie](./Devops/Catanie/README.md) 
       * [Config](./Devops/Catanie/config.md) 
+    * [Design](./Devops/Catanie/Design/README.md) 
     * [Testing](./Devops/Catanie/Testing/README.md) 
    * [Catamel](./Devops/Catamel/README.md) 
       * [Data Models And Urls](./Devops/Catamel/Data Models and URLs.md) 
