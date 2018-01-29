@@ -1,0 +1,26 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "A project to catalogue and provide access to metdatdata and raw experimental data.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gitbook-plugin-theme-api": "^1.1.2"
+  },
+  "devDependencies": {
+    "gh-pages-travis": "^1.0.4",
+    "gitbook-cli": "^2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gh-pages-travis": "gh-pages-travis"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.psi.ch:MELANIE/docs.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

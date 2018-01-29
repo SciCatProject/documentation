@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+before_install:
+- openssl aes-256-cbc -K $encrypted_d559dfaab78c_key -iv $encrypted_d559dfaab78c_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+env:
+  global:
+    secure: lt76sk7OJyE3tv7QMIhaHq+IJ/xL72gJM92pr/AZMIUKEBNM5T5QE/lIx4oot2dA0x4jWjOOfTectuffjrq80SL9/3k9J5GBY1ugDjhf1qd69EFuKPKkqz8Q3222QwMa7M5ZCCEZitXhOEuC7mKt6THyGnlb3m8Kwr/fmZyBo8ismP7kebhF1qjZ6u8E0vqSs9tiYsPit/vvuZvlCUyGo5MV6kNGdDo6Ow8QpTFVA/l8WkkxeUoMf3FDVSdc/hK08UXzKoWEVo2I85f9klqAk59puX6tdcIL0G2KVfxYwr1ycjBssrEN82hWimLOYM7+BJg6tOq3X2GGdT7fEi/gIwvcoYbyi1nylm6+BdF616VSS4KH7Ns/Ztu6jy0LbCYc617+6uqyvjvpRO9xFiZMAJEf9b9i2GZRmG3/MEoI2/RtnNyFAA1hPBi8Ykc00pA6+Vw0DBo3CkZPwIKsarFjpz5uReJiXwSn+m3IjCEf6vMBUX0ojAgwjyqrDEPtdegeObdY+7SRyluX7ZKrGDdk392+BmjEi+YVUKPODTfgVt69ZEdqibPKKJDetXDNDHYoj5ul5cTDOiA74Po9/jxgMTYWto+m+sybeoGzyzq98h/+GNpjzh+NJjczn51bksgv3hmsy5QDOQP1lPrzBvMjdyvwH1m0/KhWylZ/VJh3LL4=
