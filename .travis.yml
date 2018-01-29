@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-- '0.11'
-- '0.10'
+- '9.4'
 install:
   - npm install
   - ./node_modules/gitbook-cli/bin/gitbook.js install
