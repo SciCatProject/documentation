@@ -5,7 +5,6 @@
    * [Sections](./Users/Sections/README.md) 
       * [Sampledata](./Users/Sections/SampleData.md) 
       * [Jobs](./Users/Sections/Jobs.md) 
-      * [End-Of-Shift](./Users/Sections/End-of-shift.md) 
       * [Login](./Users/Sections/Login.md) 
       * [Dashboard](./Users/Sections/Dashboard.md) 
   * [Devops](./Devops/README.md) 

@@ -10,6 +10,7 @@ before_script:
   - npm install gitbook-cli -g # install gitbook 
   - npm install gitbook-plugin-theme-api
   - gitbook fetch latest # fetch latest stable version
+  - gitbook install
   #- gitbook fetch pre # fetch latest pre-release version
   #- gitbook fetch 2.6.7 # fetch specific version
 
@@ -17,7 +18,7 @@ before_script:
 pages:
   stage: deploy
   script:
-    - gitbook build . public # build to public path
+    - gitbook build . docs/
   artifacts:
     paths:
       - public
