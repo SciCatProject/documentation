@@ -15,6 +15,10 @@ DERIVEDDATASETID
 This is normal behaviour and only one of those should be filled.
 ```
 
+## Relationships
+
+It should be noted that relationships between dataset models.
+
 ## RawDataset
 
 This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains `Scientific Metadata`, and this is an extensible object to outline all parameters relevant to the dataset.
