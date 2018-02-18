@@ -27,13 +27,9 @@ git checkout -b feature/feature_name
 # Do some work
 git add <changed files>
 git commit -m 'COMMIT MESSAGE'
-<<<<<<< HEAD
+
 git push origin feature/feature_name
 # Click the link shown in the output to create a merge request
-=======
-git push origin feature/feature_name 
-# Open merge request on gitlab.psi.ch, assign to someone else in team
->>>>>>> 1af3b1299dcbad649fd24c7b9eb5b956c964a138
 
 # TO RELEASE (ONCE TESTED ON DEVELOP)
 git checkout -b release/0.1.1
