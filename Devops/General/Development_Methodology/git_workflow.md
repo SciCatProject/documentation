@@ -27,8 +27,13 @@ git checkout -b feature/feature_name
 # Do some work
 git add <changed files>
 git commit -m 'COMMIT MESSAGE'
+<<<<<<< HEAD
 git push origin feature/feature_name
 # Click the link shown in the output to create a merge request
+=======
+git push origin feature/feature_name 
+# Open merge request on gitlab.psi.ch, assign to someone else in team
+>>>>>>> 1af3b1299dcbad649fd24c7b9eb5b956c964a138
 
 # TO RELEASE (ONCE TESTED ON DEVELOP)
 git checkout -b release/0.1.1
@@ -76,7 +81,7 @@ Some sites have mentioned that simply using a `git pull` \(which is essentially 
 
 However, it should be noted that `git fetch origin` and `git rebase --preserve-merges origin/<branch_name>` will ensure that a history is maintained and merge conflicts are avoided where possible.
 
-Once a feature is complete \(and tested locally\), it should be merged into the latest version of `master (following the release cycle outlined above)` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
+Once a feature is complete \(and tested locally\), it should be merged into the latest version of `develop (following the release cycle outlined above)` and tested on the whole. If the tests pass, the develop can then be merged with master and any new merges to master should cause it to redeploy.
 
 ## Current status:
 
@@ -89,7 +94,30 @@ CI is in the process of being implemented and should be prioritised at each site
 * `git merge --no-ff <branch>` -  Merge branch into current branch
 * `git branch -d <branch>` -  Remove branch once merged 
 
-## Considerations
+## Git Flow Plugin
 
-Issues with git flow have been documented \([see here](https://gitlab.psi.ch/help/workflow/gitlab_flow.md), [here](http://endoflineblog.com/gitflow-considered-harmful)\). The idea of following the `Google` approach is an option and uses one single branch `master` instead of pulling into develop. Used correctly, this could allow for a clearer idea of continuous delivery and removes one extra layer of abstraction.
+Support for the git flow commands as an extension to git can be found here:
+
+[https://github.com/nvie/gitflow](https://github.com/nvie/gitflow)
+
+This does mean that the `master` and `develop` branches cannot be protected as they need to be pushed to from the local repository.
+
+### Quickstart
+
+```
+git flow init (accept all prompts)
+
+#feature
+git flow feature start NAME
+# commits etc
+git push origin feature/NAME # open merge request on Gitlab here
+
+#release
+git flow release start vVERSION_NUMBER
+# commits and bump version number
+git flow release finish vVERSION_NUMBER
+git push origin --all # OR git push origin master
+```
+
+
 
