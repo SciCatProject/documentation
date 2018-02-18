@@ -15,7 +15,7 @@ Scicat is made up of the following technologies:
 * Database - MongoDB
 
 * Data Ingesting - NODE-RED: A NodeJS based visual programming tool to handle flows of data from one source to another.
-* 
+
 ## Building and Editing Locally
 
 `npm i -g gitbook-cli`
@@ -39,8 +39,6 @@ python summary_generator.py
 gitbook build . docs/
 git add .
 ```
-
-
 
 
 
