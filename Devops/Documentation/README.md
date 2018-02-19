@@ -9,7 +9,7 @@ The command above could be useful to put into a git hook to ensure that a build 
 
 ## Summaries
 
-The TOC for a Gitbook is read from the SUMMARY`.md`, this can be handled by the python script: `summary_generator.py`
+The TOC for a Gitbook is read from the `SUMMARY.md`, this can be handled by the python script: `summary_generator.py`
 
 ## Pre Commit Hook
 
