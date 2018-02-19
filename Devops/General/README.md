@@ -8,3 +8,12 @@ First off, the backend is the key component here and you will see there is next 
 
 Got it? Good. OK, so, SciCat stores all of its data in a MongoDB but you will almost never need to perform any admin on the database. The connection between loopback and Mongo is handled by the loopback-mongo-connector. The only thing you need to provide is the file in `server/datasources.json` , this provides the connection string and any connection specific info.
 
+If you take a look at a model, you will see that some of them have a datasource of `transient` and others are specified as MongoDB. The `transient` models are not stored or handled by the mongo connector. You will see some other sections, so let's go through them:
+
+#### Model Definitions:
+
+* Properties: These are the values, types and other information. None of these are mongo specific and can all map to a relational database just as easily.
+* Relations: These link models, i.e. allowing a DatasetLifecycle to be linked to a Dataset. The mongo connector handles this by embedding the datasetId in the document for you.
+
+
+
