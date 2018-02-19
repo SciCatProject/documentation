@@ -24,5 +24,5 @@ As just mentioned, Loopback handles all the basic RESTful commands for a model f
 * Custom methods: You can extend your model with methods that allow you to implement logic beyond what loopback provides
 * Remote hooks: Before a particular endpoint \(or all endpoints\) are called, or before a document is saved/edited/accessed, then you can use these hooks to implement some logic. For example, you may want to inject some extra information into a JSON object before it is saved or ensure the user has some access control that is outside of your Loopback system.
 
-
+For the best example of these, take a look at the Dataset JS and JSON files, this also shows how relations work between models.
 
