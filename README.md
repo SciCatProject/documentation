@@ -16,6 +16,15 @@ Scicat is made up of the following technologies:
 
 * Data Ingesting - NODE-RED: A NodeJS based visual programming tool to handle flows of data from one source to another.
 
+
+
+## Documentation
+
+This repository provides the documentation for each of the services that comprises SciCat, as well as some guides on the user interface and how to perform tasks. This is split into the following sections:
+
+* Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat
+* Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.
+
 ## Building and Editing Locally
 
 `npm i -g gitbook-cli`
