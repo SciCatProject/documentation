@@ -14,6 +14,15 @@ If you take a look at a model, you will see that some of them have a datasource 
 
 * Properties: These are the values, types and other information. None of these are mongo specific and can all map to a relational database just as easily.
 * Relations: These link models, i.e. allowing a DatasetLifecycle to be linked to a Dataset. The mongo connector handles this by embedding the datasetId in the document for you.
+* ACLs: These are access control limitations and these are very powerful. You can give a user full control of a model, some users can only have read access etc.
+* Methods: When you create a model, loopback will automagically generate API endpoints that allows users to PUT, POST, PATCH, GET etc for all the models. However, sometimes this is not enough. For example, you may want to be able to generate a monthly report of all datasets created, so you define the method here, the name of the endpoint and the expected parameters. You will implement the method in the next section we cover now.
+
+#### Model Implementation:
+
+As just mentioned, Loopback handles all the basic RESTful commands for a model for you but there are two ways to extend this:
+
+* Custom methods: You can extend your model with methods that allow you to implement logic beyond what loopback provides
+* Remote hooks: Before a particular endpoint \(or all endpoints\) are called, or before a document is saved/edited/accessed, then you can use these hooks to implement some logic. For example, you may want to inject some extra information into a JSON object before it is saved or ensure the user has some access control that is outside of your Loopback system.
 
 
 
