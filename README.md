@@ -23,29 +23,7 @@ This repository provides the documentation for each of the services that compris
 * Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat
 * Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.
 
-## Building and Editing Locally
-
-`npm i -g gitbook-cli`
-
-`gitbook install`
-
-`gitbook build . docs/`  
-The command above could be useful to put into a git hook to ensure that a build is made on each push.
-
-## Summaries
-
-The TOC for a Gitbook is read from the `Summary.md`, this can be handled by the python script: `summary_generator.py`
-
-## Pre Commit Hook
-
-```
-#!/bin/sh
-
-cd $DACATHOME/docs
-python summary_generator.py
-gitbook build . docs/
-git add .
-```
+## 
 
 
 
