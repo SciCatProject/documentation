@@ -26,3 +26,16 @@ As just mentioned, Loopback handles all the basic RESTful commands for a model f
 
 For the best example of these, take a look at the Dataset JS and JSON files, this also shows how relations work between models.
 
+#### Running Catamel
+
+Catamel has some core files missing that are required in order for it to run. Below, we list these files and what they should contain. Ideally, there will be a minimal install of Catamel in the source repo that includes minimal config files to remove this barrier.
+
+* `datasources.json` - This sets up your connection to Mongo and should follow the syntax outlined in [loopback](https://loopback.io/doc/en/lb3/datasources.json.html) 
+* `config.local.js` - These are site specific settings for your install, such as the prefix to use for IDs, messages to store in the dataset and the facilities you have
+* `providers.json` - Contains connection information to LDAP or other authentication sources
+* `component-config.json` - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed
+
+#### Testing Catamel
+
+All tests for catamel are in the `test` folder in the root of the repo and can be run with `npm run test`. 
+
