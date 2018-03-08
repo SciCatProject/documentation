@@ -21,7 +21,5 @@ Each of these jobs is triggered every evening at 8pm and can also be triggered b
 
 #### Git hooks
 
-
-
-
+Inside the `client` and `server` folder of the `catamel-psiconfig` repo, is a file \(`post-push`\) that can be copied into the `.git/hooks` folder for Catanie and Catamel. Inside this file is a curl command that triggers the job to build after every push \(using the webhook\).
 
