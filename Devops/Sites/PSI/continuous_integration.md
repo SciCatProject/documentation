@@ -25,7 +25,9 @@ Inside the `client` and `server` folder of the `catamel-psiconfig` repo, is a fi
 
 #### Jenkinsfile
 
-It is common practice to place build and config files in the root of a repository \(this is typically where a system will look for it\). However, because of the sites developing with SciCat, our build systems all differ slightly. For this reason, the Jenkinsfile is place in `CI/PSI/Jenkinsfile`, this also contains other files necessary for the builds to succed.
+It is common practice to place build and config files in the root of a repository \(this is typically where a system will look for it\). However, because of the sites developing with SciCat, our build systems all differ slightly. For this reason, the Jenkinsfile is place in `CI/PSI/Jenkinsfile`, this also contains other files necessary for the builds to succeed.
+
+#### Builds.
 
 
 
