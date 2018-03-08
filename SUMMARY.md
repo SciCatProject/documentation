@@ -25,6 +25,7 @@
   * [Sites](./Devops/Sites/README.md) 
     * [Ess](./Devops/Sites/ESS/README.md) 
     * [Maxiv](./Devops/Sites/MAXIV/README.md) 
+          * [Continuous_Integration](./Devops/Sites/PSI/continuous_integration.md) 
           * [Psi_Urls](./Devops/Sites/PSI/psi_urls.md) 
     * [Psi](./Devops/Sites/PSI/README.md) 
 * [Users](./Users/README.md) 
