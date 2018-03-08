@@ -29,11 +29,5 @@ It is common practice to place build and config files in the root of a repositor
 
 #### Builds
 
-Jenkinsfile follow the Groovy syntax \(similar to Java\) and the [documentation ](https://jenkins.io/doc/book/pipeline/jenkinsfile/)is more than adequate to cover the basics. 
-
-
-
-
-
-
+Jenkinsfile follow the Groovy syntax \(similar to Java\) and the [documentation ](https://jenkins.io/doc/book/pipeline/jenkinsfile/)is more than adequate.
 
