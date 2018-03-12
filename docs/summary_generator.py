@@ -1,6 +1,6 @@
-import os
+import os, glob
 
-ROOT_DIR = './'
+ROOT_DIR = '.'
 
 ignore = ['node_modules', '_book', '.git', 'img', 'docs']
 
@@ -19,19 +19,21 @@ summary = "# Summary \n\n"
 #             files.append(entry.path)
 
 def list_files(startpath):
-    """Scan all dirs for md files and generate contents."""
     global summary
-    for root, dirs, files in os.walk(startpath):
-        dirs[:] = [x for x in dirs if x not in ignore]
-        split_path = root.split('/')
-        level = len(split_path)
-        title = split_path[-1]
-        title = title if title else "Home"
-        summary += "{0}* [{1}]({2}) \n".format(' ' * (level), title, root + '/README.md')
-        md_files  = [x for x  in files if 'md' in x.lower() and not 'readme' in x.lower() and not 'summary' in x.lower()]
-        for f in md_files:
-            f_name = f.lower().replace('_', ' ').replace('.md', '').title()
-            summary += "{0}* [{1}]({2}) \n".format(' ' * (level*2), f_name, os.path.join(root, f))
+    all_files = glob.iglob(startpath + '**/*.md', recursive=True)
+    for f in all_files:
+        if not 'node_modules' in f.lower():
+            split_path = f.split('/')
+            print(split_path, f)
+            title = split_path[-1]
+            level = 0
+            if len(split_path) > 2:
+                title = split_path[-1] if 'readme' not in split_path[-1].lower() else split_path[-2]
+                formatted = f.lower().replace('/readme.md', '').split('/')
+                level = len(formatted) if not 'readme' in f.lower() else len(formatted) - 2
+            title = title.replace('.md', '').title()
+            summary += "{0}* [{1}]({2}) \n".format(' ' * (level * 2), title, f)
+    print(summary)
     return summary
 
 

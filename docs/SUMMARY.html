@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Readme · GitBook</title>
+        <title>Summary · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Devops/" />
+    <link rel="next" href="./" />
     
-    
-    <link rel="prev" href="SUMMARY.html" />
     
 
     </head>
@@ -93,7 +91,7 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="SUMMARY.html">
+        <li class="chapter active" data-level="1.1" data-path="SUMMARY.html">
             
                 <a href="SUMMARY.html">
             
@@ -106,7 +104,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="./">
             
                 <a href="./">
             
@@ -399,7 +397,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Readme</a>
+        <a href="." >Summary</a>
     </h1>
 </div>
 
@@ -414,28 +412,58 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="scicat">SciCat</h1>
-<h2 id="what">What?</h2>
-<p>A project to catalogue and provide access to metadata and raw experimental data.</p>
-<h2 id="how">How?</h2>
-<p>Scicat is made up of the following technologies:</p>
+                                <h1 id="summary">Summary</h1>
 <ul>
-<li><p>Web based frontend - <a href="https://github.com/SciCatProject/catanie" target="_blank">Catanie</a>: An Angular (2+) based application that uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions (i.e. archiving) and acts as a place to reference datasets used in publications.</p>
+<li><a href="SUMMARY.html">Summary</a> </li>
+<li><a href="./">Readme</a> </li>
+<li><a href="Devops/">Devops</a> <pre><code>  * [Data Models And Urls](./Devops/Catamel/Data Models and URLs.md) 
+  * [Email_Notifications](./Devops/Catamel/Email_Notifications.md) 
+</code></pre><ul>
+<li><a href="Devops/Catamel/">Catamel</a> <pre><code>* [Config](./Devops/Catamel/config.md) 
+</code></pre><ul>
+<li><a href="Devops/Catamel/Testing/">Testing</a> </li>
+</ul>
 </li>
-<li><p>API Server - <a href="https://github.com/SciCatProject/catamel" target="_blank">Catamel: </a>A NodeJS application that uses the Loopback framework to generate RESTful APIs from JSON files that define models (such as: Users, Datasets, Instruments etc). Follows the Swagger API format and SDKs can be generated in almost any language.</p>
+<li><a href="Devops/Documentation/">Documentation</a> <pre><code>* [Data_Model](./Devops/General/data_model.md) 
+* [Intro](./Devops/General/INTRO.md) 
+</code></pre></li>
+<li><a href="Devops/General/">General</a> <pre><code>* [Deployment](./Devops/General/deployment.md) 
+* [Contribution-Guide](./Devops/General/contribution-guide.md) 
+</code></pre><ul>
+<li><a href="Devops/General/Development_Methodology/">Development_Methodology</a> <pre><code>* [Git_Workflow](./Devops/General/Development_Methodology/git_workflow.md) 
+</code></pre></li>
+</ul>
 </li>
-<li><p>Database - <a href="https://www.mongodb.com/" target="_blank">MongoDB</a></p>
+<li><a href="Devops/Sites/">Sites</a> <ul>
+<li><a href="Devops/Sites/MAXIV/">Maxiv</a> </li>
+<li><a href="Devops/Sites/ESS/">Ess</a> <pre><code>* [Continuous_Integration](./Devops/Sites/PSI/continuous_integration.md) 
+</code></pre></li>
+<li><a href="Devops/Sites/PSI/">Psi</a> <pre><code>* [Psi_Urls](./Devops/Sites/PSI/psi_urls.md) 
+</code></pre></li>
+</ul>
 </li>
-<li><p>Data Ingesting - <a href="https://nodered.org/" target="_blank">Node-RED</a>: A NodeJS based visual programming tool to handle flows of data from one source to another.</p>
+<li><a href="Devops/Catanie/">Catanie</a> <pre><code>* [Config](./Devops/Catanie/config.md) 
+* [Archiving](./Devops/Catanie/archiving.md) 
+* [Ngrx](./Devops/Catanie/ngrx.md) 
+</code></pre><ul>
+<li><a href="Devops/Catanie/Design/">Design</a> </li>
+<li><a href="Devops/Catanie/Testing/">Testing</a> </li>
+</ul>
 </li>
 </ul>
-<h2 id="documentation">Documentation</h2>
-<p>This repository provides the documentation for each of the services that comprises SciCat, as well as some guides on the user interface and how to perform tasks. This is split into the following sections:</p>
-<ul>
-<li>Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat</li>
-<li>Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.</li>
+</li>
+<li><a href="Users/">Users</a> <pre><code>  * [Dashboard](./Users/Sections/Dashboard.md) 
+  * [Jobs](./Users/Sections/Jobs.md) 
+  * [Login](./Users/Sections/Login.md) 
+</code></pre><ul>
+<li><a href="Users/Sections/">Sections</a> <pre><code>* [Sampledata](./Users/Sections/SampleData.md) 
+</code></pre><ul>
+<li><a href="_book/docs/gitbook/gitbook-plugin-search/README.md">Gitbook-Plugin-Search</a> </li>
 </ul>
-<h2 id=""> </h2>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -469,7 +497,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Readme","level":"1.2","depth":1,"next":{"title":"Devops","level":"1.3","depth":1,"path":"Devops/README.md","ref":"./Devops/README.md","articles":[{"title":"Catamel","level":"1.3.1","depth":2,"path":"Devops/Catamel/README.md","ref":"./Devops/Catamel/README.md","articles":[{"title":"Testing","level":"1.3.1.1","depth":3,"path":"Devops/Catamel/Testing/README.md","ref":"./Devops/Catamel/Testing/README.md","articles":[]}]},{"title":"Documentation","level":"1.3.2","depth":2,"path":"Devops/Documentation/README.md","ref":"./Devops/Documentation/README.md","articles":[]},{"title":"General","level":"1.3.3","depth":2,"path":"Devops/General/README.md","ref":"./Devops/General/README.md","articles":[{"title":"Development_Methodology","level":"1.3.3.1","depth":3,"path":"Devops/General/Development_Methodology/README.md","ref":"./Devops/General/Development_Methodology/README.md","articles":[]}]},{"title":"Sites","level":"1.3.4","depth":2,"path":"Devops/Sites/README.md","ref":"./Devops/Sites/README.md","articles":[{"title":"Maxiv","level":"1.3.4.1","depth":3,"path":"Devops/Sites/MAXIV/README.md","ref":"./Devops/Sites/MAXIV/README.md","articles":[]},{"title":"Ess","level":"1.3.4.2","depth":3,"path":"Devops/Sites/ESS/README.md","ref":"./Devops/Sites/ESS/README.md","articles":[]},{"title":"Psi","level":"1.3.4.3","depth":3,"path":"Devops/Sites/PSI/README.md","ref":"./Devops/Sites/PSI/README.md","articles":[]}]},{"title":"Catanie","level":"1.3.5","depth":2,"path":"Devops/Catanie/README.md","ref":"./Devops/Catanie/README.md","articles":[{"title":"Design","level":"1.3.5.1","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"./Devops/Catanie/Design/README.md","articles":[]},{"title":"Testing","level":"1.3.5.2","depth":3,"path":"Devops/Catanie/Testing/README.md","ref":"./Devops/Catanie/Testing/README.md","articles":[]}]}]},"previous":{"title":"Summary","level":"1.1","depth":1,"path":"SUMMARY.md","ref":"./SUMMARY.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2018-03-12T22:48:40.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-12T22:49:11.896Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Summary","level":"1.1","depth":1,"next":{"title":"Readme","level":"1.2","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SUMMARY.md","mtime":"2018-03-12T22:48:54.096Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-12T22:49:11.896Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
