@@ -12,9 +12,9 @@ Scicat is made up of the following technologies:
 
 * API Server - [Catamel: ](https://github.com/SciCatProject/catamel)A NodeJS application that uses the Loopback framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Follows the Swagger API format and SDKs can be generated in almost any language.
 
-* Database - MongoDB
+* Database - [MongoDB](https://www.mongodb.com/)
 
-* Data Ingesting - NODE-RED: A NodeJS based visual programming tool to handle flows of data from one source to another.
+* Data Ingesting - [Node-RED](https://nodered.org/): A NodeJS based visual programming tool to handle flows of data from one source to another.
 
 ## Documentation
 
