@@ -2,7 +2,7 @@
 
 ## What?
 
-A project to catalogue and provide access to metdatdata and raw experimental data.
+A project to catalogue and provide access to metadata and raw experimental data.
 
 ## How?
 
