@@ -9,7 +9,8 @@ script:
 deploy:
   provider: pages
   skip_cleanuo: true
-  github_token: $GH_TOKEN
+  allow_empty_commit: true
+  commiter-from-gh: true
   keep_history: true
   local_dir: docs
   on:
