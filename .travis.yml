@@ -8,7 +8,7 @@ script:
   - ./node_modules/gitbook-cli/bin/gitbook.js build . docs
 deploy:
   provider: pages
-  skip_cleanuo: true
+  skip_cleanup: true
   allow_empty_commit: true
   commiter-from-gh: true
   keep_history: true
