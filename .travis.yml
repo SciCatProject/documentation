@@ -10,6 +10,7 @@ deploy:
   provider: pages
   skip_cleanuo: true
   github_token: $GH_TOKEN
+  keep_history: true
   local_dir: docs
 env:
   global:
