@@ -23,7 +23,9 @@ This repository provides the documentation for each of the services that compris
 * Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat
 * Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.
 
-## 
+## Talks
+
+[SciCat Project: Data Catalog System](https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf)
 
 
 
