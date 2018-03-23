@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Data_Model · GitBook</title>
+        <title>Catanie-Public · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="INTRO.html" />
     
-    
-    <link rel="prev" href="deployment.html" />
+    <link rel="prev" href="../Catamel/Testing/" />
     
 
     </head>
@@ -219,9 +217,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1.3.1" data-path="deployment.html">
+        <li class="chapter " data-level="1.4.1.3.1" data-path="../General/deployment.html">
             
-                <a href="deployment.html">
+                <a href="../General/deployment.html">
             
                     
                     Deployment
@@ -232,9 +230,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.1.3.2" data-path="data_model.html">
+        <li class="chapter " data-level="1.4.1.3.2" data-path="../General/data_model.html">
             
-                <a href="data_model.html">
+                <a href="../General/data_model.html">
             
                     
                     Data_Model
@@ -245,9 +243,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.1.3.3" data-path="INTRO.html">
+        <li class="chapter " data-level="1.4.1.3.3" data-path="../General/INTRO.html">
             
-                <a href="INTRO.html">
+                <a href="../General/INTRO.html">
             
                     
                     Intro
@@ -268,9 +266,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="./">
+        <li class="chapter " data-level="1.4.2" data-path="../General/">
             
-                <a href="./">
+                <a href="../General/">
             
                     
                     General
@@ -282,9 +280,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.2.1" data-path="Development_Methodology/">
+        <li class="chapter " data-level="1.4.2.1" data-path="../General/Development_Methodology/">
             
-                <a href="Development_Methodology/">
+                <a href="../General/Development_Methodology/">
             
                     
                     Development_Methodology
@@ -435,9 +433,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="../Catanie-Public/">
+        <li class="chapter active" data-level="1.4.6" data-path="./">
             
-                <a href="../Catanie-Public/">
+                <a href="./">
             
                     
                     Catanie-Public
@@ -483,7 +481,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Data_Model</a>
+        <a href="../.." >Catanie-Public</a>
     </h1>
 </div>
 
@@ -498,59 +496,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="an-introduction-to-the-data-model">An Introduction to the Data Model</h1>
-<h2 id="model">Model</h2>
-<p>There are many models within the catalog and many of them are self explanatory. When created, the API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.</p>
-<pre><code>Note:
-
-We are using MongoDB for our datasource and it is not designed for any form of relation, nor does it handle inheritance. The driver for loopback solves this by inserting the ID of the relation as a foreign key into the document. This does mean that some documents will contain a:
-DATASETID,
-RAWDATASETID,
-DERIVEDDATASETID
-
-This is normal behaviour and only one of those should be filled.
-</code></pre><h2 id="relationships">Relationships</h2>
-<p>It should be noted that relationships between dataset models.</p>
-<h2 id="rawdataset">RawDataset</h2>
-<p>This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains <code>Scientific Metadata</code>, and this is an extensible object to outline all parameters relevant to the dataset.</p>
-<h2 id="deriveddataset">DerivedDataset</h2>
-<p>These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset.</p>
-<h3 id="fields">Fields</h3>
-<p>Obviously, these fields can become overly complex and technical, so the user facing software will contain simplified details. Below are some of the more prominent examples from the Dashboard table in Catanie:</p>
+                                <h2 id="catanie-public">Catanie Public</h2>
+<p>As of right now, this is a private fork of the <code>Catanie</code> project and is focused on the following goals:</p>
 <ul>
-<li>creationLocation -&gt; Beamline </li>
-<li>ownerGroup -&gt; Groups</li>
-<li>archiveStatusMessage -&gt; Archive Status</li>
+<li>Access to public datasets in accordance with EU policy and regulation</li>
+<li>Public facing endpoint</li>
+<li>Share as much code with <code>Catanie</code> as possible</li>
+<li>Remove site specific login functionality (LDAP) but maybe allow logins via OpenID etc</li>
+<li>Provide unique identifier for referencing in publications</li>
 </ul>
-<h3 id="datablocks">Datablocks</h3>
-<p>A data block should never be shown to the user but, regardless of backup system being used, it is likely that a single dataset will be able to be backed up into a single location. In order to address this, we have <code>datablocks</code> that contain a list of datafiles. A dataset can be split into multiple datablocks (unless it contains a single large file).</p>
-<p>To reduce the reliance on a particular backup system, there is an <code>OrigDataBlock</code> and a <code>DataBlock</code>. The <code>OrigDataBlock</code> is created by Catamel  when a dataset is ingested and they are preemptively split. If the connected backup system does support datablocks then it would need to respond with datablock details when it is ingested. In those cases, a dataset will store both the <code>OrigDataBlocks</code> and <code>Datablocks</code>.</p>
-<h3 id="datasetlifecycle">DatasetLifecycle</h3>
-<p>There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval.</p>
-<h2 id="job">Job</h2>
-<p>When a user wants to archive or retrieve a dataset, a job is created. A job queue can then collect these and send them to whichever backup system is being used. As the job progresses, the system can make calls back that update the <code>Job Status Message</code> and, when necessary, the DatasetLifecycle can be updated.</p>
-<hr>
-<h2 id="explorer">Explorer</h2>
-<p>When you have an instance of the data catalog running, the data model can be visualised at the following URLS:</p>
-<ul>
-<li><catamel_url>/modeldiagram/ </catamel_url></li>
-<li><catamel_url>/explorer/</catamel_url></li>
-<li><catamel_url>/visualize</catamel_url></li>
-</ul>
-<p>The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the <code>login</code> route under the <code>User</code> tab to obtain one of these, or use a CURL command.</p>
-<h3 id="main-screen">Main Screen</h3>
-<p>The top right entry field is where the token should be included. The token will define your access rights, so not all routes will be accessible. Each model has a tab which relates to its endpoint. Expanding the tab shows the routes section below.</p>
-<p><img src="img/explorer.png" alt="explorer"></p>
-<h3 id="routes">Routes</h3>
-<p>Each section outlines the routes for the chosen model. This is configurable but the HTTP verbs are supported here for most routes and conform to the standards. Error codes are also consistent. Expanding the chosen route allows one to test the response with sample data, or their own.</p>
-<p><img src="img/explorer_routes.png" alt="routes"></p>
-<h3 id="single-route">Single Route</h3>
-<p>Selecting a route shows the expected JSON object and provides an editor to allow you to test the route. Response information is shown below.
-Clicking the <code>data type</code> box will insert it into your request for easy testing.</p>
-<p><img src="img/explorer_single_route.png" alt="route"></p>
-<h3 id="model">Model</h3>
-<p>The model view can be accessed by clicking the link next to <code>Example Value</code> and shows the fields that Loopback is expecting to receive, as well as their type and whether they are required.</p>
-<p><img src="img/explorer_model.png" alt="model"></p>
+<h2 id="status">Status</h2>
+<p>Right now, it is an early work in progress and should <strong>not</strong> be open sourced because it stores passwords.</p>
+<h3 id="master">master</h3>
+<p>This branch is a fork of Catanie and needs some modules removed and/or changed.</p>
+<h3 id="python">python</h3>
+<p>If there is a preference to serve pages server side, then there is a branch to run catanie as a Tornado web server, allowing it to plug in with the file server plans in the scicat roadmap.</p>
 
                                 
                                 </section>
@@ -584,7 +544,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Data_Model","level":"1.4.1.3.2","depth":4,"next":{"title":"Intro","level":"1.4.1.3.3","depth":4,"path":"Devops/General/INTRO.md","ref":"./Devops/General/INTRO.md","articles":[]},"previous":{"title":"Deployment","level":"1.4.1.3.1","depth":4,"path":"Devops/General/deployment.md","ref":"./Devops/General/deployment.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/General/data_model.md","mtime":"2018-03-23T13:11:39.886Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-23T13:12:36.687Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Catanie-Public","level":"1.4.6","depth":2,"previous":{"title":"Testing","level":"1.4.5.1","depth":3,"path":"Devops/Catamel/Testing/README.md","ref":"./Devops/Catamel/Testing/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie-Public/README.md","mtime":"2018-03-23T13:11:39.886Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-23T13:12:36.687Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
