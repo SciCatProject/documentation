@@ -51,3 +51,4 @@
         * [Config](./Devops/Catamel/config.md) 
   * [Catamel](./Devops/Catamel/README.md) 
     * [Testing](./Devops/Catamel/Testing/README.md) 
+  * [Catanie-Public](./Devops/Catanie-Public/README.md) 
