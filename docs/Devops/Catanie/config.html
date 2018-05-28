@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>General · GitBook</title>
+        <title>Config · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Development_Methodology/" />
+    <link rel="next" href="archiving.html" />
     
     
-    <link rel="prev" href="INTRO.html" />
+    <link rel="prev" href="../General/Development_Methodology/" />
     
 
     </head>
@@ -219,9 +219,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1.3.1" data-path="deployment.html">
+        <li class="chapter " data-level="1.4.1.3.1" data-path="../General/deployment.html">
             
-                <a href="deployment.html">
+                <a href="../General/deployment.html">
             
                     
                     Deployment
@@ -232,9 +232,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.1.3.2" data-path="data_model.html">
+        <li class="chapter " data-level="1.4.1.3.2" data-path="../General/data_model.html">
             
-                <a href="data_model.html">
+                <a href="../General/data_model.html">
             
                     
                     Data_Model
@@ -245,9 +245,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.1.3.3" data-path="INTRO.html">
+        <li class="chapter " data-level="1.4.1.3.3" data-path="../General/INTRO.html">
             
-                <a href="INTRO.html">
+                <a href="../General/INTRO.html">
             
                     
                     Intro
@@ -268,9 +268,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="./">
+        <li class="chapter " data-level="1.4.2" data-path="../General/">
             
-                <a href="./">
+                <a href="../General/">
             
                     
                     General
@@ -282,9 +282,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.2.1" data-path="Development_Methodology/">
+        <li class="chapter " data-level="1.4.2.1" data-path="../General/Development_Methodology/">
             
-                <a href="Development_Methodology/">
+                <a href="../General/Development_Methodology/">
             
                     
                     Development_Methodology
@@ -296,9 +296,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.2.1.1" data-path="../Catanie/config.html">
+        <li class="chapter active" data-level="1.4.2.1.1" data-path="config.html">
             
-                <a href="../Catanie/config.html">
+                <a href="config.html">
             
                     
                     Config
@@ -309,9 +309,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2.1.2" data-path="../Catanie/archiving.html">
+        <li class="chapter " data-level="1.4.2.1.2" data-path="archiving.html">
             
-                <a href="../Catanie/archiving.html">
+                <a href="archiving.html">
             
                     
                     Archiving
@@ -322,9 +322,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2.1.3" data-path="../Catanie/ngrx.html">
+        <li class="chapter " data-level="1.4.2.1.3" data-path="ngrx.html">
             
-                <a href="../Catanie/ngrx.html">
+                <a href="ngrx.html">
             
                     
                     Ngrx
@@ -345,9 +345,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../Catanie/">
+        <li class="chapter " data-level="1.4.3" data-path="./">
             
-                <a href="../Catanie/">
+                <a href="./">
             
                     
                     Catanie
@@ -359,9 +359,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.3.1" data-path="../Catanie/Design/">
+        <li class="chapter " data-level="1.4.3.1" data-path="Design/">
             
-                <a href="../Catanie/Design/">
+                <a href="Design/">
             
                     
                     Design
@@ -372,9 +372,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.2" data-path="../Catanie/Testing/">
+        <li class="chapter " data-level="1.4.3.2" data-path="Testing/">
             
-                <a href="../Catanie/Testing/">
+                <a href="Testing/">
             
                     
                     Testing
@@ -483,7 +483,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >General</a>
+        <a href="../.." >Config</a>
     </h1>
 </div>
 
@@ -498,36 +498,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="so-you-have-just-started-working-on-scicat">So, you have just started working on SciCat?</h2>
-<p>This page provides a brief introduction to the overall workings of the SciCat data model, how things connect and links to more details on each component.</p>
-<h3 id="catamel">Catamel</h3>
-<p>First off, the backend is the key component here and you will see there is next to hand written code here (aside from some tests). The folder you will be working in most is: <code>common/models</code> and this is NodeJS application based on the Loopback framework. Go away and read the docs for Loopback (3) and come back here when you are fairly comfortable. I&apos;ll wait.</p>
-<p>Got it? Good. OK, so, SciCat stores all of its data in a MongoDB but you will almost never need to perform any admin on the database. The connection between loopback and Mongo is handled by the loopback-mongo-connector. The only thing you need to provide is the file in <code>server/datasources.json</code> , this provides the connection string and any connection specific info.</p>
-<p>If you take a look at a model, you will see that some of them have a datasource of <code>transient</code> and others are specified as MongoDB. The <code>transient</code> models are not stored or handled by the mongo connector. You will see some other sections, so let&apos;s go through them:</p>
-<h4 id="model-definitions">Model Definitions:</h4>
-<ul>
-<li>Properties: These are the values, types and other information. None of these are mongo specific and can all map to a relational database just as easily.</li>
-<li>Relations: These link models, i.e. allowing a DatasetLifecycle to be linked to a Dataset. The mongo connector handles this by embedding the datasetId in the document for you.</li>
-<li>ACLs: These are access control limitations and these are very powerful. You can give a user full control of a model, some users can only have read access etc.</li>
-<li>Methods: When you create a model, loopback will automagically generate API endpoints that allows users to PUT, POST, PATCH, GET etc for all the models. However, sometimes this is not enough. For example, you may want to be able to generate a monthly report of all datasets created, so you define the method here, the name of the endpoint and the expected parameters. You will implement the method in the next section we cover now.</li>
-</ul>
-<h4 id="model-implementation">Model Implementation:</h4>
-<p>As just mentioned, Loopback handles all the basic RESTful commands for a model for you but there are two ways to extend this:</p>
-<ul>
-<li>Custom methods: You can extend your model with methods that allow you to implement logic beyond what loopback provides</li>
-<li>Remote hooks: Before a particular endpoint (or all endpoints) are called, or before a document is saved/edited/accessed, then you can use these hooks to implement some logic. For example, you may want to inject some extra information into a JSON object before it is saved or ensure the user has some access control that is outside of your Loopback system.</li>
-</ul>
-<p>For the best example of these, take a look at the Dataset JS and JSON files, this also shows how relations work between models.</p>
-<h4 id="running-catamel">Running Catamel</h4>
-<p>Catamel has some core files missing that are required in order for it to run. Below, we list these files and what they should contain. Ideally, there will be a minimal install of Catamel in the source repo that includes minimal config files to remove this barrier.</p>
-<ul>
-<li><code>datasources.json</code> - This sets up your connection to Mongo and should follow the syntax outlined in <a href="https://loopback.io/doc/en/lb3/datasources.json.html" target="_blank">loopback</a> </li>
-<li><code>config.local.js</code> - These are site specific settings for your install, such as the prefix to use for IDs, messages to store in the dataset and the facilities you have</li>
-<li><code>providers.json</code> - Contains connection information to LDAP or other authentication sources</li>
-<li><code>component-config.json</code> - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed</li>
-</ul>
-<h4 id="testing-catamel">Testing Catamel</h4>
-<p>All tests for catamel are in the <code>test</code> folder in the root of the repo and can be run with <code>npm run test</code>. </p>
+                                <h1 id="running-locally">Running locally</h1>
+<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
+<p><code>npm install</code></p>
+<p>Note: Now that Angular cli has reached V1, it has been recommended to keep the module local to each project. This means that you will need to access it here:</p>
+<p><code>./node_modules/@angular/cli/bin/ng serve</code></p>
+<p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
+<p>Access <a href="http://localhost:4200" target="_blank">here</a> once running.</p>
+<h1 id="running-with-docker">Running with Docker</h1>
+<p>The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
+<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
+<p><code>docker built -t &lt;tag&gt; .</code></p>
+<p><code>docker run &lt;tag&gt;</code></p>
+<p>You should see the container begin and print out the URL, this is retrieved dynamically based on the IP of the container. Changing it to localhost or 0.0.0.0 <strong>will</strong> break it.</p>
+<h1 id="running-with-kubernetes">Running with Kubernetes</h1>
+<p>For kubernetes, you will need the <code>kubectl</code> binary., which can be found <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here.</a> The configuration for the binary should be found in the <code>secrets</code> repo for your organisation and you will need to export it as <code>KUBECONFIG</code>, you can check this with <code>kubectl version</code> and ensure both client and server have versions.</p>
+<p>The docker image for Angular can either contain the Angular CLI development server, or an Nginx server that serves static files built by webpack.</p>
+<p>Using the default nginx docker image means that all URLs are not mapped, this means one needs to provide a custom config file:</p>
+<pre><code>server {
+    listen 80;
+    root /usr/share/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+</code></pre><ol>
+<li>Build the dist with <code>ng build -prod -op dist/prod</code></li>
+<li><code>sudo docker build -t registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION .</code></li>
+<li><code>sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION</code></li>
+<li><p><code>envsubst &lt; catanie-deployment.yaml | kubectl apply -f - --validate=false</code></p>
+<ol>
+<li>The YAML file is located in the <code>scripts</code> folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified. This is currently being worked on.</li>
+</ol>
+</li>
+</ol>
+<h2 id="locally-with-minikube">Locally with Minikube</h2>
+<p>TODO</p>
+<h2 id="on-a-cluster">On a cluster</h2>
+<p>TODO</p>
 
                                 
                                 </section>
@@ -561,7 +571,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"General","level":"1.4.2","depth":2,"next":{"title":"Development_Methodology","level":"1.4.2.1","depth":3,"path":"Devops/General/Development_Methodology/README.md","ref":"./Devops/General/Development_Methodology/README.md","articles":[{"title":"Config","level":"1.4.2.1.1","depth":4,"path":"Devops/Catanie/config.md","ref":"./Devops/Catanie/config.md","articles":[]},{"title":"Archiving","level":"1.4.2.1.2","depth":4,"path":"Devops/Catanie/archiving.md","ref":"./Devops/Catanie/archiving.md","articles":[]},{"title":"Ngrx","level":"1.4.2.1.3","depth":4,"path":"Devops/Catanie/ngrx.md","ref":"./Devops/Catanie/ngrx.md","articles":[]}]},"previous":{"title":"Intro","level":"1.4.1.3.3","depth":4,"path":"Devops/General/INTRO.md","ref":"./Devops/General/INTRO.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/General/README.md","mtime":"2018-05-28T13:15:41.396Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-28T13:26:08.249Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Config","level":"1.4.2.1.1","depth":4,"next":{"title":"Archiving","level":"1.4.2.1.2","depth":4,"path":"Devops/Catanie/archiving.md","ref":"./Devops/Catanie/archiving.md","articles":[]},"previous":{"title":"Development_Methodology","level":"1.4.2.1","depth":3,"path":"Devops/General/Development_Methodology/README.md","ref":"./Devops/General/Development_Methodology/README.md","articles":[{"title":"Config","level":"1.4.2.1.1","depth":4,"path":"Devops/Catanie/config.md","ref":"./Devops/Catanie/config.md","articles":[]},{"title":"Archiving","level":"1.4.2.1.2","depth":4,"path":"Devops/Catanie/archiving.md","ref":"./Devops/Catanie/archiving.md","articles":[]},{"title":"Ngrx","level":"1.4.2.1.3","depth":4,"path":"Devops/Catanie/ngrx.md","ref":"./Devops/Catanie/ngrx.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/config.md","mtime":"2018-05-28T13:15:41.393Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-28T13:26:08.249Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
