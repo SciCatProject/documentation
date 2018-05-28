@@ -1,4 +1,4 @@
-# SciCat
+# SciCat Metadata catalogue
 
 ## What?
 
