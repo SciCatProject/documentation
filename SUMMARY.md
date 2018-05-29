@@ -31,6 +31,7 @@
 * [Users](./Users/README.md) 
   * [Sections](./Users/Sections/README.md) 
     * [Sampledata](./Users/Sections/SampleData/README.md) 
+    * [Datasetattachments](./Users/Sections/DatasetAttachments/README.md) 
     * [Dashboard](./Users/Sections/Dashboard/README.md) 
     * [Jobs](./Users/Sections/Jobs/README.md) 
     * [Login](./Users/Sections/Login/README.md) 

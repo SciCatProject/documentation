@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '9.4'
 install:
-  - npm install
+  - yarn
   - ./node_modules/gitbook-cli/bin/gitbook.js install
 script:
   - ./node_modules/gitbook-cli/bin/gitbook.js build . docs
