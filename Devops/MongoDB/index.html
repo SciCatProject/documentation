@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Documentation · GitBook</title>
+        <title>Mongodb · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../General/" />
+    <link rel="next" href="../Sites/" />
     
     
-    <link rel="prev" href="../Catamel/Testing/" />
+    <link rel="prev" href="../General/DataModel/" />
     
 
     </head>
@@ -191,9 +191,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.2" data-path="./">
+        <li class="chapter " data-level="1.2.2" data-path="../Documentation/">
             
-                <a href="./">
+                <a href="../Documentation/">
             
                     
                     Documentation
@@ -294,9 +294,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="../MongoDB/">
+        <li class="chapter active" data-level="1.2.4" data-path="./">
             
-                <a href="../MongoDB/">
+                <a href="./">
             
                     
                     Mongodb
@@ -619,7 +619,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Documentation</a>
+        <a href="../.." >Mongodb</a>
     </h1>
 </div>
 
@@ -634,19 +634,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="building-and-editing-locally">Building and Editing Locally</h2>
-<p><code>npm i -g gitbook-cli</code></p>
-<p><code>gitbook install</code></p>
-<p><code>gitbook build . docs/</code><br>The command above could be useful to put into a git hook to ensure that a build is made on each push.</p>
-<h2 id="summaries">Summaries</h2>
-<p>The TOC for a Gitbook is read from the <code>SUMMARY.md</code>, this can be handled by the python script: <code>summary_generator.py</code></p>
-<h2 id="pre-commit-hook">Pre Commit Hook</h2>
-<pre><code>#!/bin/sh
-
-cd $DACATHOME/docs
-python summary_generator.py
-gitbook build . docs/
-git add .
+                                <p>Indxing MongoDB</p>
+<pre><code>javascript
+db.Dataset.createIndex( { &quot;$**&quot;: &quot;text&quot; } )
 </code></pre>
                                 
                                 </section>
@@ -680,7 +670,7 @@ git add .
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Documentation","level":"1.2.2","depth":2,"next":{"title":"General","level":"1.2.3","depth":2,"path":"Devops/General/README.md","ref":"./Devops/General/README.md","articles":[{"title":"Contributing","level":"1.2.3.1","depth":3,"path":"Devops/General/Contributing/README.md","ref":"./Devops/General/Contributing/README.md","articles":[]},{"title":"Deployment","level":"1.2.3.2","depth":3,"path":"Devops/General/Deployment/README.md","ref":"./Devops/General/Deployment/README.md","articles":[]},{"title":"Development_Methods","level":"1.2.3.3","depth":3,"path":"Devops/General/Development_Methods/README.md","ref":"./Devops/General/Development_Methods/README.md","articles":[{"title":"Gitflow","level":"1.2.3.3.1","depth":4,"path":"Devops/General/Development_Methods/Gitflow/README.md","ref":"./Devops/General/Development_Methods/Gitflow/README.md","articles":[]}]},{"title":"Datamodel","level":"1.2.3.4","depth":3,"path":"Devops/General/DataModel/README.md","ref":"./Devops/General/DataModel/README.md","articles":[]}]},"previous":{"title":"Testing","level":"1.2.1.4","depth":3,"path":"Devops/Catamel/Testing/README.md","ref":"./Devops/Catamel/Testing/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Documentation/README.md","mtime":"2018-05-29T15:59:52.458Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T16:01:12.911Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Mongodb","level":"1.2.4","depth":2,"next":{"title":"Sites","level":"1.2.5","depth":2,"path":"Devops/Sites/README.md","ref":"./Devops/Sites/README.md","articles":[{"title":"Maxiv","level":"1.2.5.1","depth":3,"path":"Devops/Sites/MAXIV/README.md","ref":"./Devops/Sites/MAXIV/README.md","articles":[]},{"title":"Ess","level":"1.2.5.2","depth":3,"path":"Devops/Sites/ESS/README.md","ref":"./Devops/Sites/ESS/README.md","articles":[]},{"title":"Psi","level":"1.2.5.3","depth":3,"path":"Devops/Sites/PSI/README.md","ref":"./Devops/Sites/PSI/README.md","articles":[{"title":"Ci","level":"1.2.5.3.1","depth":4,"path":"Devops/Sites/PSI/CI/README.md","ref":"./Devops/Sites/PSI/CI/README.md","articles":[]},{"title":"Psi_Urls","level":"1.2.5.3.2","depth":4,"path":"Devops/Sites/PSI/PSI_URLs/README.md","ref":"./Devops/Sites/PSI/PSI_URLs/README.md","articles":[]}]}]},"previous":{"title":"Datamodel","level":"1.2.3.4","depth":3,"path":"Devops/General/DataModel/README.md","ref":"./Devops/General/DataModel/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/MongoDB/README.md","mtime":"2018-05-29T15:59:52.470Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T16:01:12.911Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
