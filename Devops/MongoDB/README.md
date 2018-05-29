@@ -1,5 +1,5 @@
 
-#Indexing MongoDB
+# Indexing MongoDB
 
 In order to use the search field in SciCat, you must create a text index for the Dataset collection.
 This must be done after the dacat database has been created in MongoDB by catamel.
