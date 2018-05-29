@@ -1,6 +1,7 @@
-rm -rf node_modules SUMMARY.md  docs
+rm -rf SUMMARY.md  docs
 
-   npm install
+
+yarn
 
 python3 summary_generator.py
    ./node_modules/gitbook-cli/bin/gitbook.js install
