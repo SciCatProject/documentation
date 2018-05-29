@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Testing · GitBook</title>
+        <title>Config · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../EmailNotifications/" />
+    <link rel="next" href="../Testing/" />
     
     
-    <link rel="prev" href="../Config/" />
+    <link rel="prev" href="../Design/" />
     
 
     </head>
@@ -120,9 +120,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../">
+        <li class="chapter " data-level="1.2.1" data-path="../../Catamel/">
             
-                <a href="../">
+                <a href="../../Catamel/">
             
                     
                     Catamel
@@ -134,9 +134,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1.1" data-path="../DataModels/">
+        <li class="chapter " data-level="1.2.1.1" data-path="../../Catamel/DataModels/">
             
-                <a href="../DataModels/">
+                <a href="../../Catamel/DataModels/">
             
                     
                     Datamodels
@@ -147,9 +147,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.2" data-path="../Config/">
+        <li class="chapter " data-level="1.2.1.2" data-path="../../Catamel/Config/">
             
-                <a href="../Config/">
+                <a href="../../Catamel/Config/">
             
                     
                     Config
@@ -160,9 +160,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.3" data-path="./">
+        <li class="chapter " data-level="1.2.1.3" data-path="../../Catamel/Testing/">
             
-                <a href="./">
+                <a href="../../Catamel/Testing/">
             
                     
                     Testing
@@ -173,9 +173,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.4" data-path="../EmailNotifications/">
+        <li class="chapter " data-level="1.2.1.4" data-path="../../Catamel/EmailNotifications/">
             
-                <a href="../EmailNotifications/">
+                <a href="../../Catamel/EmailNotifications/">
             
                     
                     Emailnotifications
@@ -346,9 +346,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="../../Catanie/">
+        <li class="chapter " data-level="1.2.6" data-path="../">
             
-                <a href="../../Catanie/">
+                <a href="../">
             
                     
                     Catanie
@@ -360,9 +360,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.6.1" data-path="../../Catanie/Ngrx/">
+        <li class="chapter " data-level="1.2.6.1" data-path="../Ngrx/">
             
-                <a href="../../Catanie/Ngrx/">
+                <a href="../Ngrx/">
             
                     
                     Ngrx
@@ -373,9 +373,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.2" data-path="../../Catanie/Design/">
+        <li class="chapter " data-level="1.2.6.2" data-path="../Design/">
             
-                <a href="../../Catanie/Design/">
+                <a href="../Design/">
             
                     
                     Design
@@ -386,9 +386,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.3" data-path="../../Catanie/Config/">
+        <li class="chapter active" data-level="1.2.6.3" data-path="./">
             
-                <a href="../../Catanie/Config/">
+                <a href="./">
             
                     
                     Config
@@ -399,9 +399,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.4" data-path="../../Catanie/Testing/">
+        <li class="chapter " data-level="1.2.6.4" data-path="../Testing/">
             
-                <a href="../../Catanie/Testing/">
+                <a href="../Testing/">
             
                     
                     Testing
@@ -412,9 +412,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.5" data-path="../../Catanie/Archiving/">
+        <li class="chapter " data-level="1.2.6.5" data-path="../Archiving/">
             
-                <a href="../../Catanie/Archiving/">
+                <a href="../Archiving/">
             
                     
                     Archiving
@@ -555,7 +555,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >Testing</a>
+        <a href="../../.." >Config</a>
     </h1>
 </div>
 
@@ -570,55 +570,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="testing">Testing</h1>
-<h2 id="packages">Packages</h2>
-<ul>
-<li><a href="https://github.com/chaijs/chai" target="_blank">Chai</a> - Assertion</li>
-<li><a href="https://github.com/visionmedia/supertest" target="_blank">Supertest</a> - NodeJS testing for HTTP calls</li>
-<li><a href="https://github.com/mochajs/mocha" target="_blank">Mocha</a> - Test runner framework</li>
-</ul>
-<h2 id="running">Running</h2>
-<p><code>npm run test</code></p>
-<p>or </p>
-<p><code>mocha --timeout=5000 --reporter=nyan</code></p>
-<h2 id="tests">Tests</h2>
-<p>Some tests to cover the Users API and the RawDataset API have been written but more are needed. There is a LoginUtils file that supports the retrieval of tokens and everything else is documented in the Swagger file</p>
-<h2 id="environment">Environment</h2>
-<p>If this is being run independently of an infrastructure then you should provide the environment variable <code>NODE_ENV</code> to be <code>test</code>.</p>
-<h2 id="set-up">Set up</h2>
-<p>In the <code>test/config/settings.json</code> file, you should have the following fields:</p>
-<pre><code>{
-    &quot;baseURL&quot;: &quot;http://localhost:3000/&quot;,
-    &quot;apiPrefix&quot;: &quot;api/v2/&quot;,
-    &quot;users&quot;: {
-        &quot;admin&quot;: {
-            &quot;username&quot;: &quot;&lt;USER&gt;&quot;,
-            &quot;password&quot;: &quot;&lt;PWD&gt;&quot;,
-            &quot;login&quot;: &quot;api/v2/Users/login&quot;
+                                <h1 id="running-locally">Running locally</h1>
+<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
+<p><code>npm install</code></p>
+<p>Note: Now that Angular cli has reached V1, it has been recommended to keep the module local to each project. This means that you will need to access it here:</p>
+<p><code>./node_modules/@angular/cli/bin/ng serve</code></p>
+<p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
+<p>Access <a href="http://localhost:4200" target="_blank">here</a> once running.</p>
+<h1 id="running-with-docker">Running with Docker</h1>
+<p>The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
+<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
+<p><code>docker built -t &lt;tag&gt; .</code></p>
+<p><code>docker run &lt;tag&gt;</code></p>
+<p>You should see the container begin and print out the URL, this is retrieved dynamically based on the IP of the container. Changing it to localhost or 0.0.0.0 <strong>will</strong> break it.</p>
+<h1 id="running-with-kubernetes">Running with Kubernetes</h1>
+<p>For kubernetes, you will need the <code>kubectl</code> binary., which can be found <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here.</a> The configuration for the binary should be found in the <code>secrets</code> repo for your organisation and you will need to export it as <code>KUBECONFIG</code>, you can check this with <code>kubectl version</code> and ensure both client and server have versions.</p>
+<p>The docker image for Angular can either contain the Angular CLI development server, or an Nginx server that serves static files built by webpack.</p>
+<p>Using the default nginx docker image means that all URLs are not mapped, this means one needs to provide a custom config file:</p>
+<pre><code>server {
+    listen 80;
+    root /usr/share/html;
+    index index.html;
 
-        },
-        &quot;user&quot;: {
-            &quot;username&quot;: &quot;&lt;USER&gt;&quot;,
-            &quot;password&quot;: &quot;&lt;PWD&gt;&quot;,
-            &quot;login&quot;:&quot;auth/msad&quot;
-        },
-    },
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 }
-</code></pre><h2 id="adding-tests">Adding tests</h2>
-<p>This can be done one of two ways:</p>
-<h3 id="simple-tests">Simple Tests</h3>
-<p>For simple tests, you can add it to the <code>test/config/tests.json</code> file. Each entry should have the following syntax:</p>
-<pre><code>{
-    &quot;method&quot;: &quot;GET&quot;,
-    &quot;route&quot;: &quot;Datasets?filter=%7B%22limit%22%3A10%7D&quot;,
-    &quot;expect&quot;: 200,
-    &quot;authenticate&quot;: &quot;admin&quot;
-}
-</code></pre><p>Authenticate can be user or admin, depending on the type of account you have specified.</p>
-<p>If you include a <code>body</code> property, then that will be sent with the request.</p>
-<p>If you include a <code>response</code> array, then the string content should be valid JS. Note that this uses the unsafe <code>eval</code> method so be careful!</p>
-<h3 id="writing-tests">Writing Tests</h3>
-<p>If you have a chain of tests, or just tests that might be more complex, then you can write them in the <code>test</code> folder. See any <code>js</code> file in there for examples.</p>
+</code></pre><ol>
+<li>Build the dist with <code>ng build -prod -op dist/prod</code></li>
+<li><code>sudo docker build -t registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION .</code></li>
+<li><code>sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION</code></li>
+<li><p><code>envsubst &lt; catanie-deployment.yaml | kubectl apply -f - --validate=false</code></p>
+<ol>
+<li>The YAML file is located in the <code>scripts</code> folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified. This is currently being worked on.</li>
+</ol>
+</li>
+</ol>
+<h2 id="locally-with-minikube">Locally with Minikube</h2>
+<p>TODO</p>
+<h2 id="on-a-cluster">On a cluster</h2>
+<p>TODO</p>
 
                                 
                                 </section>
@@ -652,7 +643,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing","level":"1.2.1.3","depth":3,"next":{"title":"Emailnotifications","level":"1.2.1.4","depth":3,"path":"Devops/Catamel/EmailNotifications/README.md","ref":"./Devops/Catamel/EmailNotifications/README.md","articles":[]},"previous":{"title":"Config","level":"1.2.1.2","depth":3,"path":"Devops/Catamel/Config/README.md","ref":"./Devops/Catamel/Config/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catamel/Testing/README.md","mtime":"2018-05-28T13:15:41.387Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T12:13:15.833Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Config","level":"1.2.6.3","depth":3,"next":{"title":"Testing","level":"1.2.6.4","depth":3,"path":"Devops/Catanie/Testing/README.md","ref":"./Devops/Catanie/Testing/README.md","articles":[]},"previous":{"title":"Design","level":"1.2.6.2","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"./Devops/Catanie/Design/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Config/README.md","mtime":"2018-05-28T13:15:41.393Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T12:13:15.833Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

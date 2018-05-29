@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Testing · GitBook</title>
+        <title>Ngrx · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../EmailNotifications/" />
+    <link rel="next" href="../Design/" />
     
     
-    <link rel="prev" href="../Config/" />
+    <link rel="prev" href="../" />
     
 
     </head>
@@ -120,9 +120,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../">
+        <li class="chapter " data-level="1.2.1" data-path="../../Catamel/">
             
-                <a href="../">
+                <a href="../../Catamel/">
             
                     
                     Catamel
@@ -134,9 +134,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1.1" data-path="../DataModels/">
+        <li class="chapter " data-level="1.2.1.1" data-path="../../Catamel/DataModels/">
             
-                <a href="../DataModels/">
+                <a href="../../Catamel/DataModels/">
             
                     
                     Datamodels
@@ -147,9 +147,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.2" data-path="../Config/">
+        <li class="chapter " data-level="1.2.1.2" data-path="../../Catamel/Config/">
             
-                <a href="../Config/">
+                <a href="../../Catamel/Config/">
             
                     
                     Config
@@ -160,9 +160,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.3" data-path="./">
+        <li class="chapter " data-level="1.2.1.3" data-path="../../Catamel/Testing/">
             
-                <a href="./">
+                <a href="../../Catamel/Testing/">
             
                     
                     Testing
@@ -173,9 +173,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.4" data-path="../EmailNotifications/">
+        <li class="chapter " data-level="1.2.1.4" data-path="../../Catamel/EmailNotifications/">
             
-                <a href="../EmailNotifications/">
+                <a href="../../Catamel/EmailNotifications/">
             
                     
                     Emailnotifications
@@ -346,9 +346,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="../../Catanie/">
+        <li class="chapter " data-level="1.2.6" data-path="../">
             
-                <a href="../../Catanie/">
+                <a href="../">
             
                     
                     Catanie
@@ -360,9 +360,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.6.1" data-path="../../Catanie/Ngrx/">
+        <li class="chapter active" data-level="1.2.6.1" data-path="./">
             
-                <a href="../../Catanie/Ngrx/">
+                <a href="./">
             
                     
                     Ngrx
@@ -373,9 +373,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.2" data-path="../../Catanie/Design/">
+        <li class="chapter " data-level="1.2.6.2" data-path="../Design/">
             
-                <a href="../../Catanie/Design/">
+                <a href="../Design/">
             
                     
                     Design
@@ -386,9 +386,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.3" data-path="../../Catanie/Config/">
+        <li class="chapter " data-level="1.2.6.3" data-path="../Config/">
             
-                <a href="../../Catanie/Config/">
+                <a href="../Config/">
             
                     
                     Config
@@ -399,9 +399,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.4" data-path="../../Catanie/Testing/">
+        <li class="chapter " data-level="1.2.6.4" data-path="../Testing/">
             
-                <a href="../../Catanie/Testing/">
+                <a href="../Testing/">
             
                     
                     Testing
@@ -412,9 +412,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6.5" data-path="../../Catanie/Archiving/">
+        <li class="chapter " data-level="1.2.6.5" data-path="../Archiving/">
             
-                <a href="../../Catanie/Archiving/">
+                <a href="../Archiving/">
             
                     
                     Archiving
@@ -555,7 +555,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >Testing</a>
+        <a href="../../.." >Ngrx</a>
     </h1>
 </div>
 
@@ -570,55 +570,55 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="testing">Testing</h1>
-<h2 id="packages">Packages</h2>
-<ul>
-<li><a href="https://github.com/chaijs/chai" target="_blank">Chai</a> - Assertion</li>
-<li><a href="https://github.com/visionmedia/supertest" target="_blank">Supertest</a> - NodeJS testing for HTTP calls</li>
-<li><a href="https://github.com/mochajs/mocha" target="_blank">Mocha</a> - Test runner framework</li>
-</ul>
-<h2 id="running">Running</h2>
-<p><code>npm run test</code></p>
-<p>or </p>
-<p><code>mocha --timeout=5000 --reporter=nyan</code></p>
-<h2 id="tests">Tests</h2>
-<p>Some tests to cover the Users API and the RawDataset API have been written but more are needed. There is a LoginUtils file that supports the retrieval of tokens and everything else is documented in the Swagger file</p>
-<h2 id="environment">Environment</h2>
-<p>If this is being run independently of an infrastructure then you should provide the environment variable <code>NODE_ENV</code> to be <code>test</code>.</p>
-<h2 id="set-up">Set up</h2>
-<p>In the <code>test/config/settings.json</code> file, you should have the following fields:</p>
-<pre><code>{
-    &quot;baseURL&quot;: &quot;http://localhost:3000/&quot;,
-    &quot;apiPrefix&quot;: &quot;api/v2/&quot;,
-    &quot;users&quot;: {
-        &quot;admin&quot;: {
-            &quot;username&quot;: &quot;&lt;USER&gt;&quot;,
-            &quot;password&quot;: &quot;&lt;PWD&gt;&quot;,
-            &quot;login&quot;: &quot;api/v2/Users/login&quot;
-
-        },
-        &quot;user&quot;: {
-            &quot;username&quot;: &quot;&lt;USER&gt;&quot;,
-            &quot;password&quot;: &quot;&lt;PWD&gt;&quot;,
-            &quot;login&quot;:&quot;auth/msad&quot;
-        },
-    },
-}
-</code></pre><h2 id="adding-tests">Adding tests</h2>
-<p>This can be done one of two ways:</p>
-<h3 id="simple-tests">Simple Tests</h3>
-<p>For simple tests, you can add it to the <code>test/config/tests.json</code> file. Each entry should have the following syntax:</p>
-<pre><code>{
-    &quot;method&quot;: &quot;GET&quot;,
-    &quot;route&quot;: &quot;Datasets?filter=%7B%22limit%22%3A10%7D&quot;,
-    &quot;expect&quot;: 200,
-    &quot;authenticate&quot;: &quot;admin&quot;
-}
-</code></pre><p>Authenticate can be user or admin, depending on the type of account you have specified.</p>
-<p>If you include a <code>body</code> property, then that will be sent with the request.</p>
-<p>If you include a <code>response</code> array, then the string content should be valid JS. Note that this uses the unsafe <code>eval</code> method so be careful!</p>
-<h3 id="writing-tests">Writing Tests</h3>
-<p>If you have a chain of tests, or just tests that might be more complex, then you can write them in the <code>test</code> folder. See any <code>js</code> file in there for examples.</p>
+                                <h4 id="services">Services</h4>
+<p>Before the store, we had to import the service into every component that needed it and make calls when the user performed an action. Yep, we put them in the store so each component only imports one thing (the store).</p>
+<h2 id="ngrx">NGRX</h2>
+<p>OK, so, every part of the <code>store</code> is split into <code>slices</code>. I can see hangouts so feel free to jump in with interruptions or questions (or tell me to skip something). </p>
+<p>LB stands for loopback. When loopback generates a library for Angular and Python it puts literally everything in there. Models, services, the whole lot. In catanie, this is put into the <code>shared/sdk</code> folder.</p>
+<p>Nope, not the state, we have had to make that manually. Not everything loopback provides we need and not everything needs to be in the store. Anything in the SDK folder should not be edited because it will just overwrite it when a new one is generated (there are exceptions when the Typescript is out of date)</p>
+<p>If we have a piece of information we want to put into the store, we need to consider the following 4 things.</p>
+<p>NGRX provides the store capabilities, yeah. Action, State etc are all provided by NGRX. Yep, it is. The store is an immutable object.</p>
+<h3 id="actions">Actions</h3>
+<p>What can be performed. For Jobs, it could be CREATE, CANCEL. We also have  RETRIEVE for viewing the jobs on the Jobs page later. These kind of tie in with the HTTP verbs (but not always, because the store does not have to retrieve anything from the server).</p>
+<p>One of the more common examples of the store is a counter. Storing a number in localstorage and increasing it with an INCREMENT action. The way we have done it, each action is essentially a class that can have a payload, that payload will be the changes to make to the store.</p>
+<h3 id="state">State</h3>
+<p>The state, once created, makes up the store and (ideally) should remain fixed. Each <code>slice</code> of state makes up the whole store. I.e. a <code>users</code> slice could also have a <code>movies</code> slice and a <code>cinema locations</code> slice. All of those things together make up the store. Yep, a slice is like a part of the object. The structure may be easier to see like this:</p>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rootReducer</span>(<span class="hljs-params">state: any, action: Action</span>) </span>{
+    <span class="hljs-keyword">return</span> combineReducers({
+        user: userReducer,
+        datasets: datasetsReducer,
+        dashboardUI: dashboardUIReducer,
+        jobs: jobsReducer
+    })(state, action);
+</code></pre>
+<p>So, we have a root reducer here that makes up all of our <code>slices</code> and creates the final store. To access jobs, for example, we would write <code>root.jobs.propery</code>. Ideally, the store should be normalised as much as possible and not have too many nested objects. </p>
+<p>The state folder we have shows all the slices we put into the store. It is worth noting that we define two things here: </p>
+<ol>
+<li>an interface for the slice</li>
+<li>an initial state with initial values (this makes it easy to reset the store if we need to)</li>
+</ol>
+<h3 id="reducers">Reducers</h3>
+<p>Yep, we combine every reducer into a single root and we access it through there.</p>
+<p>Because the store itself is immutable, we cannot access the slices directly, this is where we use reducers. A reducer is essentially an operator that is listening for calls and performing an action when it comes in.</p>
+<p>In super simple terms, it is a huge switch statement that goes against basic programming conventions (because we <code>return</code> from each case instead of <code>breaking</code>).</p>
+<p>In the user example, we have a few actions. The most important thing to note is <strong>never return a modified version of the store</strong>. You must always return a brand spanking new object made from the current state of the store and the new value you want to modify.</p>
+<p>If you never want to run long standing operations (i.e. server calls), these are the only things you need and every action can just be written to describe their function (i.e. DELETE_TABLE_ROW).</p>
+<p>But, if you want long operations, then this is where effects come in!</p>
+<h3 id="effects">Effects</h3>
+<p>An effect is similar to a reducer in that it listens for <code>actions</code> but it also returns an action. This means that we generally follow the convention of:</p>
+<ol>
+<li>REQUEST - Name of action</li>
+<li>REQUEST_COMPLETE - Called when the call is complete</li>
+<li>REQUEST_FAILED</li>
+</ol>
+<p>For example, the login effect for a user is maybe the best one.</p>
+<p>The login button is clicked and the LOGIN action is fired. We do nothing with this in the reducer because it changes nothing. However, the effect does listn for it. The default state is that a user is not logged in so nothing changes. Once the user is verified and stored in the state, that is where we make a change.</p>
+<p>The services that we used to call from the components should now be removed and centralised into the relevant effects. In the User example, we grab the <code>payload</code> using the <code>map</code> statement.</p>
+<p>We then call the <code>login</code> method within the service and pass in the user detais.</p>
+<p>SUCCESS? Then we fire the LOGIN_COMPLETE action and send a payload of the new user. The payload just contains the user and the reducer make the change for us.</p>
+<p>Our reducer subscribes to LOGIN_COMPLETE, builds a new store from the current one and the newly logged in user. Any component that needs to know about this change subscribes to that slice (i.e. the login page) and performs some checks.</p>
+<p>FAILURE? Then we fire LOGIN_FAILED and a message to show. Since we actually check the user credentials against 2 sources, we do not fire a failure immediately. We fire an AD_LOGIN action to try logging in with Active Drectory/LDAP. This calls a second effect that tries our next source and then fires a COMPLETE if it was successful. If it fails, the FAILED is fired and the user is informed.</p>
+<p>TL;DR - Actions in the front end will <code>dispatch</code> an action to the relevant slice of the store, this will then be picked up by the <code>reducer</code> or the <code>effect</code> (depending on the name of the action). Changes are carried out and a new store is returned. Relevant parts of the app subscribe to that slice to be informed of changes. </p>
 
                                 
                                 </section>
@@ -652,7 +652,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing","level":"1.2.1.3","depth":3,"next":{"title":"Emailnotifications","level":"1.2.1.4","depth":3,"path":"Devops/Catamel/EmailNotifications/README.md","ref":"./Devops/Catamel/EmailNotifications/README.md","articles":[]},"previous":{"title":"Config","level":"1.2.1.2","depth":3,"path":"Devops/Catamel/Config/README.md","ref":"./Devops/Catamel/Config/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catamel/Testing/README.md","mtime":"2018-05-28T13:15:41.387Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T12:13:15.833Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ngrx","level":"1.2.6.1","depth":3,"next":{"title":"Design","level":"1.2.6.2","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"./Devops/Catanie/Design/README.md","articles":[]},"previous":{"title":"Catanie","level":"1.2.6","depth":2,"path":"Devops/Catanie/README.md","ref":"./Devops/Catanie/README.md","articles":[{"title":"Ngrx","level":"1.2.6.1","depth":3,"path":"Devops/Catanie/Ngrx/README.md","ref":"./Devops/Catanie/Ngrx/README.md","articles":[]},{"title":"Design","level":"1.2.6.2","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"./Devops/Catanie/Design/README.md","articles":[]},{"title":"Config","level":"1.2.6.3","depth":3,"path":"Devops/Catanie/Config/README.md","ref":"./Devops/Catanie/Config/README.md","articles":[]},{"title":"Testing","level":"1.2.6.4","depth":3,"path":"Devops/Catanie/Testing/README.md","ref":"./Devops/Catanie/Testing/README.md","articles":[]},{"title":"Archiving","level":"1.2.6.5","depth":3,"path":"Devops/Catanie/Archiving/README.md","ref":"./Devops/Catanie/Archiving/README.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Ngrx/README.md","mtime":"2018-05-28T13:15:41.393Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T12:13:15.833Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
