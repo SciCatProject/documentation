@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Readme · GitBook</title>
+        <title>Summary · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="SUMMARY.html" />
     
-    
-    <link rel="prev" href="2_Devops/Sites/" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -575,7 +573,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="./">
             
                 <a href="./">
             
@@ -588,7 +586,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="SUMMARY.html">
+        <li class="chapter active" data-level="1.4" data-path="SUMMARY.html">
             
                 <a href="SUMMARY.html">
             
@@ -631,7 +629,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Readme</a>
+        <a href="." >Summary</a>
     </h1>
 </div>
 
@@ -646,30 +644,65 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><img src="SciCatLogo.png" alt="SciCatLogo.png"></p>
-<h1 id="scicat-metadata-catalogue">SciCat Metadata catalogue</h1>
-<h2 id="what">What?</h2>
-<p>A project to catalogue and provide access to metadata and raw experimental data.</p>
-<h2 id="how">How?</h2>
-<p>Scicat is made up of the following technologies:</p>
+                                <h1 id="summary">Summary</h1>
 <ul>
-<li><p>Web based frontend - <a href="https://github.com/SciCatProject/catanie" target="_blank">Catanie</a>: An Angular 5 based application that uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions (i.e. archiving) and acts as a place to reference datasets used in publications.</p>
+<li><a href="1_Users/">1_Users</a> <ul>
+<li><a href="1_Users/Sections/Dashboard/">Dashboard</a> </li>
+<li><a href="1_Users/Sections/Jobs/">Jobs</a> </li>
+<li><a href="1_Users/Sections/Login/">Login</a> <ul>
+<li><a href="1_Users/Sections/">Sections</a> </li>
+</ul>
 </li>
-<li><p>API Server - <a href="https://github.com/SciCatProject/catamel" target="_blank">Catamel: </a>A NodeJS application that uses the Loopback framework to generate RESTful APIs from JSON files that define models (such as: Users, Datasets, Instruments etc). Follows the Swagger API format and SDKs can be generated in almost any language.</p>
+<li><a href="1_Users/Sections/SampleData/">Sampledata</a> </li>
+<li><a href="2_Devops/Catamel/Config/">Config</a> </li>
+<li><a href="2_Devops/Catamel/Data_Models/">Data_Models</a> </li>
+<li><a href="2_Devops/Catamel/Email_Notifications/">Email_Notifications</a> <ul>
+<li><a href="2_Devops/Catamel/">Catamel</a> </li>
+</ul>
 </li>
-<li><p>Database - <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> Free, open source, NoSQL, document-based database</p>
+<li><a href="2_Devops/Catamel/Testing/">Testing</a> <ul>
+<li><a href="2_Devops/Catanie-Public/">Catanie-Public</a> </li>
+</ul>
 </li>
-<li><p>Data Ingestion - <a href="https://nodered.org/" target="_blank">Node-RED</a>: A NodeJS based visual programming tool to handle flows of data from one source to another.</p>
+<li><a href="2_Devops/Catanie/Archiving/">Archiving</a> </li>
+<li><a href="2_Devops/Catanie/Config/">Config</a> </li>
+<li><a href="2_Devops/Catanie/Design/">Design</a> </li>
+<li><a href="2_Devops/Catanie/Ngrx/">Ngrx</a> <ul>
+<li><a href="2_Devops/Catanie/">Catanie</a> </li>
+</ul>
+</li>
+<li><a href="2_Devops/Catanie/Testing/">Testing</a> <ul>
+<li><a href="2_Devops/Documentation/">Documentation</a> </li>
+</ul>
+</li>
+<li><a href="2_Devops/General/Contributing/">Contributing</a> </li>
+<li><a href="2_Devops/General/DataModel/">Datamodel</a> </li>
+<li><a href="2_Devops/General/Deployment/">Deployment</a> <ul>
+<li><a href="2_Devops/General/Development_Methods/Gitflow/">Gitflow</a> </li>
+</ul>
+</li>
+<li><a href="2_Devops/General/Development_Methods/">Development_Methods</a> <ul>
+<li><a href="2_Devops/General/">General</a> </li>
+</ul>
 </li>
 </ul>
-<h2 id="documentation">Documentation</h2>
-<p>This repository provides the documentation for each of the services that comprises SciCat, as well as some guides on the user interface and how to perform tasks. This is split into the following sections:</p>
-<ul>
-<li>Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat</li>
-<li>Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.</li>
+</li>
+<li><a href="2_Devops/">2_Devops</a> <ul>
+<li><a href="2_Devops/Sites/ESS/">Ess</a> </li>
+<li><a href="2_Devops/Sites/MAXIV/">Maxiv</a> <ul>
+<li><a href="2_Devops/Sites/PSI/CI/">Ci</a> </li>
+<li><a href="2_Devops/Sites/PSI/PSI_URLs/">Psi_Urls</a> </li>
 </ul>
-<h2 id="talks">Talks</h2>
-<p><a href="https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf" target="_blank">SciCat Project: Data Catalog System</a></p>
+</li>
+<li><a href="2_Devops/Sites/PSI/">Psi</a> <ul>
+<li><a href="2_Devops/Sites/">Sites</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="./">Readme</a> </li>
+<li><a href="SUMMARY.html">Summary</a> </li>
+</ul>
 
                                 
                                 </section>
@@ -703,7 +736,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Readme","level":"1.3","depth":1,"next":{"title":"Summary","level":"1.4","depth":1,"path":"SUMMARY.md","ref":"./SUMMARY.md","articles":[]},"previous":{"title":"Sites","level":"1.2.3.1","depth":3,"path":"2_Devops/Sites/README.md","ref":"./2_Devops/Sites/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2018-05-29T13:10:46.912Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T13:11:44.829Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Summary","level":"1.4","depth":1,"previous":{"title":"Readme","level":"1.3","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SUMMARY.md","mtime":"2018-05-29T13:10:46.912Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T13:11:44.829Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
