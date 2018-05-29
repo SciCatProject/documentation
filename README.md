@@ -4,7 +4,7 @@
 
 ## Overview
 
-SciCat is project to catalogue and provide access to scientific metadata and raw experimental data.
+SciCat is a project to catalogue and provide access to scientific metadata and raw experimental data.
 [![Build Status](https://travis-ci.org/SciCatProject/documentation.svg?branch=master)](https://travis-ci.org/SciCatProject/documentation)
 
 
