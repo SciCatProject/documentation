@@ -1,7 +1,7 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
-  "description": "A project to catalogue and provide access to metdatdata and raw experimental data.",
+  "name": "documentation",
+  "version": "2.7.0",
+  "description": "A project to catalogue and provide access to metadata and raw experimental data.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
