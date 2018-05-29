@@ -21,7 +21,8 @@ summary = "# Summary \n\n"
 
 def list_files(startpath):
     global summary
-    all_files = glob.iglob(startpath + '**/*.md', recursive=True)
+    all_files2 = glob.iglob(startpath + '**/*.md', recursive=True)
+    all_files = sorted(all_files2)
     for f in all_files:
         if not 'node_modules' in f.lower():
             split_path = f.split('/')
