@@ -1,3 +1,5 @@
+![SciCatLogo.png](SciCatLogo.png)
+
 # SciCat Metadata catalogue
 
 ## What?
