@@ -2,11 +2,13 @@
 
 # SciCat Metadata catalogue
 
-## What?
+## Overview
 
-A project to catalogue and provide access to metadata and raw experimental data.
+SciCat is project to catalogue and provide access to scientific metadata and raw experimental data.
+[![Build Status](https://travis-ci.org/SciCatProject/documentation.svg?branch=master)](https://travis-ci.org/SciCatProject/documentation)
 
-## How?
+
+## Components
 
 Scicat is made up of the following technologies:
 
