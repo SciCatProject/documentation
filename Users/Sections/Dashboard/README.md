@@ -3,14 +3,14 @@
 The main page of the Data Catalog contains an overview of all datasets you have access to.
 
 
-![dashboard](img/dashboard.png)
+![dashboard](../img/dashboard.png)
 
 ## Searching
 
 
 The text field at the top of the screen will search most areas of your Dataset's metadata. If you still cannot find what you need, then the filters on the left hand side will be useful.
 
-![search](img/search.png)
+![search](../img/search.png)
 
 ## Filtering
 
@@ -23,7 +23,7 @@ The text fields provide an auto completion, which becomes visible as you type. I
 
 One click on the date calendar selects the start date and a second selects the end date. Make sure you select 2 dates.
 
-![filters](img/filters.png)
+![filters](../img/filters.png)
 
 ## Viewing
 
