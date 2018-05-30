@@ -1,3 +1,5 @@
+# Deployment of Catanie and Catamel
+
 The details in this section can apply to both Catamel and Catanie.
 
 Inside each repository, there are folders that contain either:
@@ -28,4 +30,3 @@ First, you must ensure that all environment variables have been configured. Typi
 If there is a deploy script, just run it. Otherwise, use the notes in the `deployment-snippets` file to build the docker image, push it to the registry and then deploy to all Kubernetes environments.
 
 Open the dashboard and make sure that your app is showing in `Deployments` with a tick. If not, scroll down to `Pods` and you will see your app with some issues, click on the button next to the overflow menu and view the logs.
-

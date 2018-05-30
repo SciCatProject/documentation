@@ -7,12 +7,11 @@ There are many models within the catalog and many of them are self explanatory. 
 ```
 Note:
 
-We are using MongoDB for our datasource and it is not designed for any form
-of relation, nor does it handle inheritance. The driver for loopback solves
- this by inserting the ID of the relation as a foreign key into the document. This does mean that some documents will contain a:
+We are using MongoDB for our datasource and it is not designed for any form of relation, nor does it handle inheritance. The driver for loopback solves this by inserting the ID of the relation as a foreign key into the document. This does mean that some documents will contain a:
 DATASETID,
 RAWDATASETID,
 DERIVEDDATASETID
+
 This is normal behaviour and only one of those should be filled.
 ```
 
@@ -32,7 +31,7 @@ These are datasets that are created after an experiment (i.e. active beamtime) a
 
 Obviously, these fields can become overly complex and technical, so the user facing software will contain simplified details. Below are some of the more prominent examples from the Dashboard table in Catanie:
 
-* creationLocation -> Beamline
+* creationLocation -> Beamline 
 * ownerGroup -> Groups
 * archiveStatusMessage -> Archive Status
 
@@ -58,7 +57,7 @@ When a user wants to archive or retrieve a dataset, a job is created. A job queu
 
 When you have an instance of the data catalog running, the data model can be visualised at the following URLS:
 
-* <CATAMEL_URL>/modeldiagram/
+* <CATAMEL_URL>/modeldiagram/ 
 * <CATAMEL_URL>/explorer/
 * <CATAMEL_URL>/visualize
 
