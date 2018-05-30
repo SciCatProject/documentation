@@ -177,10 +177,10 @@ The format in the `spec` file should be as follows:
 The default test merely tests the creation of a component. This is merely opinion but a component should not be considered complete on a branch until the initial tests pass. A release should not go live untilthe coverage of the tests covers more than just basic functionality, i.e. 80% coverage.
 
 
-## State managment/NGRX testing 
+## State management/NGRX testing 
 
 
-Tests of ngrx state managment should test e.g. if a new state object is returned.
+Tests of ngrx state management should test e.g. if a new state object is returned.
 
 Sample ngrx reducer test:
 ```javascript
