@@ -34,6 +34,7 @@ def list_files(startpath):
                 formatted = f.lower().replace('/readme.md', '').split('/')
                 level = len(formatted) if not 'readme' in f.lower() else len(formatted) - 2
             title = title.replace('.md', '').title()
+            title = title.replace('_', ' ').title()
             summary += "{0}* [{1}]({2}) \n".format(' ' * (level * 2), title, f)
     print(summary)
     return summary
