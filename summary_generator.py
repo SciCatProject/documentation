@@ -21,7 +21,10 @@ summary = "# Summary \n\n"
 
 def list_files(startpath):
     global summary
-    all_files = glob.iglob(startpath + '**/*.md', recursive=True)
+    all_files = list(glob.iglob(startpath + '**/*.md', recursive=True))
+    all_file2 = [x for x in all_files  if not 'node_modules' in x]
+    all_file2 = [x for x in all_files  if not '_book' in x]
+    all_file2 = [x for x in all_files  if not 'docs' in x]
     #all_files = sorted(all_files2)
     for f in all_files:
         if not 'node_modules' in f.lower():
