@@ -177,3 +177,21 @@ The format in the `spec` file should be as follows:
 The default test merely tests the creation of a component. This is merely opinion but a component should not be considered complete on a branch until the initial tests pass. A release should not go live untilthe coverage of the tests covers more than just basic functionality, i.e. 80% coverage.
 
 
+## State managment/NGRX testing 
+
+
+Tests of ngrx state managment should test e.g. if a new state object is returned.
+
+Sample ngrx reducer test:
+```javascript
+  describe('SelectDatasetAction', () => {
+    it('should return the state', () => {
+      const data:DatasetInterface = {owner: '', contactEmail: '', sourceFolder: '', creationTime: new Date(), type: '', ownerGroup: ''};
+      const payload = new Dataset({pid: 'pid 1', ...data});
+      const action = new fromActions.SelectDatasetAction(payload);
+      const state = fromDatasets.datasetsReducer(initialDatasetState, action);
+      expect(state.selectedSets2).toEqual([payload]);
+      expect(state.selectedSets2.constructor).toBe(Array);
+    });
+  });
+```
