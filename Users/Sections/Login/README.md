@@ -8,6 +8,4 @@ System accounts are tied into the login system that is used by your institution,
 
 ![Login](../img/login.png)
 
-Enter your username and password. If an error occurs, the reason will be displayed in a red banner above the login page.
 
-![Login Failed](../img/login_failed.png)
