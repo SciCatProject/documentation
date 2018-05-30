@@ -22,11 +22,11 @@ summary = "# Summary \n\n"
 def list_files(startpath):
     global summary
     all_files = list(glob.iglob(startpath + '**/*.md', recursive=True))
-    all_file2 = [x for x in all_files  if not 'node_modules' in x]
-    all_file2 = [x for x in all_files  if not '_book' in x]
-    all_file2 = [x for x in all_files  if not 'docs' in x]
+    all_files2 = [x for x in all_files  if not 'node_modules' in x]
+    all_files3 = [x for x in all_files2  if not '_book' in x]
+    all_files4 = [x for x in all_files3  if not 'docs' in x]
     #all_files = sorted(all_files2)
-    for f in all_files:
+    for f in all_files4:
         if not 'node_modules' in f.lower():
             split_path = f.split('/')
             print(split_path, f)
