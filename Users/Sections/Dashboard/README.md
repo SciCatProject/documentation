@@ -14,10 +14,11 @@ The text field at the top of the screen will search most areas of your Dataset's
 
 ## Filtering
 
-You can currently filter across 3 different types:
-1. Beamline (The creationLocation)
+You can currently filter across 4 different types:
+1. Location (The creationLocation)
 2. Groups (The ownerGroup/pGroup that the dataset belongs to)
-3. Start - End Date (This will show all datasets captured between the dates that you have set)
+3  Type - e.g. raw data or derived data
+4. Start - End Date (This will show all datasets captured between the dates that you have set)
 
 The text fields provide an auto completion, which becomes visible as you type. If nothing shows, press the down arrow on your keyboard. Most groups start with a 'p' and Beamlines start with a '/'
 
