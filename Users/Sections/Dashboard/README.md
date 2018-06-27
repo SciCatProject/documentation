@@ -15,9 +15,9 @@ The text field at the top of the screen will search most areas of your Dataset's
 ## Filtering
 
 You can currently filter across 4 different types:
-1. Location (The creationLocation)
+1. Location (The beamline creationLocation)
 2. Groups (The ownerGroup/pGroup that the dataset belongs to)
-3  Type - e.g. raw data or derived data
+3. Type - e.g. raw data or derived data
 4. Start - End Date (This will show all datasets captured between the dates that you have set)
 
 The text fields provide an auto completion, which becomes visible as you type. If nothing shows, press the down arrow on your keyboard. Most groups start with a 'p' and Beamlines start with a '/'
@@ -42,3 +42,9 @@ When you select a dataset, it will become checked and you will see details at th
 ## Paging
 
 At the bottom of the table are arrows for navigation and page numbers. If there are more entries than can fit on the page, more results will be accessible through the pages. Each page will make a call to the server to retrieve more.
+
+
+## Export CSV 
+
+This function allows users to download the onscreen table in comma separated variable (CSV) format.
+
