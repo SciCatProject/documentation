@@ -1,12 +1,16 @@
 # Running locally
 
-`git clone git@gitlab.psi.ch:MELANIE/catanie.git && cd catanie`
+```
+git clone https://github.com/SciCatProject/catanie.git 
+cd catanie
+npm install
+```
 
-`npm install`
+You can serve the SciCat web client as follows:
 
-Note: Now that Angular cli has reached V1, it has been recommended to keep the module local to each project. This means that you will need to access it here:
-
-`./node_modules/@angular/cli/bin/ng serve`
+```
+npx ng serve
+```
 
 For convenience, this has been added to the `package.json` so you can run `npm start` as an alias.
 
@@ -16,7 +20,7 @@ Access [here](http://localhost:4200) once running.
 
 The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard \*nix commands are available.
 
-`git clone git@gitlab.psi.ch:MELANIE/catanie.git && cd catanie`
+`git clone https://github.com/SciCatProject/catanie.git && cd catanie`
 
 `docker built -t <tag> .`
 
