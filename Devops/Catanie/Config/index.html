@@ -677,15 +677,16 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="running-locally">Running locally</h1>
-<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
-<p><code>npm install</code></p>
-<p>Note: Now that Angular cli has reached V1, it has been recommended to keep the module local to each project. This means that you will need to access it here:</p>
-<p><code>./node_modules/@angular/cli/bin/ng serve</code></p>
-<p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
+<pre><code>git clone https://github.com/SciCatProject/catanie.git 
+cd catanie
+npm install
+</code></pre><p>You can serve the SciCat web client as follows:</p>
+<pre><code>npx ng serve
+</code></pre><p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
 <p>Access <a href="http://localhost:4200" target="_blank">here</a> once running.</p>
 <h1 id="running-with-docker">Running with Docker</h1>
 <p>The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
-<p><code>git clone git@gitlab.psi.ch:MELANIE/catanie.git &amp;&amp; cd catanie</code></p>
+<p><code>git clone https://github.com/SciCatProject/catanie.git &amp;&amp; cd catanie</code></p>
 <p><code>docker built -t &lt;tag&gt; .</code></p>
 <p><code>docker run &lt;tag&gt;</code></p>
 <p>You should see the container begin and print out the URL, this is retrieved dynamically based on the IP of the container. Changing it to localhost or 0.0.0.0 <strong>will</strong> break it.</p>
@@ -749,7 +750,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Running locally","level":"3.1.3.2","depth":3,"next":{"title":"Design","level":"3.1.3.3","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"Devops/Catanie/Design/README.md","articles":[]},"previous":{"title":"Archiving/Retrieving/Resetting Datasets","level":"3.1.3.1","depth":3,"path":"Devops/Catanie/Archiving/README.md","ref":"Devops/Catanie/Archiving/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Config/README.md","mtime":"2018-08-06T11:10:34.711Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-06T11:11:47.423Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Running locally","level":"3.1.3.2","depth":3,"next":{"title":"Design","level":"3.1.3.3","depth":3,"path":"Devops/Catanie/Design/README.md","ref":"Devops/Catanie/Design/README.md","articles":[]},"previous":{"title":"Archiving/Retrieving/Resetting Datasets","level":"3.1.3.1","depth":3,"path":"Devops/Catanie/Archiving/README.md","ref":"Devops/Catanie/Archiving/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/Catanie/Config/README.md","mtime":"2018-08-06T11:19:06.551Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-06T11:20:13.401Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
