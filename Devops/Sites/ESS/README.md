@@ -1,6 +1,6 @@
 # ESS Site Specific info
 
-ESS sit specific info
+ESS site specific info
 
 Deployment with Kubernetes
 
