@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Environment file · GitBook</title>
+        <title>Contributing · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="GettingMetadataIntoScicat.html" />
+    <link rel="next" href="Data_Model.html" />
     
     
-    <link rel="prev" href="Development_Methods.html" />
+    <link rel="prev" href="Configuring.html" />
     
 
     </head>
@@ -133,7 +133,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.3" data-path="Contributing.html">
+        <li class="chapter active" data-level="1.1.3" data-path="Contributing.html">
             
                 <a href="Contributing.html">
             
@@ -198,7 +198,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.8" data-path="Environment.html">
+        <li class="chapter " data-level="1.1.8" data-path="Environment.html">
             
                 <a href="Environment.html">
             
@@ -687,7 +687,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Environment file</a>
+        <a href=".." >Contributing</a>
     </h1>
 </div>
 
@@ -702,16 +702,58 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="environment-file">Environment file</h1>
-<p>The environment file allows users to add local settings, such as name of facility, URL of REST server, file server etc</p>
-<p>An example is shown below</p>
-<pre><code>  production: false,
-  lbBaseURL: &apos;http://127.0.0.1:3000&apos;,
-  fileserverBaseURL: &apos;http://l27.0.0.1:8889&apos;,
-  archiveWorkflowEnabled: true,
-  externalAuthEndpoint: &apos;/auth/msad&apos;,
-  facility: &apos;ESS&apos;
+                                <h1 id="contributing">Contributing</h1>
+<p>There are 3 core ways to get involved with the Data Catalogue project:</p>
+<ol>
+<li>Documentation - Fixing errors, covering weaker areas, adding examples</li>
+<li>Github Issues - This should be the first area to focus on for those that want to amend the code. To see how the project is developed, see the <a href="Development_Methods.html">Git Workflow page.</a></li>
+<li>Testing</li>
+</ol>
+<p>For information about the development method we follow, please check <a href="Development_Methods.html">Development Methodology.</a></p>
+<h2 id="issues">Issues</h2>
+<p>Issues are handled within the Github Issue tracker and should follow the template:</p>
+<pre><code class="lang-markdown"><span class="hljs-section">## Issue Name</span>
+
+<span class="hljs-section">### Summary</span>
+
+<span class="hljs-section">### Steps to Reproduce</span>
+
+<span class="hljs-section">### Current Behaviour</span>
+
+<span class="hljs-section">### Expected Behaviour</span>
+
+<span class="hljs-section">### Extra Details</span>
+
+Here you should include details about the system (if it is unique) and possible information about a fix (feel free to link to code where relevant). Screenshots/GIFs are also fine here.
 </code></pre>
+<h2 id="merge-requests">Merge Requests</h2>
+<p>There should be <strong>no</strong> pushing directly to the <code>master</code> or <code>develop</code> branches. To implement a fix, one should open a branch with the naming: <code>hotfix/ISSUE-NAME</code> from the <code>develop</code> branch and complete all work there. When it is complete, a Merge Request should be opened that follows this template:</p>
+<pre><code class="lang-markdown"><span class="hljs-section">## Description</span>
+
+<span class="hljs-section">## Motivation </span>
+
+Link to any open issues here
+
+<span class="hljs-section">## Fixes:</span>
+
+<span class="hljs-bullet">* 
+</span><span class="hljs-bullet">*  
+
+</span><span class="hljs-section">## Changes:</span>
+
+<span class="hljs-bullet">* 
+</span><span class="hljs-bullet">* 
+
+</span><span class="hljs-section">## Tests included/Docs Updated?</span>
+
+<span class="hljs-bullet">- </span>[ ] Included for each change/fix?
+<span class="hljs-bullet">- </span>[ ] Passing? (Merge will not be approved unless this is checked)
+<span class="hljs-bullet">- </span>[ ] Docs updated?
+
+<span class="hljs-section">## Extra Information/Screenshots</span>
+</code></pre>
+<p>When the request is created, it should be assigned to any other appropriate team member with <code>develop</code> as the target branch. Tests <strong>must</strong> be written for all features/changes made and any major changes should be updated in the <code>docs</code> repo.</p>
+
                                 
                                 </section>
                             
@@ -744,7 +786,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Environment file","level":"1.1.8","depth":2,"next":{"title":"Getting Metadata Into SciCat.","level":"1.1.9","depth":2,"path":"Catanie/GettingMetadataIntoScicat.md","ref":"Catanie/GettingMetadataIntoScicat.md","articles":[]},"previous":{"title":"Git Flow Workflow","level":"1.1.7","depth":2,"path":"Catanie/Development_Methods.md","ref":"Catanie/Development_Methods.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Environment.md","mtime":"2019-07-05T11:44:31.363Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-05T11:45:32.219Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Contributing","level":"1.1.3","depth":2,"next":{"title":"An Introduction to the Data Model","level":"1.1.4","depth":2,"path":"Catanie/Data_Model.md","ref":"Catanie/Data_Model.md","articles":[]},"previous":{"title":"Running locally","level":"1.1.2","depth":2,"path":"Catanie/Configuring.md","ref":"Catanie/Configuring.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Contributing.md","mtime":"2019-07-05T11:44:31.363Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-05T11:45:32.219Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
