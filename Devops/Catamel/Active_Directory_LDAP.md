@@ -1,5 +1,10 @@
 # Active Directory LDAP
 
+SciCat uses loopback passport-ldapauth
+
+Your confiuration files should replace the default providers.json
+
+It should look similar to the template below, with the appropriate LDAP url, bindDn, bindCredentials, searchBase and searchFilter added.
 
 ```
 {
