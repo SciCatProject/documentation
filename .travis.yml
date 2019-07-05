@@ -2,21 +2,21 @@ language: node_js
 node_js:
 - '9.4'
 install:
-  - yarn
-  - ./node_modules/gitbook-cli/bin/gitbook.js install
-  - ./fetch_docs_from_catanie.sh
+- yarn
+- "./node_modules/gitbook-cli/bin/gitbook.js install"
+- "./fetch_docs_from_catanie.sh"
 script:
-  - ./node_modules/gitbook-cli/bin/gitbook.js build . docs
+- "./node_modules/gitbook-cli/bin/gitbook.js build . docs"
 deploy:
   provider: pages
   skip_cleanup: true
   allow_empty_commit: true
   commiter-from-gh: true
   keep_history: true
-  github_token: $GH_TOKEN
+  github_token: "$GH_TOKEN"
   local_dir: docs
   on:
     branch: master
 env:
   global:
-    secure: lt76sk7OJyE3tv7QMIhaHq+IJ/xL72gJM92pr/AZMIUKEBNM5T5QE/lIx4oot2dA0x4jWjOOfTectuffjrq80SL9/3k9J5GBY1ugDjhf1qd69EFuKPKkqz8Q3222QwMa7M5ZCCEZitXhOEuC7mKt6THyGnlb3m8Kwr/fmZyBo8ismP7kebhF1qjZ6u8E0vqSs9tiYsPit/vvuZvlCUyGo5MV6kNGdDo6Ow8QpTFVA/l8WkkxeUoMf3FDVSdc/hK08UXzKoWEVo2I85f9klqAk59puX6tdcIL0G2KVfxYwr1ycjBssrEN82hWimLOYM7+BJg6tOq3X2GGdT7fEi/gIwvcoYbyi1nylm6+BdF616VSS4KH7Ns/Ztu6jy0LbCYc617+6uqyvjvpRO9xFiZMAJEf9b9i2GZRmG3/MEoI2/RtnNyFAA1hPBi8Ykc00pA6+Vw0DBo3CkZPwIKsarFjpz5uReJiXwSn+m3IjCEf6vMBUX0ojAgwjyqrDEPtdegeObdY+7SRyluX7ZKrGDdk392+BmjEi+YVUKPODTfgVt69ZEdqibPKKJDetXDNDHYoj5ul5cTDOiA74Po9/jxgMTYWto+m+sybeoGzyzq98h/+GNpjzh+NJjczn51bksgv3hmsy5QDOQP1lPrzBvMjdyvwH1m0/KhWylZ/VJh3LL4=
+    secure: KQ1qdZZNsMnkhQHwjN/AHmZA/cYUosNH5I56ppjZe4zXoGShabipKh2xYTvNZxDJ12nAbtPDphUx7sxR8HLvaftB3ikfcdBXwmmCEPSkjP+ZTB21wUsUakSzRL4qyahdQPvkkqbbF1mg4yn6SIapbBinQfDDKWCYdg8rCWeFXAWPIUufQNkbv2324b0uWmCMj3e6n9UNwsxvmOYfVQ2YLyah5QfZbCLih5X+f3zbG34HSQZawGxAXpWdLIO0b+VdYxHILJUVJE1iNeDWtWGD7yN+a/1wlb3gLxOOkTIdG8ymKn1TgNcs/OoVe6gNSKA23Gy3vtHHpEALLvNAK53D97ZHblOVRUYmfKhhW0y3Y760Zz0QgGMvYZMVNoFOzya++Kokrw5AR4kQ27MjsSSJEHRNf1agUlIWLGxpbwwQo6QIQaAmaIIYbecF23lracqgbGMCFNERDjYXZ8JfYbEygrsFZEoaLqBLMzG2Dd4gG3OJxSvJ9wTBcSAMkEsCEk6luk9X/psG1XYcNTpm/OBKV18B4aOIcXZV+wiqFpbgGoarNgrcrFF1A07sBWA0KTonWWiYZ4Bf6YFSM13ZdeO4qjexI5iGbB+eQ1d3RGCuqLvpfK24mjaCi0vGZm19SSYc9bAKyKrXgExp/EbmMhROA1+AGy/3cxSAXcnr6Q+pmnE=
