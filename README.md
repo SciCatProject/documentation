@@ -1,6 +1,6 @@
 ![SciCatLogo.png](SciCatLogo.png)
 
-# SciCat Metadata catalogue
+# SciCat Metadata Catalogue
 
 ## Overview
 
