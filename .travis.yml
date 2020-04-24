@@ -13,7 +13,7 @@ deploy:
   allow_empty_commit: true
   commiter-from-gh: true
   keep_history: true
-  github_token: "$GITHUB_API_TOKEN"
+  github_token: "$GITHUB_TOKEN"
   local_dir: docs
   on:
     branch: master
