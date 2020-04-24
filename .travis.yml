@@ -11,7 +11,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   allow_empty_commit: true
-  commiter_from_gh: true
+  committer_from_gh: true
   keep_history: true
   github_token: "$GITHUB_TOKEN"
   local_dir: docs
