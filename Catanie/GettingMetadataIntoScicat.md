@@ -2,113 +2,73 @@
 # Getting Metadata Into SciCat.
 
 
-## Automatic Ingestion
-
-An automatic login and ingestion of random data can be seen in scicat-develop
-
-
-https://github.com/SciCatProject/scicat-develop/blob/master/create-data/index.js
-
 
 
 ## Manual ingestion
 
 1.
-Login to catamel
+Login to catamel. The default password for the inestor user is aman. Runnign the command below in the terminal will yeild an access token.
 
- curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"ingestor", \ 
- "password":"<your_password>"}' 'http://localhost:3000/api/v2/Users/login'
+ curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"ingestor", "password":"<your_password>"}' 'http://localhost:3000/api/v3/Users/login'
 
 2. 
-Create a json file in the correct format.
+Create a json file with the contents below and name it data
 
 ```
 {
-            "principalInvestigator": "Test User",
-            "endTime": "2018-06-06T15:26:02.680Z",
-            "owner": "Test User",
-            "ownerEmail": "test.user@test.se",
-            "orcidOfOwner": "0000-0000-0000-0000",
-            "contactEmail": "test.user@esss.se",
-            "sourceFolder": "/users/detector/experiments/sonde/IFE_june_2018/data/S1",
-            "size": 872025994,
-            "packedSize": 872025994,
-            "creationTime": "2018-06-06T15:26:02.680Z",
-            "type": "raw",
-            "datasetName": "Sample Data from SoNDe 1",
-            "validationStatus": "valid",
-            "keywords": [
-                "valid"
-            ],
-            "description": "https://github.com/ess-dmsc/ess_file_formats/wiki/SONDE",
-            "userTargetLocation": "SoNDe",
-            "creationLocation": "SoNDe",
-            "license": "ESS",
-            "version": "version",
-            "doi": "10.78327/SONDE0001",
-            "isPublished": true,
-            "ownerGroup": "ess",
-            "accessGroups": [
-                "brightness",
-                "ess"
-            ],
-            "createdBy": "ingestor",
-            "updatedBy": "ingestor",
-            "createdAt": "2018-06-06T15:26:02.680Z",
-            "updatedAt": "2018-06-06T15:26:02.680Z",
-            "archivable": true,
-            "retrievable": true,
-            "publishable": true,
-            "scientificMetadata": {
-                "elog_id": "242",
-                "Optical coupling": "Dryfit"
-            },
-            "proposalId": "LM28IF",
-            "sampleId": "SAMPLE001"
-        },
+  "owner": "string",
+  "ownerEmail": "string",
+  "orcidOfOwner": "string",
+  "contactEmail": "string",
+  "sourceFolder": "string",
+  "sourceFolderHost": "string",
+  "size": 0,
+  "packedSize": 0,
+  "numberOfFiles": 0,
+  "numberOfFilesArchived": 0,
+  "creationTime": "2020-07-17T09:12:59.775Z",
+  "type": "string",
+  "validationStatus": "string",
+  "keywords": [
+    "string"
+  ],
+  "description": "string",
+  "datasetName": "string",
+  "classification": "string",
+  "license": "string",
+  "version": "string",
+  "isPublished": true,
+  "ownerGroup": "string",
+  "accessGroups": [
+    "string"
+  ],
+  "datasetlifecycle": {
+    "archivable": false,
+    "retrievable": false,
+    "publishable": false,
+    "dateOfDiskPurging": "2020-07-17T09:12:59.776Z",
+    "archiveRetentionTime": "2020-07-17T09:12:59.776Z",
+    "dateOfPublishing": "2020-07-17T09:12:59.776Z",
+    "isOnCentralDisk": true,
+    "archiveReturnMessage": {},
+    "retrieveReturnMessage": {},
+    "exportedTo": "string",
+    "retrieveIntegrityCheck": true
+
+  },
+  "history": [
+    {
+      "id": "string"
+    }
+  ]
+}
 ```
 
 3. 
-Upload to catamel:
+cat the data file and pipe it to a curl command. Insert your access token in the command below and run it in the terminal:
 
+cat data | curl -X POST --header 'Content-Type: application/json'  --header 'Accept: application/json'  -d @-  'http://localhost:3000/api/v3/Datasets?access_token=YOUR_TOKEN_HERE'
 
 
 ```
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ \ 
-   "pid": "string", \ 
-   "owner": "string", \ 
-   "ownerEmail": "string", \ 
-   "orcidOfOwner": "string", \ 
-   "contactEmail": "string", \ 
-   "sourceFolder": "string", \ 
-   "size": 0, \ 
-   "packedSize": 0, \ 
-   "creationTime": "2018-12-10T15:38:43.042Z", \ 
-   "type": "string", \ 
-   "validationStatus": "string", \ 
-   "keywords": [ \ 
-     "string" \ 
-   ], \ 
-   "description": "string", \ 
-   "userTargetLocation": "string", \ 
-   "classification": "string", \ 
-   "license": "string", \ 
-   "version": "string", \ 
-   "doi": "string", \ 
-   "isPublished": true, \ 
-   "ownerGroup": "string", \ 
-   "accessGroups": [ \ 
-     "string" \ 
-   ], \ 
-   "createdBy": "string", \ 
-   "updatedBy": "string", \ 
-   "createdAt": "2018-12-10T15:38:43.042Z", \ 
-   "updatedAt": "2018-12-10T15:38:43.042Z" \ 
- }' 'http://localhost:3000/api/v2/Datasets?access_token=TTQFlqAWWWnMHHxZdPbYP2LZhaLgUrb8DoQcmNeIpDgku0ScNH0oRCOq8JODcF70'
-```
-Here, the access token  must be replaced by the one provided after logging in as above.
 
-
-## Loopback explorer ingestion
-
-Using the loopback interface, data can be added to through the explorer interface
