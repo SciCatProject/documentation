@@ -703,97 +703,65 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="getting-metadata-into-scicat">Getting Metadata Into SciCat.</h1>
-<h2 id="automatic-ingestion">Automatic Ingestion</h2>
-<p>An automatic login and ingestion of random data can be seen in scicat-develop</p>
-<p><a href="https://github.com/SciCatProject/scicat-develop/blob/master/create-data/index.js" target="_blank">https://github.com/SciCatProject/scicat-develop/blob/master/create-data/index.js</a></p>
 <h2 id="manual-ingestion">Manual ingestion</h2>
 <p>1.
-Login to catamel</p>
-<p> curl -X POST --header &apos;Content-Type: application/json&apos; --header &apos;Accept: application/json&apos; -d &apos;{&quot;username&quot;:&quot;ingestor&quot;, \ 
- &quot;password&quot;:&quot;<your_password>&quot;}&apos; &apos;<a href="http://localhost:3000/api/v2/Users/login" target="_blank">http://localhost:3000/api/v2/Users/login</a>&apos;</your_password></p>
+Login to catamel. The default password for the inestor user is aman. Runnign the command below in the terminal will yeild an access token.</p>
+<p> curl -X POST --header &apos;Content-Type: application/json&apos; --header &apos;Accept: application/json&apos; -d &apos;{&quot;username&quot;:&quot;ingestor&quot;, &quot;password&quot;:&quot;<your_password>&quot;}&apos; &apos;<a href="http://localhost:3000/api/v3/Users/login" target="_blank">http://localhost:3000/api/v3/Users/login</a>&apos;</your_password></p>
 <ol>
-<li>Create a json file in the correct format.</li>
+<li>Create a json file with the contents below and name it data</li>
 </ol>
 <pre><code>{
-            &quot;principalInvestigator&quot;: &quot;Test User&quot;,
-            &quot;endTime&quot;: &quot;2018-06-06T15:26:02.680Z&quot;,
-            &quot;owner&quot;: &quot;Test User&quot;,
-            &quot;ownerEmail&quot;: &quot;test.user@test.se&quot;,
-            &quot;orcidOfOwner&quot;: &quot;0000-0000-0000-0000&quot;,
-            &quot;contactEmail&quot;: &quot;test.user@esss.se&quot;,
-            &quot;sourceFolder&quot;: &quot;/users/detector/experiments/sonde/IFE_june_2018/data/S1&quot;,
-            &quot;size&quot;: 872025994,
-            &quot;packedSize&quot;: 872025994,
-            &quot;creationTime&quot;: &quot;2018-06-06T15:26:02.680Z&quot;,
-            &quot;type&quot;: &quot;raw&quot;,
-            &quot;datasetName&quot;: &quot;Sample Data from SoNDe 1&quot;,
-            &quot;validationStatus&quot;: &quot;valid&quot;,
-            &quot;keywords&quot;: [
-                &quot;valid&quot;
-            ],
-            &quot;description&quot;: &quot;https://github.com/ess-dmsc/ess_file_formats/wiki/SONDE&quot;,
-            &quot;userTargetLocation&quot;: &quot;SoNDe&quot;,
-            &quot;creationLocation&quot;: &quot;SoNDe&quot;,
-            &quot;license&quot;: &quot;ESS&quot;,
-            &quot;version&quot;: &quot;version&quot;,
-            &quot;doi&quot;: &quot;10.78327/SONDE0001&quot;,
-            &quot;isPublished&quot;: true,
-            &quot;ownerGroup&quot;: &quot;ess&quot;,
-            &quot;accessGroups&quot;: [
-                &quot;brightness&quot;,
-                &quot;ess&quot;
-            ],
-            &quot;createdBy&quot;: &quot;ingestor&quot;,
-            &quot;updatedBy&quot;: &quot;ingestor&quot;,
-            &quot;createdAt&quot;: &quot;2018-06-06T15:26:02.680Z&quot;,
-            &quot;updatedAt&quot;: &quot;2018-06-06T15:26:02.680Z&quot;,
-            &quot;archivable&quot;: true,
-            &quot;retrievable&quot;: true,
-            &quot;publishable&quot;: true,
-            &quot;scientificMetadata&quot;: {
-                &quot;elog_id&quot;: &quot;242&quot;,
-                &quot;Optical coupling&quot;: &quot;Dryfit&quot;
-            },
-            &quot;proposalId&quot;: &quot;LM28IF&quot;,
-            &quot;sampleId&quot;: &quot;SAMPLE001&quot;
-        },
+  &quot;owner&quot;: &quot;string&quot;,
+  &quot;ownerEmail&quot;: &quot;string&quot;,
+  &quot;orcidOfOwner&quot;: &quot;string&quot;,
+  &quot;contactEmail&quot;: &quot;string&quot;,
+  &quot;sourceFolder&quot;: &quot;string&quot;,
+  &quot;sourceFolderHost&quot;: &quot;string&quot;,
+  &quot;size&quot;: 0,
+  &quot;packedSize&quot;: 0,
+  &quot;numberOfFiles&quot;: 0,
+  &quot;numberOfFilesArchived&quot;: 0,
+  &quot;creationTime&quot;: &quot;2020-07-17T09:12:59.775Z&quot;,
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;validationStatus&quot;: &quot;string&quot;,
+  &quot;keywords&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;description&quot;: &quot;string&quot;,
+  &quot;datasetName&quot;: &quot;string&quot;,
+  &quot;classification&quot;: &quot;string&quot;,
+  &quot;license&quot;: &quot;string&quot;,
+  &quot;version&quot;: &quot;string&quot;,
+  &quot;isPublished&quot;: true,
+  &quot;ownerGroup&quot;: &quot;string&quot;,
+  &quot;accessGroups&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;datasetlifecycle&quot;: {
+    &quot;archivable&quot;: false,
+    &quot;retrievable&quot;: false,
+    &quot;publishable&quot;: false,
+    &quot;dateOfDiskPurging&quot;: &quot;2020-07-17T09:12:59.776Z&quot;,
+    &quot;archiveRetentionTime&quot;: &quot;2020-07-17T09:12:59.776Z&quot;,
+    &quot;dateOfPublishing&quot;: &quot;2020-07-17T09:12:59.776Z&quot;,
+    &quot;isOnCentralDisk&quot;: true,
+    &quot;archiveReturnMessage&quot;: {},
+    &quot;retrieveReturnMessage&quot;: {},
+    &quot;exportedTo&quot;: &quot;string&quot;,
+    &quot;retrieveIntegrityCheck&quot;: true
+
+  },
+  &quot;history&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;
+    }
+  ]
+}
 </code></pre><ol>
-<li>Upload to catamel:</li>
+<li>cat the data file and pipe it to a curl command. Insert your access token in the command below and run it in the terminal:</li>
 </ol>
-<pre><code>curl -X POST --header &apos;Content-Type: application/json&apos; --header &apos;Accept: application/json&apos; -d &apos;{ \ 
-   &quot;pid&quot;: &quot;string&quot;, \ 
-   &quot;owner&quot;: &quot;string&quot;, \ 
-   &quot;ownerEmail&quot;: &quot;string&quot;, \ 
-   &quot;orcidOfOwner&quot;: &quot;string&quot;, \ 
-   &quot;contactEmail&quot;: &quot;string&quot;, \ 
-   &quot;sourceFolder&quot;: &quot;string&quot;, \ 
-   &quot;size&quot;: 0, \ 
-   &quot;packedSize&quot;: 0, \ 
-   &quot;creationTime&quot;: &quot;2018-12-10T15:38:43.042Z&quot;, \ 
-   &quot;type&quot;: &quot;string&quot;, \ 
-   &quot;validationStatus&quot;: &quot;string&quot;, \ 
-   &quot;keywords&quot;: [ \ 
-     &quot;string&quot; \ 
-   ], \ 
-   &quot;description&quot;: &quot;string&quot;, \ 
-   &quot;userTargetLocation&quot;: &quot;string&quot;, \ 
-   &quot;classification&quot;: &quot;string&quot;, \ 
-   &quot;license&quot;: &quot;string&quot;, \ 
-   &quot;version&quot;: &quot;string&quot;, \ 
-   &quot;doi&quot;: &quot;string&quot;, \ 
-   &quot;isPublished&quot;: true, \ 
-   &quot;ownerGroup&quot;: &quot;string&quot;, \ 
-   &quot;accessGroups&quot;: [ \ 
-     &quot;string&quot; \ 
-   ], \ 
-   &quot;createdBy&quot;: &quot;string&quot;, \ 
-   &quot;updatedBy&quot;: &quot;string&quot;, \ 
-   &quot;createdAt&quot;: &quot;2018-12-10T15:38:43.042Z&quot;, \ 
-   &quot;updatedAt&quot;: &quot;2018-12-10T15:38:43.042Z&quot; \ 
- }&apos; &apos;http://localhost:3000/api/v2/Datasets?access_token=TTQFlqAWWWnMHHxZdPbYP2LZhaLgUrb8DoQcmNeIpDgku0ScNH0oRCOq8JODcF70&apos;
-</code></pre><p>Here, the access token  must be replaced by the one provided after logging in as above.</p>
-<h2 id="loopback-explorer-ingestion">Loopback explorer ingestion</h2>
-<p>Using the loopback interface, data can be added to through the explorer interface</p>
+<p>cat data | curl -X POST --header &apos;Content-Type: application/json&apos;  --header &apos;Accept: application/json&apos;  -d @-  &apos;<a href="http://localhost:3000/api/v3/Datasets?access_token=YOUR_TOKEN_HERE" target="_blank">http://localhost:3000/api/v3/Datasets?access_token=YOUR_TOKEN_HERE</a>&apos;</p>
+<p>```</p>
 
                                 
                                 </section>
@@ -827,7 +795,7 @@ Login to catamel</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Metadata Into SciCat.","level":"1.1.9","depth":2,"next":{"title":"Login","level":"1.1.10","depth":2,"path":"Catanie/Login.md","ref":"Catanie/Login.md","articles":[]},"previous":{"title":"Environment file","level":"1.1.8","depth":2,"path":"Catanie/Environment.md","ref":"Catanie/Environment.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/GettingMetadataIntoScicat.md","mtime":"2020-06-22T13:31:38.505Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-22T13:32:39.644Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Metadata Into SciCat.","level":"1.1.9","depth":2,"next":{"title":"Login","level":"1.1.10","depth":2,"path":"Catanie/Login.md","ref":"Catanie/Login.md","articles":[]},"previous":{"title":"Environment file","level":"1.1.8","depth":2,"path":"Catanie/Environment.md","ref":"Catanie/Environment.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/GettingMetadataIntoScicat.md","mtime":"2020-07-17T12:00:36.056Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-17T12:01:15.571Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
