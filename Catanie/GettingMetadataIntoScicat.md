@@ -72,5 +72,5 @@ cat the data file and pipe it to a curl command. Insert your access token in the
 cat data | curl -X POST --header 'Content-Type: application/json'  --header 'Accept: application/json'  -d @-  'http://localhost:3000/api/v3/Datasets?access_token=YOUR_TOKEN_HERE'
 
 
-```
+There should now be a dataset in your mongoDB instance. 
 
