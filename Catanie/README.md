@@ -6,7 +6,8 @@ This guide aims to help developers and system admins understand some of the SciC
 
 SciCat is built on micro services using the following stack:
 
-# Web Browser Client (Catanie)
+## Web Browser Client (Catanie)
+
 node
 npm
 typescript
@@ -14,7 +15,8 @@ angular
 NGRX
 loopback SDK generator
 
-# API (Catamel)
+## API (Catamel)
+
 node
 js
 loopback
