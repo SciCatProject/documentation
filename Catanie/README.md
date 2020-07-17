@@ -1,41 +1,24 @@
 # SciCat Data Catalogue Developer Guide
 
+SciCat is a data catalogue web application to provide a searchable interface for datasets, publish DOIs, as well as the option to carry out actions (i.e. archiving and publishing) and acts as a place to reference datasets used in publications.
 
-Users require a metadata management interface to find and query the metadata from scientific experiments.
-They can query information from a proposal and submit an archiving job.
+This guide aims to help developers and system admins understand some of the SciCat components.
 
-In SciCat separate responsibilities are split into separate groups of angular components
+SciCat is built on micro services using the following stack:
 
-### Datasets
+## Web Browser Client (Catanie)
+node
+npm
+typescript
+angular
+NGRX
+loopback SDK generator
 
-Users can see the dataset table on their front page dashboard.
-* dataset details
-* dataset attachment 
-* dataset table
-* datafiles - 
-* datablocks - abstraction of physical layout of data over storage media (disk, tapes etc)
-* dashboard - users first view on login
-
-### User
-
-* [Login.md](Login.md)
-* details
-* settings
-
-### Proposals
-
-Users can be part of many proposals and have access to datasets from many proposals
-Principal Investigator users can also add users to proposals and give access to data
-
-* proposal detail
-* proposal list
-
-### Jobs
-
-Users can see the state of data retrieval and data suubmission to archive backup system
-* job details 
-* job tables
-
+## API (Catamel)
+node
+js
+loopback
+mongoDB
 
 
 Unit tests are explained in this page
