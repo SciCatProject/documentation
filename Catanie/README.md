@@ -7,6 +7,7 @@ This guide aims to help developers and system admins understand some of the SciC
 SciCat is built on micro services using the following stack:
 
 ## Web Browser Client (Catanie)
+
 *node
 *npm
 *typescript
@@ -15,6 +16,7 @@ SciCat is built on micro services using the following stack:
 *loopback SDK generator
 
 ## API (Catamel)
+
 *node
 *js
 *loopback
