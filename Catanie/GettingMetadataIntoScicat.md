@@ -6,6 +6,8 @@
 
 ## Manual ingestion
 
+The following steps will add a dataset to you system using the API with the linux program curl. Windows users will need an alternative method.
+
 1.
 Login to catamel. The default password for the inestor user is aman. Runnign the command below in the terminal will yeild an access token.
 
