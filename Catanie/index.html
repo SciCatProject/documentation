@@ -701,38 +701,21 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="scicat-data-catalogue-developer-guide">SciCat Data Catalogue Developer Guide</h1>
-<p>Users require a metadata management interface to find and query the metadata from scientific experiments.
-They can query information from a proposal and submit an archiving job.</p>
-<p>In SciCat separate responsibilities are split into separate groups of angular components</p>
-<h3 id="datasets">Datasets</h3>
-<p>Users can see the dataset table on their front page dashboard.</p>
-<ul>
-<li>dataset details</li>
-<li>dataset attachment </li>
-<li>dataset table</li>
-<li>datafiles - </li>
-<li>datablocks - abstraction of physical layout of data over storage media (disk, tapes etc)</li>
-<li>dashboard - users first view on login</li>
-</ul>
-<h3 id="user">User</h3>
-<ul>
-<li><a href="Login.html">Login.md</a></li>
-<li>details</li>
-<li>settings</li>
-</ul>
-<h3 id="proposals">Proposals</h3>
-<p>Users can be part of many proposals and have access to datasets from many proposals
-Principal Investigator users can also add users to proposals and give access to data</p>
-<ul>
-<li>proposal detail</li>
-<li>proposal list</li>
-</ul>
-<h3 id="jobs">Jobs</h3>
-<p>Users can see the state of data retrieval and data suubmission to archive backup system</p>
-<ul>
-<li>job details </li>
-<li>job tables</li>
-</ul>
+<p>SciCat is a data catalogue web application to provide a searchable interface for datasets, publish DOIs, as well as the option to carry out actions (i.e. archiving and publishing) and acts as a place to reference datasets used in publications.</p>
+<p>This guide aims to help developers and system admins understand some of the SciCat components.</p>
+<p>SciCat is built on micro services using the following stack:</p>
+<h2 id="web-browser-client-catanie">Web Browser Client (Catanie)</h2>
+<p>node
+npm
+typescript
+angular
+NGRX
+loopback SDK generator</p>
+<h2 id="api-catamel">API (Catamel)</h2>
+<p>node
+js
+loopback
+mongoDB</p>
 <p>Unit tests are explained in this page
 <a href="Testing">Testing</a></p>
 <p>Ngrx is the Angular implementation of Redux state management
@@ -772,7 +755,7 @@ Principal Investigator users can also add users to proposals and give access to 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"SciCat Data Catalogue Developer Guide","level":"1.1","depth":1,"next":{"title":"Archiving/Retrieving/Resetting Datasets","level":"1.1.1","depth":2,"path":"Catanie/Archiving.md","ref":"Catanie/Archiving.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/README.md","mtime":"2020-07-17T12:16:07.881Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-17T12:16:49.066Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"SciCat Data Catalogue Developer Guide","level":"1.1","depth":1,"next":{"title":"Archiving/Retrieving/Resetting Datasets","level":"1.1.1","depth":2,"path":"Catanie/Archiving.md","ref":"Catanie/Archiving.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/README.md","mtime":"2020-07-17T12:26:57.742Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-17T12:27:40.328Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
