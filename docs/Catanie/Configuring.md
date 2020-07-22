@@ -18,7 +18,9 @@ Access [here](http://localhost:4200) once running.
 
 # Running with Docker
 
-The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard \*nix commands are available.
+Use [scicatlive](https://github.com/SciCatProject/scicatlive#readme) or run the containers individually: 
+
+The containers in our repos are based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard \*nix commands are available.
 
 `git clone https://github.com/SciCatProject/catanie.git && cd catanie`
 
