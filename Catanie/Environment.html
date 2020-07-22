@@ -703,14 +703,61 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="environment-file">Environment file</h1>
-<p>The environment file allows users to add local settings, such as name of facility, URL of REST server, file server etc</p>
+<p>This is the configuration file for the catanie client. The environment file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features.</p>
 <p>An example is shown below</p>
-<pre><code>  production: false,
-  lbBaseURL: &apos;http://127.0.0.1:3000&apos;,
-  fileserverBaseURL: &apos;http://l27.0.0.1:8889&apos;,
+<pre><code>import { TableColumn } from &quot;state-management/models&quot;;
+
+export const environment = {
+  production: false,
+  lbBaseURL: &quot;http://127.0.0.1:3000&quot;,
+  fileserverBaseURL: &quot;http://127.0.0.1:8889&quot;,
+  synapseBaseUrl: &quot;https://scitest.esss.lu.se&quot;,
+  riotBaseUrl: &quot;http://scitest.esss.lu.se/riot&quot;,
+  jupyterHubUrl: &quot;https://jupyterhub.esss.lu.se/&quot;,
+  externalAuthEndpoint: &quot;&quot;,
+  addDatasetEnabled: true,
   archiveWorkflowEnabled: true,
-  externalAuthEndpoint: &apos;/auth/msad&apos;,
-  facility: &apos;ESS&apos;
+  columnSelectEnabled: true,
+  datasetReduceEnabled: true,
+  editMetadataEnabled: true,
+  editSampleEnabled: true,
+  editPublishedData: true,
+  facility: &quot;PSI&quot;,
+  fileColorEnabled: true,
+  localColumns: [
+    { name: &quot;select&quot;, order: 0, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;datasetName&quot;, order: 1, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;runNumber&quot;, order: 2, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;sourceFolder&quot;, order: 3, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;size&quot;, order: 4, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;creationTime&quot;, order: 5, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;type&quot;, order: 6, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;image&quot;, order: 7, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;metadata&quot;, order: 8, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;proposalId&quot;, order: 9, type: &quot;standard&quot;, enabled: true },
+    { name: &quot;ownerGroup&quot;, order: 10, type: &quot;standard&quot;, enabled: false },
+    { name: &quot;dataStatus&quot;, order: 11, type: &quot;standard&quot;, enabled: false },
+    { name: &quot;derivedDatasetsNum&quot;, order: 12, type: &quot;standard&quot;, enabled: false }
+  ] as TableColumn[],
+  landingPage: &quot;doi2.psi.ch/detail/&quot;,
+  logbookEnabled: true,
+  metadataPreviewEnabled: true,
+  fileDownloadEnabled: true,
+  multipleDownloadEnabled: true,
+  maxDirectDownloadSize: 5000000000000,
+  multipleDownloadAction: &quot;http://localhost:3011/zip&quot;,
+  scienceSearchEnabled: true,
+  scienceSearchUnitsEnabled: true,
+  searchProposals: true,
+  searchPublicDataEnabled: true,
+  searchSamples: true,
+  sftpHost: &quot;login.esss.dk&quot;,
+  shoppingCartEnabled: true,
+  shoppingCartOnHeader: true,
+  tableSciDataEnabled: true,
+  userNamePromptEnabled: true,
+  userProfileImageEnabled: true
+};
 </code></pre>
                                 
                                 </section>
@@ -744,7 +791,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Environment file","level":"1.1.8","depth":2,"next":{"title":"Getting Metadata Into SciCat.","level":"1.1.9","depth":2,"path":"Catanie/GettingMetadataIntoScicat.md","ref":"Catanie/GettingMetadataIntoScicat.md","articles":[]},"previous":{"title":"Git Flow Workflow","level":"1.1.7","depth":2,"path":"Catanie/Development_Methods.md","ref":"Catanie/Development_Methods.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Environment.md","mtime":"2020-07-22T08:45:47.640Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T08:46:26.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Environment file","level":"1.1.8","depth":2,"next":{"title":"Getting Metadata Into SciCat.","level":"1.1.9","depth":2,"path":"Catanie/GettingMetadataIntoScicat.md","ref":"Catanie/GettingMetadataIntoScicat.md","articles":[]},"previous":{"title":"Git Flow Workflow","level":"1.1.7","depth":2,"path":"Catanie/Development_Methods.md","ref":"Catanie/Development_Methods.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Environment.md","mtime":"2020-07-22T13:38:06.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T13:38:50.763Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
