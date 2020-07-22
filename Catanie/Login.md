@@ -9,5 +9,23 @@ A document is created in the db.UserIdentity collection.
 The UserIdentity is fetched from MongoDB and stored in the ngrx store, (```store.user.userIdentity```) where 
 it is used to access e.g. email for job initiators.
 
-For non-third party logins, no UserIdentity is created. In this case, an ngrx userIdentity is 
-created in the store, with relevant information copied from ```store.user```
+The login method needs to be defined in the client configuartion (environment file) usign the field `externalAuthEndpoint`. For example `externalAuthEndpoint: "/auth/msad"`.
+See [loopback docs](https://loopback.io/doc/en/lb3/Third-party-login-using-Passport.html)
+
+For non-third party logins defined, no UserIdentity is created.  These are special users for admin purposes including beamline specific users for ingrstion etc.
+These users should be defined in a sperate secrets repo in a file called functionalAccounts.json and are read by createFunctionalAccounts.js in catamel e.g.
+```
+    [{
+        "account": "admin",
+        "password": "pass",
+        "email": "admin@domain.com",
+        "role": "admin",
+        "global": true
+    }, {
+        "account": "ingestor",
+        "password": "pass",
+        "email": "ingestor@domain.com",
+        "role": "ingestor",
+        "global": true
+    }]
+```
