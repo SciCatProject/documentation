@@ -705,30 +705,19 @@
                                 <h1 id="an-introduction-to-the-data-model">An Introduction to the Data Model</h1>
 <h2 id="model">Model</h2>
 <p>There are many models within the catalog and many of them are self explanatory. When created, the API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.</p>
-<pre><code>Note:
-
-We are using MongoDB for our datasource and it is not designed for any form of relation, 
-nor does it handle inheritance. The driver for loopback solves this by inserting the ID 
-of the relation as a foreign key into the document. This does mean that some documents will contain a:
-DATASETID,
-RAWDATASETID,
-DERIVEDDATASETID
-
-This is normal behaviour and only one of those should be filled.
-</code></pre><h2 id="relationships">Relationships</h2>
-<p>It should be noted that relationships between dataset models.</p>
+<p><img src="img/model.png" alt="model"></p>
+<p>Some models may change.</p>
+<h2 id="relationships-and-access">Relationships and Access</h2>
+<p>Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields.</p>
 <h2 id="rawdataset">RawDataset</h2>
 <p>This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains <code>Scientific Metadata</code>, and this is an extensible object to outline all parameters relevant to the dataset.</p>
 <h2 id="deriveddataset">DerivedDataset</h2>
 <p>These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset.</p>
-<h3 id="fields">Fields</h3>
-<p>Obviously, these fields can become overly complex and technical, so the user facing software will contain simplified details. Below are some of the more prominent examples from the Dashboard table in Catanie:</p>
-<ul>
-<li>creationLocation -&gt; Beamline </li>
-<li>ownerGroup -&gt; Groups</li>
-<li>archiveStatusMessage -&gt; Archive Status</li>
-</ul>
-<h3 id="datablocks">Datablocks</h3>
+<p>The nuance of this definition is ultimately up to the user.</p>
+<h3 id="origdatablocks-and-datablocks">OrigDatablocks and Datablocks</h3>
+<p>Describes the actual data files, including file name, size and ownership.</p>
+<p>Datablocks describes data as it is stored in an archive system (on tape), whereas OrigDatablocks describes the data as it is split during initial ingestion.</p>
+<p>More Info: </p>
 <p>A data block should never be shown to the user but, regardless of backup system being used, it is likely that a single dataset will be able to be backed up into a single location. In order to address this, we have <code>datablocks</code> that contain a list of datafiles. A dataset can be split into multiple datablocks (unless it contains a single large file).</p>
 <p>To reduce the reliance on a particular backup system, there is an <code>OrigDataBlock</code> and a <code>DataBlock</code>. The <code>OrigDataBlock</code> is created by Catamel  when a dataset is ingested and they are preemptively split. If the connected backup system does support datablocks then it would need to respond with datablock details when it is ingested. In those cases, a dataset will store both the <code>OrigDataBlocks</code> and <code>Datablocks</code>.</p>
 <h3 id="datasetlifecycle">DatasetLifecycle</h3>
@@ -790,7 +779,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.1.4","depth":2,"next":{"title":"Deployment of Catanie and Catamel","level":"1.1.5","depth":2,"path":"Catanie/Deployment.md","ref":"Catanie/Deployment.md","articles":[]},"previous":{"title":"Contributing","level":"1.1.3","depth":2,"path":"Catanie/Contributing.md","ref":"Catanie/Contributing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Data_Model.md","mtime":"2020-07-22T13:38:06.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T13:38:50.763Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.1.4","depth":2,"next":{"title":"Deployment of Catanie and Catamel","level":"1.1.5","depth":2,"path":"Catanie/Deployment.md","ref":"Catanie/Deployment.md","articles":[]},"previous":{"title":"Contributing","level":"1.1.3","depth":2,"path":"Catanie/Contributing.md","ref":"Catanie/Contributing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Data_Model.md","mtime":"2020-07-24T10:51:41.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T10:52:46.102Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
