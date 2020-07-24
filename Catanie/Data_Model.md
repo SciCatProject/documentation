@@ -4,22 +4,14 @@
 
 There are many models within the catalog and many of them are self explanatory. When created, the API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.
 
-```
-Note:
+![model](img/model.png)
 
-We are using MongoDB for our datasource and it is not designed for any form of relation, 
-nor does it handle inheritance. The driver for loopback solves this by inserting the ID 
-of the relation as a foreign key into the document. This does mean that some documents will contain a:
-DATASETID,
-RAWDATASETID,
-DERIVEDDATASETID
+Some models may change.
 
-This is normal behaviour and only one of those should be filled.
-```
+## Relationships and Access
 
-## Relationships
+Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields.
 
-It should be noted that relationships between dataset models.
 
 ## RawDataset
 
@@ -29,15 +21,15 @@ This is a dataset that has been collected from an experiment. It contains detail
 
 These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset.
 
-### Fields
+The nuance of this definition is ultimately up to the user.
 
-Obviously, these fields can become overly complex and technical, so the user facing software will contain simplified details. Below are some of the more prominent examples from the Dashboard table in Catanie:
+### OrigDatablocks and Datablocks
+Describes the actual data files, including file name, size and ownership.
 
-* creationLocation -> Beamline 
-* ownerGroup -> Groups
-* archiveStatusMessage -> Archive Status
+Datablocks describes data as it is stored in an archive system (on tape), whereas OrigDatablocks describes the data as it is split during initial ingestion.
 
-### Datablocks
+
+More Info: 
 
 A data block should never be shown to the user but, regardless of backup system being used, it is likely that a single dataset will be able to be backed up into a single location. In order to address this, we have `datablocks` that contain a list of datafiles. A dataset can be split into multiple datablocks (unless it contains a single large file).
 
