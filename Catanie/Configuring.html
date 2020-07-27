@@ -250,20 +250,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.12" data-path="Quickstart.html">
-            
-                <a href="Quickstart.html">
-            
-                    
-                    Instructions
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.1.13" data-path="StartHere.html">
+        <li class="chapter " data-level="1.1.12" data-path="StartHere.html">
             
                 <a href="StartHere.html">
             
@@ -276,7 +263,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.14" data-path="Testing.html">
+        <li class="chapter " data-level="1.1.13" data-path="Testing.html">
             
                 <a href="Testing.html">
             
@@ -711,38 +698,14 @@ npm install
 </code></pre><p>For convenience, this has been added to the <code>package.json</code> so you can run <code>npm start</code> as an alias.</p>
 <p>Access <a href="http://localhost:4200" target="_blank">here</a> once running.</p>
 <h1 id="running-with-docker">Running with Docker</h1>
-<p>The container is based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
+<p>Use <a href="https://github.com/SciCatProject/scicatlive#readme" target="_blank">scicatlive</a> or run the containers individually: </p>
+<p>The containers in our repos are based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard *nix commands are available.</p>
 <p><code>git clone https://github.com/SciCatProject/catanie.git &amp;&amp; cd catanie</code></p>
-<p><code>docker built -t &lt;tag&gt; .</code></p>
+<p><code>docker build -t &lt;tag&gt; .</code></p>
 <p><code>docker run &lt;tag&gt;</code></p>
 <p>You should see the container begin and print out the URL, this is retrieved dynamically based on the IP of the container. Changing it to localhost or 0.0.0.0 <strong>will</strong> break it.</p>
 <h1 id="running-with-kubernetes">Running with Kubernetes</h1>
-<p>For kubernetes, you will need the <code>kubectl</code> binary., which can be found <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here.</a> The configuration for the binary should be found in the <code>secrets</code> repo for your organisation and you will need to export it as <code>KUBECONFIG</code>, you can check this with <code>kubectl version</code> and ensure both client and server have versions.</p>
-<p>The docker image for Angular can either contain the Angular CLI development server, or an Nginx server that serves static files built by webpack.</p>
-<p>Using the default nginx docker image means that all URLs are not mapped, this means one needs to provide a custom config file:</p>
-<pre><code>server {
-    listen 80;
-    root /usr/share/html;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-</code></pre><ol>
-<li>Build the dist with <code>ng build -prod -op dist/prod</code></li>
-<li><code>sudo docker build -t registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION .</code></li>
-<li><code>sudo docker push registry.psi.ch:5000/egli/catanie:$CATANIE_IMAGE_VERSION</code></li>
-<li><p><code>envsubst &lt; catanie-deployment.yaml | kubectl apply -f - --validate=false</code></p>
-<ol>
-<li>The YAML file is located in the <code>scripts</code> folder and is currentlyignores the environment. The Dockerfile is what currently sets the environment and needs to be modified. This is currently being worked on.</li>
-</ol>
-</li>
-</ol>
-<h2 id="locally-with-minikube">Locally with Minikube</h2>
-<p>TODO</p>
-<h2 id="on-a-cluster">On a cluster</h2>
-<p>TODO</p>
+<p>Creating a Kubernetes environment takes some expertise but the SciCat repo <a href="https://github.com/SciCatProject/localdeploy" target="_blank">localdeploy</a> contains all the necessary configuration for deploying SciCat to a cluster with a simple readme.</p>
 
                                 
                                 </section>
@@ -776,7 +739,7 @@ npm install
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Running locally","level":"1.1.2","depth":2,"next":{"title":"Contributing","level":"1.1.3","depth":2,"path":"Catanie/Contributing.md","ref":"Catanie/Contributing.md","articles":[]},"previous":{"title":"Archiving/Retrieving/Resetting Datasets","level":"1.1.1","depth":2,"path":"Catanie/Archiving.md","ref":"Catanie/Archiving.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Configuring.md","mtime":"2020-07-24T10:51:41.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T10:52:46.102Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Running locally","level":"1.1.2","depth":2,"next":{"title":"Contributing","level":"1.1.3","depth":2,"path":"Catanie/Contributing.md","ref":"Catanie/Contributing.md","articles":[]},"previous":{"title":"Archiving/Retrieving/Resetting Datasets","level":"1.1.1","depth":2,"path":"Catanie/Archiving.md","ref":"Catanie/Archiving.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Configuring.md","mtime":"2020-07-27T10:41:54.624Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-27T10:42:36.792Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
