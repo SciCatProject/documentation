@@ -25,6 +25,7 @@ SciCat is built on micro services using the following stack:
 The diagram below describes the key components of SciCat. The flow of ingested information is is described as follows: Beamline script send a package of minimal metadata (e.g. a dataset) to the message broker. The broker passes the dataset onto a NodeRed layer that is responsible for calling the responsible API endoint. 
 
 Hooks trigger other activities. For example, if a new proposal is ingested, a new entry in policy is required. The policy will dictate how any dataset associated with that proposal will behave with regards to automatic archiving, publishing etc.
+
 ![systen_components](img/micro.png)
 
 Unit tests are explained in this page

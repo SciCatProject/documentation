@@ -10,7 +10,6 @@
   * [Getting Metadata Into SciCat.](Catanie/GettingMetadataIntoScicat.md)
   * [Login](Catanie/Login.md)
   * [Services](Catanie/Ngrx.md)
-  * [Instructions](Catanie/Quickstart.md)
   * [So, you have just started working on SciCat?](Catanie/StartHere.md)
   * [[Testing](https://angular.io/docs/ts/latest/guide/testing.html)](Catanie/Testing.md)
 

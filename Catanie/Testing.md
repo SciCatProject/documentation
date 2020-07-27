@@ -1,102 +1,21 @@
 
 # [Testing](https://angular.io/docs/ts/latest/guide/testing.html)
 
-# Browser Choices
-
-Testing can be run on any browser installed on your system. To change this, you can update the settings found in `protractor.conf.js` and `karma.conf.js`
-
-## Headless Chrome 
-
-As of Chrome 59, a [headless](https://developers.google.com/web/updates/2017/04/headless-chrome) option has been added, by using the `--headless` flag (`--disable-gpu` is also required in the early versions). In order to run tests in this Chrome by default, first check you have 59 or above at `chrome://version`.
-
-### `protractor.conf.js`
-
-```json
-    capabilities: {
-        'browserName': 'chrome',
-        chromeOptions: {
-            args: ["--headless", "--disable-gpu", "--window-size=800x600"]
-        }
-    },
-```
-
-### `karma.conf.js`
-
-```json
-    customLaunchers: {
-      ChromeHeadless: {
-        base: 'Chrome',
-        flags: [
-          '--headless',
-          '--disable-gpu',
-          // Without a remote debugging port, Google Chrome exits immediately.
-          '--remote-debugging-port=9222'
-        ]
-      }
-    },
-```
 
 
 # E2E ([Protractor](http://www.protractortest.org/#/))
 
+Initially Protractor was used for end to end testing but this was abandoned in favour of the far more robust and flexible [Cypress](https://www.cypress.io/).
 
-You can run with `npm run e2e` or `ng e2e` 
+# Cypress E2E
 
-Useful Links
+Cypress is not based on Selenium. 
 
-* [Testing Components](http://chariotsolutions.com/blog/post/testing-angular-2-components-unit-tests-testcomponentbuilder/)
-* [Testing Services](http://chariotsolutions.com/blog/post/testing-http-services-angular-2-jasmine/)
+`npx cypress run` runs all tests headless (without displaying the browser).
 
-## Testing Structure
+`npx cypress open` opens the Cypress GUI in the browser.
 
-An e2e test should be used to test the functionality as if a user is utilising it. They test a whole `story`, such as logging in or searching for an item. Protractor provides excellent element selection facilities for this functionality. Most of these tests can be written by simply redirecting the browser to relevant URLs, but this makes it hard to test complex interactions.
-
-### Page Objects
-
-We can create a `PAGE.po.ts` file to encapsulate common actions for a page and import it throughout our testing. For example, a login page object would navigate to the login page and provide methods for `login`, `logout` etc by entering text in the correct elements. You can see this in the `e2e` folder within the repo.
-
-### e2e Spec
-
-This is where the actual tests are written, with an example below:
-
-```javascript
-
-describe('catanie Dashboard', function() {
-  let lp: LoginPage;
-  let page: DashboardPage;
-
-  beforeAll(() => {
-    lp = new LoginPage();
-    lp.navigateTo().then(() => {
-      lp.enterDetails(browser.params.login.user, browser.params.login.pwd);
-      lp.login();
-      browser.sleep(2000);
-      page = new DashboardPage();
-      page.navigateTo();
-    });
-  });
-
-  it('should be on correct page', () => {
-    expect(browser.getCurrentUrl()).toContain('datasets');
-  });
-
-  it('should have an active home menu item', () => {
-    expect(element(by.css('.active.item')).getText()).toContain('Home');
-  });
-
-  it('should change active menu item', () => {
-    const eos = element(by.partialLinkText('End of Shift'));
-    eos.click();
-    expect(eos.getAttribute('class')).toContain('active');
-  });
-});
-```
-
-We can execute specific actions before each/any test is run, as well as retrieving elements by almost any means necessary. Note that there is a lot of specific support for Angular as well, which you can read about in the Protractor docs.
-
-### Element Explorer
-
-Running protractor with `--elementExplorer` opens up your pages with Protractor and gives you a CLI to test out element queries and interactions with them.
+`npx cypress run --spec /home/encima/dev/melanie/catanie/cypress/integration/policy-delegate.spec.js` will run the single test file policy-delegate.spec.js.
 
 # Unit (Jasmine, run by Karma)
 
@@ -130,29 +49,8 @@ TestBed.overrideComponent(AppComponent, {
 
 The practice I have followed is to create a `MockStubs` file that contains only the necessary mocked methods for services or pipes or components. This file can be added to to allow almost complete coverage of the app.
 
-### Components with @Input()
-
-This may seem trivial but online guides do provide conflicting results. Some recommendations are to make test wrapper components and this is absolutely what you should do if you need to test the actual inputs.
-
-However, if you are testing a component you can mock the Input [variable](https://angular.io/docs/ts/latest/guide/testing.html#!#dashboard-standalone) or, even more simple, you can set it as a default value (null, false etc) in the definition of your component; your component logic should be validating these anyway.
-
-### Schemas and Components with Nested Components 
-
-If you have created a component that nests another component within, that means that all modules must be imported in both the test module, as well as all components that utilises that component. Confused yet? So was I. This is technically good practice for integration tests but less suitable if you want to test each isolated component. A test on a component with an embedded component should, in my opinion, test only itself; the embedded components should have its own tests.
-
-This can be fixed with the `NO_ERRORS_SCHEMA` import from `@angular/core`.
-
-```
-import {NO_ERRORS_SCHEMA} from '@angular/core';
- TestBed.configureTestingModule({
-       schemas : [ NO_ERRORS_SCHEMA ],
-```
-
-This should be set in **all** components that contain the component in question. The component that contains the module should **not** do this and should import the module(s). All tests should exist there.
 
 # Anatomy of a Test 
-
-Here we discuss the breakdown of a test for a component or service. It should be noted that the default tests generated for a component (by the Angular CLI) will fail almost as soon as the component is set up. This section will explain why and what should be done. Some of the points discussed here are mainly in line with the Angular best practices described in ng-book and the docs, but not all of this needs to be followed to the letter.
 
 ## BeforeEach
 
