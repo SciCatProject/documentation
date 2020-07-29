@@ -1,9 +1,13 @@
+
+## Overview
+* [SciCat Metadata Catalogue](README.md)
+
+## Developers Guide
 * [SciCat Data Catalogue Developer Guide](Catanie/README.md)
   * [Archiving/Retrieving/Resetting Datasets](Catanie/Archiving.md)
   * [Running locally](Catanie/Configuring.md)
   * [Contributing](Catanie/Contributing.md)
   * [An Introduction to the Data Model](Catanie/Data_Model.md)
-  * [Deployment of Catanie and Catamel](Catanie/Deployment.md)
   * [Design](Catanie/Design.md)
   * [Git Flow Workflow](Catanie/Development_Methods.md)
   * [Environment file](Catanie/Environment.md)
@@ -13,11 +17,8 @@
   * [So, you have just started working on SciCat?](Catanie/StartHere.md)
   * [[Testing](https://angular.io/docs/ts/latest/guide/testing.html)](Catanie/Testing.md)
 
-## Part I
 
-* [SciCat Metadata Catalogue](README.md)
-
-## Part II
+## User Guide
 
 * [Screenshots and guides](Users/README.md)
   * [Dashboard](Users/Dashboard/README.md)

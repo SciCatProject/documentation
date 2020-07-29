@@ -28,11 +28,3 @@ Hooks trigger other activities. For example, if a new proposal is ingested, a ne
 
 ![systen_components](img/micro.png)
 
-Unit tests are explained in this page
-[Testing](Testing)
-
-Ngrx is the Angular implementation of Redux state management
-[Ngrx](Ngrx)
-
-Users can archive data  using the Archive interface1
-[Archiving](Archiving)

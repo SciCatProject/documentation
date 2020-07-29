@@ -4,7 +4,7 @@ Almost all external requests made by the client (catanie) are done so via `NGRX 
 
 Loopback within catamel provies a generated SDK that is used by catanie to define all requests to the API. The SDK folder should not be edited because it will just overwrite it when a new one is generated.
 
-The SDK is updated by:
+The SDK is updated by running the following in the catamel source code root:
 `./node_modules/.bin/lb-sdk server/server.js  ../catanie/src/app/shared/sdk`
 and this is necessary when making any changes to endpoints in catamel.
 

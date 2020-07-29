@@ -2,7 +2,7 @@
 
 ## Model
 
-There are many models within the catalog and many of them are self explanatory. When created, the API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.
+There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.
 
 ![model](img/model.png)
 
@@ -10,7 +10,7 @@ Some models may change.
 
 ## Relationships and Access
 
-Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields.
+Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respedtive model (handled by loopback model definitions)
 
 
 ## RawDataset

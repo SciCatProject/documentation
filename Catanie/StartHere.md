@@ -39,3 +39,10 @@ Catamel has some core files missing that are required in order for it to run. Be
 
 All tests for catamel are in the `test` folder in the root of the repo and can be run with `npm run test`. 
 
+## Python Client API
+The API is automatically created from the Swagger/openAPI (http://swagger.io/) specificication created from the data model using the [Swagger Codegen code](https://github.com/swagger-api/swagger-codegen)
+
+```
+java -jar ./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i swagger.json -l python -o dacat-api/client/python
+```
+

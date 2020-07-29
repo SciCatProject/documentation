@@ -1,6 +1,7 @@
 
 # [Testing](https://angular.io/docs/ts/latest/guide/testing.html)
 
+All components of SciCat include unit test coverage and catanie has additional end to end user interface testing. Tests are run by CI before any change request is approved.
 
 
 # E2E ([Protractor](http://www.protractortest.org/#/))
@@ -50,7 +51,7 @@ TestBed.overrideComponent(AppComponent, {
 The practice I have followed is to create a `MockStubs` file that contains only the necessary mocked methods for services or pipes or components. This file can be added to to allow almost complete coverage of the app.
 
 
-# Anatomy of a Test 
+# Anatomy of a Unit Test 
 
 ## BeforeEach
 
