@@ -20,9 +20,8 @@ Cypress is not based on Selenium.
 
 # Unit (Jasmine, run by Karma)
 
-## Testing Components
+`ng test` runs all unit tests.
 
-Often, when testing a component or a piece of UX, then we would want to test all the functionality. In most cases, this is not necessary and results in testing more than just the one component. In the case of Angular, that could be things like the router module or a custom service. These things can be mocked in the `Spec` file to ensure that we do not end up importing more than we need.
 
 ### Mocking Services
 

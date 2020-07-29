@@ -4,7 +4,7 @@
 
 ## Overview
 
-SciCat is a project to catalogue and provide access to scientific metadata and raw experimental data.
+SciCat is a project to catalogue and provide access to scientific metadata relating to raw experimental data.
 [![Build Status](https://travis-ci.org/SciCatProject/documentation.svg?branch=master)](https://travis-ci.org/SciCatProject/documentation)
 
 
@@ -12,7 +12,7 @@ SciCat is a project to catalogue and provide access to scientific metadata and r
 
 Scicat is made up of the following technologies:
 
-* Web based frontend - [Catanie](https://github.com/SciCatProject/catanie): An Angular 9 based application that uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\) and acts as a place to reference datasets used in publications.
+* Web based frontend - [Catanie](https://github.com/SciCatProject/catanie): An Angular based application that uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
 
 * API Server - [Catamel: ](https://github.com/SciCatProject/catamel)A NodeJS application that uses the Loopback framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Follows the Swagger API format and SDKs can be generated in almost any language.
 
@@ -24,8 +24,8 @@ Scicat is made up of the following technologies:
 
 This repository provides the documentation for each of the services that comprises SciCat, as well as some guides on the user interface and how to perform tasks. This is split into the following sections:
 
-* Devops - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop with SciCat
-* Users - Users of the system can come here to see annotated screenshots, FAQs and find resources on how to better understand SciCat.
+* Developer Guide - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop SciCat
+* User Guide - Users of the system can come here to see screen captures, FAQs and find resources on how to better understand SciCat.
 
 ## Talks
 
