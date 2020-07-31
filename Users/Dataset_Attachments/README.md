@@ -1,5 +1,7 @@
 # Dataset Attachments
 
+[![Adding an attachment]()](https://scicatproject.github.io/img/f1-2020-07-14_16.56.44.mp4)
+
 On the dataset details page, you can click on Datafiles tab
 ![Choose an image file, must be udner 16 MB limit](../img/attach1.png)
 

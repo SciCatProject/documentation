@@ -21,8 +21,6 @@
 
 
 ## User Guide
-
-* [Screenshots and guides](Users/README.md)
   * [Dashboard](Users/Dashboard/README.md)
   * [Dataset Attachments](Users/Dataset_Attachments/README.md)
   * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
