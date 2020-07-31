@@ -31,20 +31,3 @@ One click on the date calendar selects the start date and a second selects the e
 To view a dataset simply click on it in the table and a more detailed view will load (this is covered in the `Dataset Details` section).
 
 
-## Backups
-
-Selecting a dataset (or datasets) allows you to archive it using the backup system that your institution uses or to retrieve it to your user space.
-
-If a dataset does not have a fixed size, or it has already been archived, then it will not be selectable. Active backup jobs can be seen on the jobs page (covered in the `Jobs` section).
-
-When you select a dataset, it will become checked and you will see details at the bottom of the page. Clicking the `archive` or `retrieve` button will perform that action on the selected datasets
-
-## Paging
-
-At the bottom of the table are arrows for navigation and page numbers. If there are more entries than can fit on the page, more results will be accessible through the pages. Each page will make a call to the server to retrieve more.
-
-
-## Export CSV 
-
-This function allows users to download the onscreen table in comma separated variable (CSV) format.
-

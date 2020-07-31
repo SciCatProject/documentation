@@ -1,10 +1,12 @@
-# Environment file
+# Catanie Environment file
 
 This is the configuration file for the catanie client. The environment file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features.
 
 An example is shown below
 
 ```
+catanie/src/environment:
+
 import { TableColumn } from "state-management/models";
 
 export const environment = {
@@ -62,3 +64,12 @@ export const environment = {
 ```
 
 
+# Catamel Configuration
+
+The following 4 files provide the minimum confifuration for catamel.
+
+catamel/server:
+* datasources.json - This sets up your connection to Mongo and should follow the syntax outlined in loopback
+* config.local.js - These are site specific settings for your install, such as the prefix to use for IDs
+* providers.json - Contains connection information to LDAP or other authentication sources
+* component-config.json - This file defines the connection to RabbitMQ or other message que

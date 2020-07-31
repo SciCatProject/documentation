@@ -10,7 +10,7 @@
   * [An Introduction to the Data Model](Catanie/Data_Model.md)
   * [Design](Catanie/Design.md)
   * [Git Flow Workflow](Catanie/Development_Methods.md)
-  * [Environment file](Catanie/Environment.md)
+  * [Configuration](Catanie/Environment.md)
   * [Getting Metadata Into SciCat.](Catanie/GettingMetadataIntoScicat.md)
   * [Login](Catanie/Login.md)
   * [Services](Catanie/Ngrx.md)
