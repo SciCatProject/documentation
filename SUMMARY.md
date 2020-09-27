@@ -2,6 +2,33 @@
 ## Overview
 * [SciCat Metadata Catalogue](README.md)
 
+## User Guide
+  * [Dashboard](Users/Dashboard/README.md)
+  * [Dataset Attachments](Users/Dataset_Attachments/README.md)
+  * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
+  * [Archival and Retrieval Jobs](Users/Jobs/README.md)
+  * [Login](Users/Login/README.md)
+  * [Sample Data Entry](Users/SampleData/README.md)
+
+
+## DevOps Guide
+* [Repository Overview](Devops/README.md)
+  * [Data Catalog Backend](Devops/Catamel/README.md)
+    * [Active Directory LDAP](Devops/Catamel/Active_Directory_LDAP.md)
+    * [Configuration of Catamel for Specific Organisations](Devops/Catamel/Config/README.md)
+    * [Users](Devops/Catamel/Data_Models/README.md)
+    * [Email Notifications](Devops/Catamel/Email_Notifications/README.md)
+    * [Testing](Devops/Catamel/Testing/README.md)
+  * [Catanie Public](Devops/Catanie_Public/README.md)
+  * [Building and Editing Locally](Devops/Documentation/README.md)
+  * [Indexing MongoDB](Devops/MongoDB/README.md)
+  * [Sites](Devops/Sites/README.md)
+    * [ESS Site Specific info](Devops/Sites/ESS/README.md)
+    * [MAX IV Site specific info](Devops/Sites/MAXIV/README.md)
+    * [PSI Site specific info](Devops/Sites/PSI/README.md)
+      * [CI](Devops/Sites/PSI/CI/README.md)
+      * [PSI URLs](Devops/Sites/PSI/PSI_URLs/README.md)
+
 ## Developers Guide
 * [SciCat Data Catalogue Developer Guide](Catanie/README.md)
   * [Archiving/Retrieving/Resetting Datasets](Catanie/Archiving.md)
@@ -17,13 +44,3 @@
   * [So, you have just started working on SciCat?](Catanie/StartHere.md)
   * [[Testing](https://angular.io/docs/ts/latest/guide/testing.html)](Catanie/Testing.md)
   * [Active Directory LDAP](Devops/Catamel/Active_Directory_LDAP.md)
-
-
-
-## User Guide
-  * [Dashboard](Users/Dashboard/README.md)
-  * [Dataset Attachments](Users/Dataset_Attachments/README.md)
-  * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
-  * [Archival and Retrieval Jobs](Users/Jobs/README.md)
-  * [Login](Users/Login/README.md)
-  * [Sample Data Entry](Users/SampleData/README.md)
