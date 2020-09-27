@@ -1,6 +1,6 @@
 ## Dashboard
 
-The main page of the Data Catalog contains an overview of all datasets you have access to.
+The main page of the Data Catalog contains an overview of all datasets that you have access to.
 
 
 ![dashboard](../img/dashboard.png)
