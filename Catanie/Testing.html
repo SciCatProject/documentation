@@ -4,10 +4,10 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Testing · GitBook</title>
+        <title>Testing · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="HonKit 3.6.6">
         
         
         
@@ -633,8 +633,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
         </a>
     </li>
 </ul>
@@ -715,8 +715,8 @@
 <p>Sample ngrx reducer test:</p>
 <pre><code class="lang-javascript">  describe(<span class="hljs-string">&apos;SelectDatasetAction&apos;</span>, () =&gt; {
     it(<span class="hljs-string">&apos;should return the state&apos;</span>, () =&gt; {
-      <span class="hljs-keyword">const</span> data:DatasetInterface = {owner: <span class="hljs-string">&apos;&apos;</span>, contactEmail: <span class="hljs-string">&apos;&apos;</span>, sourceFolder: <span class="hljs-string">&apos;&apos;</span>, creationTime: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), type: <span class="hljs-string">&apos;&apos;</span>, ownerGroup: <span class="hljs-string">&apos;&apos;</span>};
-      <span class="hljs-keyword">const</span> payload = <span class="hljs-keyword">new</span> Dataset({pid: <span class="hljs-string">&apos;pid 1&apos;</span>, ...data});
+      <span class="hljs-keyword">const</span> data:DatasetInterface = {<span class="hljs-attr">owner</span>: <span class="hljs-string">&apos;&apos;</span>, <span class="hljs-attr">contactEmail</span>: <span class="hljs-string">&apos;&apos;</span>, <span class="hljs-attr">sourceFolder</span>: <span class="hljs-string">&apos;&apos;</span>, <span class="hljs-attr">creationTime</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;&apos;</span>, <span class="hljs-attr">ownerGroup</span>: <span class="hljs-string">&apos;&apos;</span>};
+      <span class="hljs-keyword">const</span> payload = <span class="hljs-keyword">new</span> Dataset({<span class="hljs-attr">pid</span>: <span class="hljs-string">&apos;pid 1&apos;</span>, ...data});
       <span class="hljs-keyword">const</span> action = <span class="hljs-keyword">new</span> fromActions.SelectDatasetAction(payload);
       <span class="hljs-keyword">const</span> state = fromDatasets.datasetsReducer(initialDatasetState, action);
       expect(state.selectedSets2).toEqual([payload]);
@@ -757,7 +757,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing","level":"4.1.12","depth":2,"next":{"title":"Active Directory LDAP","level":"4.1.13","depth":2,"path":"Devops/Catamel/Active_Directory_LDAP.md","ref":"Devops/Catamel/Active_Directory_LDAP.md","articles":[]},"previous":{"title":"So, you have just started working on SciCat?","level":"4.1.11","depth":2,"path":"Catanie/StartHere.md","ref":"Catanie/StartHere.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["auto-summary","theme-api"],"pluginsConfig":{"auto-summary":{"parts":{"README.md":"Part I","Users/**/*.md":"Part II","Devops/**/*.md":"Part III"}},"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Testing.md","mtime":"2020-09-27T13:20:22.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-27T13:21:03.226Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing","level":"4.1.12","depth":2,"next":{"title":"Active Directory LDAP","level":"4.1.13","depth":2,"path":"Devops/Catamel/Active_Directory_LDAP.md","ref":"Devops/Catamel/Active_Directory_LDAP.md","articles":[]},"previous":{"title":"So, you have just started working on SciCat?","level":"4.1.11","depth":2,"path":"Catanie/StartHere.md","ref":"Catanie/StartHere.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"js","name":"JavaScript","default":true},{"lang":"go","name":"Go"}],"split":true,"theme":"light"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Catanie/Testing.md","mtime":"2020-09-28T15:42:18.561Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-09-28T15:42:41.714Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -780,10 +780,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         
