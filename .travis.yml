@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '12.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.3h_docs_from_catanie.sh"
+- '12.18.3'
 script:
 - "./node_modules/honkit/bin/honkit.js build . docs"
 deploy:
