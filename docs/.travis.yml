@@ -3,20 +3,17 @@ node_js:
 - '9.4'
 install:
 - yarn
-- "./node_modules/gitbook-cli/bin/gitbook.js install"
+- "./node_modules/honkit/bin/honkit.js install"
 - "./fetch_docs_from_catanie.sh"
 script:
-- "./node_modules/gitbook-cli/bin/gitbook.js build . docs"
+- "./node_modules/honkit/bin/honkit.js build . docs"
 deploy:
   provider: pages
   skip_cleanup: true
   allow_empty_commit: true
-  commiter-from-gh: true
+  committer_from_gh: true
   keep_history: true
-  github_token: "$GH_TOKEN"
+  github_token: "$GITHUB_TOKEN"
   local_dir: docs
   on:
     branch: master
-env:
-  global:
-    secure: KQ1qdZZNsMnkhQHwjN/AHmZA/cYUosNH5I56ppjZe4zXoGShabipKh2xYTvNZxDJ12nAbtPDphUx7sxR8HLvaftB3ikfcdBXwmmCEPSkjP+ZTB21wUsUakSzRL4qyahdQPvkkqbbF1mg4yn6SIapbBinQfDDKWCYdg8rCWeFXAWPIUufQNkbv2324b0uWmCMj3e6n9UNwsxvmOYfVQ2YLyah5QfZbCLih5X+f3zbG34HSQZawGxAXpWdLIO0b+VdYxHILJUVJE1iNeDWtWGD7yN+a/1wlb3gLxOOkTIdG8ymKn1TgNcs/OoVe6gNSKA23Gy3vtHHpEALLvNAK53D97ZHblOVRUYmfKhhW0y3Y760Zz0QgGMvYZMVNoFOzya++Kokrw5AR4kQ27MjsSSJEHRNf1agUlIWLGxpbwwQo6QIQaAmaIIYbecF23lracqgbGMCFNERDjYXZ8JfYbEygrsFZEoaLqBLMzG2Dd4gG3OJxSvJ9wTBcSAMkEsCEk6luk9X/psG1XYcNTpm/OBKV18B4aOIcXZV+wiqFpbgGoarNgrcrFF1A07sBWA0KTonWWiYZ4Bf6YFSM13ZdeO4qjexI5iGbB+eQ1d3RGCuqLvpfK24mjaCi0vGZm19SSYc9bAKyKrXgExp/EbmMhROA1+AGy/3cxSAXcnr6Q+pmnE=

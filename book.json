@@ -1,13 +1,6 @@
 {
-    "plugins": [ "auto-summary","theme-api" ],
+    "plugins": [ "theme-api" ],
     "pluginsConfig": {
-        "auto-summary": {
-            "parts": { 
-                "README.md": "Part I",
-                "Users/**/*.md": "Part II",
-                "Devops/**/*.md": "Part III"
-            }      
-        },
         "theme-api": {
             "languages": [
                 {

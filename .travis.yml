@@ -3,10 +3,9 @@ node_js:
 - '9.4'
 install:
 - yarn
-- "./node_modules/gitbook-cli/bin/gitbook.js install"
 - "./fetch_docs_from_catanie.sh"
 script:
-- "./node_modules/gitbook-cli/bin/gitbook.js build . docs"
+- "./node_modules/honkit/bin/honkit.js build . docs"
 deploy:
   provider: pages
   skip_cleanup: true
