@@ -1,9 +1,6 @@
 language: node_js
 node_js:
-- '9.4'
-install:
-- yarn
-- "./fetch_docs_from_catanie.sh"
+- '12.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.312.18.3h_docs_from_catanie.sh"
 script:
 - "./node_modules/honkit/bin/honkit.js build . docs"
 deploy:
