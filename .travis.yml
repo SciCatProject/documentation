@@ -2,7 +2,6 @@ language: node_js
 node_js:
 - '12.18.3'
 install:
-- yarn
 - "./fetch_docs_from_catanie.sh"
 script:
 - "./node_modules/honkit/bin/honkit.js build . docs"
