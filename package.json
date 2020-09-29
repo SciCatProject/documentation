@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "honkit": "^3.6.6"
+  },
+  "dependencies": {
+    "gitbook-plugin-chapter-fold": "0.0.4"
   }
 }
