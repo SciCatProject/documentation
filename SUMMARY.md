@@ -1,20 +1,16 @@
 # Summary
 
-## Overview
-* [SciCat Metadata Catalogue](README.md)
+* [Overview](README.md)
 
-## User Guide
-* [Part I](Users/Dashboard/README.md)
+* [User Guide](Users/Dashboard/README.md)
     * [Dashboard](Users/Dashboard/README.md)
     * [Dataset Attachments](Users/Dataset_Attachments/README.md)
     * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
-* [Part II](Users/Dashboard/README.md)
     * [Archival and Retrieval Jobs](Users/Jobs/README.md)
     * [Login](Users/Login/README.md)
     * [Sample Data Entry](Users/SampleData/README.md)
 
-## DevOps Guide
-* [Repository Overview](Devops/README.md)
+* [DevOps Guide](Devops/README.md)
     * [Data Catalog Backend](Devops/Catamel/README.md)
         * [Active Directory LDAP](Devops/Catamel/Active_Directory_LDAP.md)
         * [Configuration of Catamel for Specific Organisations](Devops/Catamel/Config/README.md)
@@ -31,8 +27,7 @@
             * [CI](Devops/Sites/PSI/CI/README.md)
             * [PSI URLs](Devops/Sites/PSI/PSI_URLs/README.md)
 
-## Developers Guide
-* [SciCat Data Catalogue Developer Guide](Catanie/README.md)
+* [Developers Guide](Catanie/README.md)
     * [Archiving/Retrieving/Resetting Datasets](Catanie/Archiving.md)
     * [Running locally](Catanie/Configuring.md)
     * [Contributing](Catanie/Contributing.md)
