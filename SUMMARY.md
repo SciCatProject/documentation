@@ -2,12 +2,15 @@
 
 * [Overview](README.md)
 
-* [User Guide](Users/Dashboard/README.md)
-    * [Dashboard](Users/Dashboard/README.md)
-    * [Dataset Attachments](Users/Dataset_Attachments/README.md)
-    * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
-    * [Archival and Retrieval Jobs](Users/Jobs/README.md)
+* [User Guide](Users/Anonymous/README.md)
+    * [Anonymous View](Users/Anonymous/README.md)
     * [Login](Users/Login/README.md)
+    * [Dashboard](Users/Dashboard/README.md)
+    * [Dataset Details](Users/Dataset_Details/README.md)
+        * [Dataset Attachments](Users/Dataset_Attachments/README.md)
+        * [View Raw JSON data](Users/View_Raw_Metadata/README.md)
+        * [Edit Scientific Metadata](Users/Edit_Scientific_Metadata.md)
+    * [Archival and Retrieval Jobs](Users/Jobs/README.md)
     * [Sample Data Entry](Users/SampleData/README.md)
 
 * [DevOps Guide](Devops/README.md)
@@ -26,6 +29,8 @@
         * [PSI Site specific info](Devops/Sites/PSI/README.md)
             * [CI](Devops/Sites/PSI/CI/README.md)
             * [PSI URLs](Devops/Sites/PSI/PSI_URLs/README.md)
+
+* [Ingestor Guide](Ingestor/README.md)
 
 * [Developers Guide](Catanie/README.md)
     * [Archiving/Retrieving/Resetting Datasets](Catanie/Archiving.md)

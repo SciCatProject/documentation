@@ -1,35 +1,26 @@
 ![SciCatLogo.png](SciCatLogo.png)
 
 # SciCat Metadata Catalogue
-
-## Overview
-
-SciCat is a project to catalogue and provide access to scientific metadata relating to raw experimental data.
 [![Build Status](https://travis-ci.org/SciCatProject/documentation.svg?branch=master)](https://travis-ci.org/SciCatProject/documentation)
 
+## Why SciCat ?
 
-## Components
+The [landing page](https://scicatproject.github.io) provides a good overview of why SCiCat can help you to manage your scientific data
 
-Scicat is made up of the following technologies:
+## Structure of Documentation
 
-* Web based frontend - [Catanie](https://github.com/SciCatProject/catanie): An Angular based application that uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
+The documentaion is split into the following chapters:
 
-* API Server - [Catamel: ](https://github.com/SciCatProject/catamel)A NodeJS application that uses the Loopback framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Follows the Swagger API format and SDKs can be generated in almost any language.
-
-* Database - [MongoDB](https://www.mongodb.com/) Free, open source, NoSQL, document-based database
-
-* Data Ingestion - [Node-RED](https://nodered.org/): A NodeJS based visual programming tool to handle flows of data from one source to another.
-
-## Documentation
-
-This repository provides the documentation for each of the services that comprises SciCat, as well as some guides on the user interface and how to perform tasks. This is split into the following sections:
-
-* Developer Guide - Developers and Sysadmins can use this section for instructions on how to deploy, test and develop SciCat
 * User Guide - Users of the system can come here to see screen captures, FAQs and find resources on how to better understand SciCat.
+* DevOps Guide - Devops person read this part to set up SCiCat for their location
+* Ingestor Guide - Instrument responsibles read this to understand how data can ge ingested into SciCat either manually or in an automated fashion
+* Developer Guide - Developers who want to contribute to the project should read this chapter.
+
+[//]: # (TODO add more talks here)
 
 ## Talks
 
-[SciCat Project: Data Catalog System](https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf)
+[SciCat Project: Data Catalog System (2017)](https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf)
 
 
 
