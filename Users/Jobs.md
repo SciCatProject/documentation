@@ -23,6 +23,7 @@ As an alternative way of selecting the files you can first fill the *Cart* with 
 In the case of dataset *retrieval* you do the same steps, just select Datasets in *retrievable* state and make your selection, then hit the Retrieve button. This will copy the data from tape to an intermediate central storage , from where you can copy the data to the final destination of your choice, using either a command line tool or a GUI or simply an rsync client (this describes the status at PSI, your Site may have decided to do something else)
 
 [//]: # (TODO Add descriptions of CLI and QT tools an of CSCS case)
+[//]: # (TODO Add The yED graphs for Archive and Retrieve as illustration)
 
 
 ## Job results
