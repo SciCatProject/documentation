@@ -61,7 +61,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Catamel.md" />
+    <link rel="next" href="Step_by_Step_Setup.html" />
     
     
     <link rel="prev" href="../Users/SampleData.html" />
@@ -288,7 +288,46 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="Catamel.md">
+        <li class="chapter " data-level="1.3.1" data-path="Step_by_Step_Setup.html">
+            
+                <a href="Step_by_Step_Setup.html">
+            
+                    
+                    Step by Step instruction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Step_by_Step_Setup_Docker.html">
+            
+                <a href="Step_by_Step_Setup_Docker.html">
+            
+                    
+                    Step by Step instruction Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Step_by_Step_Setup_Kubernetes.html">
+            
+                <a href="Step_by_Step_Setup_Kubernetes.html">
+            
+                    
+                    Step by Step instruction Kubernetes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="Catamel.md">
             
                 <span>
             
@@ -302,7 +341,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1.1" data-path="Catamel/Active_Directory_LDAP.html">
+        <li class="chapter " data-level="1.3.4.1" data-path="Catamel/Active_Directory_LDAP.html">
             
                 <a href="Catamel/Active_Directory_LDAP.html">
             
@@ -315,7 +354,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.2" data-path="Catamel/Config.md">
+        <li class="chapter " data-level="1.3.4.2" data-path="Catamel/Config.md">
             
                 <span>
             
@@ -328,7 +367,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.3" data-path="Catamel/Data_Models.md">
+        <li class="chapter " data-level="1.3.4.3" data-path="Catamel/Data_Models.md">
             
                 <span>
             
@@ -341,7 +380,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.4" data-path="Catamel/Email_Notifications.md">
+        <li class="chapter " data-level="1.3.4.4" data-path="Catamel/Email_Notifications.md">
             
                 <span>
             
@@ -354,7 +393,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.5" data-path="Catamel/Testing.md">
+        <li class="chapter " data-level="1.3.4.5" data-path="Catamel/Testing.md">
             
                 <span>
             
@@ -372,7 +411,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="Catanie_Public.md">
+        <li class="chapter " data-level="1.3.5" data-path="Catanie_Public.md">
             
                 <span>
             
@@ -385,7 +424,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="Documentation.md">
+        <li class="chapter " data-level="1.3.6" data-path="Documentation.md">
             
                 <span>
             
@@ -398,7 +437,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="MongoDB.md">
+        <li class="chapter " data-level="1.3.7" data-path="MongoDB.md">
             
                 <span>
             
@@ -411,7 +450,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="Sites.md">
+        <li class="chapter " data-level="1.3.8" data-path="Sites.md">
             
                 <span>
             
@@ -425,7 +464,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.5.1" data-path="Sites/ESS.md">
+        <li class="chapter " data-level="1.3.8.1" data-path="Sites/ESS.md">
             
                 <span>
             
@@ -438,7 +477,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5.2" data-path="Sites/MAXIV.md">
+        <li class="chapter " data-level="1.3.8.2" data-path="Sites/MAXIV.md">
             
                 <span>
             
@@ -451,7 +490,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5.3" data-path="Sites/PSI.md">
+        <li class="chapter " data-level="1.3.8.3" data-path="Sites/PSI.md">
             
                 <span>
             
@@ -465,7 +504,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.5.3.1" data-path="Sites/PSI/CI.md">
+        <li class="chapter " data-level="1.3.8.3.1" data-path="Sites/PSI/CI.md">
             
                 <span>
             
@@ -478,7 +517,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5.3.2" data-path="Sites/PSI/PSI_URLs.md">
+        <li class="chapter " data-level="1.3.8.3.2" data-path="Sites/PSI/PSI_URLs.md">
             
                 <span>
             
@@ -782,7 +821,7 @@ From this server the landing page server can fetch the information about the pub
 <p>You may or may not run the infrastructure as part of a Kubernetes cluster. E.g. at PSI the API server, the GUI application, RabbitMQ and the nodered instances are all deployed to a Kubernetes cluster, whereas the Mongo DB ist kept outside Kubernetes.
 Kubernetes is not necessary to have, but can simplify your life quite a bit. Also the separation into internet and intranet zones is up to you to define. You can of course operate the whole infrastructure directly in internet accessible servers, if your security policies permit.</p>
 <h2 id="getting-started-with-demo-platform">Getting started with demo platform</h2>
-<p>TODO</p>
+<p>TODO, also describe the createFromScratch Kubernetes script</p>
 
                                 
                                 </section>
@@ -815,7 +854,7 @@ Kubernetes is not necessary to have, but can simplify your life quite a bit. Als
                 </a>
                 
                 
-                <a href="Catamel.md" class="navigation navigation-next " aria-label="Next page: Data Catalog Backend">
+                <a href="Step_by_Step_Setup.html" class="navigation navigation-next " aria-label="Next page: Step by Step instruction">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -826,7 +865,7 @@ Kubernetes is not necessary to have, but can simplify your life quite a bit. Als
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Operator Guide","level":"1.3","depth":1,"next":{"title":"Data Catalog Backend","level":"1.3.1","depth":2,"path":"Devops/Catamel.md","ref":"Devops/Catamel.md","articles":[{"title":"Active Directory LDAP","level":"1.3.1.1","depth":3,"path":"Devops/Catamel/Active_Directory_LDAP.md","ref":"Devops/Catamel/Active_Directory_LDAP.md","articles":[]},{"title":"Configuration of Catamel for Specific Organisations","level":"1.3.1.2","depth":3,"path":"Devops/Catamel/Config.md","ref":"Devops/Catamel/Config.md","articles":[]},{"title":"Users","level":"1.3.1.3","depth":3,"path":"Devops/Catamel/Data_Models.md","ref":"Devops/Catamel/Data_Models.md","articles":[]},{"title":"Email Notifications","level":"1.3.1.4","depth":3,"path":"Devops/Catamel/Email_Notifications.md","ref":"Devops/Catamel/Email_Notifications.md","articles":[]},{"title":"Testing","level":"1.3.1.5","depth":3,"path":"Devops/Catamel/Testing.md","ref":"Devops/Catamel/Testing.md","articles":[]}]},"previous":{"title":"Sample Data Entry","level":"1.2.7","depth":2,"path":"Users/SampleData.md","ref":"Users/SampleData.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/README.md","mtime":"2020-10-01T13:34:50.725Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-01T13:35:03.807Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Operator Guide","level":"1.3","depth":1,"next":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Devops/Step_by_Step_Setup.md","ref":"Devops/Step_by_Step_Setup.md","articles":[]},"previous":{"title":"Sample Data Entry","level":"1.2.7","depth":2,"path":"Users/SampleData.md","ref":"Users/SampleData.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Devops/README.md","mtime":"2020-10-01T17:03:58.665Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-01T17:04:12.114Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
