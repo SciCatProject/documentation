@@ -17,6 +17,7 @@ The persistence layer behind this API server is a [MongoDB](https://www.mongodb.
 
 These two components together comprise the "backend" of the architecture.
 
+
 ### Frontend
 
 To the REST server an arbitrary number of "clients" (frontends) can be connected. One of the most important clients is the web based GUI frontend [Catanie](https://github.com/SciCatProject/catanie). This allows to communicate with the data catalog in a user friendly way. It is based on the Angular (9+) technology and uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
@@ -59,7 +60,7 @@ Kubernetes is not necessary to have, but can simplify your life quite a bit. Als
 
 ## Getting started with demo platform
 
-TODO
+TODO, also describe the createFromScratch Kubernetes script
 
 
 
