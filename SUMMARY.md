@@ -25,6 +25,8 @@
         * [PSI Site specific info](Operator/Sites/PSI.md)
 
 * [Ingestor Guide](Ingestor/README.md)
+   * [Ingest Manual PSI](Ingestor/ingestManual.md)
+   * [Ingest Instructions ESS](Ingestor/IngestManual_ESS.md)
    * [Manual Ingest the Hard Way](Ingestor/GettingMetadataIntoScicat.md)
 
 * [Developers Guide](Development/README.md)
