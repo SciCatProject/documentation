@@ -707,12 +707,48 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="ingesting-data-into-scicat">Ingesting Data into SciCat</h1>
+                                <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="ingest-examples">Ingest Examples</h1>
+<p>Ingestion into SciCat has been done in two different ways; file based and Kafa based. This section will go through the ingestion setup that is deployed at PSI(File based) and ESS(Kafka based) in order to show how ingestion can be setup.</p>
+<h2 id="file-based">File based</h2>
+<h2 id="kafka-based">Kafka based</h2>
+<p><img src="img/kafka.png" alt="Anonymous View"></p>
+<p>As shown in the picture above the detector and the data collection software is writing into kafka topics. The topics is then being read by a filewriter that in turn writes the dataset to storage and sends back an event when the file is written. There is than ingestion program that will parse the event, gather information from additional resources and trigger a REST calls into Catamel. </p>
+<h3 id="how-the-ingestion-program-works">How the ingestion program works:</h3>
+<h4 id="parse-event">Parse Event</h4>
+<p>The ingestor is subscribing to a topic in Kafka where the filewriter creates an event when a file has been written. This event contains information about location, proposal id and metadata that exist on the file in form of the nexus format. </p>
+<h4 id="login">Login</h4>
+<p> Login and get a access token that can be used for interfacing with Catamel. We advise to create a special ingestor account to be used when doing automatic ingestion. </p>
+<h4 id="gather-more-metadata">Gather more metadata</h4>
+<p>The ingestor contacts the User Office and get&apos;s additional information regarding the experiment, the principal investigator and the sample.</p>
+<h4 id="create-dataset">Create dataset</h4>
+<p>Using the information from the filewriter event with the additional information gathered from the user office a dataset request can be constructed and sent to Catamel.</p>
+<h4 id="create-origdatablocks">Create OrigDatablocks</h4>
+<p>After a dataset has been created we attach the files that relate, this is done by creating datablocks that attaches to the dataset</p>
+<h4 id="create-sample">Create Sample</h4>
+<p>If sample information is available a sample record can be created and attached to the dataset. This is an important step as it makes the data available to a wider audience of people. </p>
+<p>=======</p>
+<h1 id="ingesting-data-into-scicat">Ingesting Data into SciCat</h1>
 <p>This manual collects various approaches for ingesting data</p>
 <ol>
 <li><a href="ingestManual.html">Ingest Manual from PSI</a> : contains partly tools, which are not yet open sourced, but soon will</li>
 <li><a href="IngestManual_ESS.html">Ingest Instructions from ESS</a></li>
-<li><a href="GettingMetadataIntoScicat.html">Minimalistic example via CURL</a></li>
+<li><a href="GettingMetadataIntoScicat.html">Minimalistic example via CURL</a><blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>b58d9c7262662d4c25861a2220e3a931ab9d9b06</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
 </ol>
 
                                 
@@ -757,7 +793,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ingestor Guide","level":"1.4","depth":1,"next":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},"previous":{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Ingestor/README.md","mtime":"2020-10-02T09:30:36.949Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-02T09:30:48.350Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ingestor Guide","level":"1.4","depth":1,"next":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},"previous":{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Ingestor/README.md","mtime":"2020-10-02T10:04:46.041Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-02T10:04:58.412Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
