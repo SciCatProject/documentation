@@ -12,7 +12,7 @@ The [landing page](https://scicatproject.github.io) provides a good overview of 
 The documentaion is split into the following chapters:
 
 * User Guide - Users of the system can come here to see screen captures, FAQs and find resources on how to better understand SciCat.
-* DevOps Guide - Devops person read this part to set up SCiCat for their location
+* Operator Guide - System admins read this part to set up SciCat for their location
 * Ingestor Guide - Instrument responsibles read this to understand how data can ge ingested into SciCat either manually or in an automated fashion
 * Developer Guide - Developers who want to contribute to the project should read this chapter.
 

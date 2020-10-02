@@ -1,3 +1,6 @@
 # Edit Scientific Metadata
 
-Fields can be added by users, by editing the form on the dataset details page
+If enabled, fields in the scientific metadata can be modified and edited by the owner of the data by hitting the "Edit" Icon
+
+
+[//]: # (TODO Add Screeenshot)

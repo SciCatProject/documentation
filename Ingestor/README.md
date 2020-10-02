@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ingest Examples
 
 Ingestion into SciCat has been done in two different ways; file based and Kafa based. This section will go through the ingestion setup that is deployed at PSI(File based) and ESS(Kafka based) in order to show how ingestion can be setup.
@@ -38,3 +39,12 @@ After a dataset has been created we attach the files that relate, this is done b
 
 If sample information is available a sample record can be created and attached to the dataset. This is an important step as it makes the data available to a wider audience of people. 
 
+=======
+# Ingesting Data into SciCat
+
+This manual collects various approaches for ingesting data
+
+1. [Ingest Manual from PSI](ingestManual.md) : contains partly tools, which are not yet open sourced, but soon will
+2. [Ingest Instructions from ESS](IngestManual_ESS.md)
+3. [Minimalistic example via CURL](GettingMetadataIntoScicat.md)
+>>>>>>> b58d9c7262662d4c25861a2220e3a931ab9d9b06
