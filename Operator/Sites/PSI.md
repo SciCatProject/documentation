@@ -6,7 +6,6 @@ These are the urls in use at PSI for all of the services. Currently \(8th March 
 
 * development
 * qa
-* staging
 * production
 
 ## Services

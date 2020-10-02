@@ -91,8 +91,59 @@ You can inaddition test the API server using the "explorer", e.g if you run the 
 You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, then you first need to login , get an accessToken and fill it into the accessToken field on top of the explorer web page
 
 ## Setup GUI frontend
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Just follow the  [README](https://github.com/SciCatProject/catanie/blob/develop/README.md) inside the catanie repository.
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+Angular v8 or higher
+npm version 6 or higher
+node version 10 or higher
+```
+
+### Installing
+
+Use git to clone the repository
+```
+git clone https://github.com/SciCatProject/catanie
+cd catanie
+```
+First install the required modules
+```
+npm install
+```
+Then build with the Angular CLI
+```
+npx ng build
+```
+
+You can deploy a test server with the following command:
+
+```
+npx ng serve 
+```
+
+
+## Running the unit tests
+
+To run the unit tests, type:
+```
+npm test
+```
+
+
+### End to end tests
+
+To run the end to end tests, type:
+
+```
+npm run e2e
+```
+
+### Configuration
+
 You can fine tune the features that you want to use in the GUI by setting the flags inside the `src/environments` folder. In this folder you find several example configuraion files used by the Sites. Please adjust to your needs. The `angular.json` file contains a section "configurations" which defines a set of prepared configurations, that you can choose from. This defines which files will be picked up at build time. The build system defaults to the `environment.ts`, but if you e.g. do `ng build --env=development` then `environment.development.ts` will be used instead. Here is an [example configuration file](https://github.com/SciCatProject/catanie/blob/develop/src/environments/environment.development.ts)
 
 The most important configuration setting is the connection to the API server
@@ -100,8 +151,8 @@ The most important configuration setting is the connection to the API server
 lbBaseURL: "https://your-loopbak-api-server",
 ```
 
+Many of the other settings are boolean flags, which allow you to switch on/off features of the GUI
 Again, if in doubt, just leave the setting as defined in the available example environment files or leave them empty.
 
-TODO Move description directly here from Catanie repo and update description
 TODO Add local TOC at start of each longer honkit page
 

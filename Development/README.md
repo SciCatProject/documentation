@@ -1,5 +1,8 @@
 # SciCat Data Catalogue Developer Guide
 
+**TODO Update all sections, in particular all screenshots**
+
+
 SciCat is a data catalogue web application that provides a searchable interface for datasets, a method of publishing DOIs, as well as the option to carry out actions (i.e. archiving and publishing) and acts as a place to reference datasets used in publications.
 
 This guide aims to help developers and system admins understand some of the SciCat components.
