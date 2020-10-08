@@ -1,6 +1,6 @@
 # Summary
 
-* [Overview](README.md)
+* [SciCat Overview](README.md)
 
 * [User Guide](Users/README.md)
     * [Anonymous View](Users/Anonymous.md)
