@@ -671,7 +671,8 @@
                                 <h1 id="an-introduction-to-the-data-model">An Introduction to the Data Model</h1>
 <h2 id="model">Model</h2>
 <p>There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.</p>
-<p>TODO Add up-to-date data model graph</p>
+<p>The following graph shows a simplified class diagramm of the main model classes. It was generated semi-automatically from the swagger.json file using the <a href="https://github.com/opendata-for-all/wapiml" target="_blank">WAPIml tool</a></p>
+<p><img src="img/Class_Diagram.PNG" alt="Model Diagram"></p>
 <h2 id="relationships-and-access">Relationships and Access</h2>
 <p>Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respedtive model (handled by loopback model definitions)</p>
 <h2 id="rawdataset">RawDataset</h2>
@@ -694,6 +695,7 @@
 <p>When you have an instance of the data catalog running, the API endpoints and the related data models can be looked at at the following URL:</p>
 <ul>
 <li><catamel_url>/explorer/</catamel_url></li>
+<li><a href="https://scicat.esss.dk/explorer/" target="_blank">Example instance from ESS</a></li>
 </ul>
 <p>The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the <code>login</code> route under the <code>User</code> tab to obtain one of these, or use a CURL command.</p>
 <h3 id="main-screen">Main Screen</h3>
@@ -752,7 +754,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"next":{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/Data_Model.md","mtime":"2020-10-13T05:40:11.361Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T05:40:24.143Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"next":{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/Data_Model.md","mtime":"2020-10-13T11:44:05.093Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T11:44:16.901Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
