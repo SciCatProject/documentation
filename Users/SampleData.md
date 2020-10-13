@@ -1,4 +1,5 @@
 # Sample Data Entry
 
-[//]: # (TODO Add screenshot)
-The sample data interface allows samples to be added by users.
+The sample data interface allows samples to be added by users. 
+
+![Image edit metadata](img/addSample.png)

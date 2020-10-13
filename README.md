@@ -5,7 +5,7 @@
 
 ## Why SciCat ?
 
-The [landing page](https://scicatproject.github.io) provides a good overview of why SCiCat can help you to manage your scientific data
+See the [SciCat landing page](https://scicatproject.github.io) for an overview of how SciCat can help to manage scientific data.
 
 ## Structure of Documentation
 
@@ -21,6 +21,4 @@ The documentaion is split into the following chapters:
 ## Talks
 
 [SciCat Project: Data Catalog System (2017)](https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf)
-
-
 
