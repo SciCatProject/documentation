@@ -4,8 +4,9 @@
 
 There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.
 
-TODO Add up-to-date data model graph
+The following graph shows a simplified class diagramm of the main model classes. It was generated semi-automatically from the swagger.json file using the [WAPIml tool](https://github.com/opendata-for-all/wapiml)
 
+![Model Diagram](img/Class_Diagram.PNG)
 
 ## Relationships and Access
 
@@ -51,6 +52,7 @@ When a user wants to archive or retrieve a dataset, a job is created. A job queu
 When you have an instance of the data catalog running, the API endpoints and the related data models can be looked at at the following URL:
 
 * <CATAMEL_URL>/explorer/
+* [Example instance from ESS](https://scicat.esss.dk/explorer/)
 
 The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the `login` route under the `User` tab to obtain one of these, or use a CURL command.
 
