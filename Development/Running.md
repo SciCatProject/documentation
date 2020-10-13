@@ -1,14 +1,17 @@
 # Running locally
 
+
+```
+git clone https://github.com/SciCatProject/catamel.git 
+cd catamel
+npm install
+npm start
+```
+
 ```
 git clone https://github.com/SciCatProject/catanie.git 
 cd catanie
 npm install
-```
-
-You can serve the SciCat web client as follows:
-
-```
 npx ng serve
 ```
 
@@ -18,9 +21,11 @@ Access [here](http://localhost:4200) once running.
 
 # Running with Docker
 
-Use [scicatlive](https://github.com/SciCatProject/scicatlive#readme) or run the containers individually: 
-
 The containers in our repos are based on alpine linux to ensure a minimal size with almost nothing but the required packages. Most standard \*nix commands are available.
+
+The recommend way is to use [scicatlive](https://github.com/SciCatProject/scicatlive#readme) . This does all for you automatically.
+
+If you want to do things manually instead:
 
 `git clone https://github.com/SciCatProject/catanie.git && cd catanie`
 

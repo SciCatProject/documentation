@@ -72,6 +72,25 @@ There are 5 configuration files that need to be adjusted to your situation. Ther
 
 Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.
 
+##### Email Notifications
+
+When jobs have been submitted successfully, the `node-mailer` package can send an email to the user that initiated.
+The details are loaded into `server/config.local.js` and the following block provides an example:
+
+```
+smtpSettings: {
+      host: 'HOSTPATH',
+      port: 587,
+      secure: false,
+      auth: {user: DOMAIN\\USER', pass: 'PWD'}
+    },
+    smtpMessage: {
+      from: 'gac-dacats@psi.ch',
+      to: undefined,
+      subject: '[SciCat]',
+      text: undefined // can also set html key and this will override this
+    }
+```
 
 #### Start metadata server
 ```
@@ -84,7 +103,7 @@ npm run start
 npm run test
 ```
 
-You can inaddition test the API server using the "explorer", e.g if you run the instance locally point your browser to https://localhost:3000/explorer (note the explorer might be disabled for production environments, check the `component-config.json` file)
+You can in addition test the API server using the "explorer", e.g if you run the instance locally point your browser to https://localhost:3000/explorer (note the explorer might be disabled for production environments, check the `component-config.json` file)
 
 ![API Explorer](img/explorer.png)
 

@@ -1,8 +1,8 @@
 # Documentation
 
-The bulk of the documentation is stored in a dedeicated *documentation* repository. It covers
-all compinents of the software, i.e  frontend and backend. It is structured into different capters.
-The documentation tool [honhit](https://honkit.netlify.app/) (successor of gitbook) is used.
+The bulk of the documentation is stored in a dedicated *documentation* repository. It covers
+all components of the software, i.e  frontend and backend. It is structured into different capters.
+The documentation tool [honkit](https://honkit.netlify.app/) (successor of gitbook) is used.
 
 ## Building and Editing Locally
 

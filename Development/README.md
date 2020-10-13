@@ -1,33 +1,35 @@
 # SciCat Data Catalogue Developer Guide
 
-**TODO Update all sections, in particular all screenshots**
+This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute to the development of the software. See also the [Overview in the Operator Manual](../Operator/) for a helicopter view of the involved components.
+
+If you want to contribute to the software you should also read the [Contributing](../Development/Development_Methods.html) section , which among others links to the git workflow to be used
 
 
-SciCat is a data catalogue web application that provides a searchable interface for datasets, a method of publishing DOIs, as well as the option to carry out actions (i.e. archiving and publishing) and acts as a place to reference datasets used in publications.
+# Getting an development environment set up
+The easiest is to follow [this description](https://github.com/SciCatProject/scicatlive#readme) to get a fully running frontend and backend setup automatically using docker. Otherwise follow the [Running section](Running.html)
 
-This guide aims to help developers and system admins understand some of the SciCat components.
-
+# Architecture
 SciCat is built on micro services using the following stack:
-
-## Web Browser Client (Catanie)
-
-* node
-* npm
-* typescript
-* angular
-* NGRX
-* loopback SDK generator
 
 ## API (Catamel)
 
-* node
-* js
-* loopback
-* mongoDB
+* [Node 12.x](https://nodejs.org/en/)
+* [Loopback 3](https://loopback.io/lb3)
+* [MongoDB 3.6 or later](https://www.mongodb.com)
 
-The diagram below describes the key components of SciCat. The flow of ingested information is is described as follows: Beamline script send a package of minimal metadata (e.g. a dataset) to the message broker. The broker passes the dataset onto a NodeRed layer that is responsible for calling the responsible API endoint. 
+The most important part to understanf is how loopback works, because it is the platform which is directly addressed as part of the development. Please check the coresponding Loopback 3 documentation for all details
 
-Hooks trigger other activities. For example, if a new proposal is ingested, a new entry in policy is required. The policy will dictate how any dataset associated with that proposal will behave with regards to automatic archiving, publishing etc.
+## Web Browser Client (Catanie)
 
-![systen_components](img/micro.png)
+* [Angular 9+](https://angular.io/) 
+* [Angular Material Widgets and Design](https://material.angular.io/) 
+* [NGRX for State Management](https://ngrx.io/)
+* [Loopback SDK generator for Angular](https://github.com/mean-expert-official/loopback-sdk-builder)
 
+
+Again please of a look at the original documentation to understand how these tools and frameworks work.
+
+## Optional Messaging/Streaming/Processing tools
+
+* [Apache Kafka](https://kafka.apache.org/) or [RabbitMQ](https://www.rabbitmq.com/)
+* [Nodered Browser-based flow programming](https://nodered.org/)

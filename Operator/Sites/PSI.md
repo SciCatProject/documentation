@@ -17,7 +17,7 @@ These are the urls in use at PSI for all of the services. Currently \(8th March 
   * /&lt;BEAMLINE&gt;/ - beamline name
 * hal.psi.ch - RabbitMQ
 
-### Node-RED
+## Node-RED
 
 Nginx is unable to locate the Node-RED instances currently, so the `aries.psi.ch` is not working. You will need `kubectl` installed in your system \(and available in your path\).
 
@@ -27,4 +27,21 @@ Nginx is unable to locate the Node-RED instances currently, so the `aries.psi.ch
 4. Login with admin credentials \(can be found in the `secrets` section of the Kubernetes Web dashboard.
 
 
+# Archiving/Retrieving/Resetting Datasets
+
+Actions performed on Datasets in the GUI are executed as a `job`, they are then handled by the queuing system you have. 
+
+At PSI RabbitMQ is used as a queue. Jobs go to the queue and are passed onto the archiving system which is AREMA based at PSI. At this time the archive system is not publicly availble
+and so it would be necessary to implement your own. 
+
+## Archive
+Send a job to initiate a transfer of data from local disk to tape. Local data can be deleted upon completion but this should be done by the data owner.
+
+
+## Retrieve
+Copy data from tape to a staging area on disk where users can execute an rsync to copy the data to a desired location.
+
+
+## Reset
+Remove the data from the tape facility.
 

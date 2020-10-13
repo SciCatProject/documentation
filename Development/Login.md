@@ -1,6 +1,5 @@
 # Login
 
-
 Two login routes are provided - for functional accounts and for AD/LDAP logins.
 
 Loopback provides a UserIdentity for third party logins, (e.g. AD/LDAP, google, Twitter etc) 
@@ -12,8 +11,8 @@ it is used to access e.g. email for job initiators.
 The login method needs to be defined in the client configuartion (environment file) usign the field `externalAuthEndpoint`. For example `externalAuthEndpoint: "/auth/msad"`.
 See [loopback docs](https://loopback.io/doc/en/lb3/Third-party-login-using-Passport.html)
 
-For non-third party logins defined, no UserIdentity is created.  These are special users for admin purposes including beamline specific users for ingrstion etc.
-These users should be defined in a sperate secrets repo in a file called functionalAccounts.json and are read by createFunctionalAccounts.js in catamel e.g.
+For non-third party logins defined, no UserIdentity is created.  These are special users for admin purposes including beamline specific users for ingestion etc.
+These users should be defined in a seperate secrets repo in a file called functionalAccounts.json and are read by createFunctionalAccounts.js in catamel e.g.
 ```
     [{
         "account": "admin",

@@ -4,9 +4,8 @@
 
 There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.
 
-![model](img/model.png)
+TODO Add up-to-date data model graph
 
-Some models may change.
 
 ## Relationships and Access
 
@@ -38,7 +37,7 @@ To reduce the reliance on a particular backup system, there is an `OrigDataBlock
 
 ### DatasetLifecycle
 
-There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval.
+There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval. Technically the DatasetLifecycle is however `embedded` into the Dataset documents
 
 ## Job
 
@@ -49,11 +48,9 @@ When a user wants to archive or retrieve a dataset, a job is created. A job queu
 ## Explorer
 
 
-When you have an instance of the data catalog running, the data model can be visualised at the following URLS:
+When you have an instance of the data catalog running, the API endpoints and the related data models can be looked at at the following URL:
 
-* <CATAMEL_URL>/modeldiagram/ 
 * <CATAMEL_URL>/explorer/
-* <CATAMEL_URL>/visualize
 
 The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the `login` route under the `User` tab to obtain one of these, or use a CURL command.
 

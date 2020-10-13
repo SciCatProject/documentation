@@ -1,4 +1,4 @@
-#### Services
+# State Management in Angular
 
 Almost all external requests made by the client (catanie) are done so via `NGRX effects` within the state management components.
 
