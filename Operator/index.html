@@ -306,7 +306,7 @@
                 <a href="Step_by_Step_Setup_Docker.html">
             
                     
-                    Step by Step instruction Docker
+                    Deploy with Docker Compose
             
                 </a>
             
@@ -319,7 +319,7 @@
                 <a href="Step_by_Step_Setup_Kubernetes.html">
             
                     
-                    Step by Step instruction Kubernetes
+                    Deploy with Kubernetes
             
                 </a>
             
@@ -327,20 +327,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Quickstart.html">
-            
-                <a href="Quickstart.html">
-            
-                    
-                    Quickstart Repo
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="Sites/">
+        <li class="chapter " data-level="1.3.4" data-path="Sites/">
             
                 <a href="Sites/">
             
@@ -354,7 +341,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.5.1" data-path="Sites/ESS.html">
+        <li class="chapter " data-level="1.3.4.1" data-path="Sites/ESS.html">
             
                 <a href="Sites/ESS.html">
             
@@ -367,7 +354,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5.2" data-path="Sites/MaxIV.html">
+        <li class="chapter " data-level="1.3.4.2" data-path="Sites/MaxIV.html">
             
                 <a href="Sites/MaxIV.html">
             
@@ -380,7 +367,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5.3" data-path="Sites/PSI.html">
+        <li class="chapter " data-level="1.3.4.3" data-path="Sites/PSI.html">
             
                 <a href="Sites/PSI.html">
             
@@ -688,7 +675,7 @@
 From this server the landing page server can fetch the information about the published data. Also external DOI systems connect to this OAIPMH server to synchronize the data with the world wide DOI system. </p>
 <p>If a user wants to download the full datasets of the published data, the data is copied from the internal file server to a https file server (acting as a cache file server) , which subsequently allows anaonymous download of the data</p>
 <h3 id="chat-server-as-electronic-logbook">Chat Server as electronic logbook</h3>
-<p>TODO </p>
+<p>TODO ESS</p>
 <h3 id="external-systems">External systems</h3>
 <p>The most important external system, that you want to connect to is likely your local identity management (IDM) system, e.g. an LDAP or AD based solution. This is usually the source of both the authentication and the authorization information, the latter being realized by simple group membership of the users.</p>
 <p>Another important external system, that you may want to connect, is your local proposal handling system (such as DUO at PSI). This defines, which user is allowed to measure at what instrument or beamline at what time. If you do not have such a system you can fill the Proposal Information also by hand, or just leave it empty. If you have such a system you need to write scripts which synchronize the data in these systems with the corresponding tables in the SciCat Database, i.e. the <em>Proposal</em> collection</p>
@@ -697,8 +684,6 @@ From this server the landing page server can fetch the information about the pub
 <h3 id="underlying-infrastructure">Underlying Infrastructure</h3>
 <p>You may or may not run the infrastructure as part of a Kubernetes cluster. E.g. at PSI the API server, the GUI application, RabbitMQ and the nodered instances are all deployed to a Kubernetes cluster, whereas the Mongo DB ist kept outside Kubernetes.
 Kubernetes is not necessary to have, but can simplify your life quite a bit. Also the separation into internet and intranet zones is up to you to define. You can of course operate the whole infrastructure directly in internet accessible servers, if your security policies permit.</p>
-<h2 id="getting-started-with-demo-platform">Getting started with demo platform</h2>
-<p>TODO, also describe the createFromScratch Kubernetes script</p>
 
                                 
                                 </section>
@@ -742,7 +727,7 @@ Kubernetes is not necessary to have, but can simplify your life quite a bit. Als
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Operator Guide","level":"1.3","depth":1,"next":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},"previous":{"title":"Sample Data Entry","level":"1.2.7","depth":2,"path":"Users/SampleData.md","ref":"Users/SampleData.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/README.md","mtime":"2020-10-13T11:59:40.584Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T11:59:51.885Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Operator Guide","level":"1.3","depth":1,"next":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},"previous":{"title":"Sample Data Entry","level":"1.2.7","depth":2,"path":"Users/SampleData.md","ref":"Users/SampleData.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/README.md","mtime":"2020-10-13T13:03:44.960Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T13:03:57.124Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
