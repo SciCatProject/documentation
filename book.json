@@ -1,3 +1,4 @@
 {
-    "plugins": ["chapter-fold"]
+    "plugins": ["chapter-fold"],
+    "title": "SciCat Documentation"
 }
