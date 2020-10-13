@@ -480,7 +480,7 @@
                 <a href="../Development/StartHere.html">
             
                     
-                    So, you have just started working on SciCat?
+                    Overview of Backend and Model
             
                 </a>
             
@@ -488,46 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../Development/Archiving.html">
-            
-                <a href="../Development/Archiving.html">
-            
-                    
-                    Archiving/Retrieving/Resetting Datasets
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.3" data-path="../Development/Configuring.html">
-            
-                <a href="../Development/Configuring.html">
-            
-                    
-                    Running locally
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.4" data-path="../Development/Contributing.html">
-            
-                <a href="../Development/Contributing.html">
-            
-                    
-                    Contributing
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.5" data-path="../Development/Data_Model.html">
+        <li class="chapter " data-level="1.5.2" data-path="../Development/Data_Model.html">
             
                 <a href="../Development/Data_Model.html">
             
@@ -540,12 +501,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.6" data-path="../Development/Design.html">
+        <li class="chapter " data-level="1.5.3" data-path="../Development/Running.html">
             
-                <a href="../Development/Design.html">
+                <a href="../Development/Running.html">
             
                     
-                    Design
+                    Running the Components
             
                 </a>
             
@@ -553,51 +514,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.7" data-path="../Development/Development_Methods.html">
-            
-                <a href="../Development/Development_Methods.html">
-            
-                    
-                    Git Flow Workflow
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.8" data-path="../Development/Documentation.html">
-            
-                <a href="../Development/Documentation.html">
-            
-                    
-                    Documentation
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.9" data-path="../Development/Email_Notifications.html">
-            
-                <a href="../Development/Email_Notifications.html">
-            
-                    
-                    Email Notification
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.10" data-path="../Development/Environment.html">
+        <li class="chapter " data-level="1.5.4" data-path="../Development/Environment.html">
             
                 <a href="../Development/Environment.html">
             
                     
-                    Configuration
+                    Configuration files
             
                 </a>
             
@@ -605,12 +527,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.11" data-path="../Development/Login.html">
+        <li class="chapter " data-level="1.5.5" data-path="../Development/Login.html">
             
                 <a href="../Development/Login.html">
             
                     
-                    Login
+                    Login and Accounts
             
                 </a>
             
@@ -618,12 +540,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.12" data-path="../Development/Ngrx.html">
+        <li class="chapter " data-level="1.5.6" data-path="../Development/Ngrx.html">
             
                 <a href="../Development/Ngrx.html">
             
                     
-                    Services
+                    State Management in Angular
             
                 </a>
             
@@ -631,7 +553,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.13" data-path="../Development/Testing_catamel.html">
+        <li class="chapter " data-level="1.5.7" data-path="../Development/Testing_catamel.html">
             
                 <a href="../Development/Testing_catamel.html">
             
@@ -644,12 +566,51 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.14" data-path="../Development/Testing.html">
+        <li class="chapter " data-level="1.5.8" data-path="../Development/Testing.html">
             
                 <a href="../Development/Testing.html">
             
                     
                     Testing Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../Development/Contributing.html">
+            
+                <a href="../Development/Contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../Development/Documentation.html">
+            
+                <a href="../Development/Documentation.html">
+            
+                    
+                    Adding Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../Development/Development_Methods.html">
+            
+                <a href="../Development/Development_Methods.html">
+            
+                    
+                    Git Flow Workflow
             
                 </a>
             
@@ -749,11 +710,26 @@ npm install
 <li><code>component-config.json</code>: defines the Express framework components, in particular if the <em>explorer</em> is enabled and optionally definition of the RabbitMQ topology, if used.</li>
 </ol>
 <p>Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.</p>
-<h4 id="start-metadata-server">Start metadata server</h4>
+<h5 id="email-notifications">Email Notifications</h5>
+<p>When jobs have been submitted successfully, the <code>node-mailer</code> package can send an email to the user that initiated.
+The details are loaded into <code>server/config.local.js</code> and the following block provides an example:</p>
+<pre><code>smtpSettings: {
+      host: &apos;HOSTPATH&apos;,
+      port: 587,
+      secure: false,
+      auth: {user: DOMAIN\\USER&apos;, pass: &apos;PWD&apos;}
+    },
+    smtpMessage: {
+      from: &apos;gac-dacats@psi.ch&apos;,
+      to: undefined,
+      subject: &apos;[SciCat]&apos;,
+      text: undefined // can also set html key and this will override this
+    }
+</code></pre><h4 id="start-metadata-server">Start metadata server</h4>
 <pre><code>npm run start
 </code></pre><h4 id="test-functionality">Test functionality</h4>
 <pre><code>npm run test
-</code></pre><p>You can inaddition test the API server using the &quot;explorer&quot;, e.g if you run the instance locally point your browser to <a href="https://localhost:3000/explorer" target="_blank">https://localhost:3000/explorer</a> (note the explorer might be disabled for production environments, check the <code>component-config.json</code> file)</p>
+</code></pre><p>You can in addition test the API server using the &quot;explorer&quot;, e.g if you run the instance locally point your browser to <a href="https://localhost:3000/explorer" target="_blank">https://localhost:3000/explorer</a> (note the explorer might be disabled for production environments, check the <code>component-config.json</code> file)</p>
 <p><img src="img/explorer.png" alt="API Explorer"></p>
 <p>You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, then you first need to login , get an accessToken and fill it into the accessToken field on top of the explorer web page</p>
 <h2 id="setup-gui-frontend">Setup GUI frontend</h2>
@@ -829,7 +805,7 @@ Again, if in doubt, just leave the setting as defined in the available example e
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Step by Step instruction Docker","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Step by Step instruction Docker","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Step by Step instruction Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Quickstart Repo","level":"1.3.4","depth":2,"path":"Operator/Quickstart.md","ref":"Operator/Quickstart.md","articles":[]},{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2020-10-08T15:00:46.777Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-08T15:00:59.050Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Step by Step instruction Docker","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Step by Step instruction Docker","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Step by Step instruction Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Quickstart Repo","level":"1.3.4","depth":2,"path":"Operator/Quickstart.md","ref":"Operator/Quickstart.md","articles":[]},{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2020-10-13T05:40:11.381Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T05:40:24.143Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

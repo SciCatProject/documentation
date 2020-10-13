@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Design.html" />
+    <link rel="next" href="Running.html" />
     
     
-    <link rel="prev" href="Contributing.html" />
+    <link rel="prev" href="StartHere.html" />
     
 
     </head>
@@ -480,7 +480,7 @@
                 <a href="StartHere.html">
             
                     
-                    So, you have just started working on SciCat?
+                    Overview of Backend and Model
             
                 </a>
             
@@ -488,46 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="Archiving.html">
-            
-                <a href="Archiving.html">
-            
-                    
-                    Archiving/Retrieving/Resetting Datasets
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.3" data-path="Configuring.html">
-            
-                <a href="Configuring.html">
-            
-                    
-                    Running locally
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.4" data-path="Contributing.html">
-            
-                <a href="Contributing.html">
-            
-                    
-                    Contributing
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.5.5" data-path="Data_Model.html">
+        <li class="chapter active" data-level="1.5.2" data-path="Data_Model.html">
             
                 <a href="Data_Model.html">
             
@@ -540,12 +501,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.6" data-path="Design.html">
+        <li class="chapter " data-level="1.5.3" data-path="Running.html">
             
-                <a href="Design.html">
+                <a href="Running.html">
             
                     
-                    Design
+                    Running the Components
             
                 </a>
             
@@ -553,51 +514,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.7" data-path="Development_Methods.html">
-            
-                <a href="Development_Methods.html">
-            
-                    
-                    Git Flow Workflow
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.8" data-path="Documentation.html">
-            
-                <a href="Documentation.html">
-            
-                    
-                    Documentation
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.9" data-path="Email_Notifications.html">
-            
-                <a href="Email_Notifications.html">
-            
-                    
-                    Email Notification
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.10" data-path="Environment.html">
+        <li class="chapter " data-level="1.5.4" data-path="Environment.html">
             
                 <a href="Environment.html">
             
                     
-                    Configuration
+                    Configuration files
             
                 </a>
             
@@ -605,12 +527,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.11" data-path="Login.html">
+        <li class="chapter " data-level="1.5.5" data-path="Login.html">
             
                 <a href="Login.html">
             
                     
-                    Login
+                    Login and Accounts
             
                 </a>
             
@@ -618,12 +540,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.12" data-path="Ngrx.html">
+        <li class="chapter " data-level="1.5.6" data-path="Ngrx.html">
             
                 <a href="Ngrx.html">
             
                     
-                    Services
+                    State Management in Angular
             
                 </a>
             
@@ -631,7 +553,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.13" data-path="Testing_catamel.html">
+        <li class="chapter " data-level="1.5.7" data-path="Testing_catamel.html">
             
                 <a href="Testing_catamel.html">
             
@@ -644,12 +566,51 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.14" data-path="Testing.html">
+        <li class="chapter " data-level="1.5.8" data-path="Testing.html">
             
                 <a href="Testing.html">
             
                     
                     Testing Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="Contributing.html">
+            
+                <a href="Contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="Documentation.html">
+            
+                <a href="Documentation.html">
+            
+                    
+                    Adding Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="Development_Methods.html">
+            
+                <a href="Development_Methods.html">
+            
+                    
+                    Git Flow Workflow
             
                 </a>
             
@@ -710,8 +671,7 @@
                                 <h1 id="an-introduction-to-the-data-model">An Introduction to the Data Model</h1>
 <h2 id="model">Model</h2>
 <p>There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.</p>
-<p><img src="img/model.png" alt="model"></p>
-<p>Some models may change.</p>
+<p>TODO Add up-to-date data model graph</p>
 <h2 id="relationships-and-access">Relationships and Access</h2>
 <p>Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respedtive model (handled by loopback model definitions)</p>
 <h2 id="rawdataset">RawDataset</h2>
@@ -726,16 +686,14 @@
 <p>A data block should never be shown to the user but, regardless of backup system being used, it is likely that a single dataset will be able to be backed up into a single location. In order to address this, we have <code>datablocks</code> that contain a list of datafiles. A dataset can be split into multiple datablocks (unless it contains a single large file).</p>
 <p>To reduce the reliance on a particular backup system, there is an <code>OrigDataBlock</code> and a <code>DataBlock</code>. The <code>OrigDataBlock</code> is created by Catamel  when a dataset is ingested and they are preemptively split. If the connected backup system does support datablocks then it would need to respond with datablock details when it is ingested. In those cases, a dataset will store both the <code>OrigDataBlocks</code> and <code>Datablocks</code>.</p>
 <h3 id="datasetlifecycle">DatasetLifecycle</h3>
-<p>There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval.</p>
+<p>There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval. Technically the DatasetLifecycle is however <code>embedded</code> into the Dataset documents</p>
 <h2 id="job">Job</h2>
 <p>When a user wants to archive or retrieve a dataset, a job is created. A job queue can then collect these and send them to whichever backup system is being used. As the job progresses, the system can make calls back that update the <code>Job Status Message</code> and, when necessary, the DatasetLifecycle can be updated.</p>
 <hr>
 <h2 id="explorer">Explorer</h2>
-<p>When you have an instance of the data catalog running, the data model can be visualised at the following URLS:</p>
+<p>When you have an instance of the data catalog running, the API endpoints and the related data models can be looked at at the following URL:</p>
 <ul>
-<li><catamel_url>/modeldiagram/ </catamel_url></li>
 <li><catamel_url>/explorer/</catamel_url></li>
-<li><catamel_url>/visualize</catamel_url></li>
 </ul>
 <p>The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the <code>login</code> route under the <code>User</code> tab to obtain one of these, or use a CURL command.</p>
 <h3 id="main-screen">Main Screen</h3>
@@ -778,12 +736,12 @@ Clicking the <code>data type</code> box will insert it into your request for eas
 
             
                 
-                <a href="Contributing.html" class="navigation navigation-prev " aria-label="Previous page: Contributing">
+                <a href="StartHere.html" class="navigation navigation-prev " aria-label="Previous page: Overview of Backend and Model">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Design.html" class="navigation navigation-next " aria-label="Next page: Design">
+                <a href="Running.html" class="navigation navigation-next " aria-label="Next page: Running the Components">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -794,7 +752,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.5","depth":2,"next":{"title":"Design","level":"1.5.6","depth":2,"path":"Development/Design.md","ref":"Development/Design.md","articles":[]},"previous":{"title":"Contributing","level":"1.5.4","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/Data_Model.md","mtime":"2020-10-08T15:00:46.757Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-08T15:00:59.050Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"next":{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/Data_Model.md","mtime":"2020-10-13T05:40:11.361Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T05:40:24.143Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

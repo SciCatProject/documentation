@@ -480,7 +480,7 @@
                 <a href="StartHere.html">
             
                     
-                    So, you have just started working on SciCat?
+                    Overview of Backend and Model
             
                 </a>
             
@@ -488,46 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="Archiving.html">
-            
-                <a href="Archiving.html">
-            
-                    
-                    Archiving/Retrieving/Resetting Datasets
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.3" data-path="Configuring.html">
-            
-                <a href="Configuring.html">
-            
-                    
-                    Running locally
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.4" data-path="Contributing.html">
-            
-                <a href="Contributing.html">
-            
-                    
-                    Contributing
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.5" data-path="Data_Model.html">
+        <li class="chapter " data-level="1.5.2" data-path="Data_Model.html">
             
                 <a href="Data_Model.html">
             
@@ -540,12 +501,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.6" data-path="Design.html">
+        <li class="chapter " data-level="1.5.3" data-path="Running.html">
             
-                <a href="Design.html">
+                <a href="Running.html">
             
                     
-                    Design
+                    Running the Components
             
                 </a>
             
@@ -553,51 +514,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.7" data-path="Development_Methods.html">
-            
-                <a href="Development_Methods.html">
-            
-                    
-                    Git Flow Workflow
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.8" data-path="Documentation.html">
-            
-                <a href="Documentation.html">
-            
-                    
-                    Documentation
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.9" data-path="Email_Notifications.html">
-            
-                <a href="Email_Notifications.html">
-            
-                    
-                    Email Notification
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.10" data-path="Environment.html">
+        <li class="chapter " data-level="1.5.4" data-path="Environment.html">
             
                 <a href="Environment.html">
             
                     
-                    Configuration
+                    Configuration files
             
                 </a>
             
@@ -605,12 +527,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.11" data-path="Login.html">
+        <li class="chapter " data-level="1.5.5" data-path="Login.html">
             
                 <a href="Login.html">
             
                     
-                    Login
+                    Login and Accounts
             
                 </a>
             
@@ -618,12 +540,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.12" data-path="Ngrx.html">
+        <li class="chapter " data-level="1.5.6" data-path="Ngrx.html">
             
                 <a href="Ngrx.html">
             
                     
-                    Services
+                    State Management in Angular
             
                 </a>
             
@@ -631,7 +553,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.13" data-path="Testing_catamel.html">
+        <li class="chapter " data-level="1.5.7" data-path="Testing_catamel.html">
             
                 <a href="Testing_catamel.html">
             
@@ -644,12 +566,51 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.14" data-path="Testing.html">
+        <li class="chapter " data-level="1.5.8" data-path="Testing.html">
             
                 <a href="Testing.html">
             
                     
                     Testing Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="Contributing.html">
+            
+                <a href="Contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="Documentation.html">
+            
+                <a href="Documentation.html">
+            
+                    
+                    Adding Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="Development_Methods.html">
+            
+                <a href="Development_Methods.html">
+            
+                    
+                    Git Flow Workflow
             
                 </a>
             
@@ -708,29 +669,32 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="scicat-data-catalogue-developer-guide">SciCat Data Catalogue Developer Guide</h1>
-<p><strong>TODO Update all sections, in particular all screenshots</strong></p>
-<p>SciCat is a data catalogue web application that provides a searchable interface for datasets, a method of publishing DOIs, as well as the option to carry out actions (i.e. archiving and publishing) and acts as a place to reference datasets used in publications.</p>
-<p>This guide aims to help developers and system admins understand some of the SciCat components.</p>
+<p>This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute to the development of the software. See also the <a href="../Operator">Overview in the Operator Manual</a> for a helicopter view of the involved components.</p>
+<p>If you want to contribute to the software you should also read the <a href="Development_Methods.html">Contributing</a> section , which among others links to the git workflow to be used</p>
+<h1 id="getting-an-development-environment-set-up">Getting an development environment set up</h1>
+<p>The easiest is to follow <a href="https://github.com/SciCatProject/scicatlive#readme" target="_blank">this description</a> to get a fully running frontend and backend setup automatically using docker. Otherwise follow the <a href="Running.html">Running section</a></p>
+<h1 id="architecture">Architecture</h1>
 <p>SciCat is built on micro services using the following stack:</p>
-<h2 id="web-browser-client-catanie">Web Browser Client (Catanie)</h2>
-<ul>
-<li>node</li>
-<li>npm</li>
-<li>typescript</li>
-<li>angular</li>
-<li>NGRX</li>
-<li>loopback SDK generator</li>
-</ul>
 <h2 id="api-catamel">API (Catamel)</h2>
 <ul>
-<li>node</li>
-<li>js</li>
-<li>loopback</li>
-<li>mongoDB</li>
+<li><a href="https://nodejs.org/en/" target="_blank">Node 12.x</a></li>
+<li><a href="https://loopback.io/lb3" target="_blank">Loopback 3</a></li>
+<li><a href="https://www.mongodb.com" target="_blank">MongoDB 3.6 or later</a></li>
 </ul>
-<p>The diagram below describes the key components of SciCat. The flow of ingested information is is described as follows: Beamline script send a package of minimal metadata (e.g. a dataset) to the message broker. The broker passes the dataset onto a NodeRed layer that is responsible for calling the responsible API endoint. </p>
-<p>Hooks trigger other activities. For example, if a new proposal is ingested, a new entry in policy is required. The policy will dictate how any dataset associated with that proposal will behave with regards to automatic archiving, publishing etc.</p>
-<p><img src="img/micro.png" alt="systen_components"></p>
+<p>The most important part to understanf is how loopback works, because it is the platform which is directly addressed as part of the development. Please check the coresponding Loopback 3 documentation for all details</p>
+<h2 id="web-browser-client-catanie">Web Browser Client (Catanie)</h2>
+<ul>
+<li><a href="https://angular.io/" target="_blank">Angular 9+</a> </li>
+<li><a href="https://material.angular.io/" target="_blank">Angular Material Widgets and Design</a> </li>
+<li><a href="https://ngrx.io/" target="_blank">NGRX for State Management</a></li>
+<li><a href="https://github.com/mean-expert-official/loopback-sdk-builder" target="_blank">Loopback SDK generator for Angular</a></li>
+</ul>
+<p>Again please of a look at the original documentation to understand how these tools and frameworks work.</p>
+<h2 id="optional-messagingstreamingprocessing-tools">Optional Messaging/Streaming/Processing tools</h2>
+<ul>
+<li><a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a> or <a href="https://www.rabbitmq.com/" target="_blank">RabbitMQ</a></li>
+<li><a href="https://nodered.org/" target="_blank">Nodered Browser-based flow programming</a></li>
+</ul>
 
                                 
                                 </section>
@@ -763,7 +727,7 @@
                 </a>
                 
                 
-                <a href="StartHere.html" class="navigation navigation-next " aria-label="Next page: So, you have just started working on SciCat?">
+                <a href="StartHere.html" class="navigation navigation-next " aria-label="Next page: Overview of Backend and Model">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -774,7 +738,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Developers Guide","level":"1.5","depth":1,"next":{"title":"So, you have just started working on SciCat?","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"previous":{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/README.md","mtime":"2020-10-08T15:00:46.757Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-08T15:00:59.050Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Developers Guide","level":"1.5","depth":1,"next":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"previous":{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Development/README.md","mtime":"2020-10-13T05:40:11.361Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-13T05:40:24.143Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
