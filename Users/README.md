@@ -7,3 +7,4 @@ In the following the concept of a **dataset** is of central importance. SciCat s
 Please note that the data catalog does **not** store the file contents itself. It just stores the metadata , i.e. semantic information which is useful to understand the contents of the files contained in the dataset and the list of the filenames, their sizes etc.
 
 The datasets can contain **raw** data , e.g. data coming from a measurement device or instrument and also **derived** data, which is data derived (calculated) from the raw data. 
+

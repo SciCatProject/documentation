@@ -35,3 +35,5 @@ Once this is finished one can hit the "register" button (not shown in previous s
 Finally you can have a look at all the published data by going to the Published Data menu item (again by clicking the user icon at the top right corner and choosing "Published Data"):
 
 ![Landing page of published data](img/published_datasets.png)
+
+This [short video](https://scicatproject.github.io/img/attach_and_publish.mp4) demonstrates how you can add an attachment to your dataset and publish the data.

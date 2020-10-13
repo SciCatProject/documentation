@@ -2,6 +2,8 @@
 
 If enabled by your SciCat operator you can submit Jobs to both archive data to permanent (tape) storage or retrieve it from tere
 
+This [short video](https://scicatproject.github.io/img/archiving.mp4) demonstrates how you can archive your data to tape.
+
 ## Archiving
 
 To start archive jobs you best select datasets, which are in an *archivable* state by using the appropriate radio button on top of the dataset table. The state *archivable* means, that there exist files for this dataset and the dataset has not yet been archived already.
