@@ -173,5 +173,3 @@ lbBaseURL: "https://your-loopbak-api-server",
 Many of the other settings are boolean flags, which allow you to switch on/off features of the GUI
 Again, if in doubt, just leave the setting as defined in the available example environment files or leave them empty.
 
-TODO Add local TOC at start of each longer honkit page
-

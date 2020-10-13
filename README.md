@@ -16,9 +16,7 @@ The documentaion is split into the following chapters:
 * Ingestor Guide - Instrument responsibles read this to understand how data can ge ingested into SciCat either manually or in an automated fashion
 * Developer Guide - Developers who want to contribute to the project should read this chapter.
 
-[//]: # (TODO add more talks here)
-
 ## Talks
 
 [SciCat Project: Data Catalog System (2017)](https://icatproject.org/wp-content/uploads/2017/12/ICAT_F2F_2017_PSI.pdf)
-
+[SciCat talk from Luke Gorman on Joint ExPaNDS and PaNOSC Meeting Feb 2020](https://indico.esss.lu.se/event/1373/contributions/10773/attachments/9761/15638/Lund2020.pdf)

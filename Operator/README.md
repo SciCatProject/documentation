@@ -40,7 +40,7 @@ If a user wants to download the full datasets of the published data, the data is
 
 ### Chat Server as electronic logbook
 
-TODO 
+TODO ESS
 
 ### External systems
 
@@ -58,9 +58,6 @@ You may or may not run the infrastructure as part of a Kubernetes cluster. E.g. 
 Kubernetes is not necessary to have, but can simplify your life quite a bit. Also the separation into internet and intranet zones is up to you to define. You can of course operate the whole infrastructure directly in internet accessible servers, if your security policies permit.
 
 
-## Getting started with demo platform
-
-TODO, also describe the createFromScratch Kubernetes script
 
 
 
