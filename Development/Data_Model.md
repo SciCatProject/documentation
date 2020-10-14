@@ -12,38 +12,60 @@ The following graph shows a simplified class diagramm of the main model classes.
 
 Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respective model (handled by loopback model definitions)
 
-The data model and its API endpoints is described [here](/api/#operation/Ownable.prototype.__updateById__samples)
+## Dataset
+This is the base class for all datasets, and is derived from the Ownable model.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Dataset.create)
+
 
 ## RawDataset
 
 This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains `Scientific Metadata`, and this is an extensible object to outline all parameters relevant to the dataset.
 
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/RawDataset.create)
+
+
 ## DerivedDataset
 
-These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset.
+These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset. The fields allow to link both to the raw data files used in the analysis as well as to a software repository which keeps the source code used for the analysis, thus helping to keep track of the provenance of the data. You can add ScientificMetadata here as well
 
-The nuance of this definition is ultimately up to the user.
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/DerivedDataset.create)
+
 
 ### OrigDatablocks and Datablocks
-Describes the actual data files, including file name, size and ownership.
+Describes the actual data files, including file name, size and ownership. A given Dataset can have many (orig)Datablocks depending on the number of files and the sizes of the files.
 
-Datablocks describes data as it is stored in an archive system (on tape), whereas OrigDatablocks describes the data as it is split during initial ingestion.
+`Datablocks` describes data as it is stored in an archive system (on tape), whereas `OrigDatablocks` describes the data as it is split during initial ingestion. Therefore you should always add the OrigDataBlock information when ingesting, whereas the Datablocks information is optional and would be filled by the archive system, when it did its work of writing chunks of data to tape. E.g. a Datablock can correspond to a single tar file which is written to tape and the contents of the Datablock is essentially the file listing of the tar file.
 
-
-More Info: 
-
-A data block should never be shown to the user but, regardless of backup system being used, it is likely that a single dataset will be able to be backed up into a single location. In order to address this, we have `datablocks` that contain a list of datafiles. A dataset can be split into multiple datablocks (unless it contains a single large file).
-
-To reduce the reliance on a particular backup system, there is an `OrigDataBlock` and a `DataBlock`. The `OrigDataBlock` is created by Catamel  when a dataset is ingested and they are preemptively split. If the connected backup system does support datablocks then it would need to respond with datablock details when it is ingested. In those cases, a dataset will store both the `OrigDataBlocks` and `Datablocks`.
-
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/OrigDatablock.create) and [here](https://scicatproject.github.io/api/#operation/Datablock.create)
 
 ### DatasetLifecycle
 
-There are many temporal operations for a dataset and they do not need to be stored inside the model. This model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval. Technically the DatasetLifecycle is however `embedded` into the Dataset documents
+There are many temporal operations for a dataset describing what happens to the Dataset during its lefetime. Therefore this model contains information relating to the status of the dataset but not the metadata itself. The archive location, date that it should become public and information about archiving or retrieval. Technically the DatasetLifecycle is however `embedded` into the Dataset documents.
+
+The data model and its API endpoints are therefore described as part of the Dataset model 
 
 ## Job
 
-When a user wants to archive or retrieve a dataset, a job is created. A job queue can then collect these and send them to whichever backup system is being used. As the job progresses, the system can make calls back that update the `Job Status Message` and, when necessary, the DatasetLifecycle can be updated.
+When a user wants to archive, retrieve or publish a dataset, a job is created. The new Job entry is automatically forwarded to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. E.g. at PSI the RabbitMQ queue is emptied by a nodered process, which reads the Job information from the RabbbitMQ queue. ALternatively you can use other Messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with Status updates to the Job model, when there job is finished. E.g. as the job progresses, the system can make calls back that update the `Job Status Message` and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Job.create) 
+
+## Proposals
+
+A proposal is a written intention declaration of what kind of measurement people want to perform when and where. Such information is often available in an existing system outside of the data catalog, like digital user office systems for institutes which offer their instruments to other users.
+
+This information can be synchronized into SciCat and facilitates the definition of the ownership of the datasets as well as providing information relevant for publication of data, such as principal investigators, abstracts etc. datasets are normally uniquely associated with one proposal.
+
+The proposal information is however optional
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Proposal.create) 
+
+## PublishedData
+
+When Datasets are published you assign a DOI to a **list** of datasets. The PublishedData model keeps track of these information, i.e which dataset is being published, authorship, abstract and download links to access the corresponding file contents of the datasets.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/PublishedData.create) 
 
 ---
 
