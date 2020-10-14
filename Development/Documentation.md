@@ -18,7 +18,7 @@ The live web site is then visible on the following URLs respectively
 git clone https://github.com/SciCatProject/scicatproject.github.io`
 cd scicatproject.github.io
 
-# make your changes, git add and git commit as usual
+# make your changes on index.html directly, then git add and git commit as usual
 
 git push origin master
 ```

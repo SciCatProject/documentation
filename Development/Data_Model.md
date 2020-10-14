@@ -8,10 +8,11 @@ The following graph shows a simplified class diagramm of the main model classes.
 
 ![Model Diagram](img/Class_Diagram.PNG)
 
-## Relationships and Access
+## The Ownable Base model
 
-Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respedtive model (handled by loopback model definitions)
+Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respective model (handled by loopback model definitions)
 
+The data model and its API endpoints is described [here](api/#operation/Ownable.prototype.__updateById__samples)
 
 ## RawDataset
 
