@@ -2,7 +2,7 @@
 
 ![Kafka flow](screenshots/kafka.png)
 
-As shown in the picture above the detector and the data collection software is writing into kafka topics. The topics is then being read by a filewriter that in turn writes the dataset to storage and sends back an event when the file is written that contains metadata about the file and the experiment. There is than ingestion program that will parse the event from the filewriter and gather additional information before triggering REST calls into Catamel. 
+As shown in the picture above the detector and the data collection software is writing into kafka topics. The topics is then being read by a filewriter that in turn writes the dataset to storage and sends back an event when the file is written that contains metadata about the file and the experiment. There is then an ingestion program that will parse the event from the filewriter and gather additional information before triggering REST calls into Catamel. 
 
 ### How the ingestion program works:
 
