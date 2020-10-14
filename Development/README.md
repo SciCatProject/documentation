@@ -2,7 +2,7 @@
 
 This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute to the development of the software. See also the [Overview in the Operator Manual](../Operator/) for a helicopter view of the involved components.
 
-If you want to contribute to the software you should also read the [Contributing](../Development/Development_Methods.html) section , which among others links to the git workflow to be used
+If you want to contribute to the software you should also read the [Contributing](../Development/Development_Methods.html) section, which among others links to the git workflow to be used.
 
 
 # Getting an development environment set up
@@ -17,7 +17,7 @@ SciCat is built on micro services using the following stack:
 * [Loopback 3](https://loopback.io/lb3)
 * [MongoDB 3.6 or later](https://www.mongodb.com)
 
-The most important part to understanf is how loopback works, because it is the platform which is directly addressed as part of the development. Please check the coresponding Loopback 3 documentation for all details
+The most important part to understand is how loopback works, because it is the platform which is directly addressed as part of the development. Please check the corresponding Loopback 3 documentation for all details
 
 ## Web Browser Client (Catanie)
 
