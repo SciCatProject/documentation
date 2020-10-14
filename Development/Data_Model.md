@@ -25,9 +25,22 @@ This is a dataset that has been collected from an experiment. It contains detail
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/RawDataset.create)
 
 
+## Instrument
+
+This collection is meant to store the available measurement instruments, ideally in a globally unique naming scheme (within the Expands/Panosc EU programs standardization on these topics is pursued). Datasets can link to these instruments (in addition to the creationLocation field), allowing for more detailed information about the measurement devices.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Instrument.create)
+
+
+
+## Technique
+
+This collection is meant to store the available measurement techniques, ideally in a globally unique naming scheme (within the Expands/Panosc EU programs standardization on these topics is pursued). Datasets can link to these techniques, allowing for more detailed information about the measurement method applied
+
+
 ## DerivedDataset
 
-These are datasets that are created after an experiment (i.e. active beamtime) and are subsequently derived. Typically, they contain information on the analysis of a dataset. The fields allow to link both to the raw data files used in the analysis as well as to a software repository which keeps the source code used for the analysis, thus helping to keep track of the provenance of the data. You can add ScientificMetadata here as well
+These are datasets that are created by analyzing the data in raw datasets. The fields allow to link both to the raw data files used in the analysis as well as to a software repository which keeps the source code used for the analysis, thus helping to keep track of the provenance of the data. You can add ScientificMetadata here as well.
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/DerivedDataset.create)
 
@@ -47,7 +60,7 @@ The data model and its API endpoints are therefore described as part of the Data
 
 ## Job
 
-When a user wants to archive, retrieve or publish a dataset, a job is created. The new Job entry is automatically forwarded to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. E.g. at PSI the RabbitMQ queue is emptied by a nodered process, which reads the Job information from the RabbbitMQ queue. ALternatively you can use other Messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with Status updates to the Job model, when there job is finished. E.g. as the job progresses, the system can make calls back that update the `Job Status Message` and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.
+When a user wants to archive, retrieve or publish a dataset, a job is created. The new Job entry is automatically forwarded to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. E.g. at PSI the RabbitMQ queue is emptied by a NodeRed process, which reads the Job information from the RabbitMQ queue. ALternatively you can use other Messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with Status updates to the Job model, when there job is finished. E.g. as the job progresses, the system can make PUT/PATCH API calls back that update the `Job Status Message` and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Job.create) 
 
@@ -66,6 +79,19 @@ The data model and its API endpoints are described [here](https://scicatproject.
 When Datasets are published you assign a DOI to a **list** of datasets. The PublishedData model keeps track of these information, i.e which dataset is being published, authorship, abstract and download links to access the corresponding file contents of the datasets.
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/PublishedData.create) 
+
+## UserSettings
+
+This collection stores user preferences, such as the list of pre-selected columns in the dataset dashboard view, defaults for the table page size etc.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/UserSetting.create) 
+
+## Attachment
+
+Various of the above mentioned models can have files (usually images) attached. The size is limited to 16MB for one attachment.
+
+The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Attachment.create) 
+
 
 ---
 
