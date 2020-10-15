@@ -26,6 +26,9 @@ Nginx is unable to locate the Node-RED instances currently, so the `aries.psi.ch
 3. `Navigate to localhost:8001`
 4. Login with admin credentials \(can be found in the `secrets` section of the Kubernetes Web dashboard.
 
+The following is an example screenshot of the job-assembler Node-RED process
+
+![Job-Assembler at PSI](img/job-assembler.png)
 
 # Archiving/Retrieving/Resetting Datasets
 

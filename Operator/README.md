@@ -26,7 +26,9 @@ In addition to the GUI other clients exist, such as command line (CLI) clients (
 
 ### Messaging infrastructure 
 
-As a way to loosely couple external systems the API server can be connected to messaging system. In particular RabbitMQ (used at PSI) and Apache Kafka are in use. Such systems can e.g. be used to interface to an tape archive system. To add the specific business logic you can e.g. add your own scripting layer. At PSI however a [Node-RED](https://nodered.org/)  based solution proofed to be a stable and flexible platform for this purpose. NodeRed is a A NodeJS based visual programming tool to handle flows of data from one source to another.
+As a way to loosely couple external systems the API server can be connected to messaging system. In particular RabbitMQ (used at PSI) and Apache Kafka are in use. Such systems can e.g. be used to interface to an tape archive system. To add the specific business logic you can e.g. add your own scripting layer. At PSI however a [Node-RED](https://nodered.org/)  based solution proofed to be a stable and flexible platform for this purpose. Node-RED is a A NodeJS based visual programming tool to handle flows of data from one source to another. The following shows the Nod-RED flow used for communicating job requests to the PSI archive system
+
+![Job-Assembler at PSI](img/job-assembler.png)
 
 ### Publishing Server
 
@@ -54,7 +56,7 @@ File servers are another component that you may want to integrate. The SciCat ar
 
 ### Underlying Infrastructure
 
-You may or may not run the infrastructure as part of a Kubernetes cluster. E.g. at PSI the API server, the GUI application, RabbitMQ and the nodered instances are all deployed to a Kubernetes cluster, whereas the Mongo DB ist kept outside Kubernetes.
+You may or may not run the infrastructure as part of a Kubernetes cluster. E.g. at PSI the API server, the GUI application, RabbitMQ and the Node-RED instances are all deployed to a Kubernetes cluster, whereas the Mongo DB ist kept outside Kubernetes.
 Kubernetes is not necessary to have, but can simplify your life quite a bit. Also the separation into internet and intranet zones is up to you to define. You can of course operate the whole infrastructure directly in internet accessible servers, if your security policies permit.
 
 
