@@ -41,3 +41,4 @@
     * [Adding Documentation](Development/Documentation.md)
     * [Git Flow Workflow](Development/Development_Methods.md)
 
+* [API Documentation](https://scicatproject.github.io/api/)
