@@ -610,6 +610,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" >
+            
+                <a target="_blank" href="https://scicatproject.github.io/api/">
+            
+                    
+                    API Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -657,16 +670,18 @@
                                 
                                 <h1 id="documentation">Documentation</h1>
 <h2 id="overview">Overview</h2>
-<p>The documentation consists of two main parts.</p>
+<p>The documentation consists of three main parts.</p>
 <ul>
 <li>The &quot;Home Webgpage&quot; of the project , describing the purpose and use cases for the software. The source is located at <a href="https://github.com/SciCatProject/scicatproject.github.io" target="_blank">https://github.com/SciCatProject/scicatproject.github.io</a> </li>
 <li>The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at <a href="https://github.com/SciCatProject/documentation" target="_blank">https://github.com/SciCatProject/documentation</a> .  It covers all components of the software, i.e  frontend and backend. The documentation tool <a href="https://honkit.netlify.app/" target="_blank">honkit</a> (successor of gitbook) is used.</li>
+<li>The documentation of the REST API of catamel. This is generated from the swagger.json file, which itself is generated from the model descriptions in loopback</li>
 </ul>
-<p>Both documentation parts are hosted on the <a href="https://pages.github.com/" target="_blank">GitHub Pages platform</a>. The documentation part is &quot;injected&quot; into the GitHub pages automatically by a travis job, which runs after each commit to the documentation repository</p>
+<p>All parts are hosted on the <a href="https://pages.github.com/" target="_blank">GitHub Pages platform</a>. The documentation part is &quot;injected&quot; into the GitHub pages automatically by a travis job, which runs after each commit to the documentation repository</p>
 <p>The live web site is then visible on the following URLs respectively</p>
 <ul>
 <li><a href="https://scicatproject.github.io/" target="_blank">https://scicatproject.github.io/</a></li>
 <li><a href="https://scicatproject.github.io/documentation" target="_blank">https://scicatproject.github.io/documentation</a></li>
+<li><a href="https://scicatproject.github.io/api" target="_blank">https://scicatproject.github.io/api</a></li>
 </ul>
 <h2 id="changes-and-deployment-of-home-webpage">Changes and Deployment of Home Webpage</h2>
 <pre><code>git clone https://github.com/SciCatProject/scicatproject.github.io`
@@ -689,7 +704,19 @@ npx honkit build
 <h3 id="publishing-the-documentation">Publishing the documentation</h3>
 <p><code>git push origin master</code></p>
 <p>The push to the origin repo will trigger a travis job, which will publish the resulting documentation to <a href="https://scicatproject.github.io/documentation" target="_blank">https://scicatproject.github.io/documentation</a></p>
+<h2 id="changes-and-deployment-of-api-documentation">Changes and Deployment of API Documentation</h2>
+<p>Use the following command to regenerate  the API with an up-to-date swagger.json file</p>
+<pre><code>    # to install redoc-cli:
+    # sudo npm install -g redoc-cli
 
+    # to get an updated swagger.json file
+    # wget https://YOUR-API-SERVER/explorer/swagger.json
+
+    redoc-cli bundle -o index.html swagger.json
+
+    # the make commit which replaces the index.html file at 
+    # https://github.com/SciCatProject/scicatproject.github.io/tree/master/api
+</code></pre>
                                 
                                 </section>
                             
@@ -732,7 +759,7 @@ npx honkit build
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Adding Documentation","level":"1.5.10","depth":2,"next":{"title":"Git Flow Workflow","level":"1.5.11","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]},"previous":{"title":"Contributing","level":"1.5.9","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Documentation.md","mtime":"2020-10-14T16:55:57.201Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-14T16:56:08.793Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Adding Documentation","level":"1.5.10","depth":2,"next":{"title":"Git Flow Workflow","level":"1.5.11","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]},"previous":{"title":"Contributing","level":"1.5.9","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Documentation.md","mtime":"2020-10-15T09:42:11.272Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-15T09:42:22.645Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
