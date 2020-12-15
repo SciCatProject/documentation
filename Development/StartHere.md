@@ -84,7 +84,7 @@ module.exports = {
       port: null,
       queue: null
     },
-	# Remove this if you want to use the Jobs mechanism without SMTP
+	# Remove this if you want to use the Jobs mechanism without SMTP or configure for your SMTP service.
     smtpSettings: {
       host: 'SMTP.YOUR.DOMAIN',
       port: 25,
@@ -102,9 +102,9 @@ module.exports = {
 ```
 ##### component-config.json
 
-If you want to use rabbitMQ to reach out to a microservice through the Jobs mechanism in scicat you will need to edit the component-config.json file. You will also need to add the `queue: "rabbitmq"` line in the 
-config.local.js file for this to work (see above section.) In order to connect to rabbitMQ you will need the user and password already defined in a rabbitMQ service to connect.
-To set this up add the following to the component-config.json and change the username and password to those you have defined in your rabbitMQ service. The connection is done through uri so you will need to give the hostname of your rabbitmq service here:
+If you want to use RabbitMQ to reach out to a microservice through the Jobs mechanism in Scicat you will need to edit the component-config.json file. You will also need to add the `queue: "rabbitmq"` line in the 
+config.local.js file for this to work (see above section.) In order to connect to rabbitMQ you will need a user and password already defined in a rabbitMQ service to connect and the service should be up and running.
+To set this up add the following to the component-config.json and change the username and password to those you have defined in your rabbitMQ service. Also edit the hostname in the `uri` field to be the hostname of your RabbitMQ service. 
 
 ```
 "../node_modules/loopback-component-mq/lib":{
@@ -149,7 +149,7 @@ To set this up add the following to the component-config.json and change the use
 }
 
 ```
-For more info on RabbitMQ see the Deploy with Docker Compose section.
+For more info on setting up RabbitMQ see the Deploy with Docker Compose section.
 
 
 #### Testing Catamel
