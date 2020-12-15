@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Deploy with Docker Compose · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.6">
+        <meta name="generator" content="HonKit 3.6.15">
         
         
         
@@ -70,7 +69,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -670,6 +669,34 @@
                                 
                                 <h1 id="setup-scicat-with-docker-compose">Setup SciCat with Docker Compose</h1>
 <p>The <a href="https://github.com/SciCatProject/scicatlive#readme" target="_blank">scicatlive</a> repo defines a quick and convenient method for getting started. It sets up the Mongo DB , catamel and catanie, all using docker containers, starts the containers and connects them , all with a single command. This is also a convenient method to contribute to the development of this project easily.</p>
+<h2 id="extending-docker-compose-to-include-rabbitmq">Extending Docker Compose to include RabbitMQ</h2>
+<p>When using RabbitMQ with scicat it needs to be configured initially, before the rest of the scicat services are run. It can be also run in docker compose, but it must be set up with users before catamel is started, otherwise catamel cannot connect. It is easier to configure rabbitmq as a separate service before starting scicat through docker compose. A basic docker compose for rabbitmq looks like:</p>
+<pre><code>version: &quot;3.8&quot;
+services:
+  local-rabbitmq:
+    hostname: local-rabbitmq
+    image: &apos;bitnami/rabbitmq:latest&apos;
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - &apos;4369:4369&apos;
+      - &apos;5672:5672&apos;
+      - &apos;25672:25672&apos;
+      - &apos;15672:15672&apos;
+    volumes:
+      - &apos;rabbitmq_data:/bitnami&apos;
+volumes:
+    rabbitmq_data:
+      driver: local
+</code></pre><p>In this set up the users and user management portal need to be configured manually which can be done via CLI. The following commands can be executed in the docker container to set up initial users and the management portal.</p>
+<pre><code># To add the management plugin
+rabbitmq-plugins enable rabbitmq_management
+
+#to add a user
+rabbitmqctl add_user &lt;username&gt; &lt;password&gt;
+rabbitmqctl set_user_tags &lt;username&gt; administrator
+rabbitmqctl set_permissions -p / &lt;username&gt; &apos;.*&apos; &apos;.*&apos; &apos;.*&apos;
+</code></pre><p>An user with the administrator tag needs to be activated in order to be able to log into the rabbitmq management portal hosted at localhost:15672.</p>
 
                                 
                                 </section>
@@ -713,12 +740,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"next":{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},"previous":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup_Docker.md","mtime":"2020-10-15T10:28:41.009Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-15T10:28:53.270Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"next":{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},"previous":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup_Docker.md","mtime":"2020-12-15T15:01:53.129Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2020-12-15T15:02:10.229Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     

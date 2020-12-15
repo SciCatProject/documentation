@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Ingest Manual PSI · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.6">
+        <meta name="generator" content="HonKit 3.6.15">
         
         
         
@@ -70,7 +69,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1154,14 +1153,14 @@ and the folders will be scanned for files</p>
 <pre><code>datasetIngestor metadata.json [filelisting.txt | &apos;folderlisting.txt&apos;]
 </code></pre><p>You will be prompted for your username and password.</p>
 <p>If everything looks as expected you should now repeat the command with
-the &quot;&#x2013;ingest&quot; flag to actually store the dataset(s) in the data
+the &quot;–ingest&quot; flag to actually store the dataset(s) in the data
 catalog</p>
 <pre><code>datasetIngestor --ingest metadata.json [filelisting.txt | &apos;folderlisting.txt&apos;]
 </code></pre><p>When the job is finshed all needed metadata will be ingested into the
 data catalog (and for decentral data the data will be copied to the
 central cache file server).</p>
 <p>In addition you have the option to directly trigger the archiving of
-the data to tape by adding the &#x2013;autoarchive flag. Do this only if you
+the data to tape by adding the –autoarchive flag. Do this only if you
 sure that this data is worth to be archived</p>
 </li>
 </ol>
@@ -1293,7 +1292,7 @@ datasets you want to have archived from the set of archivable datasets
 and then click on the archive button.</p>
 <p>Another option is to trigger the archive job together with the ingest
 job in one step as part of the command line tool datasetIngestor by
-using the &#x2013;autoarchive option.</p>
+using the –autoarchive option.</p>
 <p>A third option is to use a command line version datasetArchiver.</p>
 <pre><code>datasetArchiver [options] (ownerGroup | space separated list of datasetIds) 
 
@@ -1763,7 +1762,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">ownerEmail</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled by datasetIngestor if missing</td>
 </tr>
 
@@ -1771,8 +1770,8 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">orcidOfOwner</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
@@ -1787,7 +1786,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">datasetName</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">set to &quot;tail&quot; of sourceFolder path if missing</td>
 </tr>
 
@@ -1796,14 +1795,14 @@ e.g. inside the GET API call section.</p>
 <td class="left">sourceFolder</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">size</td>
 <td class="left">number</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">autofilled when OrigDataBlock created</td>
 </tr>
 
@@ -1811,7 +1810,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">packedSize</td>
 <td class="left">number</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">autofilled when DataBlock created</td>
 </tr>
 
@@ -1828,38 +1827,38 @@ e.g. inside the GET API call section.</p>
 <td class="left">type</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left">(raw, derived&#x2026;)</td>
+<td class="left">(raw, derived…)</td>
 </tr>
 
 
 <tr>
 <td class="left">validationStatus</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">keywords</td>
 <td class="left">Array[string]</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">description</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">classification</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled by API or datasetIngestor if missing</td>
 </tr>
 
@@ -1867,7 +1866,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">license</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled by datasetIngestor if missing (CC By-SA 4.0)</td>
 </tr>
 
@@ -1875,7 +1874,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">version</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">autofilled by API</td>
 </tr>
 
@@ -1883,7 +1882,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">doi</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled as part of publication workflow</td>
 </tr>
 
@@ -1891,7 +1890,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">isPublished</td>
 <td class="left">boolean</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled by datasetIngestor if missing (false)</td>
 </tr>
 
@@ -1907,23 +1906,23 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">accessGroups</td>
 <td class="left">Array[string]</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled by datasetIngestor to beamline specific group</td>
 </tr>
 
 
 <tr>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
+<td class="left"> </td>
 <td class="left">derived from creationLocation</td>
 </tr>
 
 
 <tr>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
+<td class="left"> </td>
 <td class="left">e.g. /PSI/SLS/TOMCAT -&gt; accessGroups=[&quot;slstomcat&quot;]</td>
 </tr>
 </tbody>
@@ -1963,7 +1962,7 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">endTime</td>
 <td class="left">date</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">filled from datasetIngetor if missing</td>
 </tr>
 
@@ -1979,16 +1978,16 @@ e.g. inside the GET API call section.</p>
 <tr>
 <td class="left">dataFormat</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">scientificMetadata</td>
 <td class="left">object</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 </tbody>
 </table>
@@ -2020,7 +2019,7 @@ e.g. inside the GET API call section.</p>
 <td class="left">investigator</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2028,7 +2027,7 @@ e.g. inside the GET API call section.</p>
 <td class="left">inputDatasets</td>
 <td class="left">Array[string]</td>
 <td class="left">m</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2036,31 +2035,31 @@ e.g. inside the GET API call section.</p>
 <td class="left">usedSoftware</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">jobParameters</td>
 <td class="left">object</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">jobLogData</td>
 <td class="left">string</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
 <td class="left">scientificMetadata</td>
 <td class="left">object</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 </tbody>
 </table>
@@ -2068,7 +2067,7 @@ e.g. inside the GET API call section.</p>
 <h2 id="instructions-to-set-acls-in-afs">Instructions to set ACLS in AFS<a id="sec-8-7" name="sec-8-7"></a></h2>
 <p>In the AFS file system the user have to permit access to the
 sourceFolder by setting read and lookup ACL permission for the AFS
-group &#x201C;pb-archive&#x201D;. The easiest way to achieve is to run the following
+group “pb-archive”. The easiest way to achieve is to run the following
 script with the sourceFolder as an argunent</p>
 <pre><code>/afs/psi.ch/service/bin/pb_setacl.sh sourceFolder
 </code></pre><p>This script must be run by a person who has the rights to modify the
@@ -2304,7 +2303,7 @@ inside the digital user office DUO</p>
 <td class="left">Cristallina</td>
 <td class="left">/PSI/SWISSFEL/ARAMIS-CRISTALLINA</td>
 <td class="left">swissfelaramis-cristallina</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 </tbody>
 </table>
@@ -2336,7 +2335,7 @@ inside the digital user office DUO</p>
 <td class="left">AMOR</td>
 <td class="left">/PSI/SINQ/AMOR</td>
 <td class="left">sinqamor</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2344,7 +2343,7 @@ inside the digital user office DUO</p>
 <td class="left">DMC</td>
 <td class="left">/PSI/SINQ/DMC</td>
 <td class="left">sinqdmc</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2352,7 +2351,7 @@ inside the digital user office DUO</p>
 <td class="left">EIGER</td>
 <td class="left">/PSI/SINQ/EIGER</td>
 <td class="left">sinqeiger</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2360,7 +2359,7 @@ inside the digital user office DUO</p>
 <td class="left">FOCUS</td>
 <td class="left">/PSI/SINQ/FOCUS</td>
 <td class="left">sinqfocus</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2368,7 +2367,7 @@ inside the digital user office DUO</p>
 <td class="left">HRPT</td>
 <td class="left">/PSI/SINQ/HRPT</td>
 <td class="left">sinqhrpt</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2376,7 +2375,7 @@ inside the digital user office DUO</p>
 <td class="left">ICON</td>
 <td class="left">/PSI/SINQ/ICON</td>
 <td class="left">sinqicon</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2384,7 +2383,7 @@ inside the digital user office DUO</p>
 <td class="left">Morpheus</td>
 <td class="left">/PSI/SINQ/MORPHEUS</td>
 <td class="left">sinqmorpheus</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2392,7 +2391,7 @@ inside the digital user office DUO</p>
 <td class="left">NARZISS</td>
 <td class="left">/PSI/SINQ/NARZISS</td>
 <td class="left">sinqnarziss</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2400,7 +2399,7 @@ inside the digital user office DUO</p>
 <td class="left">NEUTRA</td>
 <td class="left">/PSI/SINQ/NEUTRA</td>
 <td class="left">sinqneutra</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2408,7 +2407,7 @@ inside the digital user office DUO</p>
 <td class="left">POLDI</td>
 <td class="left">/PSI/SINQ/POLDI</td>
 <td class="left">sinqpoldi</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2416,7 +2415,7 @@ inside the digital user office DUO</p>
 <td class="left">RITA-II</td>
 <td class="left">/PSI/SINQ/RITA-II</td>
 <td class="left">sinqrita-ii</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2424,7 +2423,7 @@ inside the digital user office DUO</p>
 <td class="left">SANS-I</td>
 <td class="left">/PSI/SINQ/SANS-I</td>
 <td class="left">sinqsans-i</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2432,7 +2431,7 @@ inside the digital user office DUO</p>
 <td class="left">SANS-II</td>
 <td class="left">/PSI/SINQ/SANS-II</td>
 <td class="left">sinqsans-ii</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2440,7 +2439,7 @@ inside the digital user office DUO</p>
 <td class="left">TASP</td>
 <td class="left">/PSI/SINQ/TASP</td>
 <td class="left">sinqtasp</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2448,15 +2447,15 @@ inside the digital user office DUO</p>
 <td class="left">ZEBRA</td>
 <td class="left">/PSI/SINQ/ZEBRA</td>
 <td class="left">sinqzebra</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
 <tr>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
+<td class="left"> </td>
+<td class="left"> </td>
+<td class="left"> </td>
 </tr>
 </tbody>
 </table>
@@ -2488,7 +2487,7 @@ inside the digital user office DUO</p>
 <td class="left">Dolly</td>
 <td class="left">/PSI/SMUS/DOLLY</td>
 <td class="left">smusdolly</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2496,7 +2495,7 @@ inside the digital user office DUO</p>
 <td class="left">GPD</td>
 <td class="left">/PSI/SMUS/GPD</td>
 <td class="left">smusgpd</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2504,7 +2503,7 @@ inside the digital user office DUO</p>
 <td class="left">GPS</td>
 <td class="left">/PSI/SMUS/GPS</td>
 <td class="left">smusgps</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2512,7 +2511,7 @@ inside the digital user office DUO</p>
 <td class="left">HAL-9500</td>
 <td class="left">/PSI/SMUS/HAL-9500</td>
 <td class="left">smushal-9500</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2520,7 +2519,7 @@ inside the digital user office DUO</p>
 <td class="left">LEM</td>
 <td class="left">/PSI/SMUS/LEM</td>
 <td class="left">smuslem</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 
 
@@ -2528,7 +2527,7 @@ inside the digital user office DUO</p>
 <td class="left">LTF</td>
 <td class="left">/PSI/SMUS/LTF</td>
 <td class="left">smusltf</td>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 </tr>
 </tbody>
 </table>
@@ -2615,7 +2614,7 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
 
 
 <tr>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">datasetArchiver and datasetGetProposal</td>
 </tr>
 
@@ -2657,7 +2656,7 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
 
 
 <tr>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">Added infos about email notifications</td>
 </tr>
 
@@ -2681,7 +2680,7 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
 
 
 <tr>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">dangling links, ingest for other person, need for kerberos ticket as user)</td>
 </tr>
 
@@ -2693,7 +2692,7 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
 
 
 <tr>
-<td class="left">&#xA0;</td>
+<td class="left"> </td>
 <td class="left">Progress indicators, chksum test updated</td>
 </tr>
 
@@ -2812,12 +2811,56 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2020-10-15T10:28:41.001Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-15T10:28:53.270Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2020-12-15T15:01:53.121Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2020-12-15T15:02:10.229Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     

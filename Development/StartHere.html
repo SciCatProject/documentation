@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Overview of Backend and Model · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.6">
+        <meta name="generator" content="HonKit 3.6.15">
         
         
         
@@ -70,7 +69,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -691,11 +690,114 @@
 <h4 id="running-catamel">Running Catamel</h4>
 <p>Catamel has some core files missing that are required in order for it to run. Below, we list these files and what they should contain. Ideally, there will be a minimal install of Catamel in the source repo that includes minimal config files to remove this barrier.</p>
 <ul>
-<li><code>datasources.json</code> - This sets up your connection to Mongo and should follow the syntax outlined in <a href="https://loopback.io/doc/en/lb3/datasources.json.html" target="_blank">loopback</a> </li>
+<li><code>datasources.json</code> - This sets up your connection to Mongo and should follow the syntax outlined in <a href="https://loopback.io/doc/en/lb3/datasources.json.html" target="_blank">loopback</a> . </li>
 <li><code>config.local.js</code> - These are site specific settings for your install, such as the prefix to use for IDs, messages to store in the dataset and the facilities you have</li>
 <li><code>providers.json</code> - Contains connection information to LDAP or other authentication sources</li>
-<li><code>component-config.json</code> - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed</li>
+<li><code>component-config.json</code> - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed. </li>
 </ul>
+<h4 id="editing-the-configs">Editing the Configs</h4>
+<h5 id="datasourcesjson">datasources.json</h5>
+<p>Make sure that the host field of the json is configured to your mongo hostname e.g. for a local instance of mongo with hostname &quot;mongodb&quot;:</p>
+<pre><code>   &quot;mongo&quot;: {
+      &quot;host&quot;: &quot;mongodb&quot;,
+      &quot;port&quot;: 27017,
+      &quot;url&quot;: &quot;&quot;,
+      &quot;database&quot;: &quot;dacat&quot;,
+      &quot;name&quot;: &quot;mongo&quot;,
+      &quot;connector&quot;: &quot;mongodb&quot;,
+      &quot;useNewUrlParser&quot;: true,
+      &quot;allowExtendedOperators&quot;:true
+    }
+</code></pre><h5 id="configlocaljs">config.local.js</h5>
+<p>Here you can configure many aspects of scicat for your institute. Here is an example config file, where you delete parts to turn off certain features:</p>
+<pre><code>var p = require(&apos;../package.json&apos;);
+var version = p.version.split(&apos;.&apos;).shift();
+module.exports = {
+    restApiRoot: &apos;/api&apos; + (version &gt; 0 ? &apos;/v&apos; + version : &apos;&apos;),
+    host: process.env.HOST || &apos;0.0.0.0&apos;,
+    port: process.env.PORT || 3000,
+    pidPrefix: &apos;PutYourPIDPrefixHere&apos;,
+    policyPublicationShiftInYears: 3,
+    policyRetentionShiftInYears: 10,
+    site: &apos;YOUR-SITE&apos;,
+    facilities: [&quot;Facility1&quot;, &quot;Facility2&quot;],
+    metadataKeysReturnLimit: 100,
+    registerMetadataUri : &quot;https://mds.test.datacite.org/metadata&quot;,
+    registerDoiUri : &quot;https://mds.test.datacite.org/doi&quot;,
+    grayLog: {
+      enabled: false,
+      host: &quot;my.graylog.host&quot;,
+      port: 0000,
+      facility: &quot;facility&quot;,
+      owner: &quot;owner&quot;,
+      service: &quot;service&quot;
+    },
+    # Add to this section if you want to use RabbitMQ for the Proposals mechanism
+    rabbitmq: {
+      enabled: false,
+      host: null,
+      port: null,
+      queue: null
+    },
+    # Remove this if you want to use the Jobs mechanism without SMTP or configure for your SMTP service.
+    smtpSettings: {
+      host: &apos;SMTP.YOUR.DOMAIN&apos;,
+      port: 25,
+      secure: false    },
+    smtpMessage: {
+      from: &apos;scicatarchivemanager@YOUR.DOMAIN&apos;,
+      to: undefined,
+      subject: &apos;[SciCat &apos;+process.env.NODE_ENV+&apos;]&apos;,
+      text: undefined // can also set html key and this will override this
+    },
+    # Keep this if you want to set your queue service to rabbitmq, remove if you are not using a messaging service
+    queue: &apos;rabbitmq&apos;
+};
+</code></pre><h5 id="component-configjson">component-config.json</h5>
+<p>If you want to use RabbitMQ to reach out to a microservice through the Jobs mechanism in Scicat you will need to edit the component-config.json file. You will also need to add the <code>queue: &quot;rabbitmq&quot;</code> line in the 
+config.local.js file for this to work (see above section.) In order to connect to rabbitMQ you will need a user and password already defined in a rabbitMQ service to connect and the service should be up and running.
+To set this up add the following to the component-config.json and change the username and password to those you have defined in your rabbitMQ service. Also edit the hostname in the <code>uri</code> field to be the hostname of your RabbitMQ service. </p>
+<pre><code>&quot;../node_modules/loopback-component-mq/lib&quot;:{
+&quot;options&quot;:{
+&quot;restPort&quot;:15672,
+&quot;acls&quot;:[
+{
+&quot;accessType&quot;:&quot;*&quot;,
+&quot;principalType&quot;:&quot;ROLE&quot;,
+&quot;principalId&quot;:&quot;$unauthenticated&quot;,
+&quot;permission&quot;:&quot;DENY&quot;
+}
+]
+},
+&quot;topology&quot;:{
+&quot;connection&quot;:{
+&quot;uri&quot;:&quot;amqp://&lt;username&gt;:&lt;password&gt;@&lt;rabbitmqhost&gt;:5672/&quot;
+},
+&quot;exchanges&quot;:[
+{
+&quot;name&quot;:&quot;jobs.write&quot;,
+&quot;type&quot;:&quot;topic&quot;,
+&quot;persistent&quot;:true
+}
+],
+&quot;queues&quot;:[
+{
+&quot;name&quot;:&quot;client.jobs.write&quot;,
+&quot;subscribe&quot;:true
+}
+],
+&quot;bindings&quot;:[
+{
+&quot;exchange&quot;:&quot;jobs.write&quot;,
+&quot;target&quot;:&quot;client.jobs.write&quot;,
+&quot;keys&quot;:[
+&quot;jobqueue&quot;
+]
+}
+]
+}
+}
+</code></pre><p>For more info on setting up RabbitMQ see the Deploy with Docker Compose section.</p>
 <h4 id="testing-catamel">Testing Catamel</h4>
 <p>All tests for catamel are in the <code>test</code> folder in the root of the repo and can be run with <code>npm run test</code>. </p>
 <h2 id="python-client-api">Python Client API</h2>
@@ -744,12 +846,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"next":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},"previous":{"title":"Developers Guide","level":"1.5","depth":1,"path":"Development/README.md","ref":"Development/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},{"title":"Configuration files","level":"1.5.4","depth":2,"path":"Development/Environment.md","ref":"Development/Environment.md","articles":[]},{"title":"Login and Accounts","level":"1.5.5","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},{"title":"State Management in Angular","level":"1.5.6","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.7","depth":2,"path":"Development/Testing_catamel.md","ref":"Development/Testing_catamel.md","articles":[]},{"title":"Testing Frontend","level":"1.5.8","depth":2,"path":"Development/Testing.md","ref":"Development/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.9","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},{"title":"Adding Documentation","level":"1.5.10","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.11","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/StartHere.md","mtime":"2020-10-15T10:28:40.989Z","type":"markdown"},"gitbook":{"version":"3.6.6","time":"2020-10-15T10:28:53.270Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"next":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},"previous":{"title":"Developers Guide","level":"1.5","depth":1,"path":"Development/README.md","ref":"Development/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},{"title":"Configuration files","level":"1.5.4","depth":2,"path":"Development/Environment.md","ref":"Development/Environment.md","articles":[]},{"title":"Login and Accounts","level":"1.5.5","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},{"title":"State Management in Angular","level":"1.5.6","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.7","depth":2,"path":"Development/Testing_catamel.md","ref":"Development/Testing_catamel.md","articles":[]},{"title":"Testing Frontend","level":"1.5.8","depth":2,"path":"Development/Testing.md","ref":"Development/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.9","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},{"title":"Adding Documentation","level":"1.5.10","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.11","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/StartHere.md","mtime":"2020-12-15T15:01:53.109Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2020-12-15T15:02:10.229Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
