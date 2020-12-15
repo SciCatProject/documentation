@@ -30,10 +30,127 @@ For the best example of these, take a look at the Dataset JS and JSON files, thi
 
 Catamel has some core files missing that are required in order for it to run. Below, we list these files and what they should contain. Ideally, there will be a minimal install of Catamel in the source repo that includes minimal config files to remove this barrier.
 
-* `datasources.json` - This sets up your connection to Mongo and should follow the syntax outlined in [loopback](https://loopback.io/doc/en/lb3/datasources.json.html) 
+* `datasources.json` - This sets up your connection to Mongo and should follow the syntax outlined in [loopback](https://loopback.io/doc/en/lb3/datasources.json.html) . 
 * `config.local.js` - These are site specific settings for your install, such as the prefix to use for IDs, messages to store in the dataset and the facilities you have
 * `providers.json` - Contains connection information to LDAP or other authentication sources
-* `component-config.json` - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed
+* `component-config.json` - This file connects to RabbitMQ or (in the case of testing) connects to a local rabbitmq, but this file should not be required in the future so the queuing system used is not fixed. 
+
+#### Editing the Configs
+
+##### datasources.json
+Make sure that the host field of the json is configured to your mongo hostname e.g. for a local instance of mongo with hostname "mongodb":
+```
+   "mongo": {
+      "host": "mongodb",
+      "port": 27017,
+      "url": "",
+      "database": "dacat",
+      "name": "mongo",
+      "connector": "mongodb",
+      "useNewUrlParser": true,
+      "allowExtendedOperators":true
+    }
+
+```
+##### config.local.js
+Here you can configure many aspects of scicat for your institute. Here is an example config file, where you delete parts to turn off certain features:
+```
+var p = require('../package.json');
+var version = p.version.split('.').shift();
+module.exports = {
+    restApiRoot: '/api' + (version > 0 ? '/v' + version : ''),
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 3000,
+    pidPrefix: 'PutYourPIDPrefixHere',
+    policyPublicationShiftInYears: 3,
+    policyRetentionShiftInYears: 10,
+    site: 'YOUR-SITE',
+    facilities: ["Facility1", "Facility2"],
+    metadataKeysReturnLimit: 100,
+    registerMetadataUri : "https://mds.test.datacite.org/metadata",
+    registerDoiUri : "https://mds.test.datacite.org/doi",
+    grayLog: {
+      enabled: false,
+      host: "my.graylog.host",
+      port: 0000,
+      facility: "facility",
+      owner: "owner",
+      service: "service"
+    },
+	# Add to this section if you want to use RabbitMQ for the Proposals mechanism
+    rabbitmq: {
+      enabled: false,
+      host: null,
+      port: null,
+      queue: null
+    },
+	# Remove this if you want to use the Jobs mechanism without SMTP or configure for your SMTP service.
+    smtpSettings: {
+      host: 'SMTP.YOUR.DOMAIN',
+      port: 25,
+      secure: false    },
+    smtpMessage: {
+      from: 'scicatarchivemanager@YOUR.DOMAIN',
+      to: undefined,
+      subject: '[SciCat '+process.env.NODE_ENV+']',
+      text: undefined // can also set html key and this will override this
+    },
+	# Keep this if you want to set your queue service to rabbitmq, remove if you are not using a messaging service
+    queue: 'rabbitmq'
+};
+
+```
+##### component-config.json
+
+If you want to use RabbitMQ to reach out to a microservice through the Jobs mechanism in Scicat you will need to edit the component-config.json file. You will also need to add the `queue: "rabbitmq"` line in the 
+config.local.js file for this to work (see above section.) In order to connect to rabbitMQ you will need a user and password already defined in a rabbitMQ service to connect and the service should be up and running.
+To set this up add the following to the component-config.json and change the username and password to those you have defined in your rabbitMQ service. Also edit the hostname in the `uri` field to be the hostname of your RabbitMQ service. 
+
+```
+"../node_modules/loopback-component-mq/lib":{
+"options":{
+"restPort":15672,
+"acls":[
+{
+"accessType":"*",
+"principalType":"ROLE",
+"principalId":"$unauthenticated",
+"permission":"DENY"
+}
+]
+},
+"topology":{
+"connection":{
+"uri":"amqp://<username>:<password>@<rabbitmqhost>:5672/"
+},
+"exchanges":[
+{
+"name":"jobs.write",
+"type":"topic",
+"persistent":true
+}
+],
+"queues":[
+{
+"name":"client.jobs.write",
+"subscribe":true
+}
+],
+"bindings":[
+{
+"exchange":"jobs.write",
+"target":"client.jobs.write",
+"keys":[
+"jobqueue"
+]
+}
+]
+}
+}
+
+```
+For more info on setting up RabbitMQ see the Deploy with Docker Compose section.
+
 
 #### Testing Catamel
 
