@@ -26,4 +26,4 @@ jobs:
           allow_empty_commit: true
           build_dir: docs
         env:
-          GITHUB_TOKEN: { { secrets.GITHUB_TOKEN } }
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
