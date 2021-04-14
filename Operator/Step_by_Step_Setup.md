@@ -173,3 +173,95 @@ lbBaseURL: "https://your-loopbak-api-server",
 Many of the other settings are boolean flags, which allow you to switch on/off features of the GUI
 Again, if in doubt, just leave the setting as defined in the available example environment files or leave them empty.
 
+## Optional Extras
+### Connecting to RabbitMQ
+
+Some extra configuration needs to be done in order to get Scicat talking to RabbitMQ. The rabbitmq mechanism is used to trigger asynchronous jobs
+through the archive and retrieve methods. 
+
+#### Setting up RabbitMQ
+When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
+It must be set up with a user before catamel is started, otherwise catamel cannot connect. 
+It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
+A basic docker compose for rabbitmq looks like:
+```
+version: "3.8"
+services:
+  local-rabbitmq:
+    hostname: local-rabbitmq
+    image: 'bitnami/rabbitmq:latest'
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+volumes:
+    rabbitmq_data:
+      driver: local
+
+```
+
+This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
+Before connecting to Catamel or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+To understand more about setting up rabbitmq please see the documentation at https://www.rabbitmq.com/cli.html.
+If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.
+
+```
+# To add the management plugin
+rabbitmq-plugins enable rabbitmq_management
+
+#to add a user
+rabbitmqctl add_user <username> <password>
+rabbitmqctl set_user_tags <username> administrator
+rabbitmqctl set_permissions -p / <username> '.*' '.*' '.*'
+```
+Once this is done you can log into the Management Portal hosted at http://localhost:15672. Any other users, exchanges , queues etc. can be configured manually.
+
+#### Connecting Scicat to RabbitMQ
+
+Catamel handles the connection to rabbitMQ through the component-config.local.json file. Catamel will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
+before running Catamel. A basic rabbitMQ set up in the component-config.local.json file looks like the following:
+```
+"topology":{
+"connection":{
+"uri":"amqp://my-admin-user:newpassword@local-rabbitmq" # the uri of your service with your administrative user
+},
+"exchanges":[
+{
+"name":"jobs.write",
+"type":"topic",
+"persistent":true
+}
+],
+"queues":[
+{
+"name":"client.jobs.write",
+"subscribe":true
+}
+],
+"bindings":[
+{
+"exchange":"jobs.write",
+"target":"client.jobs.write",
+"keys":[
+"jobqueue"
+]
+}
+]
+}
+}
+
+``` 
+The exchange and the binding key must be named `jobs.write` and `jobqueue` respectively, the queue name can take any value. 
+Catamel expects and exchange called `jobs.write` to publish jobs messages to bound with that key.
+
+#### Use in Practice
+If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
+could generate two queues bound to the `jobs.write` exchange. However these would be bound with the same key that
+could cause cross talk. RabbitMQ allows you to set up any number of virtual hosts within the same server therefore it is
+best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bindings set as in the component-config.local.json file above.
+
