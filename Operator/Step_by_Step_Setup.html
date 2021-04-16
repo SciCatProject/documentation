@@ -6,7 +6,7 @@
         <title>Step by Step instruction · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.16">
+        <meta name="generator" content="HonKit 3.6.20">
         
         
         
@@ -760,6 +760,82 @@ cd catanie
 <pre><code>lbBaseURL: &quot;https://your-loopbak-api-server&quot;,
 </code></pre><p>Many of the other settings are boolean flags, which allow you to switch on/off features of the GUI
 Again, if in doubt, just leave the setting as defined in the available example environment files or leave them empty.</p>
+<h2 id="optional-extras">Optional Extras</h2>
+<h3 id="connecting-to-rabbitmq">Connecting to RabbitMQ</h3>
+<p>Some extra configuration needs to be done in order to get Scicat talking to RabbitMQ. The rabbitmq mechanism is used to trigger asynchronous jobs
+through the archive and retrieve methods. </p>
+<h4 id="setting-up-rabbitmq">Setting up RabbitMQ</h4>
+<p>When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
+It must be set up with a user before catamel is started, otherwise catamel cannot connect. 
+It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
+A basic docker compose for rabbitmq looks like:</p>
+<pre><code>version: &quot;3.8&quot;
+services:
+  local-rabbitmq:
+    hostname: local-rabbitmq
+    image: &apos;bitnami/rabbitmq:latest&apos;
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - &apos;4369:4369&apos;
+      - &apos;5672:5672&apos;
+      - &apos;25672:25672&apos;
+      - &apos;15672:15672&apos;
+    volumes:
+      - &apos;rabbitmq_data:/bitnami&apos;
+volumes:
+    rabbitmq_data:
+      driver: local
+</code></pre><p>This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
+Before connecting to Catamel or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+To understand more about setting up rabbitmq please see the documentation at <a href="https://www.rabbitmq.com/cli.html" target="_blank">https://www.rabbitmq.com/cli.html</a>.
+If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.</p>
+<pre><code># To add the management plugin
+rabbitmq-plugins enable rabbitmq_management
+
+#to add a user
+rabbitmqctl add_user &lt;username&gt; &lt;password&gt;
+rabbitmqctl set_user_tags &lt;username&gt; administrator
+rabbitmqctl set_permissions -p / &lt;username&gt; &apos;.*&apos; &apos;.*&apos; &apos;.*&apos;
+</code></pre><p>Once this is done you can log into the Management Portal hosted at <a href="http://localhost:15672" target="_blank">http://localhost:15672</a>. Any other users, exchanges , queues etc. can be configured manually.</p>
+<h4 id="connecting-scicat-to-rabbitmq">Connecting Scicat to RabbitMQ</h4>
+<p>Catamel handles the connection to rabbitMQ through the component-config.local.json file. Catamel will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
+before running Catamel. A basic rabbitMQ set up in the component-config.local.json file looks like the following:</p>
+<pre><code>&quot;topology&quot;:{
+&quot;connection&quot;:{
+&quot;uri&quot;:&quot;amqp://my-admin-user:newpassword@local-rabbitmq&quot; # the uri of your service with your administrative user
+},
+&quot;exchanges&quot;:[
+{
+&quot;name&quot;:&quot;jobs.write&quot;,
+&quot;type&quot;:&quot;topic&quot;,
+&quot;persistent&quot;:true
+}
+],
+&quot;queues&quot;:[
+{
+&quot;name&quot;:&quot;client.jobs.write&quot;,
+&quot;subscribe&quot;:true
+}
+],
+&quot;bindings&quot;:[
+{
+&quot;exchange&quot;:&quot;jobs.write&quot;,
+&quot;target&quot;:&quot;client.jobs.write&quot;,
+&quot;keys&quot;:[
+&quot;jobqueue&quot;
+]
+}
+]
+}
+}
+</code></pre><p>The exchange and the binding key must be named <code>jobs.write</code> and <code>jobqueue</code> respectively, the queue name can take any value. 
+Catamel expects and exchange called <code>jobs.write</code> to publish jobs messages to bound with that key.</p>
+<h4 id="use-in-practice">Use in Practice</h4>
+<p>If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
+could generate two queues bound to the <code>jobs.write</code> exchange. However these would be bound with the same key that
+could cause cross talk. RabbitMQ allows you to set up any number of virtual hosts within the same server therefore it is
+best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bindings set as in the component-config.local.json file above.</p>
 
                                 
                                 </section>
@@ -803,7 +879,7 @@ Again, if in doubt, just leave the setting as defined in the available example e
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Sites","level":"1.3.4","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.4.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.4.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.4.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2020-12-23T09:54:49.719Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-23T09:54:58.885Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Sites","level":"1.3.4","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.4.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.4.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.4.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2021-04-16T10:52:57.137Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-04-16T10:53:09.816Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
