@@ -62,7 +62,7 @@ This should include imports for all the modules used in the component. If the co
 
 ### `overrideComponent`
 
-Test cases for a component should test as few things outside of the component as possible (services etc should have their own tests), but this causes problems for the services implemnted in each component. This is especially true for the loopback services, but also HTTP and Router. In the `overrideComponent` method, you can specify the service names and provide an alternative class to use.
+Test cases for a component should test as few things outside of the component as possible (services etc should have their own tests), but this causes problems for the services implemented in each component. This is especially true for the loopback services, but also HTTP and Router. In the `overrideComponent` method, you can specify the service names and provide an alternative class to use.
 
 For every service your component uses, there should be a `Mock` equivalent that provides hardcoded data in response to their calls. First, check the service exists in `MockStubs.ts` in the root of the `app` folder. If it is not in there, please implement it only in that file.  You do **not** need to implement every method, others can add to these when they are needed.
 
@@ -71,7 +71,7 @@ The format in the `spec` file should be as follows:
 { provide: RawDatasetApi, useClass: MockDatasetApi }
 ```
 
-The default test merely tests the creation of a component. This is merely opinion but a component should not be considered complete on a branch until the initial tests pass. A release should not go live untilthe coverage of the tests covers more than just basic functionality, i.e. 80% coverage.
+The default test merely tests the creation of a component. This is merely opinion but a component should not be considered complete on a branch until the initial tests pass. A release should not go live until the coverage of the tests covers more than just basic functionality, i.e. 80% coverage.
 
 
 ## State management/NGRX testing 
