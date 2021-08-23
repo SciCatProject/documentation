@@ -28,3 +28,6 @@ These users should be defined in a seperate secrets repo in a file called functi
         "global": true
     }]
 ```
+
+## OIDC
+For OIDC integration, see the [OIDC]{./OIDC.MD} for details.
