@@ -34,6 +34,7 @@
     * [Running the Components](Development/Running.md)
     * [Configuration files](Development/Environment.md)
     * [Login and Accounts](Development/Login.md)
+    * [OIDC Integration](Development/OIDC.md)
     * [State Management in Angular](Development/Ngrx.md)
     * [Testing Backend](Development/Testing_catamel.md)
     * [Testing Frontend](Development/Testing.md)
