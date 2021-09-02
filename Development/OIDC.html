@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>State Management in Angular · SciCat Documentation</title>
+        <title>OIDC Integration · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.20">
@@ -60,10 +60,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Testing_catamel.html" />
+    <link rel="next" href="Ngrx.html" />
     
     
-    <link rel="prev" href="OIDC.html" />
+    <link rel="prev" href="Login.html" />
     
 
     </head>
@@ -526,7 +526,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.6" data-path="OIDC.html">
+        <li class="chapter active" data-level="1.5.6" data-path="OIDC.html">
             
                 <a href="OIDC.html">
             
@@ -539,7 +539,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.7" data-path="Ngrx.html">
+        <li class="chapter " data-level="1.5.7" data-path="Ngrx.html">
             
                 <a href="Ngrx.html">
             
@@ -665,7 +665,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >State Management in Angular</a>
+        <a href=".." >OIDC Integration</a>
     </h1>
 </div>
 
@@ -680,13 +680,148 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="state-management-in-angular">State Management in Angular</h1>
-<p>Almost all external requests made by the client (catanie) are done so via <code>NGRX effects</code> within the state management components.</p>
-<p>Loopback within catamel provies a generated SDK that is used by catanie to define all requests to the API. The SDK folder should not be edited because it will just overwrite it when a new one is generated.</p>
-<p>The SDK is updated by running the following in the catamel source code root:
-<code>./node_modules/.bin/lb-sdk server/server.js  ../catanie/src/app/shared/sdk</code>
-and this is necessary when making any changes to endpoints in catamel.</p>
-<p><a href="https://ngrx.io/" target="_blank">NGRX</a> is Redux for Angular and is heavily used in the client to manage state.</p>
+                                <h1 id="oidc-integration">OIDC Integration</h1>
+<p>SciCat can integrate with one or more OIDC servers to provide Authentication. Integration requires configuration of both Catamel and Catanie in order to setup the redirecting and handshaking that the OAuth2 code flow requires. Additionally, it may involve writing <a href="catamel-code-hooks">custom code hooks</a>  in catamel in order to properly handle profile information obtained by the OIDC Auth Provider.</p>
+<h2 id="catamel-configuration">Catamel Configuration</h2>
+<p>Configuration of Catamel for OIDC involves adding a provider to <code>providers.json</code> file. See <a href="StartHere.html">Start Here</a> for more information on configuring this file.</p>
+<p>Here is an example of a provider that uses Google as an authenticator. Google is used here because it is well-documented and commonly available.</p>
+<pre><code class="lang-json">    <span class="hljs-string">&quot;google&quot;</span>: {
+        <span class="hljs-string">&quot;provider&quot;</span>: <span class="hljs-string">&quot;oidc&quot;</span>,
+        <span class="hljs-string">&quot;authScheme&quot;</span>: <span class="hljs-string">&quot;openid connect&quot;</span>,
+        <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;passport-openidconnect&quot;</span>,
+        <span class="hljs-string">&quot;authPath&quot;</span>: <span class="hljs-string">&quot;/auth/google&quot;</span>,
+        <span class="hljs-string">&quot;successRedirect&quot;</span>: <span class="hljs-string">&quot;http://localhost/user&quot;</span>,
+        <span class="hljs-string">&quot;failureRedirect&quot;</span>: <span class="hljs-string">&quot;http://localhost/login&quot;</span>,
+        <span class="hljs-string">&quot;failureFlash&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;session&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">&quot;issuer&quot;</span>: <span class="hljs-string">&quot;https://accounts.google.com&quot;</span>,
+        <span class="hljs-string">&quot;authorizationURL&quot;</span>: <span class="hljs-string">&quot;https://accounts.google.com/o/oauth2/v2/auth&quot;</span>,
+        <span class="hljs-string">&quot;tokenURL&quot;</span>: <span class="hljs-string">&quot;https://oauth2.googleapis.com/token&quot;</span>,
+        <span class="hljs-string">&quot;userInfoURL&quot;</span>: <span class="hljs-string">&quot;https://openidconnect.googleapis.com/v1/userinfo&quot;</span>,
+        <span class="hljs-string">&quot;clientID&quot;</span>: <span class="hljs-string">&quot;...&quot;</span>,
+        <span class="hljs-string">&quot;clientSecret&quot;</span>: <span class="hljs-string">&quot;...&quot;</span>,
+        <span class="hljs-string">&quot;callbackURL&quot;</span>: <span class="hljs-string">&quot;http://localhost:3000/auth/google/callback&quot;</span>,
+        <span class="hljs-string">&quot;scope&quot;</span>: [<span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;profile&quot;</span>, <span class="hljs-string">&quot;openid&quot;</span>],
+        <span class="hljs-string">&quot;loginCallback&quot;</span>: <span class="hljs-string">&quot;sampleLoginCallback&quot;</span>
+    }
+</code></pre>
+<blockquote>
+<p>Note that information about Google sign in can be found <a href="https://developers.google.com/identity/protocols/oauth2/openid-connect" target="_blank">here</a>, details are beyond the scope of this document.</p>
+<p>Note that OIDC authentication services publish their specific settings in a Discovery document.. To find the settings for, say, google, see <a href="https://accounts.google.com/.well-known/openid-configuration" target="_blank">https://accounts.google.com/.well-known/openid-configuration</a>.</p>
+</blockquote>
+<p>Details about the fields in this provider configuration:</p>
+<ul>
+<li><strong>provider</strong> is used by the loopback-passport-configurator to build a strategy</li>
+<li><strong>authScheme</strong> is used by the loopback-passport-configurator to build a strategy</li>
+<li><strong>module</strong> describes the passport module to use. passport-openidconnect is already included in Catamel</li>
+<li><strong>authPath</strong> is the path that Catamel will create (with the help of loopback-passport-configurator) to begin the authentication process. Catamel will redirect users to this path (once it is configured, of course!)</li>
+<li><strong>successRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on success. Here we set it to the a development environment&apos;s user page.</li>
+<li><strong>failureRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on failed authentication. Here we set it to the a development environment&apos;s user page login page.</li>
+<li><strong>failureFlash</strong> is currently unsupported.</li>
+<li><strong>session</strong> is not needed, since Catanie authenticates outside of sessions.</li>
+<li><strong>authorizationURL</strong> is specific to your OIDC provider</li>
+<li><strong>tokenURL</strong> is specific to your OIDC provider</li>
+<li><strong>userInfoURL</strong> is specific to your OIDC provider</li>
+<li><strong>clientID</strong> is specific to your OIDC provider</li>
+<li><strong>clientSecret</strong> is specific to your OIDC provider</li>
+<li><strong>scope</strong> is specific to your OIDC provider</li>
+<li><strong>loginCallback</strong> optional name of a <a href="#configure-callback">callback</a> function to run to add profile information to the UserIdentity</li>
+</ul>
+<h2 id="catanie-configuration">Catanie Configuration</h2>
+<p>The default login page in Catanie provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, Catanie provides two configuration settings to modify the login page appropriately.</p>
+<p>These setting are accomplished by modifying the catanie <a href="Environment.html">environment document</a>. </p>
+<pre><code class="lang-javascript">
+  <span class="hljs-attr">loginFormEnabled</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">oAuth2Endpoints</span>: [
+    {<span class="hljs-attr">displayText</span>: <span class="hljs-string">&quot;Google&quot;</span>, <span class="hljs-attr">displayImage</span>: <span class="hljs-string">&quot;../../../assets/images/btn_google_light_normal_ios.svg&quot;</span>, <span class="hljs-attr">authURL</span>: <span class="hljs-string">&quot;auth/google&quot;</span>}]
+</code></pre>
+<ul>
+<li><strong>loginFormEnabled</strong> sets whether to display the username/password form in the login page</li>
+<li><strong>oAuth2Endpoints</strong> provides information that Catanie uses to display &quot;Sign in with ...&quot; buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.<ul>
+<li><strong>displayText</strong> sets the name of the provider to display in the button. In this case, the button will show &quot;Sign In With Google&quot;</li>
+<li><strong>displayImage</strong> defines an image to display in the button. The image will end up being 24px tall. It is recommended that the image be in SVG format.</li>
+<li><strong>authURL</strong> defines the relative path that the user will be redirected to when they click the button. Note that this maps to the <code>authPath</code> setting described above.</li>
+</ul>
+</li>
+</ul>
+<h2 id="catamel-code-hooks">Catamel Code Hooks</h2>
+<p>Configuring Catamel and Catanie to authenticate through OIDC is very useful for providing a third party authentication. However, there two issues that come up that can be addressed with Catamel code hooks:</p>
+<ul>
+<li>By default, the system will authenticate all users who pass come in through the OAuth Provider. </li>
+<li>By default, the users profile in the application will contain information gathered from the OAuth Provider, and nothing more.</li>
+</ul>
+<h3 id="prevent-authenticating-unkown-users">Prevent Authenticating Unkown Users</h3>
+<p>In <a href="#catamel-configuration">Catamel Configuration</a>, we configured the loginCallback. The value of this file is the name of a function that must be defined and exported. See <a href="https://github.com/SciCatProject/catamel/blob/develop/server/boot/login-callbacks.js" target="_blank">login-call.js</a> for details.</p>
+<p>Code snippet is presented for as an example, omitting the particular details about communicating with an external system:</p>
+<pre><code class="lang-javascript">
+<span class="hljs-built_in">module</span>.exports.sampleLoginCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, done</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, user, identity, token</span>) </span>{
+
+    <span class="hljs-keyword">var</span> authInfo = {
+      <span class="hljs-attr">identity</span>: identity,
+    };
+    <span class="hljs-keyword">if</span> (token) {
+      authInfo.accessToken = token;
+    }
+
+    <span class="hljs-keyword">const</span> requestURL = getUserURL(identity);
+    <span class="hljs-keyword">if</span> (!requestURL){
+      logger.logError(<span class="hljs-string">`unexpected authenticator type: <span class="hljs-subst">${identity.provider}</span>`</span>);
+      done();
+      <span class="hljs-keyword">return</span>;
+    }
+    request(requestURL, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, body</span>) </span>{
+      <span class="hljs-comment">// ask external system for the user&apos;s profile information</span>
+      <span class="hljs-keyword">if</span> (error){
+        <span class="hljs-comment">// and error occurred talking to the external system (possibly from a connection issue)...deny login</span>
+        logger.logError(<span class="hljs-string">`error talking to external <span class="hljs-subst">${error.message}</span>`</span>);
+        done(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">if</span> (response.statusCode == <span class="hljs-number">200</span>) {
+        <span class="hljs-keyword">const</span> bodyObj = <span class="hljs-built_in">JSON</span>.parse(body);
+        logger.logInfo(<span class="hljs-string">&quot;user service returned&quot;</span>, bodyObj);
+      }
+      <span class="hljs-keyword">else</span>{
+        logger.logError(<span class="hljs-string">`external system replied with an error <span class="hljs-subst">${response.statusCode}</span> - <span class="hljs-subst">${body}</span>.`</span>);
+        <span class="hljs-comment">// external system replied with a negative response...deny login</span>
+        done(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-comment">//accept login</span>
+      done(err, user, authInfo);
+    });
+  };
+};
+</code></pre>
+<h3 id="add-information-to-users-profile">Add information to User&apos;s Profile</h3>
+<p>By default profile information from the Authentication Provider will be added to the user&apos;s profile. This profile is stored in the DaCat database <code>UserIdentity</code> collection. This collection is created by the loopback-component-passport library, and is also used for LDAP authentication. Catamel LDAP integrations populate this collection with the user&apos;s LDAP profile information automatically with a callback. One of the most important things that is added to the profile is the user&apos;s accessGroups field, which is critical to calculating a user&apos;s privilege in SciCat.</p>
+<p>One way to mimic this with an OAuth2 provider is to use a <code>before save</code> <a href="https://loopback.io/doc/en/lb3/Operation-hooks.html" target="_blank">Loopback Operation Hook</a>. This hook will get called as the user logs in and allows you to information to the <code>UserIdentity</code> collection, which will be used in a variety of places, including access controls.</p>
+<p>The following code snippet is presented for as an example, omitting the particular details about communicating with an external system:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Observe saving UserIdentity. This gives us the ability to update the user profile with facility-specific groups</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) </span>{
+  app.models.UserIdentity.observe(<span class="hljs-string">&quot;before save&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ctx, next</span>) </span>{
+    <span class="hljs-keyword">if</span> (!ctx.data){
+      logger.logInfo(<span class="hljs-string">&quot;No context data from UserIdentity&quot;</span>);
+      next();
+      <span class="hljs-keyword">return</span>;
+    }
+    request(userURL, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, _body</span>) </span>{
+      <span class="hljs-comment">// ask external system for user information so we can get group info</span>
+      <span class="hljs-keyword">if</span> (error){
+        logger.logError(<span class="hljs-string">`error talking to external system <span class="hljs-subst">${error.message}</span>`</span>);
+        next();
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">if</span> (response.statusCode == <span class="hljs-number">200</span>){
+        <span class="hljs-comment">// add groups to profile, saving in the UserIdentity model</span>
+        ctx.data.profile.accessGroups = <span class="hljs-built_in">JSON</span>.parse(response.body).groups;
+      }
+      next();
+    });
+  });
+};
+</code></pre>
 
                                 
                                 </section>
@@ -714,12 +849,12 @@ and this is necessary when making any changes to endpoints in catamel.</p>
 
             
                 
-                <a href="OIDC.html" class="navigation navigation-prev " aria-label="Previous page: OIDC Integration">
+                <a href="Login.html" class="navigation navigation-prev " aria-label="Previous page: Login and Accounts">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Testing_catamel.html" class="navigation navigation-next " aria-label="Next page: Testing Backend">
+                <a href="Ngrx.html" class="navigation navigation-next " aria-label="Next page: State Management in Angular">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -730,7 +865,7 @@ and this is necessary when making any changes to endpoints in catamel.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"State Management in Angular","level":"1.5.7","depth":2,"next":{"title":"Testing Backend","level":"1.5.8","depth":2,"path":"Development/Testing_catamel.md","ref":"Development/Testing_catamel.md","articles":[]},"previous":{"title":"OIDC Integration","level":"1.5.6","depth":2,"path":"Development/OIDC.md","ref":"Development/OIDC.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Ngrx.md","mtime":"2021-09-02T14:19:05.538Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-02T14:19:19.497Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OIDC Integration","level":"1.5.6","depth":2,"next":{"title":"State Management in Angular","level":"1.5.7","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},"previous":{"title":"Login and Accounts","level":"1.5.5","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/OIDC.md","mtime":"2021-09-02T14:19:05.538Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-02T14:19:19.497Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
