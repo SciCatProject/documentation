@@ -30,4 +30,4 @@ These users should be defined in a seperate secrets repo in a file called functi
 ```
 
 ## OIDC
-For OIDC integration, see the [OIDC](./OIDC.MD) for details.
+For OIDC integration, see the [OIDC](./OIDC.html) for details.
