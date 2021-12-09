@@ -307,25 +307,25 @@ which need to be provided:
     they want to support, ideally on an international level. It is
     strongly recommended that physical quantities are stored in the
     following format (the field names are just examples, the structure
-    with the two fields "value" and "units" is important here)
+    with the two fields "value" and "unit" is important here)
 
     "scientificMetadata": {
            ...
            "beamlineParameters": {
                "Ring current": {
                    "value": 402.246,
-                   "units": "mA"
+                   "unit": "mA"
                },
                "Beam energy": {
                    "value": 22595,
-                   "units": "eV"
+                   "unit": "eV"
                }
            }
            ....
     }
 
 In future for such quantities the data catalog will automatically add
-two additional fields "valueSI" and "unitsSI" with the corresponding
+two additional fields "valueSI" and "unitSI" with the corresponding
 SI units. The rationale for this is to support value queries in a
 reliable manner across datasets with potentially different units
 chosen for the same quantity:
@@ -335,15 +335,15 @@ chosen for the same quantity:
            "beamlineParameters": {
                "Ring current": {
                    "value": 402.246,
-                   "units": "mA",
+                   "unit": "mA",
                    "valueSI": 0.402246,
-                   "unitsSI": "A"
+                   "unitSI": "A"
                },
                "Beam energy": {
                    "value": 22595,
-                   "units": "eV",
+                   "unit": "eV",
                    "valueSI": 3.6201179E-15
-                   "unitsSI":"J"
+                   "unitSI":"J"
                }
            }
            ....
@@ -400,47 +400,47 @@ chosen for the same quantity:
                 "beamlineParameters": {
                     "Monostripe": "Ru/C",
                     "Ring current": {
-                        "v": 0.402246,
-                        "u": "A"
+                        "value": 0.402246,
+                        "unit": "A"
                     },
                     "Beam energy": {
-                        "v": 22595,
-                        "u": "eV"
+                        "value": 22595,
+                        "unit": "eV"
                     }
                 },
                 "detectorParameters": {
                     "Objective": 20,
                     "Scintillator": "LAG 20um",
                     "Exposure time": {
-                        "v": 0.4,
-                        "u": "s"
+                        "value": 0.4,
+                        "unit": "s"
                     }
                 },
                 "scanParameters": {
                     "Number of projections": 1801,
                     "Rot Y min position": {
-                        "v": 0,
-                        "u": "deg"
+                        "value": 0,
+                        "unit": "deg"
                     },
                     "Inner scan flag": 0,
                     "File Prefix": "817b_B2_",
                     "Sample In": {
-                        "v": 0,
-                        "u": "m"
+                        "value": 0,
+                        "unit": "m"
                     },
                     "Number of darks": 10,
                     "Rot Y max position": {
-                        "v": 180,
-                        "u": "deg"
+                        "value": 180,
+                        "unit": "deg"
                     },
                     "Angular step": {
-                        "v": 0.1,
-                        "u": "deg"
+                        "value": 0.1,
+                        "unit": "deg"
                     },
                     "Number of flats": 120,
                     "Sample Out": {
-                        "v": -0.005,
-                        "u": "m"
+                        "value": -0.005,
+                        "unit": "m"
                     },
                     "Flat frequency": 0,
                     "Number of inter-flats": 0
