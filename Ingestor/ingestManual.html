@@ -6,7 +6,7 @@
         <title>Ingest Manual PSI · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.20">
+        <meta name="generator" content="HonKit 3.6.23">
         
         
         
@@ -949,17 +949,17 @@ up to the research groups to define the format(s) of their data that
 they want to support, ideally on an international level. It is
 strongly recommended that physical quantities are stored in the
 following format (the field names are just examples, the structure
-with the two fields &quot;value&quot; and &quot;units&quot; is important here)</p>
+with the two fields &quot;value&quot; and &quot;unit&quot; is important here)</p>
 <p>&quot;scientificMetadata&quot;: {</p>
 <pre><code>   ...
    &quot;beamlineParameters&quot;: {
        &quot;Ring current&quot;: {
            &quot;value&quot;: 402.246,
-           &quot;units&quot;: &quot;mA&quot;
+           &quot;unit&quot;: &quot;mA&quot;
        },
        &quot;Beam energy&quot;: {
            &quot;value&quot;: 22595,
-           &quot;units&quot;: &quot;eV&quot;
+           &quot;unit&quot;: &quot;eV&quot;
        }
    }
    ....
@@ -967,7 +967,7 @@ with the two fields &quot;value&quot; and &quot;units&quot; is important here)</
 </li>
 </ul>
 <p>In future for such quantities the data catalog will automatically add
-two additional fields &quot;valueSI&quot; and &quot;unitsSI&quot; with the corresponding
+two additional fields &quot;valueSI&quot; and &quot;unitSI&quot; with the corresponding
 SI units. The rationale for this is to support value queries in a
 reliable manner across datasets with potentially different units
 chosen for the same quantity:</p>
@@ -976,15 +976,15 @@ chosen for the same quantity:</p>
        &quot;beamlineParameters&quot;: {
            &quot;Ring current&quot;: {
                &quot;value&quot;: 402.246,
-               &quot;units&quot;: &quot;mA&quot;,
+               &quot;unit&quot;: &quot;mA&quot;,
                &quot;valueSI&quot;: 0.402246,
-               &quot;unitsSI&quot;: &quot;A&quot;
+               &quot;unitSI&quot;: &quot;A&quot;
            },
            &quot;Beam energy&quot;: {
                &quot;value&quot;: 22595,
-               &quot;units&quot;: &quot;eV&quot;,
+               &quot;unit&quot;: &quot;eV&quot;,
                &quot;valueSI&quot;: 3.6201179E-15
-               &quot;unitsSI&quot;:&quot;J&quot;
+               &quot;unitSI&quot;:&quot;J&quot;
            }
        }
        ....
@@ -1036,47 +1036,47 @@ administrative metadata</p>
         &quot;beamlineParameters&quot;: {
             &quot;Monostripe&quot;: &quot;Ru/C&quot;,
             &quot;Ring current&quot;: {
-                &quot;v&quot;: 0.402246,
-                &quot;u&quot;: &quot;A&quot;
+                &quot;value&quot;: 0.402246,
+                &quot;unit&quot;: &quot;A&quot;
             },
             &quot;Beam energy&quot;: {
-                &quot;v&quot;: 22595,
-                &quot;u&quot;: &quot;eV&quot;
+                &quot;value&quot;: 22595,
+                &quot;unit&quot;: &quot;eV&quot;
             }
         },
         &quot;detectorParameters&quot;: {
             &quot;Objective&quot;: 20,
             &quot;Scintillator&quot;: &quot;LAG 20um&quot;,
             &quot;Exposure time&quot;: {
-                &quot;v&quot;: 0.4,
-                &quot;u&quot;: &quot;s&quot;
+                &quot;value&quot;: 0.4,
+                &quot;unit&quot;: &quot;s&quot;
             }
         },
         &quot;scanParameters&quot;: {
             &quot;Number of projections&quot;: 1801,
             &quot;Rot Y min position&quot;: {
-                &quot;v&quot;: 0,
-                &quot;u&quot;: &quot;deg&quot;
+                &quot;value&quot;: 0,
+                &quot;unit&quot;: &quot;deg&quot;
             },
             &quot;Inner scan flag&quot;: 0,
             &quot;File Prefix&quot;: &quot;817b_B2_&quot;,
             &quot;Sample In&quot;: {
-                &quot;v&quot;: 0,
-                &quot;u&quot;: &quot;m&quot;
+                &quot;value&quot;: 0,
+                &quot;unit&quot;: &quot;m&quot;
             },
             &quot;Number of darks&quot;: 10,
             &quot;Rot Y max position&quot;: {
-                &quot;v&quot;: 180,
-                &quot;u&quot;: &quot;deg&quot;
+                &quot;value&quot;: 180,
+                &quot;unit&quot;: &quot;deg&quot;
             },
             &quot;Angular step&quot;: {
-                &quot;v&quot;: 0.1,
-                &quot;u&quot;: &quot;deg&quot;
+                &quot;value&quot;: 0.1,
+                &quot;unit&quot;: &quot;deg&quot;
             },
             &quot;Number of flats&quot;: 120,
             &quot;Sample Out&quot;: {
-                &quot;v&quot;: -0.005,
-                &quot;u&quot;: &quot;m&quot;
+                &quot;value&quot;: -0.005,
+                &quot;unit&quot;: &quot;m&quot;
             },
             &quot;Flat frequency&quot;: 0,
             &quot;Number of inter-flats&quot;: 0
@@ -2824,7 +2824,7 @@ LC<sub>TYPE</sub> variable. Just follow the description in:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2021-09-02T14:19:05.554Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-02T14:19:19.497Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2021-12-09T10:19:41.270Z","type":"markdown"},"gitbook":{"version":"3.6.23","time":"2021-12-09T10:19:55.946Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
