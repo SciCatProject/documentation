@@ -13,7 +13,10 @@ The following graph shows a simplified class diagramm of the main model classes.
 Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respective model (handled by loopback model definitions)
 
 ## Dataset
-This is the base class for all datasets, and is derived from the Ownable model.
+
+This is the base class for all datasets, and is derived from the
+Ownable model.  There are two classes that are derived from Dataset:
+[RawDataset](#rawdataset) and [DerivedDataset](#deriveddataset).
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/Dataset.create)
 
@@ -21,6 +24,8 @@ The data model and its API endpoints are described [here](https://scicatproject.
 ## RawDataset
 
 This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains `Scientific Metadata`, and this is an extensible object to outline all parameters relevant to the dataset.
+
+Each raw dataset may contain a link to a single Proposal.
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/RawDataset.create)
 
@@ -41,6 +46,12 @@ This collection is meant to store the available measurement techniques, ideally 
 ## DerivedDataset
 
 These are datasets that are created by analyzing the data in raw datasets. The fields allow to link both to the raw data files used in the analysis as well as to a software repository which keeps the source code used for the analysis, thus helping to keep track of the provenance of the data. You can add ScientificMetadata here as well.
+
+Although DerivedDataset does not contain a link to a Proposal, it may
+be deduced.  A corresponding Proposal may be found by identifying all
+input RawDatasets (either directly or indirectly via other
+DerivedDatasets) from the inputDatasets field.  These RawDatasets may
+contain links to the corresponding Proposal.
 
 The data model and its API endpoints are described [here](https://scicatproject.github.io/api/#operation/DerivedDataset.create)
 
