@@ -6,7 +6,7 @@
         <title>An Introduction to the Data Model · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.23">
+        <meta name="generator" content="HonKit 3.7.1">
         
         
         
@@ -688,10 +688,13 @@
 <h2 id="the-ownable-base-model">The Ownable Base model</h2>
 <p>Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respective model (handled by loopback model definitions)</p>
 <h2 id="dataset">Dataset</h2>
-<p>This is the base class for all datasets, and is derived from the Ownable model.</p>
+<p>This is the base class for all datasets, and is derived from the
+Ownable model.  There are two classes that are derived from Dataset:
+<a href="#rawdataset">RawDataset</a> and <a href="#deriveddataset">DerivedDataset</a>.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/Dataset.create" target="_blank">here</a></p>
 <h2 id="rawdataset">RawDataset</h2>
 <p>This is a dataset that has been collected from an experiment. It contains details about who owns it, contact information etc. Most importantly, it contains <code>Scientific Metadata</code>, and this is an extensible object to outline all parameters relevant to the dataset.</p>
+<p>Each raw dataset may contain a link to a single Proposal.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/RawDataset.create" target="_blank">here</a></p>
 <h2 id="instrument">Instrument</h2>
 <p>This collection is meant to store the available measurement instruments, ideally in a globally unique naming scheme (within the Expands/Panosc EU programs standardization on these topics is pursued). Datasets can link to these instruments (in addition to the creationLocation field), allowing for more detailed information about the measurement devices.</p>
@@ -700,6 +703,11 @@
 <p>This collection is meant to store the available measurement techniques, ideally in a globally unique naming scheme (within the Expands/Panosc EU programs standardization on these topics is pursued). Datasets can link to these techniques, allowing for more detailed information about the measurement method applied</p>
 <h2 id="deriveddataset">DerivedDataset</h2>
 <p>These are datasets that are created by analyzing the data in raw datasets. The fields allow to link both to the raw data files used in the analysis as well as to a software repository which keeps the source code used for the analysis, thus helping to keep track of the provenance of the data. You can add ScientificMetadata here as well.</p>
+<p>Although DerivedDataset does not contain a link to a Proposal, it may
+be deduced.  A corresponding Proposal may be found by identifying all
+input RawDatasets (either directly or indirectly via other
+DerivedDatasets) from the inputDatasets field.  These RawDatasets may
+contain links to the corresponding Proposal.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/DerivedDataset.create" target="_blank">here</a></p>
 <h3 id="origdatablocks-and-datablocks">OrigDatablocks and Datablocks</h3>
 <p>Describes the actual data files, including file name, size and ownership. A given Dataset can have many (orig)Datablocks depending on the number of files and the sizes of the files.</p>
@@ -789,7 +797,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"next":{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Data_Model.md","mtime":"2021-12-09T10:19:41.258Z","type":"markdown"},"gitbook":{"version":"3.6.23","time":"2021-12-09T10:19:55.946Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"next":{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Data_Model.md","mtime":"2022-04-28T14:55:33.451Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-04-28T14:55:47.603Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
