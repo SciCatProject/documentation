@@ -8,6 +8,7 @@ An example is shown below
 catanie/src/assets/config.json:
 
 {
+  "accessTokenPrefix": "",  // Set the backend token prefix. Should be empty string for current backend or "Bearer " if using scicat-backend-next.
   "addDatasetEnabled": true,  // Show/hide the "Create Dataset" button in the Datasets Dashboard.
   "archiveWorkflowEnabled": true,  // Enable/disable the archive/retrieve workflow.
   "datasetReduceEnabled": true,  // Enable/disable the automatic Dataset reduction/analysis workflow.
