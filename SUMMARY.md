@@ -18,6 +18,7 @@
     * [Step by Step instruction](Operator/Step_by_Step_Setup.md)
     * [Deploy with Docker Compose](Operator/Step_by_Step_Setup_Docker.md)
     * [Deploy with Kubernetes](Operator/Step_by_Step_Setup_Kubernetes.md)
+    * [Deploy Zip Service](Operator/Step_by_Step_Setup_Zip_Service.md)
     * [Sites](Operator/Sites/README.md)
         * [ESS Site Specific info](Operator/Sites/ESS.md)
         * [MAX IV Site specific info](Operator/Sites/MaxIV.md)
