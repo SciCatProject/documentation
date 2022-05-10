@@ -130,7 +130,7 @@ module.exports.sampleLoginCallback = function(req, done) {
 
 By default profile information from the Authentication Provider will be added to the user's profile. This profile is stored in the DaCat database `UserIdentity` collection. This collection is created by the loopback-component-passport library, and is also used for LDAP authentication. Catamel LDAP integrations populate this collection with the user's LDAP profile information automatically with a callback. One of the most important things that is added to the profile is the user's accessGroups field, which is critical to calculating a user's privilege in SciCat.
 
-One way to mimic this with an OAuth2 provider is to use a `before save` [Loopback Operation Hook](https://loopback.io/doc/en/lb3/Operation-hooks.html). This hook will get called as the user logs in and allows you to information to the `UserIdentity` collection, which will be used in a variety of places, including access controls.
+One way to mimic this with an OAuth2 provider is to use a `before save` [Loopback Operation Hook](https://loopback.io/doc/en/lb3/Operation-hooks.html). This hook will get called as the user logs in and allows you to add information to the `UserIdentity` collection, which will be used in a variety of places, including access controls.
 
 The following code snippet is presented for as an example, omitting the particular details about communicating with an external system:
 
