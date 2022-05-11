@@ -32,7 +32,7 @@
     * [Overview of Backend and Model](Development/StartHere.md)
     * [An Introduction to the Data Model](Development/Data_Model.md)
     * [Running the Components](Development/Running.md)
-    * [Configuration](Development/Environment.md)
+    * [Configuration](Development/Configuration.md)
     * [Theming](Development/Theming.md)
     * [Login and Accounts](Development/Login.md)
     * [OIDC Integration](Development/OIDC.md)
