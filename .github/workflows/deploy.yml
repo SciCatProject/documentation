@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          ./fetch_docs_from_catanie.sh
+          ./fetch_docs_from_frontend.sh
           npx honkit build . docs
 
       - name: Deploy

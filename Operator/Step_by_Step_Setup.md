@@ -36,7 +36,7 @@ and enter
 db.Dataset.createIndex( { "$**": "text" } )
 ```
 
-Note: If the index is not created as above, catanie e2e test fails.
+Note: If the index is not created as above, frontend e2e test fails.
 
 ### API Server
 
@@ -126,8 +126,8 @@ node version 10 or higher
 
 Use git to clone the repository
 ```
-git clone https://github.com/SciCatProject/catanie
-cd catanie
+git clone https://github.com/SciCatProject/frontend
+cd frontend
 ```
 First install the required modules
 ```
@@ -163,7 +163,7 @@ npm run e2e
 
 ### Configuration
 
-You can fine tune the features that you want to use in the GUI by setting the flags inside the `src/environments` folder. In this folder you find several example configuraion files used by the Sites. Please adjust to your needs. The `angular.json` file contains a section "configurations" which defines a set of prepared configurations, that you can choose from. This defines which files will be picked up at build time. The build system defaults to the `environment.ts`, but if you e.g. do `ng build --env=development` then `environment.development.ts` will be used instead. Here is an [example configuration file](https://github.com/SciCatProject/catanie/blob/develop/src/environments/environment.development.ts)
+You can fine tune the features that you want to use in the GUI by setting the flags inside the `src/environments` folder. In this folder you find several example configuraion files used by the Sites. Please adjust to your needs. The `angular.json` file contains a section "configurations" which defines a set of prepared configurations, that you can choose from. This defines which files will be picked up at build time. The build system defaults to the `environment.ts`, but if you e.g. do `ng build --env=development` then `environment.development.ts` will be used instead. Here is an [example configuration file](https://github.com/SciCatProject/frontend/blob/develop/src/environments/environment.development.ts)
 
 The most important configuration setting is the connection to the API server
 ```

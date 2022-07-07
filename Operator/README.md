@@ -20,7 +20,7 @@ These two components together comprise the "backend" of the architecture.
 
 ### Frontend
 
-To the REST server an arbitrary number of "clients" (frontends) can be connected. One of the most important clients is the web based GUI frontend [Catanie](https://github.com/SciCatProject/catanie). This allows to communicate with the data catalog in a user friendly way. It is based on the Angular (9+) technology and uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
+To the REST server an arbitrary number of "clients" (frontends) can be connected. One of the most important clients is the [web based GUI frontend](https://github.com/SciCatProject/frontend). This allows to communicate with the data catalog in a user friendly way. It is based on the Angular (9+) technology and uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
 
 In addition to the GUI other clients exist, such as command line (CLI) clients (example exist written in GO and Python) or desktop based GUI applications based on Qt. The CLI tools are especially useful for automated workflows, e.g. to get the data into the data catalog. This process is termed "ingestion" of the data. But they can also be used to add the data manually, especially for derived data, since this part of the workflow is often not possible to automate, in particular in truly *experimental* setups.
 

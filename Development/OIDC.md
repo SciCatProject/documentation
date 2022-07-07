@@ -1,5 +1,5 @@
 # OIDC Integration
-SciCat can integrate with one or more OIDC servers to provide Authentication. Integration requires configuration of both Catamel and Catanie in order to setup the redirecting and handshaking that the OAuth2 code flow requires. Additionally, it may involve writing [custom code hooks](catamel-code-hooks)  in catamel in order to properly handle profile information obtained by the OIDC Auth Provider.
+SciCat can integrate with one or more OIDC servers to provide Authentication. Integration requires configuration of both Catamel and frontend in order to setup the redirecting and handshaking that the OAuth2 code flow requires. Additionally, it may involve writing [custom code hooks](catamel-code-hooks)  in catamel in order to properly handle profile information obtained by the OIDC Auth Provider.
 
 ## Catamel Configuration
 Configuration of Catamel for OIDC involves adding a provider to `providers.json` file. See [Start Here](./StartHere.md) for more information on configuring this file.
@@ -40,7 +40,7 @@ Details about the fields in this provider configuration:
 * **successRedirect** is the URL passed to the OIDC provider instructing it to redirect the user on success. Here we set it to the a development environment's user page.
 * **failureRedirect** is the URL passed to the OIDC provider instructing it to redirect the user on failed authentication. Here we set it to the a development environment's user page login page.
 * **failureFlash** is currently unsupported.
-* **session** is not needed, since Catanie authenticates outside of sessions.
+* **session** is not needed, since the frontend authenticates outside of sessions.
 * **authorizationURL** is specific to your OIDC provider
 * **tokenURL** is specific to your OIDC provider
 * **userInfoURL** is specific to your OIDC provider
@@ -50,11 +50,11 @@ Details about the fields in this provider configuration:
 * **loginCallback** optional name of a [callback](#configure-callback) function to run to add profile information to the UserIdentity
 
 
-## Catanie Configuration 
+## SciCat Frontend Configuration 
 
-The default login page in Catanie provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, Catanie provides two configuration settings to modify the login page appropriately.
+The default login page in the frontend provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, the frontend provides two configuration settings to modify the login page appropriately.
 
-These setting are accomplished by modifying the catanie [environment document](./Environment.md). 
+These setting are accomplished by modifying the frontend [environment document](./Environment.md). 
 
 ```javascript
   
@@ -66,14 +66,14 @@ These setting are accomplished by modifying the catanie [environment document](.
 
 
 * **loginFormEnabled** sets whether to display the username/password form in the login page
-* **oAuth2Endpoints** provides information that Catanie uses to display "Sign in with ..." buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.
+* **oAuth2Endpoints** provides information that the frontend uses to display "Sign in with ..." buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.
   * **displayText** sets the name of the provider to display in the button. In this case, the button will show "Sign In With Google"
   * **displayImage** defines an image to display in the button. The image will end up being 24px tall. It is recommended that the image be in SVG format.
   * **authURL** defines the relative path that the user will be redirected to when they click the button. Note that this maps to the `authPath` setting described above.
 
 ## Catamel Code Hooks
 
-Configuring Catamel and Catanie to authenticate through OIDC is very useful for providing a third party authentication. However, there two issues that come up that can be addressed with Catamel code hooks:
+Configuring Catamel and frontend to authenticate through OIDC is very useful for providing a third party authentication. However, there two issues that come up that can be addressed with Catamel code hooks:
 
 * By default, the system will authenticate all users who pass come in through the OAuth Provider. 
 * By default, the users profile in the application will contain information gathered from the OAuth Provider, and nothing more.

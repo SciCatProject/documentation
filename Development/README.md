@@ -19,7 +19,7 @@ SciCat is built on micro services using the following stack:
 
 The most important part to understand is how loopback works, because it is the platform which is directly addressed as part of the development. Please check the corresponding Loopback 3 documentation for all details
 
-## Web Browser Client (Catanie)
+## Web Browser Client (Frontend)
 
 * [Angular 9+](https://angular.io/) 
 * [Angular Material Widgets and Design](https://material.angular.io/) 
