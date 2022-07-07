@@ -11,7 +11,7 @@ For the subsequent sections it will be useful to have a "helicopter" overview of
 
 ### Backend
 
-At the heart of the SciCat architecture there is the REST API server [Catamel](https://github.com/SciCatProject/catamel). This is a  NodeJS application that uses the Loopback 3 framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Following the Swagger/OpenAPI format SDKs can be generated in almost any language.
+At the heart of the SciCat architecture there is the [REST API server](https://github.com/SciCatProject/backend). This is a  NodeJS application that uses the Loopback 3 framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Following the Swagger/OpenAPI format SDKs can be generated in almost any language.
 
 The persistence layer behind this API server is a [MongoDB](https://www.mongodb.com/) instance, i.e an open source, NoSQL, document-based database solution. The API server handles alll the bi-directional communication from the REST interface to the Database.
 
@@ -20,7 +20,7 @@ These two components together comprise the "backend" of the architecture.
 
 ### Frontend
 
-To the REST server an arbitrary number of "clients" (frontends) can be connected. One of the most important clients is the web based GUI frontend [Catanie](https://github.com/SciCatProject/catanie). This allows to communicate with the data catalog in a user friendly way. It is based on the Angular (9+) technology and uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
+To the REST server an arbitrary number of "clients" (frontends) can be connected. One of the most important clients is the [web based GUI frontend](https://github.com/SciCatProject/frontend). This allows to communicate with the data catalog in a user friendly way. It is based on the Angular (9+) technology and uses ngrx to communicate with the SciCat API and provide a searchable interface for datasets, as well as the option to carry out actions \(i.e. archiving\).
 
 In addition to the GUI other clients exist, such as command line (CLI) clients (example exist written in GO and Python) or desktop based GUI applications based on Qt. The CLI tools are especially useful for automated workflows, e.g. to get the data into the data catalog. This process is termed "ingestion" of the data. But they can also be used to add the data manually, especially for derived data, since this part of the workflow is often not possible to automate, in particular in truly *experimental* setups.
 

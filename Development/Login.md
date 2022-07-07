@@ -12,7 +12,7 @@ The login method needs to be defined in the client configuartion (environment fi
 See [loopback docs](https://loopback.io/doc/en/lb3/Third-party-login-using-Passport.html)
 
 For non-third party logins defined, no UserIdentity is created.  These are special users for admin purposes including beamline specific users for ingestion etc.
-These users should be defined in a seperate secrets repo in a file called functionalAccounts.json and are read by createFunctionalAccounts.js in catamel e.g.
+These users should be defined in a seperate secrets repo in a file called functionalAccounts.json and are read by createFunctionalAccounts.js in the backend e.g.
 ```
     [{
         "account": "admin",

@@ -1,11 +1,11 @@
-# Catanie Configuration file
+# SciCat Frontend Configuration file
 
-This is the configuration file for the catanie client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into `/usr/share/nginx/html/assets/config.json`.
+This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into `/usr/share/nginx/html/assets/config.json`.
 
 An example is shown below
 
 ```
-catanie/src/assets/config.json:
+frontend/src/assets/config.json:
 
 {
   "accessTokenPrefix": "",  // Set the backend token prefix. Should be empty string for current backend or "Bearer " if using scicat-backend-next.

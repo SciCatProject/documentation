@@ -1,11 +1,11 @@
-# Catanie Theming file
+# SciCat Frontend Theming file
 
-This is the theming file for the catanie client. The theming file allows the systems administrator to configure the color theme of the client. The theming file can either be served from the backend, via the `/client/theme.json` endpoint or mounted into `/usr/share/nginx/html/assets/theme.json`.
+This is the theming file for the frontend client. The theming file allows the systems administrator to configure the color theme of the client. The theming file can either be served from the backend, via the `/client/theme.json` endpoint or mounted into `/usr/share/nginx/html/assets/theme.json`.
 
 An example is shown below
 
 ```
-catanie/src/assets/theme.json
+frontend/src/assets/theme.json
 
 {
   "name": "light",  // Name of the theme.

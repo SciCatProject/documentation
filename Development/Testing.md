@@ -1,7 +1,7 @@
 
 # [Testing](https://angular.io/docs/ts/latest/guide/testing.html)
 
-All components of SciCat include unit test coverage and catanie has additional end to end user interface testing. Tests are run by CI before any change request is approved.
+All components of SciCat include unit test coverage and the frontend has additional end to end user interface testing. Tests are run by CI before any change request is approved.
 
 
 # E2E ([Protractor](http://www.protractortest.org/#/))
@@ -16,7 +16,7 @@ Cypress is not based on Selenium.
 
 `npx cypress open` opens the Cypress GUI in the browser.
 
-`npx cypress run --spec /home/encima/dev/melanie/catanie/cypress/integration/policy-delegate.spec.js` will run the single test file policy-delegate.spec.js.
+`npx cypress run --spec ./cypress/integration/policy-delegate.spec.js` will run the single test file policy-delegate.spec.js.
 
 # Unit (Jasmine, run by Karma)
 

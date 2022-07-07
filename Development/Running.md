@@ -2,15 +2,15 @@
 
 
 ```
-git clone https://github.com/SciCatProject/catamel.git 
-cd catamel
+git clone https://github.com/SciCatProject/backend.git 
+cd backend
 npm install
 npm start
 ```
 
 ```
-git clone https://github.com/SciCatProject/catanie.git 
-cd catanie
+git clone https://github.com/SciCatProject/frontend.git 
+cd frontend
 npm install
 npx ng serve
 ```
@@ -27,7 +27,7 @@ The recommend way is to use [scicatlive](https://github.com/SciCatProject/scicat
 
 If you want to do things manually instead:
 
-`git clone https://github.com/SciCatProject/catanie.git && cd catanie`
+`git clone https://github.com/SciCatProject/frontend.git && cd frontend`
 
 `docker build -t <tag> .`
 

@@ -9,7 +9,7 @@ Then build the image and run it.
 
 ### JWT
 
-In order for SciCat to authenticate against the zip service, the jwt secret has to be configured the same in both services. The jwt secret for the zip service can be configured in the file local.config.json. The configuration file containing the jwt secret for the SciCat backend can be found under the catamel filepath:
+In order for SciCat to authenticate against the zip service, the jwt secret has to be configured the same in both services. The jwt secret for the zip service can be configured in the file local.config.json. The configuration file containing the jwt secret for the SciCat backend can be found under the backend filepath:
 /home/node/app/server/config.json
 
 
