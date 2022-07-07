@@ -6,7 +6,7 @@
         <title>Step by Step instruction · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 3.7.4">
         
         
         
@@ -20,7 +20,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -578,9 +578,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_catamel.html">
+        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_backend.html">
             
-                <a href="../Development/Testing_catamel.html">
+                <a href="../Development/Testing_backend.html">
             
                     
                     Testing Backend
@@ -707,14 +707,14 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="step-by-step-manual-to-setup-scicat-without-containers">Step by Step manual to Setup SciCat without Containers</h1>
-<h2 id="setup-backend-catamel">Setup Backend (catamel)</h2>
+<h2 id="setup-backend">Setup Backend</h2>
 <h3 id="mongo">Mongo</h3>
 <p>The first part is to setup a Mongo DB, if not yet existing. You will need at least version 3.4 . In the simplest case a simple</p>
 <pre><code>yum install mongodb-server
 </code></pre><p>(on RedHat systems) or similar will suffice.</p>
 <p>A production ready setup however may require to setup a replicated DB server. Follow the Mongo DB Manuals in this case. E.g. at PSI we operate a 3 fold relicated Mongo DB server.</p>
 <h4 id="hint-to-add-full-text-indexing">Hint to add full text indexing</h4>
-<p>Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed <strong>after</strong> the database has been created in MongoDB, i.e. after starting catamel once.</p>
+<p>Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed <strong>after</strong> the database has been created in MongoDB, i.e. after starting the backend once.</p>
 <p>Log into mongodb at the console, e.g. run </p>
 <ol>
 <li>If not using Kubernetes<pre><code>mongo dacat
@@ -725,7 +725,7 @@
 </code></pre><p>and enter</p>
 <pre><code class="lang-javascript">db.Dataset.createIndex( { <span class="hljs-string">&quot;$**&quot;</span>: <span class="hljs-string">&quot;text&quot;</span> } )
 </code></pre>
-<p>Note: If the index is not created as above, catanie e2e test fails.</p>
+<p>Note: If the index is not created as above, frontend e2e test fails.</p>
 <h3 id="api-server">API Server</h3>
 <h4 id="prerequisites">Prerequisites</h4>
 <p>First you need to have node/npm installed</p>
@@ -733,8 +733,8 @@
 Node version 10 or higher
 </code></pre><p>The needed database will be created automatically when the API server starts. </p>
 <h4 id="get-code">Get code</h4>
-<pre><code>git clone https://github.com/SciCatProject/catamel.git
-cd catamel
+<pre><code>git clone https://github.com/SciCatProject/backend.git
+cd backend
 git checkout master # (or develop)
 npm install
 </code></pre><p>Please note: the master branch is often quite behind the development, therefore to get all new features you may want to use the develop branch instead.</p>
@@ -779,8 +779,8 @@ npm version 6 or higher
 node version 10 or higher
 </code></pre><h3 id="installing">Installing</h3>
 <p>Use git to clone the repository</p>
-<pre><code>git clone https://github.com/SciCatProject/catanie
-cd catanie
+<pre><code>git clone https://github.com/SciCatProject/frontend
+cd frontend
 </code></pre><p>First install the required modules</p>
 <pre><code>npm install
 </code></pre><p>Then build with the Angular CLI</p>
@@ -794,7 +794,7 @@ cd catanie
 <p>To run the end to end tests, type:</p>
 <pre><code>npm run e2e
 </code></pre><h3 id="configuration">Configuration</h3>
-<p>You can fine tune the features that you want to use in the GUI by setting the flags inside the <code>src/environments</code> folder. In this folder you find several example configuraion files used by the Sites. Please adjust to your needs. The <code>angular.json</code> file contains a section &quot;configurations&quot; which defines a set of prepared configurations, that you can choose from. This defines which files will be picked up at build time. The build system defaults to the <code>environment.ts</code>, but if you e.g. do <code>ng build --env=development</code> then <code>environment.development.ts</code> will be used instead. Here is an <a href="https://github.com/SciCatProject/catanie/blob/develop/src/environments/environment.development.ts" target="_blank">example configuration file</a></p>
+<p>You can fine tune the features that you want to use in the GUI by setting the flags inside the <code>src/environments</code> folder. In this folder you find several example configuraion files used by the Sites. Please adjust to your needs. The <code>angular.json</code> file contains a section &quot;configurations&quot; which defines a set of prepared configurations, that you can choose from. This defines which files will be picked up at build time. The build system defaults to the <code>environment.ts</code>, but if you e.g. do <code>ng build --env=development</code> then <code>environment.development.ts</code> will be used instead. Here is an <a href="https://github.com/SciCatProject/frontend/blob/develop/src/environments/environment.development.ts" target="_blank">example configuration file</a></p>
 <p>The most important configuration setting is the connection to the API server</p>
 <pre><code>lbBaseURL: &quot;https://your-loopbak-api-server&quot;,
 </code></pre><p>Many of the other settings are boolean flags, which allow you to switch on/off features of the GUI
@@ -805,7 +805,7 @@ Again, if in doubt, just leave the setting as defined in the available example e
 through the archive and retrieve methods. </p>
 <h4 id="setting-up-rabbitmq">Setting up RabbitMQ</h4>
 <p>When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
-It must be set up with a user before catamel is started, otherwise catamel cannot connect. 
+It must be set up with a user before the backend is started, otherwise the backend cannot connect. 
 It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
 A basic docker compose for rabbitmq looks like:</p>
 <pre><code>version: &quot;3.8&quot;
@@ -826,7 +826,7 @@ volumes:
     rabbitmq_data:
       driver: local
 </code></pre><p>This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
-Before connecting to Catamel or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
 To understand more about setting up rabbitmq please see the documentation at <a href="https://www.rabbitmq.com/cli.html" target="_blank">https://www.rabbitmq.com/cli.html</a>.
 If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.</p>
 <pre><code># To add the management plugin
@@ -838,8 +838,8 @@ rabbitmqctl set_user_tags &lt;username&gt; administrator
 rabbitmqctl set_permissions -p / &lt;username&gt; &apos;.*&apos; &apos;.*&apos; &apos;.*&apos;
 </code></pre><p>Once this is done you can log into the Management Portal hosted at <a href="http://localhost:15672" target="_blank">http://localhost:15672</a>. Any other users, exchanges , queues etc. can be configured manually.</p>
 <h4 id="connecting-scicat-to-rabbitmq">Connecting Scicat to RabbitMQ</h4>
-<p>Catamel handles the connection to rabbitMQ through the component-config.local.json file. Catamel will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
-before running Catamel. A basic rabbitMQ set up in the component-config.local.json file looks like the following:</p>
+<p>The backend handles the connection to rabbitMQ through the component-config.local.json file. The backend will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
+before running the backend. A basic rabbitMQ set up in the component-config.local.json file looks like the following:</p>
 <pre><code>&quot;topology&quot;:{
 &quot;connection&quot;:{
 &quot;uri&quot;:&quot;amqp://my-admin-user:newpassword@local-rabbitmq&quot; # the uri of your service with your administrative user
@@ -869,7 +869,7 @@ before running Catamel. A basic rabbitMQ set up in the component-config.local.js
 }
 }
 </code></pre><p>The exchange and the binding key must be named <code>jobs.write</code> and <code>jobqueue</code> respectively, the queue name can take any value. 
-Catamel expects and exchange called <code>jobs.write</code> to publish jobs messages to bound with that key.</p>
+The backend expects and exchange called <code>jobs.write</code> to publish jobs messages to bound with that key.</p>
 <h4 id="use-in-practice">Use in Practice</h4>
 <p>If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
 could generate two queues bound to the <code>jobs.write</code> exchange. However these would be bound with the same key that
@@ -918,7 +918,7 @@ best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bind
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]},{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2022-05-12T06:57:54.182Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-12T06:58:10.061Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]},{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2022-07-07T12:24:27.925Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-07-07T12:24:40.198Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

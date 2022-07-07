@@ -6,7 +6,7 @@
         <title>Manual Ingest the Hard Way · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 3.7.4">
         
         
         
@@ -20,7 +20,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -578,9 +578,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_catamel.html">
+        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_backend.html">
             
-                <a href="../Development/Testing_catamel.html">
+                <a href="../Development/Testing_backend.html">
             
                     
                     Testing Backend
@@ -710,7 +710,7 @@
 <h2 id="manual-ingestion">Manual ingestion</h2>
 <p>The following steps will add a dataset to you system using the API with the linux program curl. </p>
 <p>1.
-Login to catamel. The default password for the ingestor user is aman. Running the command below in the terminal will yield an access token.</p>
+Login to the backend. The default password for the ingestor user is aman. Running the command below in the terminal will yield an access token.</p>
 <pre><code> curl -X POST --header &apos;Content-Type: application/json&apos; --header &apos;Accept: application/json&apos; -d &apos;{&quot;username&quot;:&quot;ingestor&quot;, &quot;password&quot;:&quot;&lt;your_password&gt;&quot;}&apos; &apos;http://localhost:3000/api/v3/Users/login&apos;
 </code></pre><ol>
 <li><p>Create a json file with the contents below and name it metadata.json</p>
@@ -769,7 +769,7 @@ Login to catamel. The default password for the ingestor user is aman. Running th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"next":{"title":"Developers Guide","level":"1.5","depth":1,"path":"Development/README.md","ref":"Development/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},{"title":"Configuration","level":"1.5.4","depth":2,"path":"Development/Configuration.md","ref":"Development/Configuration.md","articles":[]},{"title":"Theming","level":"1.5.5","depth":2,"path":"Development/Theming.md","ref":"Development/Theming.md","articles":[]},{"title":"Login and Accounts","level":"1.5.6","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},{"title":"OIDC Integration","level":"1.5.7","depth":2,"path":"Development/OIDC.md","ref":"Development/OIDC.md","articles":[]},{"title":"State Management in Angular","level":"1.5.8","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.9","depth":2,"path":"Development/Testing_catamel.md","ref":"Development/Testing_catamel.md","articles":[]},{"title":"Testing Frontend","level":"1.5.10","depth":2,"path":"Development/Testing.md","ref":"Development/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.11","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},{"title":"Adding Documentation","level":"1.5.12","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.13","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]}]},"previous":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/GettingMetadataIntoScicat.md","mtime":"2022-05-12T06:57:54.178Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-12T06:58:10.061Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"next":{"title":"Developers Guide","level":"1.5","depth":1,"path":"Development/README.md","ref":"Development/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1","depth":2,"path":"Development/StartHere.md","ref":"Development/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.2","depth":2,"path":"Development/Data_Model.md","ref":"Development/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.3","depth":2,"path":"Development/Running.md","ref":"Development/Running.md","articles":[]},{"title":"Configuration","level":"1.5.4","depth":2,"path":"Development/Configuration.md","ref":"Development/Configuration.md","articles":[]},{"title":"Theming","level":"1.5.5","depth":2,"path":"Development/Theming.md","ref":"Development/Theming.md","articles":[]},{"title":"Login and Accounts","level":"1.5.6","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},{"title":"OIDC Integration","level":"1.5.7","depth":2,"path":"Development/OIDC.md","ref":"Development/OIDC.md","articles":[]},{"title":"State Management in Angular","level":"1.5.8","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.9","depth":2,"path":"Development/Testing_backend.md","ref":"Development/Testing_backend.md","articles":[]},{"title":"Testing Frontend","level":"1.5.10","depth":2,"path":"Development/Testing.md","ref":"Development/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.11","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},{"title":"Adding Documentation","level":"1.5.12","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.13","depth":2,"path":"Development/Development_Methods.md","ref":"Development/Development_Methods.md","articles":[]}]},"previous":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/GettingMetadataIntoScicat.md","mtime":"2022-07-07T12:24:27.917Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-07-07T12:24:40.198Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

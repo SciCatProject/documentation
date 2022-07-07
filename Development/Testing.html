@@ -6,7 +6,7 @@
         <title>Testing Frontend · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 3.7.4">
         
         
         
@@ -20,7 +20,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -63,7 +63,7 @@
     <link rel="next" href="Contributing.html" />
     
     
-    <link rel="prev" href="Testing_catamel.html" />
+    <link rel="prev" href="Testing_backend.html" />
     
 
     </head>
@@ -578,9 +578,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.9" data-path="Testing_catamel.html">
+        <li class="chapter " data-level="1.5.9" data-path="Testing_backend.html">
             
-                <a href="Testing_catamel.html">
+                <a href="Testing_backend.html">
             
                     
                     Testing Backend
@@ -707,14 +707,14 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="testing"><a href="https://angular.io/docs/ts/latest/guide/testing.html" target="_blank">Testing</a></h1>
-<p>All components of SciCat include unit test coverage and catanie has additional end to end user interface testing. Tests are run by CI before any change request is approved.</p>
+<p>All components of SciCat include unit test coverage and the frontend has additional end to end user interface testing. Tests are run by CI before any change request is approved.</p>
 <h1 id="e2e-protractor">E2E (<a href="http://www.protractortest.org/#/" target="_blank">Protractor</a>)</h1>
 <p>Initially Protractor was used for end to end testing but this was abandoned in favour of the far more robust and flexible <a href="https://www.cypress.io/" target="_blank">Cypress</a>.</p>
 <h1 id="cypress-e2e">Cypress E2E</h1>
 <p>Cypress is not based on Selenium. </p>
 <p><code>npx cypress run</code> runs all tests headless (without displaying the browser).</p>
 <p><code>npx cypress open</code> opens the Cypress GUI in the browser.</p>
-<p><code>npx cypress run --spec /home/encima/dev/melanie/catanie/cypress/integration/policy-delegate.spec.js</code> will run the single test file policy-delegate.spec.js.</p>
+<p><code>npx cypress run --spec ./cypress/integration/policy-delegate.spec.js</code> will run the single test file policy-delegate.spec.js.</p>
 <h1 id="unit-jasmine-run-by-karma">Unit (Jasmine, run by Karma)</h1>
 <p><code>ng test</code> runs all unit tests.</p>
 <h3 id="mocking-services">Mocking Services</h3>
@@ -785,7 +785,7 @@
 
             
                 
-                <a href="Testing_catamel.html" class="navigation navigation-prev " aria-label="Previous page: Testing Backend">
+                <a href="Testing_backend.html" class="navigation navigation-prev " aria-label="Previous page: Testing Backend">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -801,7 +801,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing Frontend","level":"1.5.10","depth":2,"next":{"title":"Contributing","level":"1.5.11","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},"previous":{"title":"Testing Backend","level":"1.5.9","depth":2,"path":"Development/Testing_catamel.md","ref":"Development/Testing_catamel.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Testing.md","mtime":"2022-05-12T06:57:54.166Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-12T06:58:10.061Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing Frontend","level":"1.5.10","depth":2,"next":{"title":"Contributing","level":"1.5.11","depth":2,"path":"Development/Contributing.md","ref":"Development/Contributing.md","articles":[]},"previous":{"title":"Testing Backend","level":"1.5.9","depth":2,"path":"Development/Testing_backend.md","ref":"Development/Testing_backend.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Testing.md","mtime":"2022-07-07T12:24:27.901Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-07-07T12:24:40.198Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

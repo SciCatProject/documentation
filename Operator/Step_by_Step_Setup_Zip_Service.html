@@ -6,7 +6,7 @@
         <title>Deploy Zip Service · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 3.7.4">
         
         
         
@@ -20,7 +20,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -578,9 +578,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_catamel.html">
+        <li class="chapter " data-level="1.5.9" data-path="../Development/Testing_backend.html">
             
-                <a href="../Development/Testing_catamel.html">
+                <a href="../Development/Testing_backend.html">
             
                     
                     Testing Backend
@@ -712,7 +712,7 @@
 To install it, you first have to add a configuration file (local.config.json) to the source directory. A sample for this file can be found in CI/ESS or in the description of the repository.
 Then build the image and run it.</p>
 <h3 id="jwt">JWT</h3>
-<p>In order for SciCat to authenticate against the zip service, the jwt secret has to be configured the same in both services. The jwt secret for the zip service can be configured in the file local.config.json. The configuration file containing the jwt secret for the SciCat backend can be found under the catamel filepath:
+<p>In order for SciCat to authenticate against the zip service, the jwt secret has to be configured the same in both services. The jwt secret for the zip service can be configured in the file local.config.json. The configuration file containing the jwt secret for the SciCat backend can be found under the backend filepath:
 /home/node/app/server/config.json</p>
 <h3 id="volumes">Volumes</h3>
 <p>The data volumes have to be mounted to the zip service in order for it to access the files, zip them and offer them for download. The filepath, stored in the OriginalDatablock and Datafile objects, have to match a valid path on the zip service.</p>
@@ -759,7 +759,7 @@ Then build the image and run it.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"next":{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]},"previous":{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup_Zip_Service.md","mtime":"2022-05-12T06:57:54.182Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-12T06:58:10.061Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"next":{"title":"Sites","level":"1.3.5","depth":2,"path":"Operator/Sites/README.md","ref":"Operator/Sites/README.md","articles":[{"title":"ESS Site Specific info","level":"1.3.5.1","depth":3,"path":"Operator/Sites/ESS.md","ref":"Operator/Sites/ESS.md","articles":[]},{"title":"MAX IV Site specific info","level":"1.3.5.2","depth":3,"path":"Operator/Sites/MaxIV.md","ref":"Operator/Sites/MaxIV.md","articles":[]},{"title":"PSI Site specific info","level":"1.3.5.3","depth":3,"path":"Operator/Sites/PSI.md","ref":"Operator/Sites/PSI.md","articles":[]}]},"previous":{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup_Zip_Service.md","mtime":"2022-07-07T12:24:27.925Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-07-07T12:24:40.198Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
