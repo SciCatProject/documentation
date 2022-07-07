@@ -11,7 +11,7 @@ The easiest is to follow [this description](https://github.com/SciCatProject/sci
 # Architecture
 SciCat is built on micro services using the following stack:
 
-## API (Catamel)
+## API (Backend)
 
 * [Node 12.x](https://nodejs.org/en/)
 * [Loopback 3](https://loopback.io/lb3)

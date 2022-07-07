@@ -11,7 +11,7 @@ For the subsequent sections it will be useful to have a "helicopter" overview of
 
 ### Backend
 
-At the heart of the SciCat architecture there is the REST API server [Catamel](https://github.com/SciCatProject/catamel). This is a  NodeJS application that uses the Loopback 3 framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Following the Swagger/OpenAPI format SDKs can be generated in almost any language.
+At the heart of the SciCat architecture there is the [REST API server](https://github.com/SciCatProject/backend). This is a  NodeJS application that uses the Loopback 3 framework to generate RESTful APIs from JSON files that define models \(such as: Users, Datasets, Instruments etc\). Following the Swagger/OpenAPI format SDKs can be generated in almost any language.
 
 The persistence layer behind this API server is a [MongoDB](https://www.mongodb.com/) instance, i.e an open source, NoSQL, document-based database solution. The API server handles alll the bi-directional communication from the REST interface to the Database.
 

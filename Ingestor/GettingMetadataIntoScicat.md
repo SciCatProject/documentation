@@ -6,7 +6,7 @@
 The following steps will add a dataset to you system using the API with the linux program curl. 
 
 1.
-Login to catamel. The default password for the ingestor user is aman. Running the command below in the terminal will yield an access token.
+Login to the backend. The default password for the ingestor user is aman. Running the command below in the terminal will yield an access token.
 
 ```
  curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"ingestor", "password":"<your_password>"}' 'http://localhost:3000/api/v3/Users/login'

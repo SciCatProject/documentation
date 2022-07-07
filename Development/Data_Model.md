@@ -111,8 +111,8 @@ The data model and its API endpoints are described [here](https://scicatproject.
 
 When you have an instance of the data catalog running, the API endpoints and the related data models can be looked at at the following URL:
 
-* <CATAMEL_URL>/explorer/
-* [Example instance from ESS](https://scicat.esss.dk/explorer/)
+* <BACKEND_URL>/explorer/
+* [Example instance from ESS](https://scicat.ess.eu/explorer/)
 
 The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the `login` route under the `User` tab to obtain one of these, or use a CURL command.
 

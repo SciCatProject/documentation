@@ -1,6 +1,6 @@
 # Step by Step manual to Setup SciCat without Containers
 
-## Setup Backend (catamel)
+## Setup Backend
 
 ### Mongo
 
@@ -15,7 +15,7 @@ A production ready setup however may require to setup a replicated DB server. Fo
 
 #### Hint to add full text indexing
 
-Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed **after** the database has been created in MongoDB, i.e. after starting catamel once.
+Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed **after** the database has been created in MongoDB, i.e. after starting the backend once.
 
 Log into mongodb at the console, e.g. run 
 
@@ -52,8 +52,8 @@ The needed database will be created automatically when the API server starts.
 
 #### Get code
 ```
-git clone https://github.com/SciCatProject/catamel.git
-cd catamel
+git clone https://github.com/SciCatProject/backend.git
+cd backend
 git checkout master # (or develop)
 npm install
 ```
@@ -181,7 +181,7 @@ through the archive and retrieve methods.
 
 #### Setting up RabbitMQ
 When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
-It must be set up with a user before catamel is started, otherwise catamel cannot connect. 
+It must be set up with a user before the backend is started, otherwise the backend cannot connect. 
 It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
 A basic docker compose for rabbitmq looks like:
 ```
@@ -206,7 +206,7 @@ volumes:
 ```
 
 This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
-Before connecting to Catamel or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
 To understand more about setting up rabbitmq please see the documentation at https://www.rabbitmq.com/cli.html.
 If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.
 
@@ -223,8 +223,8 @@ Once this is done you can log into the Management Portal hosted at http://localh
 
 #### Connecting Scicat to RabbitMQ
 
-Catamel handles the connection to rabbitMQ through the component-config.local.json file. Catamel will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
-before running Catamel. A basic rabbitMQ set up in the component-config.local.json file looks like the following:
+The backend handles the connection to rabbitMQ through the component-config.local.json file. The backend will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
+before running the backend. A basic rabbitMQ set up in the component-config.local.json file looks like the following:
 ```
 "topology":{
 "connection":{
@@ -257,7 +257,7 @@ before running Catamel. A basic rabbitMQ set up in the component-config.local.js
 
 ``` 
 The exchange and the binding key must be named `jobs.write` and `jobqueue` respectively, the queue name can take any value. 
-Catamel expects and exchange called `jobs.write` to publish jobs messages to bound with that key.
+The backend expects and exchange called `jobs.write` to publish jobs messages to bound with that key.
 
 #### Use in Practice
 If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 

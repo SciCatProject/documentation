@@ -2,8 +2,8 @@
 
 
 ```
-git clone https://github.com/SciCatProject/catamel.git 
-cd catamel
+git clone https://github.com/SciCatProject/backend.git 
+cd backend
 npm install
 npm start
 ```
