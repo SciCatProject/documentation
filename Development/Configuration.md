@@ -1,4 +1,11 @@
-# SciCat Frontend Configuration file
+# Configuration
+
+- [SciCat Frontend](#scicat-frontend)
+- [SciCat Backend](#scicat-backend)
+  - [Dotenv Config](#dotenv-config)
+  - [DOI Config](#doi-config)
+
+## SciCat Frontend
 
 This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into `/usr/share/nginx/html/assets/config.json`.
 
@@ -125,4 +132,63 @@ frontend/src/assets/config.json:
 
 ```
 
+## SciCat Backend
 
+### Dotenv config
+
+This is the configuration file for the backend. This file allows the systems administrator to configure connected services, like authentication services and message queues, and also switching on/off almost all non essential features. The configuration file is a [dotenv](https://www.npmjs.com/package/dotenv) file and is read by the backend at runtime.
+
+An example is shown below
+
+```
+backend/.env
+
+DOI_PREFIX="<DOI_PREFIX>"  // The facility DOI prefix, with trailing slash.
+EXPRESS_SESSION_SECRET="<EXPRESS_SESSION_SECRET>"  // *Optional* Secret used to set up express session.
+HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
+HTTP_TIMEOUT=5000  // *Optional* Timeout from http requests in ms. Defaults to 5000.
+JWT_SECRET=<JWT_SECRET>  // The secret for your JWT token, used for authorization.
+JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
+LDAP_URL="ldaps://ldap.server.com:636/"  // *Optional* The URL (and port) to your LDAP server.
+LDAP_BIND_DN="<USERNAME>@server.com"  // *Optional* Bind_DN for your LDAP server.
+LDAP_BIND_CREDENTIALS=<PASSWORD>  // *Optional* Credentials for your LDAP server.
+LDAP_SEARCH_BASE=<SEARCH_BASE>  // *Optional* Search base for your LDAP server.
+LDAP_SEARCH_FILTER="(LDAPUsername={{username}})"  // *Optional* Search filter for you LDAP server.
+LOGBOOK_ENABLED=<"yes"|"no">  // *Optional* Flag to enable/disable the Logbook endpoints. Values "yes" or "no". Defaults to "no".
+LOGBOOK_BASE_URL="http://localhost:3030/scichatapi"  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
+LOGBOOK_USERNAME="<LOGBOOK_USERNAME>"  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
+LOGBOOK_PASSWORD="<LOGBOOK_PASSWORD>"  // *Optional* The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
+METADATA_KEYS_RETURN_LIMIT=100  // *Optional* The return limit for the `/Datasets/metadataKeys` endpoint.
+METADATA_PARENT_INSTANCES_RETURN_LIMIT=100  // *Optional* The return limit of Datasets to extract metadata keys from for the `/Datasets/metadataKeys` endpoint.
+MONGODB_URI="mongodb://<USERNAME>:<PASSWORD>@<HOST>:27017/<DB_NAME>"  // The URI for your MongoDB instance.
+OAI_PROVIDER_ROUTE="<OAI_PROVIDER_ROUTE>"  // *Optional* URI to OAI provider, used for the `/publisheddata/:id/resync` endpoint.
+PID_PREFIX="<PID_PREFIX>"  // The facility PID prefix, with trailing slash.
+PUBLIC_URL_PREFIX="https://doi.ess.eu/detail/"  // The base URL to the facility Landing Page.
+PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
+RABBITMQ_ENABLED=<"yes"|"no">  *Optional* Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
+RABBITMQ_HOSTNAME="localhost"  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_USERNAME="rabbitmq"  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.
+REGISTER_METADATA_URI="https://mds.test.datacite.org/metadata"  // URI to the organization that registers the facilities published data metadata.
+SITE=<SITE>  // The name of your site.
+SMTP_HOST=<SMTP_HOST>  // Host of SMTP server.
+SMTP_MESSAGE_FROM=<SMTP_MESSAGE_FROM>  // Email address that emails should be sent from.
+SMTP_PORT=<SMTP_PORT>  // Port of SMTP server.
+SMTP_SECURE=<SMTP_SECURE>  // Secure of SMTP server.
+
+```
+
+### DOI Config
+
+This config file contains the username and password for authenicating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.
+
+```
+backend/src/config/doiconfig.local.json
+
+{
+  "username": "<DOI_CONFIG_USERNAME>",
+  "password": "<DOI_CONFIG_PASSWORD>"
+}
+
+```
