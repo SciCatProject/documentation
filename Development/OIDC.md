@@ -49,6 +49,14 @@ Details about the fields in this provider configuration:
 * **scope** is specific to your OIDC provider
 * **loginCallback** optional name of a [callback](#configure-callback) function to run to add profile information to the UserIdentity
 
+#### Session Secret 
+The nodejs module `passport-openidconnect` requires the use of the `express-session` module
+to create a login session for the user.
+ This requires a _session secret_ to be configured in `config.local.js`:
+ ```
+ module.exports = {
+  expressSessionSecret: "thisIsSuperSecretForUserSession"
+ ```
 
 ## SciCat Frontend Configuration 
 
