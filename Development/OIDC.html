@@ -6,7 +6,7 @@
         <title>OIDC Integration · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.4">
+        <meta name="generator" content="HonKit 3.7.5">
         
         
         
@@ -753,7 +753,13 @@
 <li><strong>scope</strong> is specific to your OIDC provider</li>
 <li><strong>loginCallback</strong> optional name of a <a href="#configure-callback">callback</a> function to run to add profile information to the UserIdentity</li>
 </ul>
-<h2 id="scicat-frontend-configuration">SciCat Frontend Configuration</h2>
+<h4 id="session-secret">Session Secret</h4>
+<p>The nodejs module <code>passport-openidconnect</code> requires the use of the <code>express-session</code> module
+to create a login session for the user.
+ This requires a <em>session secret</em> to be configured in <code>config.local.js</code>:</p>
+<pre><code> module.exports = {
+  expressSessionSecret: &quot;thisIsSuperSecretForUserSession&quot;
+</code></pre><h2 id="scicat-frontend-configuration">SciCat Frontend Configuration</h2>
 <p>The default login page in the frontend provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, the frontend provides two configuration settings to modify the login page appropriately.</p>
 <p>These setting are accomplished by modifying the frontend <a href="Environment.md">environment document</a>. </p>
 <pre><code class="lang-javascript">
@@ -891,7 +897,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OIDC Integration","level":"1.5.7","depth":2,"next":{"title":"State Management in Angular","level":"1.5.8","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},"previous":{"title":"Login and Accounts","level":"1.5.6","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/OIDC.md","mtime":"2022-07-07T12:24:27.901Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-07-07T12:24:40.198Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OIDC Integration","level":"1.5.7","depth":2,"next":{"title":"State Management in Angular","level":"1.5.8","depth":2,"path":"Development/Ngrx.md","ref":"Development/Ngrx.md","articles":[]},"previous":{"title":"Login and Accounts","level":"1.5.6","depth":2,"path":"Development/Login.md","ref":"Development/Login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/OIDC.md","mtime":"2022-08-18T07:30:40.267Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-08-18T07:30:54.147Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
