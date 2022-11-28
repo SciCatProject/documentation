@@ -2051,7 +2051,7 @@ inside the digital user office DUO
 
 ## Size limitations<a id="sec-8-13" name="sec-8-13"></a>
 
--   a single dataset should currently not have more than 200k files
+-   a single dataset should currently not have more than 400k files
 -   a single dataset should not be larger than 50 TB
 -   recommended size of a single dataset: between 1GB and 1TB
 
