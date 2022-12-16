@@ -959,7 +959,7 @@ add the following line to your ~/.bashrc file:
 On Windows the executables can be downloaded from the following URL,
 just enter the address in abrowser and download the file
 
-    https://gitlab.psi.ch/scicat/tools/raw/master/linux/datasetIngestor.exe
+    https://gitlab.psi.ch/scicat/tools/-/blob/master/windows/datasetIngestor.exe
     https://gitlab.psi.ch/scicat/tools/-/blob/master/windows/SciCatGUI_Win10.zip
 
 ### Online work stations in beamline hutches<a id="sec-11-1-5" name="sec-11-1-5"></a>
