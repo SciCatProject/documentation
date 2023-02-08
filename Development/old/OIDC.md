@@ -32,3 +32,23 @@ OIDC_ACCESS_GROUPS=accessgroups
 
 > Note that OIDC authentication services publish their specific settings in a Discovery document. To find the settings for, say, google, see <https://accounts.google.com/.well-known/openid-configuration>.
 
+## SciCat Frontend Configuration 
+
+The default login page in the frontend provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, the frontend provides two configuration settings to modify the login page appropriately.
+
+These setting are accomplished by modifying the frontend [environment document](./Environment.md). 
+
+```javascript
+  
+  loginFormEnabled: false,
+  oAuth2Endpoints: [
+    {displayText: "Google", displayImage: "../../../assets/images/btn_google_light_normal_ios.svg", authURL: "auth/google"}]
+
+```
+
+
+* **loginFormEnabled** sets whether to display the username/password form in the login page
+* **oAuth2Endpoints** provides information that the frontend uses to display "Sign in with ..." buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.
+  * **displayText** sets the name of the provider to display in the button. In this case, the button will show "Sign In With Google"
+  * **displayImage** defines an image to display in the button. The image will end up being 24px tall. It is recommended that the image be in SVG format.
+  * **authURL** defines the relative path that the user will be redirected to when they click the button. Note that this maps to the `authPath` setting described above.
