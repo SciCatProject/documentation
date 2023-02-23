@@ -7,7 +7,7 @@
 
 ## SciCat Frontend
 
-This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into `/usr/share/nginx/html/assets/config.json`.
+This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into the docker container at the following path `/usr/share/nginx/html/assets/config.json`.
 
 An example is shown below
 
@@ -142,7 +142,9 @@ An example is shown below
 
 ```
 backend/.env
-
+ACCESS_GROUPS_STATIC_VALUES="group1,group2,group3,..." // List of groups assigned by default as access groups to all users. Used in the vanilla implementation. Facilities customization might not use this
+ACCESS_GROUP_SERVICE_TOKEN="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL
+ACCESS_GROUP_SERVICE_API_URL="https://my.access.group/service/api/url" // Url of the service API which is used to provide access groups. At the moment only one value is allowed
 DOI_PREFIX="<DOI_PREFIX>"  // The facility DOI prefix, with trailing slash.
 EXPRESS_SESSION_SECRET="<EXPRESS_SESSION_SECRET>"  // *Optional* Secret used to set up express session.
 HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
@@ -154,6 +156,13 @@ LDAP_BIND_DN="<USERNAME>@server.com"  // *Optional* Bind_DN for your LDAP server
 LDAP_BIND_CREDENTIALS=<PASSWORD>  // *Optional* Credentials for your LDAP server.
 LDAP_SEARCH_BASE=<SEARCH_BASE>  // *Optional* Search base for your LDAP server.
 LDAP_SEARCH_FILTER="(LDAPUsername={{username}})"  // *Optional* Search filter for you LDAP server.
+OIDC_ISSUER="https://identity.your.facility/your/realm" // Full URL of the identity provider
+OIDC_CLIENT_ID= "scicat" // Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
+OIDC_CLIENT_SECRET="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
+OIDC_CALLBACK_URL="http://localhost:3000/api/v3/oidc/callback" // URL of the endpoint that is called when the authentication has been executed with the OIDC service.
+OIDC_SCOPE="openid profile email" // Information returned by the OIDC service together with token"
+OIDC_SUCCESS_URL="http://localhost:3000/explorer" // URL of the endpoint that is called after a successful authentication. IT is not used in the vanilla implementaation.
+OIDC_ACCESS_GROUPS="access_groups" // field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.
 LOGBOOK_ENABLED=<"yes"|"no">  // *Optional* Flag to enable/disable the Logbook endpoints. Values "yes" or "no". Defaults to "no".
 LOGBOOK_BASE_URL="http://localhost:3030/scichatapi"  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
 LOGBOOK_USERNAME="<LOGBOOK_USERNAME>"  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
