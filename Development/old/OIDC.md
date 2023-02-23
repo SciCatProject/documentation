@@ -1,62 +1,36 @@
 # OIDC Integration
-SciCat can integrate with one or more OIDC servers to provide Authentication. Integration requires configuration of both backend and frontend in order to setup the redirecting and handshaking that the OAuth2 code flow requires. Additionally, it may involve writing [custom code hooks](#backend-code-hooks)  in the backend in order to properly handle profile information obtained by the OIDC Auth Provider.
+SciCat can integrate with one or more OIDC servers to provide Authentication. Integration requires configuration of both backend and frontend in order to set up the redirecting and handshaking that the OAuth2 code flow requires. Additionally, it may involve writing [custom code hooks](#backend-code-hooks)  in the backend in order to properly handle profile information obtained by the OIDC Auth Provider.
 
 ## Backend Configuration
-Configuration of the backend for OIDC involves adding a provider to `providers.json` file. See [Start Here](./StartHere.md) for more information on configuring this file.
+Configuration of the backend for OIDC involves adding the following environmental variables to `scicat-backend-next`:
 
-Here is an example of a provider that uses Google as an authenticator. Google is used here because it is well-documented and commonly available.
 
-```json
-    "google": {
-        "provider": "oidc",
-        "authScheme": "openid connect",
-        "module": "passport-openidconnect",
-        "authPath": "/auth/google",
-        "successRedirect": "http://localhost/user",
-        "failureRedirect": "http://localhost/login",
-        "failureFlash": true,
-        "session": false,
-        "issuer": "https://accounts.google.com",
-        "authorizationURL": "https://accounts.google.com/o/oauth2/v2/auth",
-        "tokenURL": "https://oauth2.googleapis.com/token",
-        "userInfoURL": "https://openidconnect.googleapis.com/v1/userinfo",
-        "clientID": "...",
-        "clientSecret": "...",
-        "callbackURL": "http://localhost:3000/auth/google/callback",
-        "scope": ["email", "profile", "openid"],
-        "loginCallback": "sampleLoginCallback"
-    }
+* `OIDC_ISSUER` - the URL of your OIDC issuer e.g. https://keycloak.myorg.com/realm/myrealm
+* `OIDC_AUTHORIZATION_URL` - the URL of your authorization provider e.g. "https://keycloak.myorg.com/"
+* `OIDC_CLIENT_ID` - the client id that the OIDC issuer recognises
+* `OIDC_CLIENT_SECRET` - the client secret associated with the above id
+* `OIDC_CALLBACK_URL` - the URL which will be called by the OIDC after authentication e.g https://scicat.myorg.com/api/v3/auth/oidc/callback
+* `OIDC_SCOPE` - the scopes required by Scicat from the OIDC provider 
+* `OIDC_SUCCESS_URL` - the URL to redirect to after a successful login e.g "https://scicat.myorg.com/auth-callback"
+* `OIDC_ACCESS_GROUPS` - the scope name for access groups in your OIDC provider 
+    
+
+A minimal .env for OIDC may look like this:
+```angular2html
+OIDC_ISSUER=https://keycloak.myorg.com/realm/myrealm
+OIDC_AUTHORIZATION_URL=https://keycloak.myorg.com/
+OIDC_CLIENT_ID=scicat
+OIDC_CLIENT_SECRET=my-super-scicat-secret-123
+OIDC_CALLBACK_URL=https://scicat.myorg.com/api/v3/auth/oidc/callback
+OIDC_SCOPE='openid profile email'
+OIDC_SUCCESS_URL=https://scicat.myorg.com/auth-callback
+OIDC_ACCESS_GROUPS=accessgroups
 ```
+
 > Note that information about Google sign in can be found [here](https://developers.google.com/identity/protocols/oauth2/openid-connect), details are beyond the scope of this document.
 
 
-> Note that OIDC authentication services publish their specific settings in a Discovery document.. To find the settings for, say, google, see <https://accounts.google.com/.well-known/openid-configuration>.
-
-Details about the fields in this provider configuration:
-* **provider** is used by the loopback-passport-configurator to build a strategy
-* **authScheme** is used by the loopback-passport-configurator to build a strategy
-* **module** describes the passport module to use. passport-openidconnect is already included in the backend
-* **authPath** is the path that the backend will create (with the help of loopback-passport-configurator) to begin the authentication process. The backend will redirect users to this path (once it is configured, of course!)
-* **successRedirect** is the URL passed to the OIDC provider instructing it to redirect the user on success. Here we set it to the a development environment's user page.
-* **failureRedirect** is the URL passed to the OIDC provider instructing it to redirect the user on failed authentication. Here we set it to the a development environment's user page login page.
-* **failureFlash** is currently unsupported.
-* **session** is not needed, since the frontend authenticates outside of sessions.
-* **authorizationURL** is specific to your OIDC provider
-* **tokenURL** is specific to your OIDC provider
-* **userInfoURL** is specific to your OIDC provider
-* **clientID** is specific to your OIDC provider
-* **clientSecret** is specific to your OIDC provider
-* **scope** is specific to your OIDC provider
-* **loginCallback** optional name of a [callback](#configure-callback) function to run to add profile information to the UserIdentity
-
-#### Session Secret 
-The nodejs module `passport-openidconnect` requires the use of the `express-session` module
-to create a login session for the user.
- This requires a _session secret_ to be configured in `config.local.js`:
- ```
- module.exports = {
-  expressSessionSecret: "thisIsSuperSecretForUserSession"
- ```
+> Note that OIDC authentication services publish their specific settings in a Discovery document. To find the settings for, say, google, see <https://accounts.google.com/.well-known/openid-configuration>.
 
 ## SciCat Frontend Configuration 
 
@@ -78,6 +52,7 @@ These setting are accomplished by modifying the frontend [environment document](
   * **displayText** sets the name of the provider to display in the button. In this case, the button will show "Sign In With Google"
   * **displayImage** defines an image to display in the button. The image will end up being 24px tall. It is recommended that the image be in SVG format.
   * **authURL** defines the relative path that the user will be redirected to when they click the button. Note that this maps to the `authPath` setting described above.
+
 
 ## Backend Code Hooks
 
