@@ -1,154 +1,62 @@
 # Configuration
 
-- [SciCat Frontend](#scicat-frontend)
-- [SciCat Backend](#scicat-backend)
-  - [Dotenv Config](#dotenv-config)
-  - [DOI Config](#doi-config)
+When using the official release image, Backend configuration can be achieved by defining the needed environmental variables either through an orchestration/containerization system, the .env file or with a suitable method compatible with your environment.  
+The current source code contains an example .env file, named _.env.sample_ listing all the environment variable available to configure the backend.
 
-## SciCat Frontend
+If you are compiling the application from source, you can edit the file _serc/config/configuration.ts_ with the correct values for your infrastructure.
 
-This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the `/client/config.json` endpoint or mounted into the docker container at the following path `/usr/share/nginx/html/assets/config.json`.
+### Environement Variables
 
-An example is shown below
+This is complete the list of environment variable that can be used to configure SciCat backend.
+The list is compiled according to the configuration class defined in _src/config/configuration.ts_
 
-```
-frontend/src/assets/config.json:
+- ADMIN_GROUPS:  
+  list of groups that have admin priviliges in SciCat  
+  Default: admin  
+  Format: comma separated list of strings  
 
-{
-  "accessTokenPrefix": "",  // Set the backend token prefix. Should be empty string for current backend or "Bearer " if using scicat-backend-next.
-  "addDatasetEnabled": true,  // Show/hide the "Create Dataset" button in the Datasets Dashboard.
-  "archiveWorkflowEnabled": true,  // Enable/disable the archive/retrieve workflow.
-  "datasetReduceEnabled": true,  // Enable/disable the automatic Dataset reduction/analysis workflow.
-  "editDatasetSampleEnabled": true,  // Enable/disable editing of which Sample a Dataset belongs to.
-  "editMetadataEnabled": true,  // Enable/disable editing of Scientific Metadata.
-  "editPublishedData": true,  // Enable/disable editing of Published Data.
-  "editSampleEnabled": true,  // Enable/disable editing of Samples.
-  "externalAuthEndpoint": "/auth/msad",  // Endpoint used for third party authentication, e.g, LDAP.
-  "facility": "ESS",  // Facility running the SciCat instance.
-  "fileColorEnabled": true,  // Enable/disable file size color representation in the Datasets Dashboard.
-  "fileDownloadEnabled": true,  // Enable/disable download workflow for Dataset datafiles.
-  "gettingStarted": null,  // URL to Getting Started guide for SciCat, displayed on the Help page.
-  "ingestManual": null,  // URL to Ingest Manual for SciCat, displayed on the Help page.
-  "jobsEnabled": true,  // Enable/disable Job workflow.
-  "jsonMetadataEnabled": true,  // Show/hide the "Show Metadata" button on the details pages, allowing users to see the JSON represantion of the current document.
-  "jupyterHubUrl": "https://jupyterhub.esss.lu.se/",  // URL to Jupyter Hub instance used for data analysis.
-  "landingPage": "doi2.psi.ch/detail/",  // URL to the facility's Landing Page for Published Data.
-  "lbBaseURL": "http://127.0.0.1:3000",  // URL to the SciCat Backend.
-  "localColumns": [                      // Default columns to be displayed in the table on the Datasets Dashboard.
-    {
-      "name": "select",
-      "order": 0,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "datasetName",
-      "order": 1,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "runNumber",
-      "order": 2,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "sourceFolder",
-      "order": 3,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "size",
-      "order": 4,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "creationTime",
-      "order": 5,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "type",
-      "order": 6,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "image",
-      "order": 7,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "metadata",
-      "order": 8,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "proposalId",
-      "order": 9,
-      "type": "standard",
-      "enabled": true
-    },
-    {
-      "name": "ownerGroup",
-      "order": 10,
-      "type": "standard",
-      "enabled": false
-    },
-    {
-      "name": "dataStatus",
-      "order": 11,
-      "type": "standard",
-      "enabled": false
-    }
-  ],
-  "logbookEnabled": true,  // Enable/disable SciChat Logbook integration.
-  "loginFormEnabled": true,  // Enable/disable the local Login form. Should be disabled if using oAuth2 for authentication.
-  "maxDirectDownloadSize": 5000000000,  // Set a maximum allowed file size for downloading datafiles over HTTP.
-  "metadataPreviewEnabled": true,  // Enable/disable Scientific Metadata preview on the Datasets Dashboard.
-  "metadataStructure": "tree", // Allow tree structure for Scientific Metadata. Set to empty string for flat structure.
-  "multipleDownloadAction": "http://localhost:3012/zip",  // URL to service handling direct download of datafiles.
-  "multipleDownloadEnabled": true,  // Enable/disable ability to download multiple datafiles.
-  "oAuth2Endpoints": [],  // List of endpoints used for oAuth2 authentication.
-  "policiesEnabled": true,  // Enable/disable Dataset Policies workflow.
-  "retrieveDestinations": [],  // List of destinations for Dataset retrievals.
-  "riotBaseUrl": "http://scitest.esss.lu.se/riot",  // URL to SciChat client.
-  "scienceSearchEnabled": true,  // Enable/disable filtering documents on Scientific Metadata.
-  "scienceSearchUnitsEnabled": true,  // Enable/disable filtering documents on Scientific Metadata using units.
-  "searchPublicDataEnabled": true,  // Enable/disable filtering Datasets on public or non-public data.
-  "searchSamples": true,  // Enable/disable searching Samples on Samples Dashboard.
-  "sftpHost": "login.esss.dk",  // URL to SFTP service used for downloading files exceeding maximum allowed file size.
-  "shareEnabled": true,  // Enable/disable workflow for sharing Datasets with other users using their email address.
-  "shoppingCartEnabled": true,  // Enable/disable the Dataset cart used for bulk actions.
-  "shoppingCartOnHeader": true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
-  "tableSciDataEnabled": true  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
-}
+- ACCESS_GROUPS_STATIC_VALUES:  
+  List of groups assigned by default as groups to all users. Used in the vanilla implementation.   
+  If you do not want to want or need to assign default group, it should be set to empty string "".  
+  Default value: ""  
+  Format: Comman separated list of strings.   
+  Example: "group1,group2,group3,..."  
 
-```
+- ACCESS_GROUP_SERVICE_TOKEN
+  Access token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL, used to
+  retrieve access groups from a third party system.  
+  Format: string  
 
-## SciCat Backend
+- ACCESS_GROUP_SERVICE_API_URL
+  Well formed url of the service API used to provide access groups. Only one value is allowed.  
+  Example: "https://my.access.group/service/api/url"   
+  Format: string  
 
-### Dotenv config
+- DOI_PREFIX  
+  The facility DOI prefix, with trailing slash.  
+  Default: ""  
+  Format: string  
 
-This is the configuration file for the backend. This file allows the systems administrator to configure connected services, like authentication services and message queues, and also switching on/off almost all non essential features. The configuration file is a [dotenv](https://www.npmjs.com/package/dotenv) file and is read by the backend at runtime.
+- EXPRESS_SESSION_SECRET
+  Secret used to set up express session.  
+  Default: ""  
+  Format: string  
 
-An example is shown below
+- LOGOUT_URL  
+  Local SciCat URL to redirect users after a successfull logout
+  Default: none
+  Format: string
 
-```
-backend/.env
-ACCESS_GROUPS_STATIC_VALUES="group1,group2,group3,..." // List of groups assigned by default as access groups to all users. Used in the vanilla implementation. Facilities customization might not use this
-ACCESS_GROUP_SERVICE_TOKEN="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL
-ACCESS_GROUP_SERVICE_API_URL="https://my.access.group/service/api/url" // Url of the service API which is used to provide access groups. At the moment only one value is allowed
-DOI_PREFIX="<DOI_PREFIX>"  // The facility DOI prefix, with trailing slash.
-EXPRESS_SESSION_SECRET="<EXPRESS_SESSION_SECRET>"  // *Optional* Secret used to set up express session.
-HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
-HTTP_TIMEOUT=5000  // *Optional* Timeout from http requests in ms. Defaults to 5000.
+- HTTP_MAX_REDIRECTS  
+  Max redirects for http requests.  
+  Default: 5  
+  Fromat: integer  
+
+- HTTP_TIMEOUT
+  Timeout from http requests in ms.  
+  Default: 5000  
+  Format: integer  
+  
 JWT_SECRET=<JWT_SECRET>  // The secret for your JWT token, used for authorization.
 JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
 LDAP_URL="ldaps://ldap.server.com:636/"  // *Optional* The URL (and port) to your LDAP server.
