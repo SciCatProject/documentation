@@ -71,10 +71,10 @@ List of available actions:
 
 Authorization table:
 
-| HTTP method | Endpoint | Anonymous | User | Admin | Delete Admin | Permissions Methods |
+| HTTP method | Endpoint | Anonymous | User | Admin | Delete | Permissions Methods |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| POST | Users/jwt | no | yes | yes | yes | n/a |
-| POST | Users/login | no | yes | yes | yes | n/a |
+| POST | Users/jwt | yes | yes | n/a | n/a | n/a |
+| POST | Users/login | no | _Own_ | n/a | n/a | n/a |
 | GET | Users/_id_ | no | _Own_ | _Any_ | n/a | UserReadOwn, UserReadAny |
 | GET | Users/_id_/userIdentity | no | _Own_ | _Any_ | n/a | UserReadOwn, UserReadAny |
 | POST | Users/_id_/settings | no | _Own_ | _Any_ | n/a | UserCreateOwn, UserCreateAny |
