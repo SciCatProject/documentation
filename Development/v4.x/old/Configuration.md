@@ -142,13 +142,18 @@ An example is shown below
 
 ```
 backend/.env
+<<<<<<< HEAD:Development/old/Configuration.md
 
+=======
+>>>>>>> 3f0bafe (created development v4):Development/v4.x/old/Configuration.md
 ACCESS_GROUPS_STATIC_VALUES="group1,group2,group3,..." // List of groups assigned by default as access groups to all users. Used in the vanilla implementation. Facilities customization might not use this
 ACCESS_GROUP_SERVICE_TOKEN="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL
 ACCESS_GROUP_SERVICE_API_URL="https://my.access.group/service/api/url" // Url of the service API which is used to provide access groups. At the moment only one value is allowed
-=======
 // Required
+<<<<<<< HEAD:Development/old/Configuration.md
 
+=======
+>>>>>>> 3f0bafe (created development v4):Development/v4.x/old/Configuration.md
 DOI_PREFIX="<DOI_PREFIX>"  // The facility DOI prefix, with trailing slash.
 JWT_SECRET=<JWT_SECRET>  // The secret for your JWT token, used for authorization.
 MONGODB_URI="mongodb://<USERNAME>:<PASSWORD>@<HOST>:27017/<DB_NAME>"  // The URI for your MongoDB instance.
@@ -159,7 +164,10 @@ PUBLIC_URL_PREFIX="https://doi.ess.eu/detail/"  // The base URL to the facility 
 JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
 HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
 HTTP_TIMEOUT=5000  // *Optional* Timeout from http requests in ms. Defaults to 5000.
+<<<<<<< HEAD:Development/old/Configuration.md
 
+=======
+>>>>>>> 3f0bafe (created development v4):Development/v4.x/old/Configuration.md
 JWT_SECRET=<JWT_SECRET>  // The secret for your JWT token, used for authorization.
 JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
 LDAP_URL="ldaps://ldap.server.com:636/"  // *Optional* The URL (and port) to your LDAP server.
@@ -174,7 +182,6 @@ OIDC_CALLBACK_URL="http://localhost:3000/api/v3/oidc/callback" // URL of the end
 OIDC_SCOPE="openid profile email" // Information returned by the OIDC service together with token"
 OIDC_SUCCESS_URL="http://localhost:3000/explorer" // URL of the endpoint that is called after a successful authentication. IT is not used in the vanilla implementaation.
 OIDC_ACCESS_GROUPS="access_groups" // field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.
-=======
 EXPRESS_SESSION_SECRET="<EXPRESS_SESSION_SECRET>"  // *Optional* Secret used to set up express session.
 PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
 
@@ -197,7 +204,10 @@ OIDC_FAILURE_URL=https://scicat.myorg.com/login // *Optional* The URL to redirec
 OIDC_ACCESS_GROUPS=accessgroups // *Optional* scopes to retrieve access groups from OIDC
 
 //*Optional* - for adding a logbook to Scicat
+<<<<<<< HEAD:Development/old/Configuration.md
 
+=======
+>>>>>>> 3f0bafe (created development v4):Development/v4.x/old/Configuration.md
 LOGBOOK_ENABLED=<"yes"|"no">  // *Optional* Flag to enable/disable the Logbook endpoints. Values "yes" or "no". Defaults to "no".
 LOGBOOK_BASE_URL="http://localhost:3030/scichatapi"  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
 LOGBOOK_USERNAME="<LOGBOOK_USERNAME>"  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
