@@ -51,3 +51,10 @@ User authorization tests access to the Users endpoints according to the default 
 | 0430 | GET | Users/userIdentities/findOne | user1 | user2 | 403 | n/a |
 | 0440 | GET | Users/userIdentities/findOne | _anonymous_ | admin | 401 | n/a |
 | 0450 | GET | Users/userIdentities/findOne | _anonymous_ | user1 | 401 | n/a |
+| 0460 | POST | Users/_uid_/jwt | admin | _herself_ | 201 | ```{ "jwt" : "<JWT-TOKEN>"}``` |
+| 0470 | POST | Users/_uid_/jwt | admin | user1 | 201 | ```{ "jwt" : "<JWT-TOKEN>"}``` |
+| 0480 | POST | Users/_uid_/jwt | user1 | _herself_ | 403 | n/a |
+| 0490 | POST | Users/_uid_/jwt | user1 | admin | 403 | n/a |
+| 0500 | POST | Users/_uid_/jwt | user1 | user2 | 403 | n/a |
+| 0510 | POST | Users/_uid_/jwt | _anonymous_ | admin | 401 | n/a |
+| 0520 | POST | Users/_uid_/jwt | _anonymous_ | user1 | 401 | n/a |

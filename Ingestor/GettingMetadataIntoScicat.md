@@ -1,5 +1,6 @@
 
 # Getting Metadata Into SciCat (The hard way)
+___This page needs to be updated___
 
 ## Manual ingestion
 

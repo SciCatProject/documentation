@@ -1,6 +1,7 @@
 # Testing
 
 ## Packages
+Following is the list of hte main packages used to build, run and manage testing for the project
 
 * [Chai](https://github.com/chaijs/chai) - Assertion
 * [Supertest](https://github.com/visionmedia/supertest) - NodeJS testing for HTTP calls
@@ -39,7 +40,7 @@ List of tests:
 | DerivedDatasetDatablock.js | 0600 |  |  |
 | DerivedDataset.js | 0700 |  |  |
 | DerivedDatasetOrigDatablock.js | 0800 |  |  |
-| Instrument.js | 0900 |  |  |
+| Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |
 | InstrumentsFilter.js | 1000 |  |  |
 | Jobs.js | 1100 |  |  |
 | LoginUtils.js | 1200 |  |  |
@@ -92,5 +93,6 @@ These settings are meant only for testing and to demonstrate the capabilities of
 This section provides details on how all the tests files listed above are organized. Each subsection, provides a list of the test included in each file and the details of each one of them.
 
 - [Datasets]() 
-- [User Authorization](./testing/user_authorization.md)
+- [0900: Instrument](./testing/instrument.md)
+- [2300: User Authorization](./testing/user_authorization.md)
 
