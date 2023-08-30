@@ -32,14 +32,14 @@ The coverage might not be complete. If you find any use case  that is not covere
 List of tests:
 | test file | main code | title | description |
 | ----- | ----- | ----- | ----- |
-| Auth.js | 0100 |  |  |
-| CheckDifferentDatasetTypes.js | 0200 |  |  | 
+| Auth.js | 0100 |  Authorization functionalities| Test login and logout for functional accounts |
+| CheckDifferentDatasetTypes.js | 0200 | CheckDifferentDatasetTypes |  | 
 | DatasetAuthorization.js | 0300 |  |  |
 | DatasetFilter.js | 0400 |  |  |
 | DatasetLifecycle.js | 0500 |  |  |
 | DerivedDatasetDatablock.js | 0600 |  |  |
-| DerivedDataset.js | 0700 |  |  |
-| DerivedDatasetOrigDatablock.js | 0800 |  |  |
+| DerivedDataset.js | 0700 | Derived Datasets | test derived datasets functionalities |
+| DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |
 | Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |
 | InstrumentsFilter.js | 1000 |  |  |
 | Jobs.js | 1100 |  |  |
