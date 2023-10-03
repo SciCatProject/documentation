@@ -10,19 +10,31 @@ If you are compiling the application from source, you can edit the file _serc/co
 This is complete the list of environment variable that can be used to configure SciCat backend.
 The list is compiled according to the configuration class defined in _src/config/configuration.ts_
 
-- ADMIN_GROUPS:  
+- ADMIN\_GROUPS:  
   list of groups that have admin priviliges
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
-- DELETE_GROUPS:  
+- DELETE\_GROUPS:  
   list of groups that are allowed to delete content  
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
-- CREATE_DATASET_GROUPS:  
-  list of non admin groups that are allowed to create datasets. If set to "all", all users can create a dataset belonging to any of the groups they belong to.
-  _default_: "all"  
+- CREATE\_DATASET\_GROUPS:  
+  list of non admin groups that are allowed to create datasets without pid. The pid is assigned by the system. If set to "all", all users can create a dataset belonging to any of the groups they belong to.
+  _default_: "#all"  
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+
+- CREATE\_DATASET\_WITH\_PID\_GROUPS:  
+  list of non admin groups that are allowed to create datasets with explicit pid. If set to "#all", all users can create a dataset belonging to any of the groups they belong to and with esplicit pid.
+  If the pid verification is enabled, pid will be validated agains the specification passed.
+  _default_: ""  
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+
+- CREATE\_DATASET\_PRIVILEGED\_GROUPS:  
+  list of non admin groups that are allowed to create datasets for groups they do not belong to. If set to "#all", all users can create a dataset belonging to any group with explicit pid.
+  If the pid verification is enabled, pid will be validated agains the specification passed.
+  _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
 - ACCESS_GROUPS_STATIC_VALUES:

@@ -43,6 +43,7 @@
     * [Running the Components](Development/v4.x/running.md)
     * [Configuration](Development/v4.x/configuration.md)
       * [Backend](Development/v4.x/backend/configuration.md)
+      * [Authorization](Development/v4.x/backend/authorization.md)
       * [Frontend](Development/v4.x/frontend/configuration.md)
     * [Theming](Development/v4.x/Theming.md)
     * [Login and Accounts](Development/v4.x/Login.md)
