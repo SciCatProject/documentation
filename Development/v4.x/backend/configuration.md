@@ -10,7 +10,7 @@ If you are compiling the application from source, you can edit the file _serc/co
 This is complete the list of environment variable that can be used to configure SciCat backend.
 The list is compiled according to the configuration class defined in _src/config/configuration.ts_
 
-- ADMIN_GROUPS:  
+- ADMIN\_GROUPS:  
   list of groups that have admin priviliges
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
