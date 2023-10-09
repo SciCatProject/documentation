@@ -11,7 +11,7 @@ This is complete the list of environment variable that can be used to configure 
 The list is compiled according to the configuration class defined in _src/config/configuration.ts_
 
 - ADMIN\_GROUPS:  
-  list of groups that have admin priviliges
+  list of groups that have admin priviliges  
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
@@ -21,309 +21,318 @@ The list is compiled according to the configuration class defined in _src/config
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
 - CREATE\_DATASET\_GROUPS:  
-  list of non admin groups that are allowed to create datasets without pid. The pid is assigned by the system. If set to "all", all users can create a dataset belonging to any of the groups they belong to.
+  list of non admin groups that are allowed to create datasets without pid. The pid is assigned by the system. If set to "all", all users can create a dataset belonging to any of the groups they belong to.  
   _default_: "#all"  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
 - CREATE\_DATASET\_WITH\_PID\_GROUPS:  
   list of non admin groups that are allowed to create datasets with explicit pid. If set to "#all", all users can create a dataset belonging to any of the groups they belong to and with esplicit pid.
-  If the pid verification is enabled, pid will be validated agains the specification passed.
+  If the pid verification is enabled, pid will be validated agains the specification passed.  
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
 - CREATE\_DATASET\_PRIVILEGED\_GROUPS:  
   list of non admin groups that are allowed to create datasets for groups they do not belong to. If set to "#all", all users can create a dataset belonging to any group with explicit pid.
-  If the pid verification is enabled, pid will be validated agains the specification passed.
+  If the pid verification is enabled, pid will be validated agains the specification passed.  
   _default_: ""  
-  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed 
 
-- ACCESS_GROUPS_STATIC_VALUES:
+- ACCESS\_GROUPS\_STATIC\_VALUES:  
   List of groups assigned by default to all users. Used in the vanilla implementation for easy configuration.   
   If you do not want or need to assign any default group, it should be set to empty string "".  
   Default value: ""  
-  _format_: Comman separated list of strings.  Leading and trailing spaces are trimmed
+  _format_: Comman separated list of strings.  Leading and trailing spaces are trimmed  
   _example_: "group1,group2,group3,..."  
 
-- ACCESS_GROUP_SERVICE_TOKEN
+- ACCESS\_GROUP\_SERVICE\_TOKEN:
   Access token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL, used to
-  retrieve access groups from a third party system.  
+  retrieve access groups from a third party system.    
   _format_: string  
 
-- ACCESS_GROUP_SERVICE_API_URL
+- ACCESS\_GROUP\_SERVICE\_API\_URL:  
   Well formed url of the service API used to provide access groups. Only one value is allowed.  
+  _format_: string   
   _example_: "https://my.access.group/service/api/url"   
-  _format_: string  
-
-- DOI_PREFIX  
+  
+- DOI\_PREFIX:   
   The facility DOI prefix, with trailing slash.  
   _default_: ""  
   _format_: string  
 
-- EXPRESS_SESSION_SECRET
+- EXPRESS\_SESSION\_SECRET:  
   Secret used to set up express session.  
   _default_: ""  
   _format_: string  
 
-- LOGOUT_URL  
+- LOGOUT\_URL:  
   URL specified upon successful logout. It is returned in the json object for the frontend, or third party UI, to be used locally.  
-  _default_: ""
-  _format_: string
+  _default_: ""  
+  _format_: string  
 
-- HTTP_MAX_REDIRECTS  
+- HTTP\_MAX\_REDIRECTS:  
   Max number of redirects for http requests.  
   _default_: 5  
   _format_: integer  
 
-- HTTP_TIMEOUT
+- HTTP\_TIMEOUT:  
   Timeout from http requests in ms.  
   _default_: 5000  
   _format_: integer    
   
-- JWT_SECRET  
+- JWT\_SECRET:  
   The secret used to create any JWT token, used for authorization.  
-  _default_: ""  
-  _format_: string  
+  _default_: ""   
+  _format_: string    
 
-- JWT_EXPIRES_IN  
+- JWT\_EXPIRES\_IN:  
   Expiration time of any JWT token in seconds.  
   _default_: 3600 (s)   
-  _format_: integer  
+  _format_: integer   
 
-- JWT_NEVER_EXPIRES
-  Set if the jwt secret never expires or not.
-  _default_: 100y
-  _format_: string as in number of years
+- JWT\_NEVER\_EXPIRES:  
+  Length of time that the never expiring jwt token will last.  
+  _default_: 100y  
+  _format_: string as in number of years  
 
-- LDAP_URL  
+- LDAP\_URL:  
   Full URI (including port) of your local LDAP server, if this is your selected authentication method.  
   _default_: No default  
   _example_: ldaps://ldap.server.com:636/  
-  _format_: string  
+  _format_: string   
 
-- LDAP_BIND_DN  
+- LDAP\_BIND\_DN:  
   Bind DN to access information on your LDAP server.  
   _default_: No default  
   _format_: string  
 
-- LDAP_BIND_CREDENTIALS  
+- LDAP\_BIND\_CREDENTIALS:  
   Credentials associated with your bind DN to acccess your LDAP server.  
   _default_: No default  
   _format_: string  
 
-- LDAP_SEARCH_BASE  
+- LDAP\_SEARCH\_BASE:  
   Search base for your LDAP server.  
   _default_: No default  
   _format_: string  
 
-- LDAP_SEARCH_FILTER  
+- LDAP\_SEARCH\_FILTER:  
   Search filter for you LDAP server.  
   _default_: No default  
   _format_: string  
   _example_: "(LDAPUsername={{username}})"  
 
-- LDAP_MODE
-  type of ldap server we are communicating with
-  _default_: ad
-  _format_: string
-  acceptable values: ad, 
+- LDAP\_MODE:  
+  type of ldap server we are communicating with  
   ___NEEDS TO BE UPDATED. Not sure which other values are accepted___
+  _default_: ad  
+  _format_: string  
+  _acceptable values_: ad  
+  
+- LDAP\_EXTERNAL\_ID:  
+  LDAP matching field that provides the external id  
+  _default_: sAMAccountName  
+  _format_: string  
 
-- LDAP_EXTERNAL_ID
-  LDAP matching field that provides the external id
-  _default_: sAMAccountName
-  _format_: string
+- LDAP\_USERNAME:  
+  LDAP field providing the username  
+  _default_: displayName  
+  _format_: string  
 
-- LDAP_USERNAME
-  LDAP field providing the username
-  _default_: displayName
-  _format_: string
-
-- OIDC_ISSUER  
+- OIDC\_ISSUER:  
   Full URL of your OIDC identity provider  
   _default_: No default  
   _format_: string  
   _example_: "https://identity.your.facility/your/realm"  
 
-- OIDC_CLIENT_ID  
+- OIDC\_CLIENT\_ID:  
   Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated  
   _default_: No default  
   _format_: string  
   _example_: "scicat"  
 
-- OIDC_CLIENT_SECRET  
+- OIDC\_CLIENT\_SECRET:  
   Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated  
   _example_: "90f1268..."  
 
-- OIDC_CALLBACK_URL  
+- OIDC\_CALLBACK\_URL:  
   URL of the endpoint that is called when the authentication has been executed with the OIDC service.  
   _default_: No default  
   _format_: string  
   _example_: "http://localhost:3000/api/v3/oidc/callback"  
 
-- OIDC_SCOPE
+- OIDC\_SCOPE:  
   Information returned by the OIDC service together with token  
   _default_: No default  
   _format_: string  
   _example_: "openid profile email"  
 
-- OIDC_SUCCESS_URL   
-  Frontend URL that the user is directed to after a successful authentication. It must be a valid frontend URL.
+- OIDC\_SUCCESS\_URL:   
+  Frontend URL that the user is directed to after a successful authentication. It must be a valid frontend URL.  
   _default_: No default  
   _format_: string  
-  _example_: "http://localhost:3000/Datasets"
+  _example_: "http://localhost:3000/Datasets"  
 
-- OIDC_ACCESS_GROUPS  
+- OIDC\_ACCESS\_GROUPS:  
   field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.  
   _default_: No default  
   _format_: string  
   _example_: "access_groups"  
 
-- OIDC_ACCESS_GROUPS_PROPERTY
-  name of the OIDC property used to retrieve the users groups from OIDC
-  _default_: none
-  _format_: string
+- OIDC\_ACCESS\_GROUPS\_PROPERTY:  
+  name of the OIDC property used to retrieve the users groups from OIDC.  
+  _default_: none  
+  _format_: string  
 
-- OIDC_AUTO_LOGOUT
-  if enabled, when login out from SciCat, we logout from OIDC also.
-  _default_: false
-  _format_: boolean
+- OIDC\_AUTO\_LOGOUT:  
+  if enabled, when login out from SciCat, we logout from OIDC also.  
+  _default_: false  
+  _format_: boolean  
 
-- OIDC_RETURN_URL
-  URL the user is redirected after a successful logout
-  _default_: none
-  _format_: string
+- OIDC\_RETURN\_URL:  
+  URL the user is redirected after a successful logout  
+  _default_: none  
+  _format_: string  
 
-- LOGBOOK_ENABLED
+- LOGBOOK\_ENABLED:  
   Flag to enable/disable the Logbook endpoints.  
   accept values: "yes", "no"  
   _default_: no  
   _format_: string  
 
-- LOGBOOK_BASE_URL  
+- LOGBOOK\_BASE\_URL:  
   The base URL to the SciChat wrapper API. Only required if Logbook is enabled.  
   _default_: "http://localhost:3030/scichatapi"    
   _format_: string  
 
-- LOGBOOK_USERNAME  
+- LOGBOOK\_USERNAME:  
   The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.  
   _default_: No default  
   _format_: string  
 
-- LOGBOOK_PASSWORD  
-  The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.  
-  _default_: No default  
+- LOGBOOK\_PASSWORD:  
+  The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.    
+  _default_: No default   
   _format_: string  
 
-- METADATA_KEYS_RETURN_LIMIT  
+- METADATA\_KEYS\_RETURN\_LIMIT:  
   The maximum number of keys returned by the `/Datasets/metadataKeys` endpoint.  
   _default_: No default  
   _format_: integer  
 
-- METADATA_PARENT_INSTANCES_RETURN_LIMIT  
+- METADATA\_PARENT\_INSTANCES\_RETURN\_LIMIT:  
   The maximum number of Datasets used to extract metadata keys in the `/Datasets/metadataKeys` endpoint.  
   _default_: No default  
   _format_: integer  
 
-- MONGODB_URI
-  The URI for your MongoDB instance.
-  _default_: No default
-  _format_: string "mongodb://<USERNAME>:<PASSWORD>@<HOST>:27017/<DB_NAME>"
+- MONGODB\_URI:  
+  The URI for your MongoDB instance.  
+  _default_: No default  
+  _format_: string "mongodb://<USERNAME>:<PASSWORD>@<HOST>:27017/<DB_NAME>"  
   
-- OAI_PROVIDER_ROUTE  
+- OAI\_PROVIDER\_ROUTE:  
   URI to OAI provider, which is used in the `/publisheddata/:id/resync` endpoint.  
   _default_: no default  
   _format_: string  
 
-- PID_PREFIX   
-  The facility PID prefix, with trailing slash.
+- PID\_PREFIX:   
+  The facility PID prefix, with trailing slash.  
   _default_: no default  
   _format_: string  
 
-- PUBLIC_URL_PREFIX   
+- PUBLIC\_URL\_PREFIX:   
   The base URL to the facility Landing Page.  
   _default_: No default  
   _format_: string  
   _example_: "https://doi.ess.eu/detail/"  
 
-- PORT  
+- PORT:  
   The port on which the backend listen on.  
   _default_: 3000  
   _format_: integer  
 
-- RABBITMQ_ENABLED  
+- RABBITMQ\_ENABLED:  
   Flag to enable/disable RabbitMQ consumer.  
   accepted values: "yes", "no"  
+  _deprecated_. Will be removed in future releases.  
   _default_: no  
   _format_: string  
   
-- RABBITMQ_HOSTNAME  
+- RABBITMQ\_HOSTNAME:  
   The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.  
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _default_: string  
 
-- RABBITMQ_USERNAME  
+- RABBITMQ\_USERNAME:  
   The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.  
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _format_: string  
 
-- RABBITMQ_PASSWORD  
-  The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.  
+- RABBITMQ\_PASSWORD:  
+  The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is 
+  enabled.   
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _format_: string  
 
-- REGISTER_DOI_URI
+- REGISTER\_DOI\_URI:  
   URI to the organization that registers the facilities DOIs.  
   _default_: no default  
   _format_: string  
-  _example_: "https://mds.test.datacite.org/doi"
+  _example_: "https://mds.test.datacite.org/doi"  
 
-- REGISTER_METADATA_URI  
+- REGISTER\_METADATA\_URI:  
   URI to the organization that registers the facilities published data metadata.  
   _default_: no default  
   _format_: string  
   _example_: ="https://mds.test.datacite.org/metadata"  
 
-- DOI_USERNAME
-  Username used to authenticate on the DOI site
-  _default_: no default
-  _format_: string
+- DOI\_USERNAME:
+  Username used to authenticate on the DOI site  
+  _default_: no default  
+  _format_: string  
 
-- DOI_PASSWORD
-  Password used to authenticate on the DOI site
-  _default_: no default
-  _format_: string
+- DOI\_PASSWORD:  
+  Password used to authenticate on the DOI site  
+  _default_: no default  
+  _format_: string  
 
-- SITE  
+- SITE:    
   The name of your site.  
   _default_: no default  
   _format_: string  
 
-- SMTP_HOST  
+- SMTP\_HOST:  
   Host of SMTP server.   
+  _deprecated_. Will be removed in future releases.  
   _default_: no default    
   _format_: string  
 
-- SMTP_MESSAGE_FROM  
+- SMTP\_MESSAGE\_FROM:  
   Email address that emails should be sent from.  
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _format_: string, email  
 
-- SMTP_PORT  
+- SMTP\_PORT:  
   Port of SMTP server.  
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _format_: string  
 
-- SMTP_SECURE  
-  Secure of SMTP server.
+- SMTP\_SECURE:  
+  Secure of SMTP server.  
+  _deprecated_. Will be removed in future releases.  
   _default_: no default  
   _format_: string  
 
-- POLICY_PUBLICATION_SHIFT
-  Number of years that needs to elapse before the dataset is made publicly acceessible
-  _default_: 3
-  _format_: integer
+- POLICY\_PUBLICATION\_SHIFT:  
+  Number of years that needs to elapse before the dataset is made publicly acceessible  
+  _default_: 3  
+  _format_: integer  
 
-- POLICY_RETENTION_SHIFT
-  Number of years that the datasets are kept online before are archived or deleted. A negative value means that they are never archived/deleted
-  _default_: -1
-  _format_: integer
+- POLICY\_RETENTION\_SHIFT:  
+  Number of years that the datasets are kept online before are archived or deleted. A negative value means that they are never archived/deleted   
+  _default_: -1  
+  _format_: integer  
