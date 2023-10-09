@@ -1,4 +1,7 @@
 {
     "plugins": ["chapter-fold"],
-    "title": "SciCat Documentation"
+    "title": "SciCat Documentation",
+    "styles": {
+         "website" : "styles/website.css"
+    }
 }
