@@ -919,183 +919,132 @@
 <p>This is complete the list of environment variable that can be used to configure SciCat backend.
 The list is compiled according to the configuration class defined in <em>src/config/configuration.ts</em></p>
 <ul>
-<li><p>ADMIN_GROUPS:<br>list of groups that have admin priviliges
-<em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
+<li><p>ADMIN_GROUPS:<br>list of groups that have admin priviliges<br><em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
 </li>
 <li><p>DELETE_GROUPS:<br>list of groups that are allowed to delete content<br><em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
 </li>
-<li><p>CREATE_DATASET_GROUPS:<br>list of non admin groups that are allowed to create datasets without pid. The pid is assigned by the system. If set to &quot;all&quot;, all users can create a dataset belonging to any of the groups they belong to.
-<em>default</em>: &quot;#all&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
+<li><p>CREATE_DATASET_GROUPS:<br>list of non admin groups that are allowed to create datasets without pid. The pid is assigned by the system. If set to &quot;all&quot;, all users can create a dataset belonging to any of the groups they belong to.<br><em>default</em>: &quot;#all&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
 </li>
 <li><p>CREATE_DATASET_WITH_PID_GROUPS:<br>list of non admin groups that are allowed to create datasets with explicit pid. If set to &quot;#all&quot;, all users can create a dataset belonging to any of the groups they belong to and with esplicit pid.
-If the pid verification is enabled, pid will be validated agains the specification passed.
-<em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
+If the pid verification is enabled, pid will be validated agains the specification passed.<br><em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
 </li>
 <li><p>CREATE_DATASET_PRIVILEGED_GROUPS:<br>list of non admin groups that are allowed to create datasets for groups they do not belong to. If set to &quot;#all&quot;, all users can create a dataset belonging to any group with explicit pid.
-If the pid verification is enabled, pid will be validated agains the specification passed.
-<em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed</p>
+If the pid verification is enabled, pid will be validated agains the specification passed.<br><em>default</em>: &quot;&quot;<br><em>format</em>: comma separated list of strings. Leading and trailing spaces are trimmed </p>
 </li>
-<li><p>ACCESS<em>GROUPS_STATIC_VALUES:
-List of groups assigned by default to all users. Used in the vanilla implementation for easy configuration.<br>If you do not want or need to assign any default group, it should be set to empty string &quot;&quot;.<br>Default value: &quot;&quot;<br>_format</em>: Comman separated list of strings.  Leading and trailing spaces are trimmed
-<em>example</em>: &quot;group1,group2,group3,...&quot;  </p>
+<li><p>ACCESS_GROUPS_STATIC_VALUES:<br>List of groups assigned by default to all users. Used in the vanilla implementation for easy configuration.<br>If you do not want or need to assign any default group, it should be set to empty string &quot;&quot;.<br>Default value: &quot;&quot;<br><em>format</em>: Comman separated list of strings.  Leading and trailing spaces are trimmed<br><em>example</em>: &quot;group1,group2,group3,...&quot;  </p>
 </li>
-<li><p>ACCESS<em>GROUP_SERVICE_TOKEN
-Access token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL, used to
+<li><p>ACCESS_GROUP_SERVICE_TOKEN:
+Access token needed to access the API specified in ACCESS<em>GROUP_SERVICE_API_URL, used to
 retrieve access groups from a third party system.<br>_format</em>: string  </p>
 </li>
-<li><p>ACCESS<em>GROUP_SERVICE_API_URL
-Well formed url of the service API used to provide access groups. Only one value is allowed.<br>_example</em>: &quot;<a href="https://my.access.group/service/api/url" target="_blank">https://my.access.group/service/api/url</a>&quot;<br><em>format</em>: string  </p>
+<li><p>ACCESS_GROUP_SERVICE_API_URL:<br>Well formed url of the service API used to provide access groups. Only one value is allowed.<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://my.access.group/service/api/url" target="_blank">https://my.access.group/service/api/url</a>&quot;   </p>
 </li>
-<li><p>DOI<em>PREFIX<br>The facility DOI prefix, with trailing slash.<br>_default</em>: &quot;&quot;<br><em>format</em>: string  </p>
+<li><p>DOI_PREFIX:<br>The facility DOI prefix, with trailing slash.<br><em>default</em>: &quot;&quot;<br><em>format</em>: string  </p>
 </li>
-<li><p>EXPRESS<em>SESSION_SECRET
-Secret used to set up express session.<br>_default</em>: &quot;&quot;<br><em>format</em>: string  </p>
+<li><p>EXPRESS_SESSION_SECRET:<br>Secret used to set up express session.<br><em>default</em>: &quot;&quot;<br><em>format</em>: string  </p>
 </li>
-<li><p>LOGOUT<em>URL<br>URL specified upon successful logout. It is returned in the json object for the frontend, or third party UI, to be used locally.<br>_default</em>: &quot;&quot;
-<em>format</em>: string</p>
+<li><p>LOGOUT_URL:<br>URL specified upon successful logout. It is returned in the json object for the frontend, or third party UI, to be used locally.<br><em>default</em>: &quot;&quot;<br><em>format</em>: string  </p>
 </li>
-<li><p>HTTP<em>MAX_REDIRECTS<br>Max number of redirects for http requests.<br>_default</em>: 5<br><em>format</em>: integer  </p>
+<li><p>HTTP_MAX_REDIRECTS:<br>Max number of redirects for http requests.<br><em>default</em>: 5<br><em>format</em>: integer  </p>
 </li>
-<li><p>HTTP<em>TIMEOUT
-Timeout from http requests in ms.<br>_default</em>: 5000<br><em>format</em>: integer    </p>
+<li><p>HTTP_TIMEOUT:<br>Timeout from http requests in ms.<br><em>default</em>: 5000<br><em>format</em>: integer    </p>
 </li>
-<li><p>JWT<em>SECRET<br>The secret used to create any JWT token, used for authorization.<br>_default</em>: &quot;&quot;<br><em>format</em>: string  </p>
+<li><p>JWT_SECRET:<br>The secret used to create any JWT token, used for authorization.<br><em>default</em>: &quot;&quot;<br><em>format</em>: string    </p>
 </li>
-<li><p>JWT<em>EXPIRES_IN<br>Expiration time of any JWT token in seconds.<br>_default</em>: 3600 (s)<br><em>format</em>: integer  </p>
+<li><p>JWT_EXPIRES_IN:<br>Expiration time of any JWT token in seconds.<br><em>default</em>: 3600 (s)<br><em>format</em>: integer   </p>
 </li>
-<li><p>JWT<em>NEVER_EXPIRES
-Set if the jwt secret never expires or not.
-_default</em>: 100y
-<em>format</em>: string as in number of years</p>
+<li><p>JWT_NEVER_EXPIRES:<br>Length of time that the never expiring jwt token will last.<br><em>default</em>: 100y<br><em>format</em>: string as in number of years  </p>
 </li>
-<li><p>LDAP<em>URL<br>Full URI (including port) of your local LDAP server, if this is your selected authentication method.<br>_default</em>: No default<br><em>example</em>: ldaps://ldap.server.com:636/<br><em>format</em>: string  </p>
+<li><p>LDAP_URL:<br>Full URI (including port) of your local LDAP server, if this is your selected authentication method.<br><em>default</em>: No default<br><em>example</em>: ldaps://ldap.server.com:636/<br><em>format</em>: string   </p>
 </li>
-<li><p>LDAP<em>BIND_DN<br>Bind DN to access information on your LDAP server.<br>_default</em>: No default<br><em>format</em>: string  </p>
+<li><p>LDAP_BIND_DN:<br>Bind DN to access information on your LDAP server.<br><em>default</em>: No default<br><em>format</em>: string  </p>
 </li>
-<li><p>LDAP<em>BIND_CREDENTIALS<br>Credentials associated with your bind DN to acccess your LDAP server.<br>_default</em>: No default<br><em>format</em>: string  </p>
+<li><p>LDAP_BIND_CREDENTIALS:<br>Credentials associated with your bind DN to acccess your LDAP server.<br><em>default</em>: No default<br><em>format</em>: string  </p>
 </li>
-<li><p>LDAP<em>SEARCH_BASE<br>Search base for your LDAP server.<br>_default</em>: No default<br><em>format</em>: string  </p>
+<li><p>LDAP_SEARCH_BASE:<br>Search base for your LDAP server.<br><em>default</em>: No default<br><em>format</em>: string  </p>
 </li>
-<li><p>LDAP<em>SEARCH_FILTER<br>Search filter for you LDAP server.<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;(LDAPUsername=)&quot;  </p>
+<li><p>LDAP_SEARCH_FILTER:<br>Search filter for you LDAP server.<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;(LDAPUsername=)&quot;  </p>
 </li>
-<li><p>LDAP<em>MODE
-type of ldap server we are communicating with
-_default</em>: ad
-<em>format</em>: string
-acceptable values: ad, 
-<strong><em>NEEDS TO BE UPDATED. Not sure which other values are accepted</em></strong></p>
+<li><p>LDAP_MODE:<br>type of ldap server we are communicating with<br><strong><em>NEEDS TO BE UPDATED. Not sure which other values are accepted</em></strong>
+<em>default</em>: ad<br><em>format</em>: string<br><em>acceptable values</em>: ad  </p>
 </li>
-<li><p>LDAP<em>EXTERNAL_ID
-LDAP matching field that provides the external id
-_default</em>: sAMAccountName
-<em>format</em>: string</p>
+<li><p>LDAP_EXTERNAL_ID:<br>LDAP matching field that provides the external id<br><em>default</em>: sAMAccountName<br><em>format</em>: string  </p>
 </li>
-<li><p>LDAP<em>USERNAME
-LDAP field providing the username
-_default</em>: displayName
-<em>format</em>: string</p>
+<li><p>LDAP_USERNAME:<br>LDAP field providing the username<br><em>default</em>: displayName<br><em>format</em>: string  </p>
 </li>
-<li><p>OIDC<em>ISSUER<br>Full URL of your OIDC identity provider<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://identity.your.facility/your/realm" target="_blank">https://identity.your.facility/your/realm</a>&quot;  </p>
+<li><p>OIDC_ISSUER:<br>Full URL of your OIDC identity provider<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://identity.your.facility/your/realm" target="_blank">https://identity.your.facility/your/realm</a>&quot;  </p>
 </li>
-<li><p>OIDC<em>CLIENT_ID<br>Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;scicat&quot;  </p>
+<li><p>OIDC_CLIENT_ID:<br>Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;scicat&quot;  </p>
 </li>
-<li><p>OIDC<em>CLIENT_SECRET<br>Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated<br>_example</em>: &quot;90f1268...&quot;  </p>
+<li><p>OIDC_CLIENT_SECRET:<br>Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated<br><em>example</em>: &quot;90f1268...&quot;  </p>
 </li>
-<li><p>OIDC<em>CALLBACK_URL<br>URL of the endpoint that is called when the authentication has been executed with the OIDC service.<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="http://localhost:3000/api/v3/oidc/callback" target="_blank">http://localhost:3000/api/v3/oidc/callback</a>&quot;  </p>
+<li><p>OIDC_CALLBACK_URL:<br>URL of the endpoint that is called when the authentication has been executed with the OIDC service.<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="http://localhost:3000/api/v3/oidc/callback" target="_blank">http://localhost:3000/api/v3/oidc/callback</a>&quot;  </p>
 </li>
-<li><p>OIDC<em>SCOPE
-Information returned by the OIDC service together with token<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;openid profile email&quot;  </p>
+<li><p>OIDC_SCOPE:<br>Information returned by the OIDC service together with token<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;openid profile email&quot;  </p>
 </li>
-<li><p>OIDC<em>SUCCESS_URL<br>Frontend URL that the user is directed to after a successful authentication. It must be a valid frontend URL.
-_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="http://localhost:3000/Datasets" target="_blank">http://localhost:3000/Datasets</a>&quot;</p>
+<li><p>OIDC_SUCCESS_URL:<br>Frontend URL that the user is directed to after a successful authentication. It must be a valid frontend URL.<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="http://localhost:3000/Datasets" target="_blank">http://localhost:3000/Datasets</a>&quot;  </p>
 </li>
-<li><p>OIDC<em>ACCESS_GROUPS<br>field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;access_groups&quot;  </p>
+<li><p>OIDC_ACCESS_GROUPS:<br>field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;access_groups&quot;  </p>
 </li>
-<li><p>OIDC<em>ACCESS_GROUPS_PROPERTY
-name of the OIDC property used to retrieve the users groups from OIDC
-_default</em>: none
-<em>format</em>: string</p>
+<li><p>OIDC_ACCESS_GROUPS_PROPERTY:<br>name of the OIDC property used to retrieve the users groups from OIDC.<br><em>default</em>: none<br><em>format</em>: string  </p>
 </li>
-<li><p>OIDC<em>AUTO_LOGOUT
-if enabled, when login out from SciCat, we logout from OIDC also.
-_default</em>: false
-<em>format</em>: boolean</p>
+<li><p>OIDC_AUTO_LOGOUT:<br>if enabled, when login out from SciCat, we logout from OIDC also.<br><em>default</em>: false<br><em>format</em>: boolean  </p>
 </li>
-<li><p>OIDC<em>RETURN_URL
-URL the user is redirected after a successful logout
-_default</em>: none
-<em>format</em>: string</p>
+<li><p>OIDC_RETURN_URL:<br>URL the user is redirected after a successful logout<br><em>default</em>: none<br><em>format</em>: string  </p>
 </li>
-<li><p>LOGBOOK<em>ENABLED
-Flag to enable/disable the Logbook endpoints.<br>accept values: &quot;yes&quot;, &quot;no&quot;<br>_default</em>: no<br><em>format</em>: string  </p>
+<li><p>LOGBOOK_ENABLED:<br>Flag to enable/disable the Logbook endpoints.<br>accept values: &quot;yes&quot;, &quot;no&quot;<br><em>default</em>: no<br><em>format</em>: string  </p>
 </li>
-<li><p>LOGBOOK<em>BASE_URL<br>The base URL to the SciChat wrapper API. Only required if Logbook is enabled.<br>_default</em>: &quot;<a href="http://localhost:3030/scichatapi" target="_blank">http://localhost:3030/scichatapi</a>&quot;<br><em>format</em>: string  </p>
+<li><p>LOGBOOK_BASE_URL:<br>The base URL to the SciChat wrapper API. Only required if Logbook is enabled.<br><em>default</em>: &quot;<a href="http://localhost:3030/scichatapi" target="_blank">http://localhost:3030/scichatapi</a>&quot;<br><em>format</em>: string  </p>
 </li>
-<li><p>LOGBOOK<em>USERNAME<br>The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.<br>_default</em>: No default<br><em>format</em>: string  </p>
+<li><p>LOGBOOK_USERNAME:<br>The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.<br><em>default</em>: No default<br><em>format</em>: string  </p>
 </li>
-<li><p>LOGBOOK<em>PASSWORD<br>The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.<br>_default</em>: No default<br><em>format</em>: string  </p>
+<li><p>LOGBOOK_PASSWORD:<br>The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.<br><em>default</em>: No default<br><em>format</em>: string  </p>
 </li>
-<li><p>METADATA<em>KEYS_RETURN_LIMIT<br>The maximum number of keys returned by the <code>/Datasets/metadataKeys</code> endpoint.<br>_default</em>: No default<br><em>format</em>: integer  </p>
+<li><p>METADATA_KEYS_RETURN_LIMIT:<br>The maximum number of keys returned by the <code>/Datasets/metadataKeys</code> endpoint.<br><em>default</em>: No default<br><em>format</em>: integer  </p>
 </li>
-<li><p>METADATA<em>PARENT_INSTANCES_RETURN_LIMIT<br>The maximum number of Datasets used to extract metadata keys in the <code>/Datasets/metadataKeys</code> endpoint.<br>_default</em>: No default<br><em>format</em>: integer  </p>
+<li><p>METADATA_PARENT_INSTANCES_RETURN_LIMIT:<br>The maximum number of Datasets used to extract metadata keys in the <code>/Datasets/metadataKeys</code> endpoint.<br><em>default</em>: No default<br><em>format</em>: integer  </p>
 </li>
-<li><p>MONGODB<em>URI
-The URI for your MongoDB instance.
-_default</em>: No default
-<em>format</em>: string &quot;mongodb://<username>:&lt;PASSWORD&gt;@<host>:27017/<db_name>&quot;</db_name></host></username></p>
+<li><p>MONGODB_URI:<br>The URI for your MongoDB instance.<br><em>default</em>: No default<br><em>format</em>: string &quot;mongodb://<username>:&lt;PASSWORD&gt;@<host>:27017/<db_name>&quot;  </db_name></host></username></p>
 </li>
-<li><p>OAI<em>PROVIDER_ROUTE<br>URI to OAI provider, which is used in the <code>/publisheddata/:id/resync</code> endpoint.<br>_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>OAI_PROVIDER_ROUTE:<br>URI to OAI provider, which is used in the <code>/publisheddata/:id/resync</code> endpoint.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>PID<em>PREFIX<br>The facility PID prefix, with trailing slash.
-_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>PID_PREFIX:<br>The facility PID prefix, with trailing slash.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>PUBLIC<em>URL_PREFIX<br>The base URL to the facility Landing Page.<br>_default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://doi.ess.eu/detail/" target="_blank">https://doi.ess.eu/detail/</a>&quot;  </p>
+<li><p>PUBLIC_URL_PREFIX:<br>The base URL to the facility Landing Page.<br><em>default</em>: No default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://doi.ess.eu/detail/" target="_blank">https://doi.ess.eu/detail/</a>&quot;  </p>
 </li>
-<li><p>PORT<br>The port on which the backend listen on.<br><em>default</em>: 3000<br><em>format</em>: integer  </p>
+<li><p>PORT:<br>The port on which the backend listen on.<br><em>default</em>: 3000<br><em>format</em>: integer  </p>
 </li>
-<li><p>RABBITMQ<em>ENABLED<br>Flag to enable/disable RabbitMQ consumer.<br>accepted values: &quot;yes&quot;, &quot;no&quot;<br>_default</em>: no<br><em>format</em>: string  </p>
+<li><p>RABBITMQ_ENABLED:<br>Flag to enable/disable RabbitMQ consumer.<br>accepted values: &quot;yes&quot;, &quot;no&quot;<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no<br><em>format</em>: string  </p>
 </li>
-<li><p>RABBITMQ<em>HOSTNAME<br>The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.<br>_default</em>: no default<br><em>default</em>: string  </p>
+<li><p>RABBITMQ_HOSTNAME:<br>The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>default</em>: string  </p>
 </li>
-<li><p>RABBITMQ<em>USERNAME<br>The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.<br>_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>RABBITMQ_USERNAME:<br>The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>RABBITMQ<em>PASSWORD<br>The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.<br>_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>RABBITMQ_PASSWORD:<br>The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is 
+enabled.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>REGISTER<em>DOI_URI
-URI to the organization that registers the facilities DOIs.<br>_default</em>: no default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://mds.test.datacite.org/doi" target="_blank">https://mds.test.datacite.org/doi</a>&quot;</p>
+<li><p>REGISTER_DOI_URI:<br>URI to the organization that registers the facilities DOIs.<br><em>default</em>: no default<br><em>format</em>: string<br><em>example</em>: &quot;<a href="https://mds.test.datacite.org/doi" target="_blank">https://mds.test.datacite.org/doi</a>&quot;  </p>
 </li>
-<li><p>REGISTER<em>METADATA_URI<br>URI to the organization that registers the facilities published data metadata.<br>_default</em>: no default<br><em>format</em>: string<br><em>example</em>: =&quot;<a href="https://mds.test.datacite.org/metadata" target="_blank">https://mds.test.datacite.org/metadata</a>&quot;  </p>
+<li><p>REGISTER_METADATA_URI:<br>URI to the organization that registers the facilities published data metadata.<br><em>default</em>: no default<br><em>format</em>: string<br><em>example</em>: =&quot;<a href="https://mds.test.datacite.org/metadata" target="_blank">https://mds.test.datacite.org/metadata</a>&quot;  </p>
 </li>
-<li><p>DOI<em>USERNAME
-Username used to authenticate on the DOI site
-_default</em>: no default
-<em>format</em>: string</p>
+<li><p>DOI_USERNAME:
+Username used to authenticate on the DOI site<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>DOI<em>PASSWORD
-Password used to authenticate on the DOI site
-_default</em>: no default
-<em>format</em>: string</p>
+<li><p>DOI_PASSWORD:<br>Password used to authenticate on the DOI site<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>SITE<br>The name of your site.<br><em>default</em>: no default<br><em>format</em>: string  </p>
+<li><p>SITE:<br>The name of your site.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>SMTP<em>HOST<br>Host of SMTP server.<br>_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>SMTP_HOST:<br>Host of SMTP server.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>SMTP<em>MESSAGE_FROM<br>Email address that emails should be sent from.<br>_default</em>: no default<br><em>format</em>: string, email  </p>
+<li><p>SMTP_MESSAGE_FROM:<br>Email address that emails should be sent from.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string, email  </p>
 </li>
-<li><p>SMTP<em>PORT<br>Port of SMTP server.<br>_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>SMTP_PORT:<br>Port of SMTP server.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>SMTP<em>SECURE<br>Secure of SMTP server.
-_default</em>: no default<br><em>format</em>: string  </p>
+<li><p>SMTP_SECURE:<br>Secure of SMTP server.<br><em>deprecated</em>. Will be removed in future releases.<br><em>default</em>: no default<br><em>format</em>: string  </p>
 </li>
-<li><p>POLICY<em>PUBLICATION_SHIFT
-Number of years that needs to elapse before the dataset is made publicly acceessible
-_default</em>: 3
-<em>format</em>: integer</p>
+<li><p>POLICY_PUBLICATION_SHIFT:<br>Number of years that needs to elapse before the dataset is made publicly acceessible<br><em>default</em>: 3<br><em>format</em>: integer  </p>
 </li>
-<li><p>POLICY<em>RETENTION_SHIFT
-Number of years that the datasets are kept online before are archived or deleted. A negative value means that they are never archived/deleted
-_default</em>: -1
-<em>format</em>: integer</p>
+<li><p>POLICY_RETENTION_SHIFT:<br>Number of years that the datasets are kept online before are archived or deleted. A negative value means that they are never archived/deleted<br><em>default</em>: -1<br><em>format</em>: integer  </p>
 </li>
 </ul>
 
@@ -1141,7 +1090,7 @@ _default</em>: -1
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.4.1","depth":4,"next":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[]},"previous":{"title":"Configuration","level":"1.5.2.4","depth":3,"path":"Development/v4.x/configuration.md","ref":"Development/v4.x/configuration.md","articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration.md","mtime":"2023-10-03T13:55:20.050Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-03T13:55:29.300Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.4.1","depth":4,"next":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[]},"previous":{"title":"Configuration","level":"1.5.2.4","depth":3,"path":"Development/v4.x/configuration.md","ref":"Development/v4.x/configuration.md","articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration.md","mtime":"2023-10-09T19:59:44.616Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-09T19:59:57.152Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
