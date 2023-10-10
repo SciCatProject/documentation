@@ -25,7 +25,7 @@ This allow for the flexibility required by many installations in different facil
 ## Group Lists available in Vanilla Configuration 
 The permissions in the vanilla installation provides a set of user groups which acquires specific set of permissions. In order to assign a set of permissions to a specific group of user, add such group to the correct list indicated below.
 
-| Configuration Group List | Description | Permissions methods |
+| Configuration Group List | Description | CASL ability actions |
 | ------------------------ | ----------- | ------------------- |
 | _authenticated users_ | Authenticated users can view/access all datasets that belong to one of the groups they belong to |  DatasetReadOwn |
 | | Users can view attachments for datasets belonging to one of their group |  DatasetAttachmentReadOwn  |
@@ -63,7 +63,7 @@ The permissions in the vanilla installation provides a set of user groups which 
 Authorization (permissions) are listed by endpoint groups. They are expressed for each type of user group. A user is an Authenticated User if he/she is logged in but it does not belong to any of the group listed in the Configuration Group Lists
 
 ### Datasets
-#### Permissions methods
+#### CASL ability actions
 This is the list of the permissions methods available for datasets and all their endpoints
 - DatasetCreateOwn
 - DatasetCreateAny
@@ -95,6 +95,7 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetDatablockUpdateAny
 - DatasetDatablockDeleteOwn
 - DatasetLogbookReadOwn
+- DatasetLogbookReadAny
 
 #### Authorization table
 | HTTP method | Endpoint | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
@@ -135,7 +136,7 @@ This is the list of the permissions methods available for datasets and all their
 | GET | Datasets/_pid_/logbook | __no__ | Own  _DatasetLogbookReadOwn_ |  Own _DatasetLogbookReadOwn_ | Own _DatasetLogbookReadOwn_ |  Any _DatasetLogbookReadAny_ | __no__ | 
 
 ### OrigDatablock
-#### Permission methods
+#### CASL ability actions
 - OrigdatablockCreateOwn
 - OrigdatablockCreateAny
 - OrigdatablockReadOwn
@@ -159,7 +160,7 @@ This is the list of the permissions methods available for datasets and all their
 
 
 ### Users
-#### Permission methods
+#### CASL ability actions
 - UserReadOwn
 - UserReadAny
 - UserCreateOwn
