@@ -51,10 +51,10 @@ The permissions in the vanilla installation provides a set of user groups which 
 | | Users are allowed to create and update datablocks for datasets belonging to one of their group | DatasetDatablockCreateOwn , DatasetDatablockReadOwn , DatasetDatablockUpdateOwn |
 | | Users can view the logbook of the datasets that belong to one of their group | DatasetLogbookReadOwn |
 | | |
-| ADMIN_GROUPS | Users of the listed groups can create and modify datasets belonging to any group. They can also specify | DatasetCreateAll , DatasetReadAll , DatasetUpdateAll , DatasetAttachmentCreateAll , DatasetAttachmentReadAll , DatasetAttachementUpdateAll , DatasetAttachmentDeleteAll |
-| | Users are allowed to perform all operations on attachments for any datasets | DatasetAttachmentCreateOwn , DatasetAttachmentReadOwn , DatasetAtatchementUpdateOwn , DatasetAttachmentDeleteOwn  |
-| | Users are allowed to perform all operations on origdatablocks for any datasets, except delete | DatasetOrigdatablockCreateAny , DatasetOrigdatablockReadOwn , DatasetOrigdatablockUpdateOwn |
-| | Users are allowed to perform all operations on datablocks for any datasets, except delete | DatasetDatablockCreateOwn , DatasetDatablockReadOwn , DatasetDatablockUpdateOwn |
+| ADMIN_GROUPS | Users of the listed groups can create and modify datasets belonging to any group. They are allowed to specify the dataset's pid at creation time | DatasetCreateAny , DatasetReadAny , DatasetUpdateAny |
+| | Users are allowed to perform all operations on attachments for any datasets | DatasetAttachmentCreateAny , DatasetAttachmentReadAny , DatasetAtatchementUpdateAny , DatasetAttachmentDeleteAny  |
+| | Users are allowed to perform all operations on origdatablocks for any datasets, except delete | DatasetOrigdatablockCreateAny , DatasetOrigdatablockReadAny , DatasetOrigdatablockUpdateAny |
+| | Users are allowed to perform all operations on datablocks for any datasets, except delete | DatasetDatablockCreateAny , DatasetDatablockReadAny , DatasetDatablockUpdateAny |
 | | Users can view logbook for any datasets| DatasetLogbookReadAny | 
 | | |
 | DELETE_GROUPS | Users whos group is listed here are allowed to delete datasets, origdatablock or datablock | DatasetDeleteAny , DatasetOrigdatablockDeleteAny , DatasetDatablockDeleteAny |
