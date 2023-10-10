@@ -121,8 +121,8 @@ This is the list of the permissions methods available for datasets and all their
 | PUT | Datasets/_pid_/attachments/_aid_ | __no__ | __no__ | Own  _DatasetAttachmentUpdateOwn_ |  Own _DatasetAttachmentUpdateOwn_ | Own _DatasetAttachmentUpdateOwn_ |  Any _DatasetAttachmentCreateAny_ | __no__ | 
 | DELETE | Datasets/_pid_/attachments/_aid_ | __no__ | __no__ | Own  _DatasetAttachmentDeleteOwn_ |  Own _DatasetAttachmentDeleteOwn_ | Own _DatasetAttachmentDeleteOwn_ |  Any _DatasetAttachmentDeleteAny_ | __no__ | 
 | | | | | | | | | |
-| POST | Datasets/_pid_/origdatablocks |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Own _DatasetOrigdatablockCreateOwn_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
-| POST | Datasets/_pid_/origdatablocks/isValid |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Own _DatasetOrigdatablockCreateOwn_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
+| POST | Datasets/_pid_/origdatablocks |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Any _DatasetOrigdatablockCreateAny_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
+| POST | Datasets/_pid_/origdatablocks/isValid |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Any _DatasetOrigdatablockCreateAny_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
 | GET | Datasets/_pid_/origdatablocks | Public | Own _DatasetOrigdatablockReadOwn_ | Own _DatasetOrigdatablockReadOwn_ |  Own _DatasetOrigdatablockReadOwn_ | Own _DatasetOrigdatablockReadOwn_ |  Any _DatasetOrigdatablockReadAny_ | __no__ | 
 | PATCH | Datasets/_pid_/origdatablocks/_oid_ | __no__ | __no__ | Own  _DatasetOrigdatablockUpdateOwn_ |  Own _DatasetOrigdatablockUpdateOwn_ | Own _DatasetOrigdatablockUpdateOwn_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
 | DELETE | Datasets/_pid_/origdatablocks/_oid_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any _DatasetOrigdatablockDeleteAny_ | 
@@ -134,8 +134,32 @@ This is the list of the permissions methods available for datasets and all their
 | | | | | | | | | |
 | GET | Datasets/_pid_/logbook | __no__ | Own  _DatasetLogbookReadOwn_ |  Own _DatasetLogbookReadOwn_ | Own _DatasetLogbookReadOwn_ |  Any _DatasetLogbookReadAny_ | __no__ | 
 
+### OrigDatablock
+#### Permission methods
+- OrigdatablockCreateOwn
+- OrigdatablockCreateAny
+- OrigdatablockReadOwn
+- OrigdatablockReadAny
+- OrigdatablockUpdateOwn
+- OrigdatablockUpdateAny
+- OrigdatablockDeleteAny
+
+#### Authorization table
+| HTTP method | Endpoint | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| POST | origdatablocks |  __no__ | __no__ | Own  _OrigdatablockCreateOwn_ |  Own _OrigidatablockCreateOwn_ | Any _OrigdatablockCreateAny_ |  Any _OrigdatablockCreateAny_ | __no__ | 
+| POST | origdatablocks/isValid |  __no__ | __no__ | Own  _OrigdatablockCreateOwn_ |  Own _OrigdatablockCreateOwn_ | Any _OrigdatablockCreateAny_ |  Any _OrigdatablockCreateAny_ | __no__ | 
+| GET | origdatablocks | Public | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/_oid_ | Public | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullquery | Public | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullquery/files | Public | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullfacet | Public | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
+| PATCH | origdatablocks/_oid_ | __no__ | __no__ | Own  _OrigdatablockUpdateOwn_ |  Own _OrigdatablockUpdateOwn_ | Own _OrigdatablockUpdateOwn_ |  Any _OrigdatablockCreateAny_ | __no__ | 
+| DELETE | origdatablocks/_oid_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any _OrigdatablockDeleteAny_ | 
+
+
 ### Users
-#### Permission methods:
+#### Permission methods
 - UserReadOwn
 - UserReadAny
 - UserCreateOwn
