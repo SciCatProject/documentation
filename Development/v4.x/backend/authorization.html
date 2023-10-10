@@ -1048,23 +1048,23 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 </tr>
 <tr>
 <td>ADMIN_GROUPS</td>
-<td>Users of the listed groups can create and modify datasets belonging to any group. They can also specify</td>
-<td>DatasetCreateAll , DatasetReadAll , DatasetUpdateAll , DatasetAttachmentCreateAll , DatasetAttachmentReadAll , DatasetAttachementUpdateAll , DatasetAttachmentDeleteAll</td>
+<td>Users of the listed groups can create and modify datasets belonging to any group. They are allowed to specify the dataset&apos;s pid at creation time</td>
+<td>DatasetCreateAny , DatasetReadAny , DatasetUpdateAny</td>
 </tr>
 <tr>
 <td></td>
 <td>Users are allowed to perform all operations on attachments for any datasets</td>
-<td>DatasetAttachmentCreateOwn , DatasetAttachmentReadOwn , DatasetAtatchementUpdateOwn , DatasetAttachmentDeleteOwn</td>
+<td>DatasetAttachmentCreateAny , DatasetAttachmentReadAny , DatasetAtatchementUpdateAny , DatasetAttachmentDeleteAny</td>
 </tr>
 <tr>
 <td></td>
 <td>Users are allowed to perform all operations on origdatablocks for any datasets, except delete</td>
-<td>DatasetOrigdatablockCreateAny , DatasetOrigdatablockReadOwn , DatasetOrigdatablockUpdateOwn</td>
+<td>DatasetOrigdatablockCreateAny , DatasetOrigdatablockReadAny , DatasetOrigdatablockUpdateAny</td>
 </tr>
 <tr>
 <td></td>
 <td>Users are allowed to perform all operations on datablocks for any datasets, except delete</td>
-<td>DatasetDatablockCreateOwn , DatasetDatablockReadOwn , DatasetDatablockUpdateOwn</td>
+<td>DatasetDatablockCreateAny , DatasetDatablockReadAny , DatasetDatablockUpdateAny</td>
 </tr>
 <tr>
 <td></td>
@@ -1835,7 +1835,7 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-10T09:32:54.773Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-10T09:33:05.445Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-10T09:52:41.225Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-10T09:52:52.449Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
