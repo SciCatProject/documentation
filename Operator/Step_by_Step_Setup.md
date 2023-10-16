@@ -13,6 +13,20 @@ yum install mongodb-server
 A production ready setup however may require to setup a replicated DB server. Follow the Mongo DB Manuals in this case. E.g. at PSI we operate a 3 fold relicated Mongo DB server.
 
 
+#### Remark for Windows
+It is possible to run a SciCat development and test instance on Windows.
+
+You can use the Chocolatey package manager: https://chocolatey.org/
+
+    choco install mongodb –pre
+
+Chocolatey starts the mongodb service automaticly. The default port is 21017.
+
+Install MondoDB Shell
+
+    choco install mongodb-shell
+
+
 #### Hint to add full text indexing
 
 Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed **after** the database has been created in MongoDB, i.e. after starting the backend once.
@@ -20,10 +34,14 @@ Mongo DB needs to work with Indices to speed up the queries. All of these index 
 Log into mongodb at the console, e.g. run 
 
 
-1. If not using Kubernetes
+If not using Kubernetes
 ```
 mongo dacat
 ```
+
+in Windows cmd or powershell
+
+    mongosh dacat
 
 or, if using Kubernetes
 
@@ -72,6 +90,11 @@ There are 5 configuration files that need to be adjusted to your situation. Ther
 
 Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.
 
+#### Note for Windows
+Create an .env file based on .env.example and  use **127.0.0.1** instead of **localhost**
+
+    MONGODB_URI="mongodb://127.0.0.1:27017/dacat" 
+
 ##### Email Notifications
 
 When jobs have been submitted successfully, the `node-mailer` package can send an email to the user that initiated.
@@ -107,7 +130,7 @@ You can in addition test the API server using the "explorer", e.g if you run the
 
 ![API Explorer](img/explorer.png)
 
-You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, then you first need to login , get an accessToken and fill it into the accessToken field on top of the explorer web page
+You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, you need to set an accessToken field on top of the explorer web page. You can login in frontend web UI and find the token under "username->settings".
 
 ## Setup GUI frontend
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
