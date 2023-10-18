@@ -160,7 +160,7 @@ This is the list of the permissions methods available for datasets and all their
 | GET | origdatablocks/fullquery | Public _OrigdatablockReadPublic_ | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
 | GET | origdatablocks/fullquery/files | Public _OrigdatablockReadPublic_ | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
 | GET | origdatablocks/fullfacet | Public _OrigdatablockReadPublic_ | Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Own _OrigdatablockReadOwn_ | Own _OrigdatablockReadOwn_ |  Any _OrigdatablockReadAny_ | __no__ | 
-| PATCH | origdatablocks/_oid_ | __no__ | __no__ | Own  _OrigdatablockUpdateOwn_ |  Own _OrigdatablockUpdateOwn_ | Own _OrigdatablockUpdateOwn_ |  Any _OrigdatablockCreateAny_ | __no__ | 
+| PATCH | origdatablocks/_oid_ | __no__ | __no__ | Own  _OrigdatablockUpdateOwn_ |  Own _OrigdatablockUpdateOwn_ | Own _OrigdatablockUpdateOwn_ |  Any _OrigdatablockUpdateAny_ | __no__ | 
 | DELETE | origdatablocks/_oid_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any _OrigdatablockDeleteAny_ | 
 
 
