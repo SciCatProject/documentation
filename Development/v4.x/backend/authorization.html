@@ -1087,7 +1087,26 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <h3 id="datasets">Datasets</h3>
 <h4 id="casl-ability-actions">CASL ability actions</h4>
 <p>This is the list of the permissions methods available for datasets and all their endpoints</p>
+<h5 id="endpoint-authorization">Endpoint authorization</h5>
 <ul>
+<li>DatasetCreate</li>
+<li>DatasetRead</li>
+<li>DatasetUpdate</li>
+<li>DatasetDelete</li>
+<li>DatasetAttachmentCreate</li>
+<li>DatasetAttachmentRead</li>
+<li>DatasetAttachmentUpdate</li>
+<li>DatasetAttachmentDelete</li>
+<li>DatasetOrigdatablockCreate</li>
+<li>DatasetOrigdatablockRead</li>
+<li>DatasetOrigdatablockUpdate</li>
+<li>DatasetOrigdatablockDelete</li>
+<li>DatasetDatablockCreate</li>
+<li>DatasetDatablockRead</li>
+<li>DatasetDatablockUpdate</li>
+<li>DatasetDatablockDelete</li>
+<li>DatasetLogbookRead<h5 id="instance-authorization">Instance authorization</h5>
+</li>
 <li>DatasetCreateOwn</li>
 <li>DatasetCreateAny</li>
 <li>DatasetReadPublic</li>
@@ -1130,6 +1149,7 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <th>HTTP method</th>
 <th>Endpoint</th>
+<th>Endpoint Authorization</th>
 <th>Anonymous</th>
 <th>Authenticated User</th>
 <th>Create Dataset Groups</th>
@@ -1143,133 +1163,145 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>POST</td>
 <td>Datasets</td>
+<td><em>DatasetCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own <em>DatasetCreateOwn</em></td>
-<td>Own <em>DatasetCreateOwn</em></td>
-<td>Any <em>DatasetCreateAny</em></td>
-<td>Any <em>DatasetCreateAny</em></td>
+<td>Own<br><em>DatasetCreateOwn</em></td>
+<td>Own<br><em>DatasetCreateOwn</em></td>
+<td>Any<br><em>DatasetCreateAny</em></td>
+<td>Any<br><em>DatasetCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>POST</td>
 <td>Datasets/isValid</td>
+<td><em>DatasetCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetCreateOwn</em></td>
-<td>Own <em>DatasetCreateOwn</em></td>
-<td>Any <em>DatasetCreateAny</em></td>
-<td>Any <em>DatasetCreateAny</em></td>
+<td>Own<br><em>DatasetCreateOwn</em></td>
+<td>Own<br><em>DatasetCreateOwn</em></td>
+<td>Any<br><em>DatasetCreateAny</em></td>
+<td>Any<br><em>DatasetCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets</td>
-<td>Public</td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own  <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadyAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadyAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/fullquery</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/fullfacet</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/metadataKeys</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/findOne</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/count</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em></td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>PATCH</td>
 <td>Datasets/<em>pid</em></td>
+<td><em>DatasetUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Any <em>DatasetUpdateAny</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Any<br><em>DatasetUpdateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>PUT</td>
 <td>Datasets/<em>pid</em></td>
+<td><em>DatasetUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Any <em>DatasetUpdateAny</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Any<br><em>DatasetUpdateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>POST</td>
 <td>Datasets/<em>pid</em>/appendToArrayField</td>
+<td><em>DatasetUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Own <em>DatasetUpdateOwn</em></td>
-<td>Any <em>DatasetUpdateAny</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Own<br><em>DatasetUpdateOwn</em></td>
+<td>Any<br><em>DatasetUpdateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
@@ -1286,13 +1318,14 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>DELETE</td>
 <td>Datasets/<em>pid</em></td>
+<td><em>DatasetDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Any <em>DatasetDeleteAny</em></td>
+<td>Any<br><em>DatasetDeleteAny</em></td>
 </tr>
 <tr>
 <td></td>
@@ -1308,12 +1341,13 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em>/thumbnail</td>
-<td>Public <em>DatasetReadPublic</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Own <em>DatasetReadOwn</em></td>
-<td>Any <em>DatasetReadAny</em></td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadPublic</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Own<br><em>DatasetReadOwn</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
@@ -1330,45 +1364,49 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>POST</td>
 <td>Datasets/<em>pid</em>/attachments</td>
+<td><em>DatasetAttachmemntCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetAttachmentCreateOwn</em></td>
-<td>Own <em>DatasetAttachmentCreateOwn</em></td>
-<td>Any <em>DatasetAttachmentCreateAny</em></td>
-<td>Any <em>DatasetAttachmentCreateAny</em></td>
+<td>Own<br><em>DatasetAttachmentCreateOwn</em></td>
+<td>Own<br><em>DatasetAttachmentCreateOwn</em></td>
+<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
+<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em>/attachments</td>
-<td>Public <em>DatasetAttachmentReadPublic</em></td>
-<td>Own <em>DatasetAttachmentReadOwn</em></td>
-<td>Own  <em>DatasetAttachmentReadOwn</em></td>
-<td>Own <em>DatasetAttachmentReadOwn</em></td>
-<td>Own <em>DatasetAttachmentReadOwn</em></td>
-<td>Any <em>DatasetAttachmentCreateAny</em></td>
+<td><em>DatasetAttachmemntRead</em></td>
+<td>Public<br><em>DatasetAttachmentReadPublic</em></td>
+<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
+<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
+<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
+<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
+<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>PUT</td>
 <td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
+<td><em>DatasetAttachmemntUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetAttachmentUpdateOwn</em></td>
-<td>Own <em>DatasetAttachmentUpdateOwn</em></td>
-<td>Own <em>DatasetAttachmentUpdateOwn</em></td>
-<td>Any <em>DatasetAttachmentCreateAny</em></td>
+<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
+<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
+<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
+<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
+<td><em>DatasetAttachmemntDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetAttachmentDeleteOwn</em></td>
-<td>Own <em>DatasetAttachmentDeleteOwn</em></td>
-<td>Own <em>DatasetAttachmentDeleteOwn</em></td>
-<td>Any <em>DatasetAttachmentDeleteAny</em></td>
+<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
+<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
+<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
+<td>Any<br><em>DatasetAttachmentDeleteAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
@@ -1385,57 +1423,62 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>POST</td>
 <td>Datasets/<em>pid</em>/origdatablocks</td>
+<td><em>DatasetOrigdatablocksCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Own <em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Any <em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any <em>DatasetOrigdatablockCreateAny</em></td>
+<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
+<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
+<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>POST</td>
 <td>Datasets/<em>pid</em>/origdatablocks/isValid</td>
+<td><em>DatasetOrigdatablocksCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Own <em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Any <em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any <em>DatasetOrigdatablockCreateAny</em></td>
+<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
+<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
+<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em>/origdatablocks</td>
-<td>Public <em>DatasetOrigdatablockReadPublic</em></td>
-<td>Own <em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own <em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own <em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own <em>DatasetOrigdatablockReadOwn</em></td>
-<td>Any <em>DatasetOrigdatablockReadAny</em></td>
+<td><em>DatasetOrigdatablocksRead</em></td>
+<td>Public<br><em>DatasetOrigdatablockReadPublic</em></td>
+<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
+<td>Any<br><em>DatasetOrigdatablockReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>PATCH</td>
 <td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
+<td><em>DatasetOrigdatablocksUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Own <em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Own <em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Any <em>DatasetOrigdatablockCreateAny</em></td>
+<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
+<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
+<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
+<td><em>DatasetOrigdatablocksDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Any <em>DatasetOrigdatablockDeleteAny</em></td>
+<td>Any<br><em>DatasetOrigdatablockDeleteAny</em></td>
 </tr>
 <tr>
 <td></td>
@@ -1451,46 +1494,50 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>POST</td>
 <td>Datasets/<em>pid</em>/datablocks</td>
+<td><em>DatasetDatablocksCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetDatablockCreateOwn</em></td>
-<td>Own <em>DatasetDatablockCreateOwn</em></td>
-<td>Own <em>DatasetDatablockCreateOwn</em></td>
-<td>Any <em>DatasetDatablockCreateAny</em></td>
+<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
+<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
+<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
+<td>Any<br><em>DatasetDatablockCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em>/datablocks</td>
-<td>Public <em>DatasetDatablockReadPublic</em></td>
-<td>Own <em>DatasetDatablockReadOwn</em></td>
-<td>Own  <em>DatasetDatablockReadOwn</em></td>
-<td>Own <em>DatasetDatablockReadOwn</em></td>
-<td>Own <em>DatasetDatablockReadOwn</em></td>
-<td>Any <em>DatasetDatablockReadAny</em></td>
+<td><em>DatasetOrigdatablocksRead</em></td>
+<td>Public<br><em>DatasetDatablockReadPublic</em></td>
+<td>Own<br><em>DatasetDatablockReadOwn</em></td>
+<td>Own<br><em>DatasetDatablockReadOwn</em></td>
+<td>Own<br><em>DatasetDatablockReadOwn</em></td>
+<td>Own<br><em>DatasetDatablockReadOwn</em></td>
+<td>Any<br><em>DatasetDatablockReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>PATCH</td>
 <td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
+<td><em>DatasetDatablocksUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Own <em>DatasetDatablockUpdateOwn</em></td>
-<td>Own <em>DatasetDatablockUpdateOwn</em></td>
-<td>Own <em>DatasetDatablockUpdateOwn</em></td>
-<td>Any <em>DatasetDatablockCreateAny</em></td>
+<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
+<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
+<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
+<td>Any<br><em>DatasetDatablockCreateAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
+<td><em>DatasetDatablocksDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Any <em>DatasetDatablockDeleteAny</em></td>
+<td>Any<br><em>DatasetDatablockDeleteAny</em></td>
 </tr>
 <tr>
 <td></td>
@@ -1506,11 +1553,12 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <tr>
 <td>GET</td>
 <td>Datasets/<em>pid</em>/logbook</td>
+<td><em>DatasetLogbookRead</em></td>
 <td><strong>no</strong></td>
-<td>Own  <em>DatasetLogbookReadOwn</em></td>
-<td>Own <em>DatasetLogbookReadOwn</em></td>
-<td>Own <em>DatasetLogbookReadOwn</em></td>
-<td>Any <em>DatasetLogbookReadAny</em></td>
+<td>Own<br><em>DatasetLogbookReadOwn</em></td>
+<td>Own<br><em>DatasetLogbookReadOwn</em></td>
+<td>Own<br><em>DatasetLogbookReadOwn</em></td>
+<td>Any<br><em>DatasetLogbookReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 </tbody>
@@ -1842,7 +1890,7 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-18T13:31:44.981Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-18T13:31:54.881Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-23T13:33:59.967Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-23T13:34:11.631Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
