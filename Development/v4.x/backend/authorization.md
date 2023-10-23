@@ -121,42 +121,42 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetLogbookReadAny
 
 #### Authorization table
-| HTTP method | Endpoint | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
-| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| POST | Datasets | __no__ | __no__ | Own _DatasetCreateOwn_ |  Own _DatasetCreateOwn_ | Any _DatasetCreateAny_ |  Any _DatasetCreateAny_ | __no__ | 
-| POST | Datasets/isValid | __no__ | __no__ | Own  _DatasetCreateOwn_ |  Own _DatasetCreateOwn_ | Any _DatasetCreateAny_ |  Any _DatasetCreateAny_ | __no__ | 
-| GET | Datasets | Public | Own _DatasetReadOwn_ | Own  _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Any _DatasetReadyAny_ | __no__ | 
-| GET | Datasets/fullquery | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| GET | Datasets/fullfacet | Public _DatasetReadPublic_  | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| GET | Datasets/metadataKeys | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| GET | Datasets/findOne | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| GET | Datasets/count | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| GET | Datasets/_pid_ | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
-| PATCH | Datasets/_pid_ | __no__ | __no__ | Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ | Any _DatasetUpdateAny_ | __no__ | 
-| PUT | Datasets/_pid_ | __no__ | __no__ | Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ | Any _DatasetUpdateAny_ | __no__ | 
-| POST | Datasets/_pid_/appendToArrayField | __no__ | __no__ | Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ |  Own _DatasetUpdateOwn_ | Any _DatasetUpdateAny_ | __no__ | 
+| HTTP method | Endpoint | Endpoint Authorization | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| POST | Datasets | _DatasetCreate_ | __no__ | __no__ | Own<br/>_DatasetCreateOwn_ | Own<br/>_DatasetCreateOwn_ | Any<br/>_DatasetCreateAny_ | Any<br/>_DatasetCreateAny_ | __no__ | 
+| POST | Datasets/isValid | _DatasetCreate_ | __no__ | __no__ | Own<br/>_DatasetCreateOwn_ | Own<br/>_DatasetCreateOwn_ | Any<br/>_DatasetCreateAny_ | Any<br/>_DatasetCreateAny_ | __no__ | 
+| GET | Datasets | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadyAny_ | __no__ | 
+| GET | Datasets/fullquery | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/fullfacet | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/metadataKeys | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/findOne | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/count | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/_pid_ | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| PATCH | Datasets/_pid_ | _DatasetUpdate_ | __no__ | __no__ | Own<br/>_DatasetUpdateOwn_ | Own<br/>_DatasetUpdateOwn_ | Own<br/>_DatasetUpdateOwn_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
+| PUT | Datasets/_pid_ |  _DatasetUpdate_ |__no__ | __no__ | Own<br/>_DatasetUpdateOwn_ | Own<br/>_DatasetUpdateOwn_ | Own<br/>_DatasetUpdateOwn_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
+| POST | Datasets/_pid_/appendToArrayField |  _DatasetUpdate_ |__no__ | __no__ | Own<br/>_DatasetUpdateOwn_ |  Own<br/>_DatasetUpdateOwn_ | Own<br/>_DatasetUpdateOwn_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
 | | | | | | | | | |
-| DELETE | Datasets/_pid_ | __no__ | __no__ | __no__ | __no__ | __no__ | __no__ | Any _DatasetDeleteAny_ | 
+| DELETE | Datasets/_pid_ | _DatasetDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | __no__ | Any<br/>_DatasetDeleteAny_ | 
 | | | | | | | | | |
-| GET | Datasets/_pid_/thumbnail | Public _DatasetReadPublic_ | Own _DatasetReadOwn_ | Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ |  Own _DatasetReadOwn_ | Any _DatasetReadAny_ | __no__ | 
+| GET | Datasets/_pid_/thumbnail | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Own<br/>_DatasetReadOwn_ | Any<br/>_DatasetReadAny_ | __no__ | 
 | | | | | | | | | |
-| POST | Datasets/_pid_/attachments |  __no__ | __no__ | Own  _DatasetAttachmentCreateOwn_ |  Own _DatasetAttachmentCreateOwn_ | Any _DatasetAttachmentCreateAny_ |  Any _DatasetAttachmentCreateAny_ | __no__ | 
-| GET | Datasets/_pid_/attachments | Public _DatasetAttachmentReadPublic_ | Own _DatasetAttachmentReadOwn_ | Own  _DatasetAttachmentReadOwn_ |  Own _DatasetAttachmentReadOwn_ | Own _DatasetAttachmentReadOwn_ |  Any _DatasetAttachmentCreateAny_ | __no__ | 
-| PUT | Datasets/_pid_/attachments/_aid_ | __no__ | __no__ | Own  _DatasetAttachmentUpdateOwn_ |  Own _DatasetAttachmentUpdateOwn_ | Own _DatasetAttachmentUpdateOwn_ |  Any _DatasetAttachmentCreateAny_ | __no__ | 
-| DELETE | Datasets/_pid_/attachments/_aid_ | __no__ | __no__ | Own  _DatasetAttachmentDeleteOwn_ |  Own _DatasetAttachmentDeleteOwn_ | Own _DatasetAttachmentDeleteOwn_ |  Any _DatasetAttachmentDeleteAny_ | __no__ | 
+| POST | Datasets/_pid_/attachments | _DatasetAttachmemntCreate_ | __no__ | __no__ | Own<br/>_DatasetAttachmentCreateOwn_ | Own<br/>_DatasetAttachmentCreateOwn_ | Any<br/>_DatasetAttachmentCreateAny_ | Any<br/>_DatasetAttachmentCreateAny_ | __no__ | 
+| GET | Datasets/_pid_/attachments | _DatasetAttachmemntRead_ | Public<br/>_DatasetAttachmentReadPublic_ | Own<br/>_DatasetAttachmentReadOwn_ | Own<br/>_DatasetAttachmentReadOwn_ | Own<br/>_DatasetAttachmentReadOwn_ | Own<br/>_DatasetAttachmentReadOwn_ | Any<br/>_DatasetAttachmentCreateAny_ | __no__ | 
+| PUT | Datasets/_pid_/attachments/_aid_ | _DatasetAttachmemntUpdate_ | __no__ | __no__ | Own<br/>_DatasetAttachmentUpdateOwn_ | Own<br/>_DatasetAttachmentUpdateOwn_ | Own<br/>_DatasetAttachmentUpdateOwn_ |  Any<br/>_DatasetAttachmentCreateAny_ | __no__ | 
+| DELETE | Datasets/_pid_/attachments/_aid_ | _DatasetAttachmemntDelete_ | __no__ | __no__ | Own<br/>_DatasetAttachmentDeleteOwn_ | Own<br/>_DatasetAttachmentDeleteOwn_ | Own<br/>_DatasetAttachmentDeleteOwn_ | Any<br/>_DatasetAttachmentDeleteAny_ | __no__ | 
 | | | | | | | | | |
-| POST | Datasets/_pid_/origdatablocks |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Any _DatasetOrigdatablockCreateAny_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
-| POST | Datasets/_pid_/origdatablocks/isValid |  __no__ | __no__ | Own  _DatasetOrigdatablockCreateOwn_ |  Own _DatasetOrigdatablockCreateOwn_ | Any _DatasetOrigdatablockCreateAny_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
-| GET | Datasets/_pid_/origdatablocks | Public _DatasetOrigdatablockReadPublic_ | Own _DatasetOrigdatablockReadOwn_ | Own _DatasetOrigdatablockReadOwn_ |  Own _DatasetOrigdatablockReadOwn_ | Own _DatasetOrigdatablockReadOwn_ |  Any _DatasetOrigdatablockReadAny_ | __no__ | 
-| PATCH | Datasets/_pid_/origdatablocks/_oid_ | __no__ | __no__ | Own  _DatasetOrigdatablockUpdateOwn_ |  Own _DatasetOrigdatablockUpdateOwn_ | Own _DatasetOrigdatablockUpdateOwn_ |  Any _DatasetOrigdatablockCreateAny_ | __no__ | 
-| DELETE | Datasets/_pid_/origdatablocks/_oid_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any _DatasetOrigdatablockDeleteAny_ | 
+| POST | Datasets/_pid_/origdatablocks | _DatasetOrigdatablocksCreate_ | __no__ | __no__ | Own<br/>_DatasetOrigdatablockCreateOwn_ | Own<br/>_DatasetOrigdatablockCreateOwn_ | Any<br/>_DatasetOrigdatablockCreateAny_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
+| POST | Datasets/_pid_/origdatablocks/isValid | _DatasetOrigdatablocksCreate_ |  __no__ | __no__ | Own<br/>_DatasetOrigdatablockCreateOwn_ | Own<br/>_DatasetOrigdatablockCreateOwn_ | Any<br/>_DatasetOrigdatablockCreateAny_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
+| GET | Datasets/_pid_/origdatablocks | _DatasetOrigdatablocksRead_ | Public<br/>_DatasetOrigdatablockReadPublic_ | Own<br/>_DatasetOrigdatablockReadOwn_ | Own<br/>_DatasetOrigdatablockReadOwn_ |  Own<br/>_DatasetOrigdatablockReadOwn_ | Own<br/>_DatasetOrigdatablockReadOwn_ | Any<br/>_DatasetOrigdatablockReadAny_ | __no__ | 
+| PATCH | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksUpdate_ | __no__ | __no__ | Own<br/>_DatasetOrigdatablockUpdateOwn_ | Own<br/>_DatasetOrigdatablockUpdateOwn_ | Own<br/>_DatasetOrigdatablockUpdateOwn_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
+| DELETE | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any<br/>_DatasetOrigdatablockDeleteAny_ | 
 | | | | | | | | | |
-| POST | Datasets/_pid_/datablocks |  __no__ | __no__ | Own  _DatasetDatablockCreateOwn_ |  Own _DatasetDatablockCreateOwn_ | Own _DatasetDatablockCreateOwn_ |  Any _DatasetDatablockCreateAny_ | __no__ | 
-| GET | Datasets/_pid_/datablocks | Public _DatasetDatablockReadPublic_ | Own _DatasetDatablockReadOwn_ | Own  _DatasetDatablockReadOwn_ |  Own _DatasetDatablockReadOwn_ | Own _DatasetDatablockReadOwn_ |  Any _DatasetDatablockReadAny_ | __no__ | 
-| PATCH | Datasets/_pid_/datablocks/_oid_ | __no__ | __no__ | Own _DatasetDatablockUpdateOwn_ |  Own _DatasetDatablockUpdateOwn_ | Own _DatasetDatablockUpdateOwn_ |  Any _DatasetDatablockCreateAny_ | __no__ | 
-| DELETE | Datasets/_pid_/datablocks/_oid_ | __no__ | __no__ | __no__ |  __no__ | __no__ | __no__ | Any _DatasetDatablockDeleteAny_ | 
+| POST | Datasets/_pid_/datablocks | _DatasetDatablocksCreate_ | __no__ | __no__ | Own<br/>_DatasetDatablockCreateOwn_ | Own<br/>_DatasetDatablockCreateOwn_ | Own<br/>_DatasetDatablockCreateOwn_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ | 
+| GET | Datasets/_pid_/datablocks | _DatasetOrigdatablocksRead_ | Public<br/>_DatasetDatablockReadPublic_ | Own<br/>_DatasetDatablockReadOwn_ | Own<br/>_DatasetDatablockReadOwn_ | Own<br/>_DatasetDatablockReadOwn_ | Own<br/>_DatasetDatablockReadOwn_ | Any<br/>_DatasetDatablockReadAny_ | __no__ | 
+| PATCH | Datasets/_pid_/datablocks/_oid_ | _DatasetDatablocksUpdate_ | __no__ | __no__ | Own<br/>_DatasetDatablockUpdateOwn_ | Own<br/>_DatasetDatablockUpdateOwn_ | Own<br/>_DatasetDatablockUpdateOwn_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ | 
+| DELETE | Datasets/_pid_/datablocks/_oid_ | _DatasetDatablocksDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ | __no__ | Any<br/>_DatasetDatablockDeleteAny_ | 
 | | | | | | | | | |
-| GET | Datasets/_pid_/logbook | __no__ | Own  _DatasetLogbookReadOwn_ |  Own _DatasetLogbookReadOwn_ | Own _DatasetLogbookReadOwn_ |  Any _DatasetLogbookReadAny_ | __no__ | 
+| GET | Datasets/_pid_/logbook | _DatasetLogbookRead_ | __no__ | Own<br/>_DatasetLogbookReadOwn_ |  Own<br/>_DatasetLogbookReadOwn_ | Own<br/>_DatasetLogbookReadOwn_ |  Any<br/>_DatasetLogbookReadAny_ | __no__ | 
 
 ### OrigDatablock
 #### CASL ability actions
