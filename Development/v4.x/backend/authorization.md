@@ -121,14 +121,6 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetLogbookReadAny
 
 #### Authorization table
-<style>
-  th:nth-child(3) {
-    background-color: #111111 !important;
-  }
-  tr:nth-child(3) {
-    background-color: #b2b2b2!important;
-  }
-</style>
 | HTTP method | Endpoint | Endpoint Authorization | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | POST | Datasets | _DatasetCreate_ | __no__ | __no__ | Own<br/>_DatasetCreateOwn_ | Own<br/>_DatasetCreateOwn_ | Any<br/>_DatasetCreateAny_ | Any<br/>_DatasetCreateAny_ | __no__ | 
