@@ -1144,425 +1144,50 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
 <li>DatasetLogbookReadAny</li>
 </ul>
 <h4 id="authorization-table">Authorization table</h4>
-<table>
-<thead>
-<tr>
-<th>HTTP method</th>
-<th>Endpoint</th>
-<th>Endpoint Authorization</th>
-<th>Anonymous</th>
-<th>Authenticated User</th>
-<th>Create Dataset Groups</th>
-<th>Create Dataset with Pid Groups</th>
-<th>Create Dataset Privileged Groups</th>
-<th>Admin Groups</th>
-<th>Delete Groups</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td>Datasets</td>
-<td><em>DatasetCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetCreateOwn</em></td>
-<td>Own<br><em>DatasetCreateOwn</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/isValid</td>
-<td><em>DatasetCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetCreateOwn</em></td>
-<td>Own<br><em>DatasetCreateOwn</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadyAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/fullquery</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/fullfacet</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/metadataKeys</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/findOne</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/count</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/appendToArrayField</td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Own<br><em>DatasetUpdateOwn</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetDeleteAny</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/thumbnail</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Own<br><em>DatasetReadOwn</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/attachments</td>
-<td><em>DatasetAttachmemntCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetAttachmentCreateOwn</em></td>
-<td>Own<br><em>DatasetAttachmentCreateOwn</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/attachments</td>
-<td><em>DatasetAttachmemntRead</em></td>
-<td>Public<br><em>DatasetAttachmentReadPublic</em></td>
-<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
-<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
-<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
-<td>Own<br><em>DatasetAttachmentReadOwn</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
-<td><em>DatasetAttachmemntUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
-<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
-<td>Own<br><em>DatasetAttachmentUpdateOwn</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
-<td><em>DatasetAttachmemntDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
-<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
-<td>Own<br><em>DatasetAttachmentDeleteOwn</em></td>
-<td>Any<br><em>DatasetAttachmentDeleteAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/origdatablocks</td>
-<td><em>DatasetOrigdatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/origdatablocks/isValid</td>
-<td><em>DatasetOrigdatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockCreateOwn</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/origdatablocks</td>
-<td><em>DatasetOrigdatablocksRead</em></td>
-<td>Public<br><em>DatasetOrigdatablockReadPublic</em></td>
-<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockReadOwn</em></td>
-<td>Any<br><em>DatasetOrigdatablockReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
-<td><em>DatasetOrigdatablocksUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Own<br><em>DatasetOrigdatablockUpdateOwn</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
-<td><em>DatasetOrigdatablocksDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetOrigdatablockDeleteAny</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/datablocks</td>
-<td><em>DatasetDatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
-<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
-<td>Own<br><em>DatasetDatablockCreateOwn</em></td>
-<td>Any<br><em>DatasetDatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/datablocks</td>
-<td><em>DatasetOrigdatablocksRead</em></td>
-<td>Public<br><em>DatasetDatablockReadPublic</em></td>
-<td>Own<br><em>DatasetDatablockReadOwn</em></td>
-<td>Own<br><em>DatasetDatablockReadOwn</em></td>
-<td>Own<br><em>DatasetDatablockReadOwn</em></td>
-<td>Own<br><em>DatasetDatablockReadOwn</em></td>
-<td>Any<br><em>DatasetDatablockReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
-<td><em>DatasetDatablocksUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
-<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
-<td>Own<br><em>DatasetDatablockUpdateOwn</em></td>
-<td>Any<br><em>DatasetDatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
-<td><em>DatasetDatablocksDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetDatablockDeleteAny</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/logbook</td>
-<td><em>DatasetLogbookRead</em></td>
-<td><strong>no</strong></td>
-<td>Own<br><em>DatasetLogbookReadOwn</em></td>
-<td>Own<br><em>DatasetLogbookReadOwn</em></td>
-<td>Own<br><em>DatasetLogbookReadOwn</em></td>
-<td>Any<br><em>DatasetLogbookReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-</tbody>
-</table>
+<p><style>
+  th:nth-child(3) {
+    background-color: #111111 !important;
+  }
+  tr:nth-child(3) {
+    background-color: #b2b2b2!important;
+  }
+</style>
+| HTTP method | Endpoint | Endpoint Authorization | Anonymous | Authenticated User | Create Dataset Groups | Create Dataset with Pid Groups | Create Dataset Privileged Groups | Admin Groups | Delete Groups |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| POST | Datasets | <em>DatasetCreate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetCreateOwn</em> | Own<br><em>DatasetCreateOwn</em> | Any<br><em>DatasetCreateAny</em> | Any<br><em>DatasetCreateAny</em> | <strong>no</strong> | 
+| POST | Datasets/isValid | <em>DatasetCreate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetCreateOwn</em> | Own<br><em>DatasetCreateOwn</em> | Any<br><em>DatasetCreateAny</em> | Any<br><em>DatasetCreateAny</em> | <strong>no</strong> | 
+| GET | Datasets | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadyAny</em> | <strong>no</strong> | 
+| GET | Datasets/fullquery | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| GET | Datasets/fullfacet | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| GET | Datasets/metadataKeys | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| GET | Datasets/findOne | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| GET | Datasets/count | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| GET | Datasets/<em>pid</em> | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| PATCH | Datasets/<em>pid</em> | <em>DatasetUpdate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetUpdateOwn</em> | Own<br><em>DatasetUpdateOwn</em> | Own<br><em>DatasetUpdateOwn</em> | Any<br><em>DatasetUpdateAny</em> | <strong>no</strong> | 
+| PUT | Datasets/<em>pid</em> |  <em>DatasetUpdate</em> |<strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetUpdateOwn</em> | Own<br><em>DatasetUpdateOwn</em> | Own<br><em>DatasetUpdateOwn</em> | Any<br><em>DatasetUpdateAny</em> | <strong>no</strong> | 
+| POST | Datasets/<em>pid</em>/appendToArrayField |  <em>DatasetUpdate</em> |<strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetUpdateOwn</em> |  Own<br><em>DatasetUpdateOwn</em> | Own<br><em>DatasetUpdateOwn</em> | Any<br><em>DatasetUpdateAny</em> | <strong>no</strong> | 
+| | | | | | | | | |
+| DELETE | Datasets/<em>pid</em> | <em>DatasetDelete</em> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> | Any<br><em>DatasetDeleteAny</em> | 
+| | | | | | | | | |
+| GET | Datasets/<em>pid</em>/thumbnail | <em>DatasetRead</em> | Public<br><em>DatasetReadPublic</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Own<br><em>DatasetReadOwn</em> | Any<br><em>DatasetReadAny</em> | <strong>no</strong> | 
+| | | | | | | | | |
+| POST | Datasets/<em>pid</em>/attachments | <em>DatasetAttachmemntCreate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetAttachmentCreateOwn</em> | Own<br><em>DatasetAttachmentCreateOwn</em> | Any<br><em>DatasetAttachmentCreateAny</em> | Any<br><em>DatasetAttachmentCreateAny</em> | <strong>no</strong> | 
+| GET | Datasets/<em>pid</em>/attachments | <em>DatasetAttachmemntRead</em> | Public<br><em>DatasetAttachmentReadPublic</em> | Own<br><em>DatasetAttachmentReadOwn</em> | Own<br><em>DatasetAttachmentReadOwn</em> | Own<br><em>DatasetAttachmentReadOwn</em> | Own<br><em>DatasetAttachmentReadOwn</em> | Any<br><em>DatasetAttachmentCreateAny</em> | <strong>no</strong> | 
+| PUT | Datasets/<em>pid</em>/attachments/<em>aid</em> | <em>DatasetAttachmemntUpdate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetAttachmentUpdateOwn</em> | Own<br><em>DatasetAttachmentUpdateOwn</em> | Own<br><em>DatasetAttachmentUpdateOwn</em> |  Any<br><em>DatasetAttachmentCreateAny</em> | <strong>no</strong> | 
+| DELETE | Datasets/<em>pid</em>/attachments/<em>aid</em> | <em>DatasetAttachmemntDelete</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetAttachmentDeleteOwn</em> | Own<br><em>DatasetAttachmentDeleteOwn</em> | Own<br><em>DatasetAttachmentDeleteOwn</em> | Any<br><em>DatasetAttachmentDeleteAny</em> | <strong>no</strong> | 
+| | | | | | | | | |
+| POST | Datasets/<em>pid</em>/origdatablocks | <em>DatasetOrigdatablocksCreate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetOrigdatablockCreateOwn</em> | Own<br><em>DatasetOrigdatablockCreateOwn</em> | Any<br><em>DatasetOrigdatablockCreateAny</em> | Any<br><em>DatasetOrigdatablockCreateAny</em> | <strong>no</strong> | 
+| POST | Datasets/<em>pid</em>/origdatablocks/isValid | <em>DatasetOrigdatablocksCreate</em> |  <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetOrigdatablockCreateOwn</em> | Own<br><em>DatasetOrigdatablockCreateOwn</em> | Any<br><em>DatasetOrigdatablockCreateAny</em> | Any<br><em>DatasetOrigdatablockCreateAny</em> | <strong>no</strong> | 
+| GET | Datasets/<em>pid</em>/origdatablocks | <em>DatasetOrigdatablocksRead</em> | Public<br><em>DatasetOrigdatablockReadPublic</em> | Own<br><em>DatasetOrigdatablockReadOwn</em> | Own<br><em>DatasetOrigdatablockReadOwn</em> |  Own<br><em>DatasetOrigdatablockReadOwn</em> | Own<br><em>DatasetOrigdatablockReadOwn</em> | Any<br><em>DatasetOrigdatablockReadAny</em> | <strong>no</strong> | 
+| PATCH | Datasets/<em>pid</em>/origdatablocks/<em>oid</em> | <em>DatasetOrigdatablocksUpdate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetOrigdatablockUpdateOwn</em> | Own<br><em>DatasetOrigdatablockUpdateOwn</em> | Own<br><em>DatasetOrigdatablockUpdateOwn</em> | Any<br><em>DatasetOrigdatablockCreateAny</em> | <strong>no</strong> | 
+| DELETE | Datasets/<em>pid</em>/origdatablocks/<em>oid</em> | <em>DatasetOrigdatablocksDelete</em> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> |  <strong>no</strong> | <strong>no</strong> |  <strong>no</strong> | Any<br><em>DatasetOrigdatablockDeleteAny</em> | 
+| | | | | | | | | |
+| POST | Datasets/<em>pid</em>/datablocks | <em>DatasetDatablocksCreate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetDatablockCreateOwn</em> | Own<br><em>DatasetDatablockCreateOwn</em> | Own<br><em>DatasetDatablockCreateOwn</em> | Any<br><em>DatasetDatablockCreateAny</em> | <strong>no</strong> | 
+| GET | Datasets/<em>pid</em>/datablocks | <em>DatasetOrigdatablocksRead</em> | Public<br><em>DatasetDatablockReadPublic</em> | Own<br><em>DatasetDatablockReadOwn</em> | Own<br><em>DatasetDatablockReadOwn</em> | Own<br><em>DatasetDatablockReadOwn</em> | Own<br><em>DatasetDatablockReadOwn</em> | Any<br><em>DatasetDatablockReadAny</em> | <strong>no</strong> | 
+| PATCH | Datasets/<em>pid</em>/datablocks/<em>oid</em> | <em>DatasetDatablocksUpdate</em> | <strong>no</strong> | <strong>no</strong> | Own<br><em>DatasetDatablockUpdateOwn</em> | Own<br><em>DatasetDatablockUpdateOwn</em> | Own<br><em>DatasetDatablockUpdateOwn</em> | Any<br><em>DatasetDatablockCreateAny</em> | <strong>no</strong> | 
+| DELETE | Datasets/<em>pid</em>/datablocks/<em>oid</em> | <em>DatasetDatablocksDelete</em> | <strong>no</strong> | <strong>no</strong> | <strong>no</strong> |  <strong>no</strong> | <strong>no</strong> | <strong>no</strong> | Any<br><em>DatasetDatablockDeleteAny</em> | 
+| | | | | | | | | |
+| GET | Datasets/<em>pid</em>/logbook | <em>DatasetLogbookRead</em> | <strong>no</strong> | Own<br><em>DatasetLogbookReadOwn</em> |  Own<br><em>DatasetLogbookReadOwn</em> | Own<br><em>DatasetLogbookReadOwn</em> |  Any<br><em>DatasetLogbookReadAny</em> | <strong>no</strong> | </p>
 <h3 id="origdatablock">OrigDatablock</h3>
 <h4 id="casl-ability-actions">CASL ability actions</h4>
 <ul>
@@ -1890,7 +1515,7 @@ Special case is for deleting items in SciCat. Users with groups listed in DELETE
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-23T13:33:59.967Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-23T13:34:11.631Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization.md","mtime":"2023-10-23T14:03:10.536Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-23T14:03:21.565Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
