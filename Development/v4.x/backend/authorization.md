@@ -65,6 +65,25 @@ Authorization (permissions) are listed by endpoint groups. They are expressed fo
 ### Datasets
 #### Permissions methods
 This is the list of the permissions methods available for datasets and all their endpoints
+##### Endpoint authorization
+- DatasetCreate
+- DatasetRead
+- DatasetUpdate
+- DatasetDelete
+- DatasetAttachmentCreate
+- DatasetAttachmentRead
+- DatasetAttachmentUpdate
+- DatasetAttachmentDelete
+- DatasetOrigdatablockCreate
+- DatasetOrigdatablockRead
+- DatasetOrigdatablockUpdate
+- DatasetOrigdatablockDelete
+- DatasetDatablockCreate
+- DatasetDatablockRead
+- DatasetDatablockUpdate
+- DatasetDatablockDelete
+- DatasetLogbookRead
+##### Instance authorization
 - DatasetCreateOwn
 - DatasetCreateAny
 - DatasetReadOwn
