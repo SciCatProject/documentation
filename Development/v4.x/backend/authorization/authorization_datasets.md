@@ -65,7 +65,7 @@ This is the list of the permissions methods available for datasets and all their
 
 ### Priority
 ```mermaid
-%%{init: {'themeVariables': { 'fontSize': '11px', 'fontFamily' : 'monospace'}}}%%
+%%{init: {'theme' : 'base', 'themeVariables': { 'fontSize': '11px', 'fontFamily' : 'monospace'}}}%%
 graph LR;
     DatasetCreate-->DatasetCreateOwnerNoPid;
     DatasetCreateOwnerNoPid-->DatasetCreateOwnerWithPid;

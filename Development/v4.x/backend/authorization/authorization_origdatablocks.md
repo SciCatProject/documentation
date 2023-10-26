@@ -20,7 +20,7 @@ This is the list of the permissions methods available for origdatablock and all 
 
 #### Priority
 ```mermaid
-%%{init: {'themeVariables': { 'fontSize': '11px', 'fontFamily' : 'monospace'}}}%%
+%%{init: {'theme' : 'base', 'themeVariables': { 'fontSize': '11px', 'fontFamily' : 'monospace'}}}%%
 graph LR;
     DatasetOrigdatablockCreate-->DatasetOrigdatablockCreateOwner;
     DatasetOrigdatablockCreateOwner-->DatasetOrigdatablockCreateAny;
