@@ -1,5 +1,8 @@
 {
-    "plugins": ["chapter-fold"],
+    "plugins": [
+        "chapter-fold",
+        "mermaid-gb3"
+    ],
     "title": "SciCat Documentation",
     "styles": {
          "website" : "styles/website.css"
