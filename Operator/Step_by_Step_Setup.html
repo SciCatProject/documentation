@@ -956,14 +956,21 @@
 <pre><code>yum install mongodb-server
 </code></pre><p>(on RedHat systems) or similar will suffice.</p>
 <p>A production ready setup however may require to setup a replicated DB server. Follow the Mongo DB Manuals in this case. E.g. at PSI we operate a 3 fold relicated Mongo DB server.</p>
-<h4 id="hint-to-add-full-text-indexing">Hint to add full text indexing</h4>
+<h4 id="remark-for-windows">Remark for Windows</h4>
+<p>It is possible to run a SciCat development and test instance on Windows.</p>
+<p>You can use the Chocolatey package manager: <a href="https://chocolatey.org/" target="_blank">https://chocolatey.org/</a></p>
+<pre><code>choco install mongodb –pre
+</code></pre><p>Chocolatey starts the mongodb service automaticly. The default port is 21017.</p>
+<p>Install MondoDB Shell</p>
+<pre><code>choco install mongodb-shell
+</code></pre><h4 id="hint-to-add-full-text-indexing">Hint to add full text indexing</h4>
 <p>Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed <strong>after</strong> the database has been created in MongoDB, i.e. after starting the backend once.</p>
 <p>Log into mongodb at the console, e.g. run </p>
-<ol>
-<li>If not using Kubernetes<pre><code>mongo dacat
-</code></pre></li>
-</ol>
-<p>or, if using Kubernetes</p>
+<p>If not using Kubernetes</p>
+<pre><code>mongo dacat
+</code></pre><p>in Windows cmd or powershell</p>
+<pre><code>mongosh dacat
+</code></pre><p>or, if using Kubernetes</p>
 <pre><code>kubectl exec -it &lt;mongo container&gt; mongo dacat
 </code></pre><p>and enter</p>
 <pre><code class="lang-javascript">db.Dataset.createIndex( { <span class="hljs-string">&quot;$**&quot;</span>: <span class="hljs-string">&quot;text&quot;</span> } )
@@ -991,7 +998,10 @@ npm install
 <li><code>component-config.json</code>: defines the Express framework components, in particular if the <em>explorer</em> is enabled and optionally definition of the RabbitMQ topology, if used.</li>
 </ol>
 <p>Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.</p>
-<h5 id="email-notifications">Email Notifications</h5>
+<h4 id="note-for-windows">Note for Windows</h4>
+<p>Create an .env file based on .env.example and  use <strong>127.0.0.1</strong> instead of <strong>localhost</strong></p>
+<pre><code>MONGODB_URI=&quot;mongodb://127.0.0.1:27017/dacat&quot; 
+</code></pre><h5 id="email-notifications">Email Notifications</h5>
 <p>When jobs have been submitted successfully, the <code>node-mailer</code> package can send an email to the user that initiated.
 The details are loaded into <code>server/config.local.js</code> and the following block provides an example:</p>
 <pre><code>smtpSettings: {
@@ -1012,7 +1022,7 @@ The details are loaded into <code>server/config.local.js</code> and the followin
 <pre><code>npm run test
 </code></pre><p>You can in addition test the API server using the &quot;explorer&quot;, e.g if you run the instance locally point your browser to <a href="https://localhost:3000/explorer" target="_blank">https://localhost:3000/explorer</a> (note the explorer might be disabled for production environments, check the <code>component-config.json</code> file)</p>
 <p><img src="img/explorer.png" alt="API Explorer"></p>
-<p>You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, then you first need to login , get an accessToken and fill it into the accessToken field on top of the explorer web page</p>
+<p>You can use this web interface to test all the available API end points. If you test endpoints, which are protected by authentication, you need to set an accessToken field on top of the explorer web page. You can login in frontend web UI and find the token under &quot;username-&gt;settings&quot;.</p>
 <h2 id="setup-gui-frontend">Setup GUI frontend</h2>
 <p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.</p>
 <h3 id="prerequisites">Prerequisites</h3>
@@ -1161,7 +1171,7 @@ best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bind
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2023-10-26T09:34:50.742Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-26T09:35:02.431Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2023-10-26T10:43:50.321Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-26T10:43:59.595Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
