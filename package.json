@@ -13,6 +13,7 @@
     "honkit": "^3.7.5"
   },
   "dependencies": {
-    "gitbook-plugin-chapter-fold": "0.0.4"
+    "gitbook-plugin-chapter-fold": "0.0.4",
+    "gitbook-plugin-mermaid-gb3": "^2.1.0"
   }
 }
