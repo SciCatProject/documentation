@@ -66,10 +66,17 @@ This is the list of the permissions methods available for datasets and all their
 ### Priority
 ```mermaid
 graph TD;
-    DatasetCreate-->DatasetCreateOwnerNoPid-->DatasetCreateOwnerWithPid-->DatasetCreateAny;
-    DatasetRead-->DatasetReadPublic-->DatasetReadAccess-->DatasetReadOwner-->DatasetReadAny;
-    DatasetUpdate-->DatasetUpdateOwner-->DatasetUpdateAny;
-    DatasetDelete-->DatasetDeleteOwner-->DatasetDelteAny;
+    DatasetCreate-->DatasetCreateOwnerNoPid;
+    DatasetCreateOwnerNoPid-->DatasetCreateOwnerWithPid;
+    DatasetCreateOwnerWithPid-->DatasetCreateAny;
+    DatasetRead-->DatasetReadPublic;
+    DatasetReadPublic-->DatasetReadAccess;
+    DatasetReadAccess-->DatasetReadOwner;
+    DatasetReadOwner-->DatasetReadAny;
+    DatasetUpdate-->DatasetUpdateOwner;
+    DatasetUpdateOwner-->DatasetUpdateAny;
+    DatasetDelete-->DatasetDeleteOwner;
+    DatasetDeleteOwner-->DatasetDelteAny;
 ```
 
 ### Authorization table

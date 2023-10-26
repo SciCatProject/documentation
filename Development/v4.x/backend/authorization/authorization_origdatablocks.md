@@ -21,10 +21,15 @@ This is the list of the permissions methods available for origdatablock and all 
 #### Priority
 ```mermaid
 graph TD;
-    DatasetOrigdatablockCreate_(E)_-->DatasetOrigdatablockCreateOwner_(I)_-->DatasetOrigdatablockCreateAny_(I)_;
-    DatasetOrigdatablockRead_(E)_-->DatasetOrigdatablockReadPublic_(I)_-->DatasetOrigdatablockReadAccess_(I)_-->DatasetOrigdatablockReadAny_(I)_;
-    DatasetOrigdatablockUpdate_(E)_-->DatasetOrigdatablockUpdateOwner_(I)_-->DatasetOrigdatablockUpdateAny_(I)_;
-    DatasetOrigdatablockDelete_(E)_-->DatasetOrigdatablockDeleteOwner_(I)_-->DatasetOrigdatablockDelteAny_(I)_;
+    DatasetOrigdatablockCreate_(E)_-->DatasetOrigdatablockCreateOwner_(I)_;
+    DatasetOrigdatablockCreateOwner_(I)_-->DatasetOrigdatablockCreateAny_(I)_;
+    DatasetOrigdatablockRead_(E)_-->DatasetOrigdatablockReadPublic_(I)_;
+    DatasetOrigdatablockReadPublic_(I)_-->DatasetOrigdatablockReadAccess_(I)_;
+    DatasetOrigdatablockReadAccess_(I)_-->DatasetOrigdatablockReadAny_(I)_;
+    DatasetOrigdatablockUpdate_(E)_-->DatasetOrigdatablockUpdateOwner_(I)_;
+    DatasetOrigdatablockUpdateOwner_(I)_-->DatasetOrigdatablockUpdateAny_(I)_;
+    DatasetOrigdatablockDelete_(E)_-->DatasetOrigdatablockDeleteOwner_(I)_;
+    DatasetOrigdatablockDeleteOwner_(I)_-->DatasetOrigdatablockDelteAny_(I)_;
 ```
 
 #### Authorization table
