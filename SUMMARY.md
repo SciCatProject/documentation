@@ -46,6 +46,7 @@
       * [Authorization](Development/v4.x/backend/authorization.md)
         * [Datasets](Development/v4.x/backend/authorization/authorization_datasets.md)
         * [OrigDatablocks](Development/v4.x/backend/authorization/authorization_origdatablocks.md)
+        * [Jobs](Development/v4.x/backend/authorization/authorization_jobs.md)
         * [Users](Development/v4.x/backend/authorization/authorization_users.md)
       * [Frontend](Development/v4.x/frontend/configuration.md)
     * [Theming](Development/v4.x/Theming.md)
