@@ -34,5 +34,5 @@ graph LR;
 | GET | Jobs | _JobsRead_ | __no__ | Has Access<br>_JobsReadAccess_ | Has Access<br>_JobsReadAccess_ |  __no__  | Any<br>_JobsReadAny_ | __no__ |  |
 | GET | Jobs/_jid_ | _JobsRead_ | __no__ | Has Access<br>_JobsReadAccess_ | Has Access<br>_JobsReadAccess_ |  __no__  | Any<br>_JobsReadAny_ | __no__ |  |
 | GET | Jobs/fullquery | _JobsRead_ | __no__ | Has Access<br>_JobsReadAccess_ | Has Access<br>_JobsReadAccess_ |  __no__  | Any<br>_JobsReadAny_ | __no__ |  |
-| POST | Jobs/statusUpdate | _JobsUpdate_ | __no__ | __no__ | __no__ | Has Access<br>_JobsUpdateAccess_ | Any<br>_JobsUpdateAny_ | __no__ |  |
+| POST | Jobs/statusUpdate | _JobsUpdate_ | __no__ | __no__ | __no__ | Has Access<br>_JobsUpdateAccess_ | Any<br>_JobsUpdateAny_ | __no__ |  |  
 

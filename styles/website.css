@@ -2,3 +2,7 @@ div.book div.book-body div.page-inner {
     max-width: 90%;
 }
 
+div.book div.mermaid svg g.nodes g.node g.label > g > foreignObject > div {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+}
