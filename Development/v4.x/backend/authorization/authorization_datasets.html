@@ -996,9 +996,12 @@
 <li>DatasetCreateOwnerNoPid</li>
 <li>DatasetCreateOwnerWithPid</li>
 <li>DatasetCreateAny</li>
-<li>DatasetReadPublic</li>
-<li>DatasetReadAccess</li>
-<li>DatasetReadOwner</li>
+<li>DatasetReadManyPublic</li>
+<li>DatasetReadManyAccess</li>
+<li>DatasetReadManyOwner</li>
+<li>DatasetReadOnePublic</li>
+<li>DatasetReadOneAccess</li>
+<li>DatasetReadOneOwner</li>
 <li>DatasetReadAny</li>
 <li>DatasetUpdateOwner</li>
 <li>DatasetUpdateAny</li>
@@ -1033,7 +1036,7 @@
 <li>DatasetDatablockUpdateAny</li>
 <li>DatasetDatablockDeleteOwner</li>
 <li>DatasetDatablockDeleteAny</li>
-<li>DatasetLogbookReadOwn</li>
+<li>DatasetLogbookReadOwner</li>
 <li>DatasetLogbookReadAny</li>
 </ul>
 <h3 id="priority">Priority</h3>
@@ -1043,10 +1046,14 @@ graph LR;
     DatasetCreate--&gt;DatasetCreateOwnerNoPid;
     DatasetCreateOwnerNoPid--&gt;DatasetCreateOwnerWithPid;
     DatasetCreateOwnerWithPid--&gt;DatasetCreateAny;
-    DatasetRead--&gt;DatasetReadPublic;
-    DatasetReadPublic--&gt;DatasetReadAccess;
-    DatasetReadAccess--&gt;DatasetReadOwner;
-    DatasetReadOwner--&gt;DatasetReadAny;
+    DatasetRead--&gt;DatasetReadManyPublic;
+    DatasetReadManyPublic--&gt;DatasetReadManyAccess;
+    DatasetReadManyAccess--&gt;DatasetReadManyOwner;
+    DatasetReadManyOwner--&gt;DatasetReadAny;
+    DatasetRead--&gt;DatasetReadOnePublic;
+    DatasetReadOnePublic--&gt;DatasetReadOneAccess;
+    DatasetReadOneAccess--&gt;DatasetReadOneOwner;
+    DatasetReadOneOwner--&gt;DatasetReadAny;
     DatasetUpdate--&gt;DatasetUpdateOwner;
     DatasetUpdateOwner--&gt;DatasetUpdateAny;
     DatasetDelete--&gt;DatasetDeleteOwner;
@@ -1111,11 +1118,11 @@ graph LR;
 <td>GET</td>
 <td>Datasets/fullquery</td>
 <td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
+<td>Public<br><em>DatasetReadManyPublic</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
 <td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
@@ -1123,11 +1130,11 @@ graph LR;
 <td>GET</td>
 <td>Datasets/fullfacet</td>
 <td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
+<td>Public<br><em>DatasetReadManyPublic</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
 <td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
@@ -1135,23 +1142,11 @@ graph LR;
 <td>GET</td>
 <td>Datasets/metadataKeys</td>
 <td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/findOne</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
+<td>Public<br><em>DatasetReadManyPublic</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
 <td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
@@ -1159,11 +1154,23 @@ graph LR;
 <td>GET</td>
 <td>Datasets/count</td>
 <td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
+<td>Public<br><em>DatasetReadManyPublic</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Has Access<br><em>DatasetReadManyAccess</em></td>
+<td>Any<br><em>DatasetReadAny</em></td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td>GET</td>
+<td>Datasets/findOne</td>
+<td><em>DatasetRead</em></td>
+<td>Public<br><em>DatasetReadOnePublic</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
 <td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
@@ -1171,11 +1178,11 @@ graph LR;
 <td>GET</td>
 <td>Datasets/<em>pid</em></td>
 <td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
+<td>Public<br><em>DatasetReadOnePublic</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
+<td>Has Access<br><em>DatasetReadOneAccess</em></td>
 <td>Any<br><em>DatasetReadAny</em></td>
 <td><strong>no</strong></td>
 </tr>
@@ -1378,6 +1385,7 @@ graph LR;
 <td>Owner<br><em>DatasetOrigdatablockUpdateOwner</em></td>
 <td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
 <td><strong>no</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DELETE</td>
@@ -1390,6 +1398,7 @@ graph LR;
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td>Any<br><em>DatasetOrigdatablockDeleteAny</em></td>
+<td></td>
 </tr>
 <tr>
 <td></td>
@@ -1413,6 +1422,7 @@ graph LR;
 <td>Owner<br><em>DatasetDatablockCreateOwner</em></td>
 <td>Any<br><em>DatasetDatablockCreateAny</em></td>
 <td><strong>no</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>GET</td>
@@ -1425,6 +1435,7 @@ graph LR;
 <td>Has Access<br><em>DatasetDatablockReadAccess</em></td>
 <td>Any<br><em>DatasetDatablockReadAny</em></td>
 <td><strong>no</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>PATCH</td>
@@ -1437,6 +1448,7 @@ graph LR;
 <td>Owner<br><em>DatasetDatablockUpdateOwner</em></td>
 <td>Any<br><em>DatasetDatablockCreateAny</em></td>
 <td><strong>no</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DELETE</td>
@@ -1466,6 +1478,7 @@ graph LR;
 <td>Datasets/<em>pid</em>/logbook</td>
 <td><em>DatasetLogbookRead</em></td>
 <td><strong>no</strong></td>
+<td>Owner<br><em>DatasetLogbookReadOwner</em></td>
 <td>Owner<br><em>DatasetLogbookReadOwner</em></td>
 <td>Owner<br><em>DatasetLogbookReadOwner</em></td>
 <td>Owner<br><em>DatasetLogbookReadOwner</em></td>
@@ -1517,7 +1530,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"next":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"previous":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_datasets.md","mtime":"2023-10-27T13:09:49.331Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-27T13:10:04.120Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"next":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"previous":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_datasets.md","mtime":"2023-10-31T12:09:45.685Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-31T12:09:57.754Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
