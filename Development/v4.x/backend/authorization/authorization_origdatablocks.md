@@ -10,9 +10,12 @@ This is the list of the permissions methods available for origdatablock and all 
 ### (Data) Instance Authorization
 - OrigdatablockCreateOwner
 - OrigdatablockCreateAny
-- OrigdatablockReadPublic
-- OrigdatablockReadAccess
-- OrigdatablockReadOwner
+- OrigdatablockReadManyPublic
+- OrigdatablockReadManyAccess
+- OrigdatablockReadManyOwner
+- OrigdatablockReadOnePublic
+- OrigdatablockReadOneAccess
+- OrigdatablockReadOneOwner
 - OrigdatablockReadAny
 - OrigdatablockUpdateOwner
 - OrigdatablockUpdateAny
@@ -24,9 +27,12 @@ This is the list of the permissions methods available for origdatablock and all 
 graph LR;
     DatasetOrigdatablockCreate-->DatasetOrigdatablockCreateOwner;
     DatasetOrigdatablockCreateOwner-->DatasetOrigdatablockCreateAny;
-    DatasetOrigdatablockRead-->DatasetOrigdatablockReadPublic;
-    DatasetOrigdatablockReadPublic-->DatasetOrigdatablockReadAccess;
-    DatasetOrigdatablockReadAccess-->DatasetOrigdatablockReadAny;
+    DatasetOrigdatablockRead-->DatasetOrigdatablockReadManyPublic;
+    DatasetOrigdatablockReadManyPublic-->DatasetOrigdatablockReadManyAccess;
+    DatasetOrigdatablockReadManyAccess-->DatasetOrigdatablockReadAny;
+    DatasetOrigdatablockRead-->DatasetOrigdatablockReadOnePublic;
+    DatasetOrigdatablockReadOnePublic-->DatasetOrigdatablockReadOneAccess;
+    DatasetOrigdatablockReadOneAccess-->DatasetOrigdatablockReadAny;
     DatasetOrigdatablockUpdate-->DatasetOrigdatablockUpdateOwner;
     DatasetOrigdatablockUpdateOwner-->DatasetOrigdatablockUpdateAny;
     DatasetOrigdatablockDelete-->DatasetOrigdatablockDeleteOwner;
@@ -38,11 +44,11 @@ graph LR;
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | POST | origdatablocks | _OrigdatablockCreate_ | __no__ | __no__ | Owner<br>_OrigdatablockCreateOwn_ | Owner<br>_OrigidatablockCreateOwn_ | Any<br>_OrigdatablockCreateAny_ | Any _OrigdatablockCreateAny_ | __no__ |  
 | POST | origdatablocks/isValid | _OrigdatablockCreate_ | __no__ | __no__ | Owner<br>_OrigdatablockCreateOwn_ | Owner<br>_OrigdatablockCreateOwn_ | Any<br>_OrigdatablockCreateAny_ | Any<br>_OrigdatablockCreateAny_ | __no__ | 
-| GET | origdatablocks | _OrigdatablockRead_ | Public _OrigdatablockReadPublic_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
-| GET | origdatablocks/_oid_ | _OrigdatablockRead_ | Public<br>_OrigdatablockReadPublic_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
-| GET | origdatablocks/fullquery | _OrigdatablockRead_ | Public<br>_OrigdatablockReadPublic_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
-| GET | origdatablocks/fullquery/files | _OrigdatablockRead_ | Public<br>_OrigdatablockReadPublic_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
-| GET | origdatablocks/fullfacet | _OrigdatablockRead_ | Public<br>_OrigdatablockReadPublic_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Has Access<br>_OrigdatablockReadAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks | _OrigdatablockRead_ | Public<br>_OrigdatablockReadManyPublic_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullquery | _OrigdatablockRead_ | Public<br>_OrigdatablockReadManyPublic_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullquery/files | _OrigdatablockRead_ | Public<br>_OrigdatablockReadManyPublic_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/fullfacet | _OrigdatablockRead_ | Public<br>_OrigdatablockReadManyPublic_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Has Access<br>_OrigdatablockReadManyAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
+| GET | origdatablocks/_oid_ | _OrigdatablockRead_ | Public<br>_OrigdatablockReadOnePublic_ | Has Access<br>_OrigdatablockReadOneAccess_ | Has Access<br>_OrigdatablockReadOneAccess_ | Has Access<br>_OrigdatablockReadOneAccess_ | Has Access<br>_OrigdatablockReadOneAccess_ | Any<br>_OrigdatablockReadAny_ | __no__ | 
 | PATCH | origdatablocks/_oid_ | _OrigdatablockUpdate_ | __no__ | __no__ | Owner<br>_OrigdatablockUpdateOwner_ | Owner<br>_OrigdatablockUpdateOwner_ | Owner<br>_OrigdatablockUpdateOwner_ | Any<br>_OrigdatablockUpdateAny_ | __no__ | 
 | DELETE | origdatablocks/_oid_ | _OrigdatablockDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any<br>_OrigdatablockDeleteAny_ | 
 

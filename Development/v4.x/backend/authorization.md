@@ -63,6 +63,7 @@ The permissions in the vanilla installation provides a set of user groups which 
 ## Subsystems
 - [Datasets](authorization/authorization_datasets.md)
 - [OrigDatablocks](authorization/authorization_origdatablocks.md)
+- [Jobs](authorization/authorization_jobs.md)
 - [Users](authorization/authorization_users.md)
 
 ___N.B.___: we know that many subsystems are still missing. We are working on reviewing the authorization model for each one of them and producing the relative documentation. We welcome any contribution.

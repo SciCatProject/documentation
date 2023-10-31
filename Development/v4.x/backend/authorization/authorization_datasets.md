@@ -23,9 +23,12 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetCreateOwnerNoPid
 - DatasetCreateOwnerWithPid
 - DatasetCreateAny
-- DatasetReadPublic
-- DatasetReadAccess
-- DatasetReadOwner
+- DatasetReadManyPublic
+- DatasetReadManyAccess
+- DatasetReadManyOwner
+- DatasetReadOnePublic
+- DatasetReadOneAccess
+- DatasetReadOneOwner
 - DatasetReadAny
 - DatasetUpdateOwner
 - DatasetUpdateAny
@@ -60,7 +63,7 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetDatablockUpdateAny
 - DatasetDatablockDeleteOwner
 - DatasetDatablockDeleteAny
-- DatasetLogbookReadOwn
+- DatasetLogbookReadOwner
 - DatasetLogbookReadAny
 
 ### Priority
@@ -70,10 +73,14 @@ graph LR;
     DatasetCreate-->DatasetCreateOwnerNoPid;
     DatasetCreateOwnerNoPid-->DatasetCreateOwnerWithPid;
     DatasetCreateOwnerWithPid-->DatasetCreateAny;
-    DatasetRead-->DatasetReadPublic;
-    DatasetReadPublic-->DatasetReadAccess;
-    DatasetReadAccess-->DatasetReadOwner;
-    DatasetReadOwner-->DatasetReadAny;
+    DatasetRead-->DatasetReadManyPublic;
+    DatasetReadManyPublic-->DatasetReadManyAccess;
+    DatasetReadManyAccess-->DatasetReadManyOwner;
+    DatasetReadManyOwner-->DatasetReadAny;
+    DatasetRead-->DatasetReadOnePublic;
+    DatasetReadOnePublic-->DatasetReadOneAccess;
+    DatasetReadOneAccess-->DatasetReadOneOwner;
+    DatasetReadOneOwner-->DatasetReadAny;
     DatasetUpdate-->DatasetUpdateOwner;
     DatasetUpdateOwner-->DatasetUpdateAny;
     DatasetDelete-->DatasetDeleteOwner;
@@ -86,12 +93,12 @@ graph LR;
 | POST | Datasets | _DatasetCreate_ | __no__ | __no__ | Owner, w/o PID<br/>_DatasetCreateOwnerNoPid_ | Owner, w/ PID<br/>_DatasetCreateOwnerWithPid_ | Any<br/>_DatasetCreateAny_ | Any<br/>_DatasetCreateAny_ | __no__ | 
 | POST | Datasets/isValid | _DatasetCreate_ | __no__ | __no__ | Owner, w/o PID<br/>_DatasetCreateOwnerNoPid_ | Owner, W/ PID<br/>_DatasetCreateOwnerWithPid_ | Any<br/>_DatasetCreateAny_ | Any<br/>_DatasetCreateAny_ | __no__ | 
 | GET | Datasets | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadyAny_ | __no__ | 
-| GET | Datasets/fullquery | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
-| GET | Datasets/fullfacet | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
-| GET | Datasets/metadataKeys | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
-| GET | Datasets/findOne | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
-| GET | Datasets/count | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
-| GET | Datasets/_pid_ | _DatasetRead_ | Public<br/>_DatasetReadPublic_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Has Access<br/>_DatasetReadAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/fullquery | _DatasetRead_ | Public<br/>_DatasetReadManyPublic_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/fullfacet | _DatasetRead_ | Public<br/>_DatasetReadManyPublic_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/metadataKeys | _DatasetRead_ | Public<br/>_DatasetReadManyPublic_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/count | _DatasetRead_ | Public<br/>_DatasetReadManyPublic_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Has Access<br/>_DatasetReadManyAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/findOne | _DatasetRead_ | Public<br/>_DatasetReadOnePublic_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
+| GET | Datasets/_pid_ | _DatasetRead_ | Public<br/>_DatasetReadOnePublic_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Has Access<br/>_DatasetReadOneAccess_ | Any<br/>_DatasetReadAny_ | __no__ | 
 | PATCH | Datasets/_pid_ | _DatasetUpdate_ | __no__ | __no__ | Owner<br/>_DatasetUpdateOwner_ | Owner<br/>_DatasetUpdateOwner_ | Owner<br/>_DatasetUpdateOwner_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
 | PUT | Datasets/_pid_ |  _DatasetUpdate_ |__no__ | __no__ | Owner<br/>_DatasetUpdateOwner_ | Owner<br/>_DatasetUpdateOwner_ | Owner<br/>_DatasetUpdateOwner_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
 | POST | Datasets/_pid_/appendToArrayField |  _DatasetUpdate_ |__no__ | __no__ | Owner<br/>_DatasetUpdateOwner_ |  Owner<br/>_DatasetUpdateOwner_ | Owner<br/>_DatasetUpdateOwner_ | Any<br/>_DatasetUpdateAny_ | __no__ | 
@@ -108,13 +115,13 @@ graph LR;
 | POST | Datasets/_pid_/origdatablocks | _DatasetOrigdatablocksCreate_ | __no__ | __no__ | Owner<br/>_DatasetOrigdatablockCreateOwner_ | Owner<br/>_DatasetOrigdatablockCreateOwner_ | Any<br/>_DatasetOrigdatablockCreateAny_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
 | POST | Datasets/_pid_/origdatablocks/isValid | _DatasetOrigdatablocksCreate_ |  __no__ | __no__ | Owner<br/>_DatasetOrigdatablockCreateOwner_ | Owner<br/>_DatasetOrigdatablockCreateOwner_ | Any<br/>_DatasetOrigdatablockCreateAny_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
 | GET | Datasets/_pid_/origdatablocks | _DatasetOrigdatablocksRead_ | Public<br/>_DatasetOrigdatablockReadPublic_ | Has Access<br/>_DatasetOrigdatablockReadOAccess_ | Has Access<br/>_DatasetOrigdatablockReadAccess_ | Has Access<br/>_DatasetOrigdatablockReadAccess_ | Has Access<br/>_DatasetOrigdatablockReadAccess_ | Any<br/>_DatasetOrigdatablockReadAny_ | __no__ | 
-| PATCH | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksUpdate_ | __no__ | __no__ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ | 
-| DELETE | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any<br/>_DatasetOrigdatablockDeleteAny_ | 
+| PATCH | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksUpdate_ | __no__ | __no__ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Owner<br/>_DatasetOrigdatablockUpdateOwner_ | Any<br/>_DatasetOrigdatablockCreateAny_ | __no__ |  |
+| DELETE | Datasets/_pid_/origdatablocks/_oid_ | _DatasetOrigdatablocksDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ |  __no__ | Any<br/>_DatasetOrigdatablockDeleteAny_ |  | 
 | | | | | | | | | |
-| POST | Datasets/_pid_/datablocks | _DatasetDatablocksCreate_ | __no__ | __no__ | Owner<br/>_DatasetDatablockCreateOwner_ | Owner<br/>_DatasetDatablockCreateOwner_ | Owner<br/>_DatasetDatablockCreateOwner_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ | 
-| GET | Datasets/_pid_/datablocks | _DatasetOrigdatablocksRead_ | Public<br/>_DatasetDatablockReadPublic_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Any<br/>_DatasetDatablockReadAny_ | __no__ | 
-| PATCH | Datasets/_pid_/datablocks/_oid_ | _DatasetDatablocksUpdate_ | __no__ | __no__ | Owner<br/>_DatasetDatablockUpdateOwner_ | Owner<br/>_DatasetDatablockUpdateOwner_ | Owner<br/>_DatasetDatablockUpdateOwner_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ | 
+| POST | Datasets/_pid_/datablocks | _DatasetDatablocksCreate_ | __no__ | __no__ | Owner<br/>_DatasetDatablockCreateOwner_ | Owner<br/>_DatasetDatablockCreateOwner_ | Owner<br/>_DatasetDatablockCreateOwner_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ |  |
+| GET | Datasets/_pid_/datablocks | _DatasetOrigdatablocksRead_ | Public<br/>_DatasetDatablockReadPublic_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Has Access<br/>_DatasetDatablockReadAccess_ | Any<br/>_DatasetDatablockReadAny_ | __no__ |  |
+| PATCH | Datasets/_pid_/datablocks/_oid_ | _DatasetDatablocksUpdate_ | __no__ | __no__ | Owner<br/>_DatasetDatablockUpdateOwner_ | Owner<br/>_DatasetDatablockUpdateOwner_ | Owner<br/>_DatasetDatablockUpdateOwner_ | Any<br/>_DatasetDatablockCreateAny_ | __no__ | | 
 | DELETE | Datasets/_pid_/datablocks/_oid_ | _DatasetDatablocksDelete_ | __no__ | __no__ | __no__ |  __no__ | __no__ | __no__ | Any<br/>_DatasetDatablockDeleteAny_ | 
 | | | | | | | | | |
-| GET | Datasets/_pid_/logbook | _DatasetLogbookRead_ | __no__ | Owner<br/>_DatasetLogbookReadOwner_ |  Owner<br/>_DatasetLogbookReadOwner_ | Owner<br/>_DatasetLogbookReadOwner_ |  Any<br/>_DatasetLogbookReadAny_ | __no__ | 
+| GET | Datasets/_pid_/logbook | _DatasetLogbookRead_ | __no__ | Owner<br/>_DatasetLogbookReadOwner_ |  Owner<br/>_DatasetLogbookReadOwner_ | Owner<br/>_DatasetLogbookReadOwner_ | Owner<br/>_DatasetLogbookReadOwner_ |  Any<br/>_DatasetLogbookReadAny_ | __no__ | | 
 
