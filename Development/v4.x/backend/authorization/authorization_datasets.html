@@ -1039,6 +1039,29 @@
 <li>DatasetLogbookReadOwner</li>
 <li>DatasetLogbookReadAny</li>
 </ul>
+<h3 id="implementation">Implementation</h3>
+<p>How the different level of authorization translates in data condition applied byt he backend.</p>
+<ul>
+<li><em>*</em> Public<ul>
+<li>isPublished = true</li>
+</ul>
+</li>
+<li><em>*</em> Access (condition ar applied in logical <em>or</em>)<ul>
+<li>isPublished = true</li>
+<li>ownerGroup is one of the groups that the user belongs</li>
+<li>accessGroups are one of the groups that the user belongs</li>
+<li>sharedWith contains the user&apos;s email</li>
+</ul>
+</li>
+<li><em>*</em> Owner  <ul>
+<li>ownerGroup is one of the groups that the user belongs</li>
+</ul>
+</li>
+<li><em>*</em> Any  <ul>
+<li>User can perform the action to any dataset</li>
+</ul>
+</li>
+</ul>
 <h3 id="priority">Priority</h3>
 <div class="mermaid">
 %%{init: {&apos;theme&apos; : &apos;base&apos;, &apos;themeVariables&apos;: { &apos;fontSize&apos;: &apos;11px&apos;, &apos;fontFamily&apos; : &apos;monospace&apos;}}}%%
@@ -1057,7 +1080,7 @@ graph LR;
     DatasetUpdate--&gt;DatasetUpdateOwner;
     DatasetUpdateOwner--&gt;DatasetUpdateAny;
     DatasetDelete--&gt;DatasetDeleteOwner;
-    DatasetDeleteOwner--&gt;DatasetDelteAny;
+    DatasetDeleteOwner--&gt;DatasetDeleteAny;
 </div>
 
 <h3 id="authorization-table">Authorization table</h3>
@@ -1530,7 +1553,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"next":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"previous":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_datasets.md","mtime":"2023-10-31T12:09:45.685Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-10-31T12:09:57.754Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"next":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"previous":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_datasets.md","mtime":"2023-11-02T16:24:35.444Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-02T16:24:46.929Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
