@@ -66,6 +66,21 @@ This is the list of the permissions methods available for datasets and all their
 - DatasetLogbookReadOwner
 - DatasetLogbookReadAny
 
+### Implementation
+How the different level of authorization translates in data condition applied byt he backend.
+- _*_ Public
+  - isPublished = true
+- _*_ Access (condition ar applied in logical _or_)
+  - isPublished = true
+  - ownerGroup is one of the groups that the user belongs
+  - accessGroups are one of the groups that the user belongs
+  - sharedWith contains the user's email
+- _*_ Owner  
+  - ownerGroup is one of the groups that the user belongs
+- _*_ Any  
+  - User can perform the action to any dataset
+
+
 ### Priority
 ```mermaid
 %%{init: {'theme' : 'base', 'themeVariables': { 'fontSize': '11px', 'fontFamily' : 'monospace'}}}%%
@@ -84,7 +99,7 @@ graph LR;
     DatasetUpdate-->DatasetUpdateOwner;
     DatasetUpdateOwner-->DatasetUpdateAny;
     DatasetDelete-->DatasetDeleteOwner;
-    DatasetDeleteOwner-->DatasetDelteAny;
+    DatasetDeleteOwner-->DatasetDeleteAny;
 ```
 
 ### Authorization table
