@@ -49,6 +49,7 @@
         * [Proposals](Development/v4.x/backend/authorization/authorization_proposals.md)
         * [Jobs](Development/v4.x/backend/authorization/authorization_jobs.md)
         * [Users](Development/v4.x/backend/authorization/authorization_users.md)
+      * [Elastic Search](Development/v4.x/elasticsearch/elasticsearch.md)
       * [Frontend](Development/v4.x/frontend/configuration.md)
     * [Theming](Development/v4.x/Theming.md)
     * [Login and Accounts](Development/v4.x/Login.md)
