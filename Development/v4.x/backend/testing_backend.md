@@ -9,18 +9,26 @@ Following is the list of hte main packages used to build, run and manage testing
 
 ## API tests
 
-SciCat backend v4.x comes with many API tests. They are locate in the `/test` folder
+SciCat backend v4.x comes with many API tests. They are locate under the `/test` folder in the backend repository
 
-In order to run the tests you need to have the backend running.  
-In a different terminal, you can run one of the following two commands:
+In order to run the tests you need to have the backend running with an accessible mongodb instance.
+The backend can be run from terminl with the command:
 
-`npm run test`
+`npm run dev`
 
-or 
+In a different terminal, you can run all the following tests:
+- unit tests:   
+  `npm run test`
+- linting tests:  
+  `npm run lint`
+- api tests based on mocha
+  `npm run test:api:mocha`
+
+If you would like to run the mocha tests directly, you can use the following command: 
 
 `mocha --config ./test/config/.mocharc.json --timeout=5000 --reporter=nyan`
 
-If you are interested in a specific subset of tests, you can add the _--grep_ option to the mocha command.  
+If you are interested in a specific subset of API tests, you can add the _--grep_ option to the mocha command.  
 For example if you are interested in running only the test named _Authorization functionalities_, you can use the following command:  
 `mocha --config ./test/config/.mocharc.json --grep \"Authorization functionalities\ --timeout=5000 --reporter=nyan`
 
@@ -30,46 +38,49 @@ The following is the list of the current tests groups. We are trying to cover al
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
 
 List of tests:
-| test file | main code | title | description |
-| ----- | ----- | ----- | ----- |
-| Auth.js | 0100 |  Authorization functionalities| Test login and logout for functional accounts |
-| CheckDifferentDatasetTypes.js | 0200 | CheckDifferentDatasetTypes |  | 
-| DatasetAuthorization.js | 0300 |  |  |
-| DatasetFilter.js | 0400 |  |  |
-| DatasetLifecycle.js | 0500 |  |  |
-| DerivedDatasetDatablock.js | 0600 |  |  |
-| DerivedDataset.js | 0700 | Derived Datasets | test derived datasets functionalities |
-| DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |
-| Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |
-| InstrumentsFilter.js | 1000 |  |  |
-| Jobs.js | 1100 |  |  |
-| LoginUtils.js | 1200 |  |  |
-| Policy.js | 1300 |  |  |
-| ProposalAuthorization.js | 1400 |  |  |
-| Proposal.js | 1500 |  |  |
-| PublishedData.js | 1600 |  |  |
-| RandomizedDatasetPermissions.js | 1700 |  |  |
-| RawDatasetDatablock.js | 1800 |  |  |
-| RawDataset.js | 1900 |  |  |
-| RawDatasetOrigDatablock.js | 2000 |  |  |
-| ResetDataset.js | 2100 |  |  |
-| Sample.js | 2200 |  |  |
-| UserAuthorization.js | 2300 | User Authorization | test that user authorization are correct |
-| Users.js | 2400 |  |  |
+| test file | main code | title | description |  
+| ----- | ----- | ----- | ----- |  
+| Auth.js | 0100 | Authorization functionalities | Test login and logout for functional accounts |  
+| CheckDifferentDatasetTypes.js | 0200 | Check Different Dataset Types | Check different dataset types and their inheritance |   
+| DatasetAuthorization.js | 0300 |  |  |  
+| DatasetFilter.js | 0400 |  |  |  
+| DatasetLifecycle.js | 0500 |  |  |  
+| DerivedDatasetDatablock.js | 0600 |  |  |  
+| DerivedDataset.js | 0700 | Derived Datasets | test derived datasets functionalities |  
+| DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |  
+| Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |  
+| InstrumentsFilter.js | 1000 |  |  |  
+| Jobs.js | 1100 |  |  |  
+| LoginUtils.js | 1200 |  |  |  
+| Policy.js | 1300 |  |  |  
+| ProposalAuthorization.js | 1400 |  |  |  
+| Proposal.js | 1500 |  |  |  
+| PublishedData.js | 1600 |  |  |  
+| RandomizedDatasetPermissions.js | 1700 |  |  |  
+| RawDatasetDatablock.js | 1800 |  |  |  
+| RawDataset.js | 1900 |  |  |  
+| RawDatasetOrigDatablock.js | 2000 |  |  |  
+| ResetDataset.js | 2100 |  |  |  
+| Sample.js | 2200 |  |  |  
+| UserAuthorization.js | 2300 | User Authorization | test that user authorization are correct |  
+| Users.js | 2400 |  |  |  
 
 ## Test data
 
 It is our intention to save all test data in the file `TestData.js`.  
 In some cases, we need to code variation of the data directly in the test file.
 
-## Test accounts
+## Functional and Test accounts
 
-Tests are performed assuming the following user accounts, groups and configuration are present.
-Users and groups are defined in the configuration structre defined in ```src/config/configuration.ts```.
+All tests are performed assuming the following user accounts, groups and configuration are present.
+Users and groups can be defined in the configuration structure defined in ```src/config/configuration.ts```, although the preferred method for configuring functional/tests accounts is through the `functional_accounts.json` file present in the following folder ``
 These settings are meant only for testing and to demonstrate the capabilities of backend V4.x. IT is highly recommended to remove accounts that are not needed and change passwords and group affiliations as needed.
 
-### Accounts
-| Account | Groups | Is Admin | Can Delete | Can Create Dataset |
+### Deafault Accounts
+The following table lists the accounts that are provided by default in a vanilla installation.
+Please make sure to change them, update their password or remove them entirely in your production environment.
+
+| Account | Groups | Admin Group | Delete Group | Create Dataset w/o pid| Create Dataset w/ pid | Create Dataset Privileged | Create Job | Update Job |
 | ----- | ----- | ----- | ----- | ----- |
 | admin | admin, global | yes | no | Any |
 | ingestor | ingestor | yes | no | Any |
