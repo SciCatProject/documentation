@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Datasets · SciCat Documentation</title>
+        <title>Proposals · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.5">
@@ -60,10 +60,10 @@
     <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="authorization_origdatablocks.html" />
+    <link rel="next" href="authorization_jobs.html" />
     
     
-    <link rel="prev" href="../authorization.html" />
+    <link rel="prev" href="authorization_origdatablocks.html" />
     
 
     </head>
@@ -685,7 +685,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.5.2.4.2.1" data-path="authorization_datasets.html">
+        <li class="chapter " data-level="1.5.2.4.2.1" data-path="authorization_datasets.html">
             
                 <a href="authorization_datasets.html">
             
@@ -711,7 +711,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.3" data-path="authorization_proposals.html">
+        <li class="chapter active" data-level="1.5.2.4.2.3" data-path="authorization_proposals.html">
             
                 <a href="authorization_proposals.html">
             
@@ -981,7 +981,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../../.." >Datasets</a>
+        <a href="../../../.." >Proposals</a>
     </h1>
 </div>
 
@@ -996,131 +996,61 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="datasets-authoorization">Datasets Authoorization</h1>
+                                <h1 id="proposals-authorization">Proposals Authorization</h1>
 <h2 id="casl-ability-actions">CASL ability actions</h2>
-<p>This is the list of the permissions methods available for datasets and all their endpoints</p>
-<h3 id="endpoint-authorization">Endpoint authorization</h3>
+<p>This is the list of the permissions methods available for Proposals and all their endpoints</p>
+<h3 id="endpoint-authorization">Endpoint Authorization</h3>
 <ul>
-<li>DatasetCreate</li>
-<li>DatasetRead</li>
-<li>DatasetUpdate</li>
-<li>DatasetDelete</li>
-<li>DatasetAttachmentCreate</li>
-<li>DatasetAttachmentRead</li>
-<li>DatasetAttachmentUpdate</li>
-<li>DatasetAttachmentDelete</li>
-<li>DatasetOrigdatablockCreate</li>
-<li>DatasetOrigdatablockRead</li>
-<li>DatasetOrigdatablockUpdate</li>
-<li>DatasetOrigdatablockDelete</li>
-<li>DatasetDatablockCreate</li>
-<li>DatasetDatablockRead</li>
-<li>DatasetDatablockUpdate</li>
-<li>DatasetDatablockDelete</li>
-<li>DatasetLogbookRead<h3 id="instance-authorization">Instance authorization</h3>
-</li>
-<li>DatasetCreateOwnerNoPid</li>
-<li>DatasetCreateOwnerWithPid</li>
-<li>DatasetCreateAny</li>
-<li>DatasetReadManyPublic</li>
-<li>DatasetReadManyAccess</li>
-<li>DatasetReadManyOwner</li>
-<li>DatasetReadOnePublic</li>
-<li>DatasetReadOneAccess</li>
-<li>DatasetReadOneOwner</li>
-<li>DatasetReadAny</li>
-<li>DatasetUpdateOwner</li>
-<li>DatasetUpdateAny</li>
-<li>DetasetDeleteOwner</li>
-<li>DatasetDeleteAny</li>
-<li>DatasetAttachmentCreateOwner</li>
-<li>DatasetAttachmentCreateAny</li>
-<li>DatasetAttachmentReadPublic</li>
-<li>DatasetAttachmentReadAccess</li>
-<li>DatasetAttachmentReadOwner</li>
-<li>DatasetAttachmentReadAny</li>
-<li>DatasetAtatchementUpdateOwner</li>
-<li>DatasetAtatchementUpdateAny</li>
-<li>DatasetAttachmentDeleteOwner</li>
-<li>DatasetAttachmentDeleteAny</li>
-<li>DatasetOrigdatablockCreateOwner</li>
-<li>DatasetOrigdatablockCreateAny</li>
-<li>DatasetOrigdatablockReadPublic</li>
-<li>DatasetOrigdatablockReadAccess</li>
-<li>DatasetOrigdatablockReadOwner</li>
-<li>DatasetOrigdatablockReadAny</li>
-<li>DatasetOrigdatablockUpdateOwner</li>
-<li>DatasetOrigdatablockUpdateAny</li>
-<li>DatasetOrigdatablockDeleteAny</li>
-<li>DatasetDatablockCreateOwner</li>
-<li>DatasetDatablockCreateAny</li>
-<li>DatasetDatablockReadPublic</li>
-<li>DatasetDatablockReadAccess</li>
-<li>DatasetDatablockReadOwner</li>
-<li>DatasetDatablockReadAny</li>
-<li>DatasetDatablockUpdateOwner</li>
-<li>DatasetDatablockUpdateAny</li>
-<li>DatasetDatablockDeleteOwner</li>
-<li>DatasetDatablockDeleteAny</li>
-<li>DatasetLogbookReadOwner</li>
-<li>DatasetLogbookReadAny</li>
+<li>ProposalsCreate</li>
+<li>ProposalsRead</li>
+<li>ProposalsUpdate</li>
+<li>ProposalsDelete</li>
 </ul>
-<h3 id="implementation">Implementation</h3>
-<p>How the different level of authorization translates in data condition applied byt he backend.</p>
+<h3 id="data-instance-authorization">(Data) Instance Authorization</h3>
 <ul>
-<li><em>*</em> Public<ul>
-<li>isPublished = true</li>
+<li>ProposalsCreateOwner</li>
+<li>ProposalsCreateAny</li>
+<li>ProposalsReadManyPublic</li>
+<li>ProposalsReadManyAccess</li>
+<li>ProposalsReadManyOwner</li>
+<li>ProposalsReadOnePublic</li>
+<li>ProposalsReadOneAccess</li>
+<li>ProposalsReadOneOwner</li>
+<li>ProposalsReadAny</li>
+<li>ProposalsUpdateOwner</li>
+<li>ProposalsUpdateAny</li>
+<li>ProposalsDeleteOwner</li>
+<li>ProposalsDeleteAny</li>
 </ul>
-</li>
-<li><em>*</em> Access (condition ar applied in logical <em>or</em>)<ul>
-<li>isPublished = true</li>
-<li>ownerGroup is one of the groups that the user belongs</li>
-<li>accessGroups are one of the groups that the user belongs</li>
-<li>sharedWith contains the user&apos;s email</li>
-</ul>
-</li>
-<li><em>*</em> Owner  <ul>
-<li>ownerGroup is one of the groups that the user belongs</li>
-</ul>
-</li>
-<li><em>*</em> Any  <ul>
-<li>User can perform the action to any dataset</li>
-</ul>
-</li>
-</ul>
-<h3 id="priority">Priority</h3>
+<h4 id="priority">Priority</h4>
 <div class="mermaid">
-%%{init: {&apos;theme&apos; : &apos;base&apos;, &apos;themeVariables&apos;: { &apos;fontSize&apos;: &apos;11px&apos;, &apos;fontFamily&apos; : &apos;monospace&apos;}}}%%
 graph LR;
-    DatasetCreate--&gt;DatasetCreateOwnerNoPid;
-    DatasetCreateOwnerNoPid--&gt;DatasetCreateOwnerWithPid;
-    DatasetCreateOwnerWithPid--&gt;DatasetCreateAny;
-    DatasetRead--&gt;DatasetReadManyPublic;
-    DatasetReadManyPublic--&gt;DatasetReadManyAccess;
-    DatasetReadManyAccess--&gt;DatasetReadManyOwner;
-    DatasetReadManyOwner--&gt;DatasetReadAny;
-    DatasetRead--&gt;DatasetReadOnePublic;
-    DatasetReadOnePublic--&gt;DatasetReadOneAccess;
-    DatasetReadOneAccess--&gt;DatasetReadOneOwner;
-    DatasetReadOneOwner--&gt;DatasetReadAny;
-    DatasetUpdate--&gt;DatasetUpdateOwner;
-    DatasetUpdateOwner--&gt;DatasetUpdateAny;
-    DatasetDelete--&gt;DatasetDeleteOwner;
-    DatasetDeleteOwner--&gt;DatasetDeleteAny;
+    ProposalsCreate(E)--&gt;ProposalsCreateOwner(I);
+    ProposalsCreateOwner(I)--&gt;ProposalsCreateAny(I)
+    ProposalsRead(E)--&gt;ProposalsReadManyPublic(I);
+    ProposalsReadManyPublic(I)--&gt;ProposalsReadManyAccess(I);
+    ProposalsReadManyAccess(I)--&gt;ProposalsReadManyOwner(I);
+    ProposalsReadManyOwner(I)--&gt;ProposalsReadAny(I);
+    ProposalsRead(E)--&gt;ProposalsReadOnePublic(I);
+    ProposalsReadOnePublic(I)--&gt;ProposalsReadOneAccess(I);
+    ProposalsReadOneAccess(I)--&gt;ProposalsReadOneOwner(I);
+    ProposalsReadOneOwner(I)--&gt;ProposalsReadAny(I);
+    ProposalsUpdate(E)--&gt;ProposalsUpdateOwner(I);
+    ProposalsUpdateOwner(I)--&gt;ProposalsUpdateAny(I);
+    ProposalsDelete(E)--&gt;ProposalsDeleteOwner(I);
+    ProposalsDeleteOwner(I)--&gt;ProposalsDeleteAny(I);
 </div>
 
-<h3 id="authorization-table">Authorization table</h3>
+<h4 id="authorization-table">Authorization table</h4>
 <table>
 <thead>
 <tr>
 <th>HTTP method</th>
 <th>Endpoint</th>
-<th>Endpoint Authorization</th>
+<th>Endpoint Authentication</th>
 <th>Anonymous</th>
 <th>Authenticated User</th>
-<th>Create Dataset Groups</th>
-<th>Create Dataset with Pid Groups</th>
-<th>Create Dataset Privileged Groups</th>
+<th>Proposals Groups</th>
 <th>Admin Groups</th>
 <th>Delete Groups</th>
 <th>Notes</th>
@@ -1129,409 +1059,67 @@ graph LR;
 <tbody>
 <tr>
 <td>POST</td>
-<td>Datasets</td>
-<td><em>DatasetCreate</em></td>
+<td>Proposals</td>
+<td><em>ProposalsCreate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Owner, w/o PID<br><em>DatasetCreateOwnerNoPid</em></td>
-<td>Owner, w/ PID<br><em>DatasetCreateOwnerWithPid</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
+<td>Any<br><em>ProposalsCreateAny</em></td>
+<td>Any<br><em>ProposalsCreateAny</em></td>
 <td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/isValid</td>
-<td><em>DatasetCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner, w/o PID<br><em>DatasetCreateOwnerNoPid</em></td>
-<td>Owner, W/ PID<br><em>DatasetCreateOwnerWithPid</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td>Any<br><em>DatasetCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Any<br><em>DatasetReadyAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/fullquery</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadManyPublic</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/fullfacet</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadManyPublic</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/metadataKeys</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadManyPublic</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/count</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadManyPublic</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Has Access<br><em>DatasetReadManyAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/findOne</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadOnePublic</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadOnePublic</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Has Access<br><em>DatasetReadOneAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/appendToArrayField</td>
-<td><em>DatasetUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Owner<br><em>DatasetUpdateOwner</em></td>
-<td>Any<br><em>DatasetUpdateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em></td>
-<td><em>DatasetDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetDeleteAny</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>GET</td>
-<td>Datasets/<em>pid</em>/thumbnail</td>
-<td><em>DatasetRead</em></td>
-<td>Public<br><em>DatasetReadPublic</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Has Access<br><em>DatasetReadAccess</em></td>
-<td>Any<br><em>DatasetReadAny</em></td>
+<td>Proposals</td>
+<td><em>ProposalsRead</em></td>
+<td>Public<br><em>ProposalsReadManyPublic</em></td>
+<td>Has  Access<br><em>ProposalsReadManyAccess</em></td>
+<td>Has Access<br><em>ProposalsReadManyAccess</em></td>
+<td>Any<br><em>ProposalsReadAny</em></td>
 <td><strong>no</strong></td>
+<td></td>
 </tr>
 <tr>
+<td>GET</td>
+<td>Proposals/<em>pid</em></td>
+<td><em>ProposalsRead</em></td>
+<td>Public<br><em>ProposalsReadOnePublic</em></td>
+<td>Has Access<br><em>ProposalsReadOneAccess</em></td>
+<td>Has Access<br><em>ProposalsReadOneAccess</em></td>
+<td>Any<br><em>ProposalsReadAny</em></td>
+<td><strong>no</strong></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+</tr>
+<tr>
+<td>GET</td>
+<td>Proposals/fullquery</td>
+<td><em>ProposalsRead</em></td>
+<td>Public<br><em>ProposalsReadOnePublic</em></td>
+<td>Has Access<br><em>ProposalsReadOneAccess</em></td>
+<td>Has Access<br><em>ProposalsReadOneAccess</em></td>
+<td>Any<br><em>ProposalsReadAny</em></td>
+<td><strong>no</strong></td>
 <td></td>
 </tr>
 <tr>
 <td>POST</td>
-<td>Datasets/<em>pid</em>/attachments</td>
-<td><em>DatasetAttachmentCreate</em></td>
+<td>Proposals/<em>pid</em></td>
+<td><em>ProposalsUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Owner<br><em>DatasetAttachmentCreateOwner</em></td>
-<td>Owner<br><em>DatasetAttachmentCreateOwner</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/attachments</td>
-<td><em>DatasetAttachmemntRead</em></td>
-<td>Public<br><em>DatasetAttachmentReadPublic</em></td>
-<td>Has Access<br><em>DatasetAttachmentReadAccess</em></td>
-<td>Has Access<br><em>DatasetAttachmentReadAccess</em></td>
-<td>Has Access<br><em>DatasetAttachmentReadAccess</em></td>
-<td>Has Access<br><em>DatasetAttachmentReadAccess</em></td>
-<td>Any<br><em>DatasetAttachmentReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
-<td><em>DatasetAttachmemntUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetAttachmentUpdateOwner</em></td>
-<td>Owner<br><em>DatasetAttachmentUpdateOwner</em></td>
-<td>Owner<br><em>DatasetAttachmentUpdateOwner</em></td>
-<td>Any<br><em>DatasetAttachmentCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em>/attachments/<em>aid</em></td>
-<td><em>DatasetAttachmemntDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetAttachmentDeleteOwner</em></td>
-<td>Owner<br><em>DatasetAttachmentDeleteOwner</em></td>
-<td>Owner<br><em>DatasetAttachmentDeleteOwner</em></td>
-<td>Any<br><em>DatasetAttachmentDeleteAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/origdatablocks</td>
-<td><em>DatasetOrigdatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetOrigdatablockCreateOwner</em></td>
-<td>Owner<br><em>DatasetOrigdatablockCreateOwner</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/origdatablocks/isValid</td>
-<td><em>DatasetOrigdatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetOrigdatablockCreateOwner</em></td>
-<td>Owner<br><em>DatasetOrigdatablockCreateOwner</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/origdatablocks</td>
-<td><em>DatasetOrigdatablocksRead</em></td>
-<td>Public<br><em>DatasetOrigdatablockReadPublic</em></td>
-<td>Has Access<br><em>DatasetOrigdatablockReadOAccess</em></td>
-<td>Has Access<br><em>DatasetOrigdatablockReadAccess</em></td>
-<td>Has Access<br><em>DatasetOrigdatablockReadAccess</em></td>
-<td>Has Access<br><em>DatasetOrigdatablockReadAccess</em></td>
-<td>Any<br><em>DatasetOrigdatablockReadAny</em></td>
-<td><strong>no</strong></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
-<td><em>DatasetOrigdatablocksUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetOrigdatablockUpdateOwner</em></td>
-<td>Owner<br><em>DatasetOrigdatablockUpdateOwner</em></td>
-<td>Owner<br><em>DatasetOrigdatablockUpdateOwner</em></td>
-<td>Any<br><em>DatasetOrigdatablockCreateAny</em></td>
+<td>Owner<br><em>ProposalsUpdateOwn</em></td>
+<td>Any<br><em>ProposalsUpdateAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>Datasets/<em>pid</em>/origdatablocks/<em>oid</em></td>
-<td><em>DatasetOrigdatablocksDelete</em></td>
+<td>Proposals/<em>pid</em></td>
+<td><em>ProposalsDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetOrigdatablockDeleteAny</em></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>Datasets/<em>pid</em>/datablocks</td>
-<td><em>DatasetDatablocksCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetDatablockCreateOwner</em></td>
-<td>Owner<br><em>DatasetDatablockCreateOwner</em></td>
-<td>Owner<br><em>DatasetDatablockCreateOwner</em></td>
-<td>Any<br><em>DatasetDatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/datablocks</td>
-<td><em>DatasetOrigdatablocksRead</em></td>
-<td>Public<br><em>DatasetDatablockReadPublic</em></td>
-<td>Has Access<br><em>DatasetDatablockReadAccess</em></td>
-<td>Has Access<br><em>DatasetDatablockReadAccess</em></td>
-<td>Has Access<br><em>DatasetDatablockReadAccess</em></td>
-<td>Has Access<br><em>DatasetDatablockReadAccess</em></td>
-<td>Any<br><em>DatasetDatablockReadAny</em></td>
-<td><strong>no</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
-<td><em>DatasetDatablocksUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetDatablockUpdateOwner</em></td>
-<td>Owner<br><em>DatasetDatablockUpdateOwner</em></td>
-<td>Owner<br><em>DatasetDatablockUpdateOwner</em></td>
-<td>Any<br><em>DatasetDatablockCreateAny</em></td>
-<td><strong>no</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>Datasets/<em>pid</em>/datablocks/<em>oid</em></td>
-<td><em>DatasetDatablocksDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td>Any<br><em>DatasetDatablockDeleteAny</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>Datasets/<em>pid</em>/logbook</td>
-<td><em>DatasetLogbookRead</em></td>
-<td><strong>no</strong></td>
-<td>Owner<br><em>DatasetLogbookReadOwner</em></td>
-<td>Owner<br><em>DatasetLogbookReadOwner</em></td>
-<td>Owner<br><em>DatasetLogbookReadOwner</em></td>
-<td>Owner<br><em>DatasetLogbookReadOwner</em></td>
-<td>Any<br><em>DatasetLogbookReadAny</em></td>
+<td>Any<br><em>ProposalsDeleteAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 </tbody>
@@ -1563,12 +1151,12 @@ graph LR;
 
             
                 
-                <a href="../authorization.html" class="navigation navigation-prev " aria-label="Previous page: Authorization">
+                <a href="authorization_origdatablocks.html" class="navigation navigation-prev " aria-label="Previous page: OrigDatablocks">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="authorization_origdatablocks.html" class="navigation navigation-next " aria-label="Next page: OrigDatablocks">
+                <a href="authorization_jobs.html" class="navigation navigation-next " aria-label="Next page: Jobs">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1579,7 +1167,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"next":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"previous":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_datasets.md","mtime":"2023-11-16T13:34:55.067Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-16T13:35:03.625Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"next":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},"previous":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_proposals.md","mtime":"2023-11-16T13:34:55.071Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-16T13:35:03.625Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
