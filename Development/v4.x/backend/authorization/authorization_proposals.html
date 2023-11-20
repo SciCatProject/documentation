@@ -1001,44 +1001,77 @@
 <p>This is the list of the permissions methods available for Proposals and all their endpoints</p>
 <h3 id="endpoint-authorization">Endpoint Authorization</h3>
 <ul>
-<li>ProposalsCreate</li>
-<li>ProposalsRead</li>
-<li>ProposalsUpdate</li>
-<li>ProposalsDelete</li>
+<li>ProposalCreate</li>
+<li>ProposalRead</li>
+<li>ProposalUpdate</li>
+<li>ProposalDelete</li>
+<li>ProposalAttachmentCreate</li>
+<li>ProposalAttachmentRead</li>
+<li>ProposalAttachmentUpdate</li>
+<li>ProposalAttachmentDelete</li>
+<li>ProposalDatasetRead</li>
 </ul>
 <h3 id="data-instance-authorization">(Data) Instance Authorization</h3>
 <ul>
-<li>ProposalsCreateOwner</li>
-<li>ProposalsCreateAny</li>
-<li>ProposalsReadManyPublic</li>
-<li>ProposalsReadManyAccess</li>
-<li>ProposalsReadManyOwner</li>
-<li>ProposalsReadOnePublic</li>
-<li>ProposalsReadOneAccess</li>
-<li>ProposalsReadOneOwner</li>
-<li>ProposalsReadAny</li>
-<li>ProposalsUpdateOwner</li>
-<li>ProposalsUpdateAny</li>
-<li>ProposalsDeleteOwner</li>
-<li>ProposalsDeleteAny</li>
+<li>ProposalCreateOwner</li>
+<li>ProposalCreateAny</li>
+<li>ProposalReadManyPublic</li>
+<li>ProposalReadManyAccess</li>
+<li>ProposalReadManyOwner</li>
+<li>ProposalReadOnePublic</li>
+<li>ProposalReadOneAccess</li>
+<li>ProposalReadOneOwner</li>
+<li>ProposalReadAny</li>
+<li>ProposalUpdateOwner</li>
+<li>ProposalUpdateAny</li>
+<li>ProposalDeleteOwner</li>
+<li>ProposalDeleteAny</li>
+<li>ProposalAttachmentCreateOnwer</li>
+<li>ProposalAttachmentCreateAny</li>
+<li>ProposalAttachmentReadManyPublic</li>
+<li>ProposalAttachmentReadManyAccess</li>
+<li>ProposalAttachmentReadManyOwner</li>
+<li>ProposalAttachmentReadManyAny</li>
+<li>ProposalAttachmentUpdateOwner</li>
+<li>ProposalAttachmentUpdateAny</li>
+<li>ProposalAttachmentDeleteOwner</li>
+<li>ProposalAttachmentDeleteAny</li>
+<li>ProposalDatasetReadPublic</li>
+<li>ProposalDatasetReadAccess</li>
+<li>ProposalDatasetReadOwner</li>
+<li>ProposalDatasetReadAny</li>
 </ul>
 <h4 id="priority">Priority</h4>
 <div class="mermaid">
 graph LR;
-    ProposalsCreate--&gt;ProposalsCreateOwner;
-    ProposalsCreateOwner--&gt;ProposalsCreateAny;
-    ProposalsRead--&gt;ProposalsReadManyPublic;
-    ProposalsReadManyPublic--&gt;ProposalsReadManyAccess;
-    ProposalsReadManyAccess--&gt;ProposalsReadManyOwner;
-    ProposalsReadManyOwner--&gt;ProposalsReadAny;
-    ProposalsRead--&gt;ProposalsReadOnePublic;
-    ProposalsReadOnePublic--&gt;ProposalsReadOneAccess;
-    ProposalsReadOneAccess--&gt;ProposalsReadOneOwner;
-    ProposalsReadOneOwner--&gt;ProposalsReadAny;
-    ProposalsUpdate--&gt;ProposalsUpdateOwner;
-    ProposalsUpdateOwner--&gt;ProposalsUpdateAny;
-    ProposalsDelete--&gt;ProposalsDeleteOwner;
-    ProposalsDeleteOwner--&gt;ProposalsDeleteAny;
+    ProposalCreate--&gt;ProposalsCreateOwner;
+    ProposalCreateOwner--&gt;ProposalCreateAny;
+    ProposalRead--&gt;ProposalReadManyPublic;
+    ProposalReadManyPublic--&gt;ProposalReadManyAccess;
+    ProposalReadManyAccess--&gt;ProposalReadManyOwner;
+    ProposalReadManyOwner--&gt;ProposalReadAny;
+    ProposalRead--&gt;ProposalReadOnePublic;
+    ProposalReadOnePublic--&gt;ProposalReadOneAccess;
+    ProposalReadOneAccess--&gt;ProposalReadOneOwner;
+    ProposalReadOneOwner--&gt;ProposalReadAny;
+    ProposalUpdate--&gt;ProposalUpdateOwner;
+    ProposalUpdateOwner--&gt;ProposalUpdateAny;
+    ProposalDelete--&gt;ProposalDeleteOwner;
+    ProposalDeleteOwner--&gt;ProposalDeleteAny;
+    ProposalAttachmentCreate--&gt;ProposalAttachmentCreateOnwer;
+    ProposalAttachmentCreateOnwer--&gt;ProposalAttachmentCreateAny;
+    ProposalAttachmentRead--&gt;ProposalAttachmentReadManyPublic;
+    ProposalAttachmentReadManyPublic--&gt;ProposalAttachmentReadManyAccess;
+    ProposalAttachmentReadManyAccess--&gt;ProposalAttachmentReadManyOwner;
+    ProposalAttachmentReadManyOwner--&gt;ProposalAttachmentReadManyAny;
+    ProposalAttachmentUpdate--&gt;ProposalAttachmentUpdateOwner;
+    ProposalAttachmentUpdateOwner--&gt;ProposalAttachmentUpdateAny;
+    ProposalAttachmentDelete--&gt;ProposalAttachmentDeleteOwner;
+    ProposalAttachmentDeleteOwner--&gt;ProposalAttachmentDeleteAny;
+    ProposalDatasetRead--&gt;ProposalDatasetReadPublic;
+    ProposalDatasetReadPublic--&gt;ProposalDatasetReadAccess;
+    ProposalDatasetReadAccess--&gt;ProposalDatasetReadOwner;
+    ProposalDatasetReadOwner--&gt;ProposalDatasetReadAny;
 </div>
 
 <h4 id="authorization-table">Authorization table</h4>
@@ -1179,7 +1212,7 @@ graph LR;
 <td><em>ProposalAttachmentUpdate</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td>Owner<br><em>ProposalAttachmentUpdateOwn</em></td>
+<td>Owner<br><em>ProposalAttachmentUpdateOwner</em></td>
 <td>Any<br><em>ProposalAttachmentUpdateAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
@@ -1190,9 +1223,9 @@ graph LR;
 <td><em>ProposalAttachmentDelete</em></td>
 <td><strong>no</strong></td>
 <td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
+<td>Onwer<br><em>ProposalAttachmentDeleteOwner</em></td>
 <td>Any<br><em>ProposalAttachmentDeleteAny</em></td>
+<td><strong>no</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1205,10 +1238,10 @@ graph LR;
 <td>GET</td>
 <td>Proposals/<em>pid</em>/datasets</td>
 <td><em>ProposalDatasetRead</em></td>
-<td>Public<br><em>ProposalDatasetReadManyPublic</em></td>
-<td>Has Access<br><em>ProposalDatasetReadManyAccess</em></td>
-<td>Has Access<br><em>ProposalDatasetReadManyAccess</em></td>
-<td>Any<br><em>ProposalDatasetReadManyAny</em></td>
+<td>Public<br><em>ProposalDatasetReadOnePublic</em></td>
+<td>Has Access<br><em>ProposalDatasetReadOneAccess</em></td>
+<td>Has Access<br><em>ProposalDatasetReadOneAccess</em></td>
+<td>Any<br><em>ProposalDatasetReadOneAny</em></td>
 <td><strong>no</strong></td>
 </tr>
 </tbody>
@@ -1256,7 +1289,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"next":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},"previous":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_proposals.md","mtime":"2023-11-20T10:29:35.167Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-20T10:29:44.779Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"next":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},"previous":{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_proposals.md","mtime":"2023-11-20T13:49:02.483Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-20T13:49:11.389Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
