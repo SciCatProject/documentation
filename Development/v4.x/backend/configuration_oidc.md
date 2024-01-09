@@ -27,7 +27,7 @@ The `frontend.config.json` requires the following variables to be set to work wi
 ```
 SciCat requires you to specify the `accesstokenprefix` in order to find the the token in the OAuth response. 
 
-The OIDC mechanism assues that you are returning to 127.0.0.1:3000, if your requiret to return to a different address or port you need to edid the `lbBaseURL`  variable. 
+`lbBaseURL` configures the base URL that the SciCat frontend-to-backend (API) service that the frontend will communicate with. It will therefore match the roots of the `OIDC_CALLBACK_URL` and the `OIDC_SUCCESS_URL` in the backend OIDC configurations.
 
 In the `oAuth2Endpoints` include the display text you want to see on the Login button and the suffix of the authURL which is `api/v3/auth/oidc` (the preffix is set as the `lbBaseURL`).
 

@@ -15,7 +15,7 @@ The configuration file can be served from the backend, via the `admin/client/con
 An example is shown below
 
 ```
-frontend/src/assets/config.json:
+frontend.config.json:
 
 {
   "accessTokenPrefix": "",  // Set the backend token prefix. Should be empty string for current backend or "Bearer " if using scicat-backend-next.
