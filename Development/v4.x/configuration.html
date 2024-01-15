@@ -1006,9 +1006,10 @@
 </li>
 </ul>
 <h2 id="scicat-frontend">SciCat Frontend</h2>
-<p>This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. The configuration file can either be served from the backend, via the <code>/client/config.json</code> endpoint or mounted into <code>/usr/share/nginx/html/assets/config.json</code>.</p>
+<p>This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. </p>
+<p>The configuration file can be served from the backend, via the <code>admin/client/config.json</code> endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume <code>/home/node/app/dist/config/frontend.config.json</code> for it to be served through this endpoint. </p>
 <p>An example is shown below</p>
-<pre><code>frontend/src/assets/config.json:
+<pre><code>frontend.config.json:
 
 {
   &quot;accessTokenPrefix&quot;: &quot;&quot;,  // Set the backend token prefix. Should be empty string for current backend or &quot;Bearer &quot; if using scicat-backend-next.
@@ -1128,42 +1129,171 @@
 </code></pre><h2 id="scicat-backend">SciCat Backend</h2>
 <h3 id="dotenv-config">Dotenv config</h3>
 <p>This is the configuration file for the backend. This file allows the systems administrator to configure connected services, like authentication services and message queues, and also switching on/off almost all non essential features. The configuration file is a <a href="https://www.npmjs.com/package/dotenv" target="_blank">dotenv</a> file and is read by the backend at runtime.</p>
-<p>An example is shown below</p>
+<p>There are currently many configurable additions to SciCat which makes it very flexible these are:</p>
+<ul>
+<li>OIDC for authenticatoin</li>
+<li>LDAP for authentication</li>
+<li>Elastic Search </li>
+<li>SMTP for sending emails to notify users of SciCat jobs</li>
+<li>AMQP to provide a message queue for the jobs </li>
+</ul>
+<p>An minimal example is shown below followed by a full example:</p>
+<h4 id="minimal-backend-config-example">Minimal Backend Config Example</h4>
+<pre><code>   ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: &quot;admin, ingestor&quot;. For more details check: Scicat Documentation
+
+   EXPRESS_SESSION_SECRET [string] Optional Secret used to set up express session.
+
+   HTTP_MAX_REDIRECTS [number] Optional Max redirects for http requests. Defaults to 5.
+
+   HTTP_TIMEOUT [number] Optional Timeout from http requests in ms. Defaults to 5000.
+
+   JWT_SECRET [string] The secret for your JWT token, used for authorization.
+
+   JWT_EXPIRES_IN [number] Optional How long, in seconds, the JWT token is valid. Defaults to 3600.
+
+   MONGODB_URI [string] The URI for your MongoDB instance.
+</code></pre><h4 id="full-backend-config-example">Full Backend Config Example</h4>
 <pre><code>backend/.env
 
-DOI_PREFIX=&quot;&lt;DOI_PREFIX&gt;&quot;  // The facility DOI prefix, with trailing slash.
-EXPRESS_SESSION_SECRET=&quot;&lt;EXPRESS_SESSION_SECRET&gt;&quot;  // *Optional* Secret used to set up express session.
-HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
-HTTP_TIMEOUT=5000  // *Optional* Timeout from http requests in ms. Defaults to 5000.
-JWT_SECRET=&lt;JWT_SECRET&gt;  // The secret for your JWT token, used for authorization.
-JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
-LDAP_URL=&quot;ldaps://ldap.server.com:636/&quot;  // *Optional* The URL (and port) to your LDAP server.
-LDAP_BIND_DN=&quot;&lt;USERNAME&gt;@server.com&quot;  // *Optional* Bind_DN for your LDAP server.
-LDAP_BIND_CREDENTIALS=&lt;PASSWORD&gt;  // *Optional* Credentials for your LDAP server.
-LDAP_SEARCH_BASE=&lt;SEARCH_BASE&gt;  // *Optional* Search base for your LDAP server.
-LDAP_SEARCH_FILTER=&quot;(LDAPUsername={{username}})&quot;  // *Optional* Search filter for you LDAP server.
-LOGBOOK_ENABLED=&lt;&quot;yes&quot;|&quot;no&quot;&gt;  // *Optional* Flag to enable/disable the Logbook endpoints. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
-LOGBOOK_BASE_URL=&quot;http://localhost:3030/scichatapi&quot;  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
-LOGBOOK_USERNAME=&quot;&lt;LOGBOOK_USERNAME&gt;&quot;  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
-LOGBOOK_PASSWORD=&quot;&lt;LOGBOOK_PASSWORD&gt;&quot;  // *Optional* The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
-METADATA_KEYS_RETURN_LIMIT=100  // *Optional* The return limit for the `/Datasets/metadataKeys` endpoint.
-METADATA_PARENT_INSTANCES_RETURN_LIMIT=100  // *Optional* The return limit of Datasets to extract metadata keys from for the `/Datasets/metadataKeys` endpoint.
-MONGODB_URI=&quot;mongodb://&lt;USERNAME&gt;:&lt;PASSWORD&gt;@&lt;HOST&gt;:27017/&lt;DB_NAME&gt;&quot;  // The URI for your MongoDB instance.
-OAI_PROVIDER_ROUTE=&quot;&lt;OAI_PROVIDER_ROUTE&gt;&quot;  // *Optional* URI to OAI provider, used for the `/publisheddata/:id/resync` endpoint.
-PID_PREFIX=&quot;&lt;PID_PREFIX&gt;&quot;  // The facility PID prefix, with trailing slash.
-PUBLIC_URL_PREFIX=&quot;https://doi.ess.eu/detail/&quot;  // The base URL to the facility Landing Page.
-PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
-RABBITMQ_ENABLED=&lt;&quot;yes&quot;|&quot;no&quot;&gt;  *Optional* Flag to enable/disable RabbitMQ consumer. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
-RABBITMQ_HOSTNAME=&quot;localhost&quot;  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-RABBITMQ_USERNAME=&quot;rabbitmq&quot;  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-RABBITMQ_PASSWORD=&quot;rabbitmq&quot;  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-REGISTER_DOI_URI=&quot;https://mds.test.datacite.org/doi&quot;  // URI to the organization that registers the facilities DOIs.
-REGISTER_METADATA_URI=&quot;https://mds.test.datacite.org/metadata&quot;  // URI to the organization that registers the facilities published data metadata.
-SITE=&lt;SITE&gt;  // The name of your site.
-SMTP_HOST=&lt;SMTP_HOST&gt;  // Host of SMTP server.
-SMTP_MESSAGE_FROM=&lt;SMTP_MESSAGE_FROM&gt;  // Email address that emails should be sent from.
-SMTP_PORT=&lt;SMTP_PORT&gt;  // Port of SMTP server.
-SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
+Valid environment variables for the .env file. See .env.example for examples value formats.
+
+## Data Management
+
+    ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: &quot;admin, ingestor&quot;. For more details check: Scicat Documentation
+
+    CREATE_DATASET_GROUPS [string] Optional Comma seperated list of create dataset groups. Users belong to the listed groups can create dataset with/without PID. Example: &quot;group1, group2&quot;. For more details check: Scicat Documentation
+
+    CREATE_DATASET_WITH_PID_GROUPS [string] Optional Comma seperated list of create dataset with pid groups. Users belong to the listed groups can create dataset with PID. Example: &quot;group1, group2&quot;. For more details check: Scicat Documentation
+
+    DELETE_GROUPS [string] Optional Comma seperated list of delete groups. Users belong to the listed groups can delete any dataset, origDatablocks, datablocks etc. For more details check: Scicat Documentation
+
+    DATASET_CREATION_VALIDATION_ENABLED [boolean] Flag to enable/disable dataset validation to validate if requested new dataset is valid with given regular expression. Preconfigure DATASET_CREATION_VALIDATION_REGEX variable is required. Default value: false
+
+    DATASET_CREATION_VALIDATION_REGEX [string] Regular expression validation for new dataset request. Default value: &quot;&quot;
+
+    PROPOSAL_GROUPS [string] Optional Comma separated list of proposal groups with permission to create any proposals. Example: &quot;proposaladmin, proposalingestor&quot;. For more details check: Scicat Documentation
+
+    SAMPLE_GROUPS [string] Optional Comma separated list of sample groups with permission to create any samples. Example: &quot;sampleadmin, sampleingestor&quot;. For more details check: Scicat Documentation
+
+## Access groups from external administration systems
+
+    ACCESS_GROUPS_STATIC_VALUES [string] Optional Comma separated list of access groups automatically assigned to all users. Example: &quot;scicat, user&quot;
+
+    ACCESS_GROUPS_SERVICE_TOKEN [string] Optional Authentication token used if access groups are obtained from a third party service. This value is not used by the vanilla installation, but only if the instance is customized to use an external service to provide user groups, like the ESS example
+
+    ACCESS_GROUP_SERVICE_API_URL [string] Optional URL of the service providing the users&apos; access groups. This value is not used by the vanilla installation, but only if the instance is customized to use an external service to provide user groups, like the ESS example
+
+## Secrets, tokens and http settings
+
+    EXPRESS_SESSION_SECRET [string] Optional Secret used to set up express session.
+
+    HTTP_MAX_REDIRECTS [number] Optional Max redirects for http requests. Defaults to 5.
+
+    HTTP_TIMEOUT [number] Optional Timeout from http requests in ms. Defaults to 5000.
+
+    JWT_SECRET [string] The secret for your JWT token, used for authorization.
+
+    JWT_EXPIRES_IN [number] Optional How long, in seconds, the JWT token is valid. Defaults to 3600.
+
+## LDAP Settings - only required for authentication using LDAP
+
+    LDAP_URL [string] Optional The URL to your LDAP server.
+
+    LDAP_BIND_DN [string] Optional Bind_DN for your LDAP server.
+
+    LDAP_BIND_CREDENTIALS [string] Optional Credentials for your LDAP server.
+
+    LDAP_SEARCH_BASE [string] Optional Search base for your LDAP server.
+
+    LDAP_SEARCH_FILTER [string] Optional Search filter for you LDAP server.
+
+## OIDC Settings - only required for OIDC authentication
+
+    OIDC_ISSUER [string] Optional URL of the oidc server providing the authentication service. Example: https://identity.esss.dk/realm/ess.
+
+    OIDC_CLIENT_ID [string] Optional Identity of the client that we want to use to obtain the user token. Example: scicat
+
+    OIDC_CLIENT_SECRET [string] Optional Secret to provide to the oidc service to obtain the user token. Example: Aa1JIw3kv3mQlGFWhRrE3gOdkH6xreAwro
+
+    OIDC_CALLBACK_URL [string] Optional SciCat callback URL that we want th eoidc service to redirect to, in case of successful login. Example: http://myscicat/api/v3/oidc/callback
+
+    OIDC_SCOPE [string] Optional Space separated list of the info returned by the oidc service. Example: &quot;openid profile email&quot;
+
+    OIDC_SUCCESS_URL [string] Optional SciCat Frontend auth-callback URL. Required in order to pass user credentials to SciCat Frontend after OIDC login. Example: https://myscicatfrontend/auth-callback
+
+    OIDC_ACCESS_GROUPS [string] Optional Functionality is still unclear.
+
+## Scicat metadata settings
+
+    PID_PREFIX [string] The facility PID prefix, with trailing slash.
+
+    LOGBOOK_ENABLED [string] Optional Flag to enable/disable the Logbook endpoints. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
+
+    LOGBOOK_BASE_URL [string] Optional The base URL to the Logbook API. Only required if Logbook is enabled.
+
+    METADATA_KEYS_RETURN_LIMIT [number] Optional The return limit for the /Datasets/metadataKeys endpoint.
+
+    METADATA_PARENT_INSTANCES_RETURN_LIMIT Optional The return limit of Datasets to extract metadata keys from for the /Datasets/metadataKeys endpoint.
+
+    MONGODB_URI [string] The URI for your MongoDB instance.
+
+    SITE [string] The name of your site.
+
+    POLICY_PUBLICATION_SHIFT [integer] Optional Embargo period expressed in years. Default value: 3 years
+
+    POLICY_RETENTION_SHIFT [integer] Optional Retention period (aka how long the facility will hold on to data) expressed in years. Default value: -1 (data will be hold indefinitely)
+
+## Settings for publishing data sets
+
+    OAI_PROVIDER_ROUTE [string] Optional URI to OAI provider, used for the /publisheddata/:id/resync endpoint.
+
+    DOI_PREFIX [string] The facility DOI prefix, with trailing slash.
+
+    PUBLIC_URL_PREFIX [string] The base URL to the facility Landing Page.
+
+    PORT [number] Optional The port on which you want to access the app. Defaults to 3000.
+    REGISTER_DOI_URI [string] URI to the organization that registers the facilities DOI&apos;s.
+
+    REGISTER_METADATA_URI [string] URI to the organization that registers the facilities published data metadata.
+
+## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon 
+&lt;!-- 
+    RABBITMQ_ENABLED [string] Optional Flag to enable/disable RabbitMQ consumer. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
+
+    RABBITMQ_HOSTNAME [string] Optional The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+
+    RABBITMQ_USERNAME [string] Optional The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+
+    RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled. --&gt;
+
+## SMTP Settings - need this option if you require Scicat to send emails.     
+
+    SMTP_HOST [string] Optional Host of SMTP server.
+
+    SMTP_MESSAGE_FROM [string] Optional Email address that emails should be sent from.
+
+    SMTP_PORT [string] Optional Port of SMTP server.
+
+    SMTP_SECURE [string] Optional Secure of SMTP server.
+
+
+## Elastic Search settings - use these to enable elastic search 
+
+    ELASTICSEARCH_ENABLED [string] Flag to enable/disable the Elasticsearch endpoints. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;
+
+    ES_HOST [string] Host of Elasticsearch server instance
+
+    ES_USERNAME [string] Optional Elasticsearch username that can be customized when loads Elasticsearch server. Default value: &apos;elastic&apos;
+
+    ES_PASSWORD [string] Elasticsearch password that can be customized when loads Elasticsearch server.
+
+    MONGODB_COLLECTION [string] Collection name to be mapped into specified Elasticsearch index. Used for data synchronization between mongoDB and Elasticsearch index.
+
+    ES_MAX_RESULT [number] Maximum records can be indexed into Elasticsearch. Default value: 10000
+
+    ES_FIELDS_LIMIT [number] The total number of fields in an index. Default value: 1000
+
+    ES_REFRESH [string] If set to wait_for Elasticsearch will wait till data is insereted to specificied index then return response. Unless you have a good reason to wait for the change to become visible, always use false (the default setting).
 </code></pre><h3 id="doi-config">DOI Config</h3>
 <p>This config file contains the username and password for authenicating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.</p>
 <pre><code>backend/src/config/doiconfig.local.json
@@ -1215,7 +1345,7 @@ SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.2.4","depth":3,"next":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/configuration.md","mtime":"2023-11-20T13:49:02.483Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-20T13:49:11.389Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.2.4","depth":3,"next":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]}]},{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/configuration.md","mtime":"2024-01-15T08:19:50.180Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-01-15T08:20:01.528Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
