@@ -1064,7 +1064,9 @@
 <li><a href="#sec-11-1-5">11.1.5. Online work stations in beamline hutches</a></li>
 </ul>
 </li>
-<li><a href="#sec-11-2">11.2. Size limitations</a></li>
+<li><a href="#sec-11-2">11.2. Dataset limitations</a></li>
+<li><a href="#sec-11-2-1">11.2.1. Size limitations</a></li>
+<li><a href="#sec-11-2-2">11.2.2. SourceFolder and file names limitations</a></li>
 <li><a href="#sec-11-3">11.3. Recommended file structure for raw datasets</a></li>
 <li><a href="#sec-11-4">11.4. Metadata Field Definitions</a>
 <ul>
@@ -1242,8 +1244,8 @@ dataset. In a more general case you can also specify an explicit list
 of files and/or directories that you want to have assembled to a
 dataset. See the datasetIngestor command options for details. The
 appendix has a Recommended file structure for raw datasets on
-disk. Please take note of the size limitations of a dataset, as
-defined in the appendix Size limitations</p>
+disk. Please take note of the limitations of a dataset, as
+defined in the appendix Dataset limitations.</p>
 <h2 id="definition-of-metadata">Definition of metadata<a id="sec-4-3" name="sec-4-3"></a></h2>
 <p>There are two types of metadata which need to be provided:</p>
 <ul>
@@ -1338,7 +1340,11 @@ already provided in the metadata.json file. If there are no errors,
 proceed to the real ingestion:</p>
 <pre><code>datasetIngestor --ingest metadata.json
 </code></pre><p>For particularly important datasets, you may also want to use the
-parameter –tapecopies 2 to store redundant copies of the data.</p>
+parameter –tapecopies 2 to store redundant copies of the data.
+To give some numbers, 0.2–0.4% of the tapes get damaged so 
+there is a chance that archiving with only one copy will result in lost 
+data, in very few cases. Keep in mind that archival with redundancy 
+doubles the cost which is billed to the responsible department.</p>
 <p>You may be asked whether you want to copy the data first to a central
 system. This step is needed for all files which are not residing on
 one of the central fileservers at PSI. In particular local (windows)
@@ -1796,12 +1802,27 @@ https://gitlab.psi.ch/scicat/tools/-/blob/master/windows/SciCatGUI_Win10.zip
 </code></pre><h3 id="online-work-stations-in-beamline-hutches">Online work stations in beamline hutches<a id="sec-11-1-5" name="sec-11-1-5"></a></h3>
 <p>The command line tools are pre-installed in /work/sls/bin. No further
 action needed</p>
-<h2 id="size-limitations">Size limitations<a id="sec-11-2" name="sec-11-2"></a></h2>
+<h2 id="dataset-limitations">Dataset limitations<a id="sec-11-2" name="sec-11-2"></a></h2>
+<h3 id="size-limitations">Size limitations<a id="sec-11-2-1" name="sec-11-2-1"></a></h3>
 <ul>
 <li>a single dataset should currently not have more than 400k files</li>
 <li>a single dataset should not be larger than 50 TB</li>
 <li>recommended size of a single dataset: between 1GB and 1TB</li>
 </ul>
+<h3 id="sourcefolder-and-file-names-limitations">SourceFolder and file names limitations<a id="sec-11-2-2" name="sec-11-2-2"></a></h3>
+<p>The sourceFolder metadata and the name of the files can contain the following special characters: </p>
+<ul>
+<li>\%</li>
+<li>#</li>
+<li>-</li>
+<li>+</li>
+<li>.</li>
+<li>\:</li>
+<li>\=</li>
+<li>\@</li>
+<li>_</li>
+</ul>
+<p>Any other special characters are not guaranteed to work.</p>
 <h2 id="recommended-file-structure-for-raw-datasets">Recommended file structure for raw datasets<a id="sec-11-3" name="sec-11-3"></a></h2>
 <p>One recommended way of structuring your data on disk is the following:</p>
 <pre><code>e12345   &lt;--- user&apos;s group e-account, linked to a DUO proposal
@@ -3421,8 +3442,15 @@ inside the digital user office DUO</p>
 <td class="left">2. Dec 2022</td>
 <td class="left">Extended ingest use cases description of needed parameters Win+Linux</td>
 </tr>
+
+
+<tr>
+<td class="left">21. Dec 2023</td>
+<td class="left">Include redundancy risks and costs and file names limitations</td>
+</tr>
 </tbody>
 </table>
+
                                 
                                 </section>
                             
@@ -3465,7 +3493,7 @@ inside the digital user office DUO</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2024-01-15T08:20:35.420Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-01-15T08:20:49.619Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2024-01-24T08:15:39.951Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-01-24T08:15:52.688Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
