@@ -66,7 +66,9 @@
 <li><a href="#sec-11-1-5">11.1.5. Online work stations in beamline hutches</a></li>
 </ul>
 </li>
-<li><a href="#sec-11-2">11.2. Size limitations</a></li>
+<li><a href="#sec-11-2">11.2. Dataset limitations</a></li>
+<li><a href="#sec-11-2-1">11.2.1. Size limitations</a></li>
+<li><a href="#sec-11-2-2">11.2.2. SourceFolder and file names limitations</a></li>
 <li><a href="#sec-11-3">11.3. Recommended file structure for raw datasets</a></li>
 <li><a href="#sec-11-4">11.4. Metadata Field Definitions</a>
 <ul>
@@ -265,8 +267,8 @@ dataset. In a more general case you can also specify an explicit list
 of files and/or directories that you want to have assembled to a
 dataset. See the datasetIngestor command options for details. The
 appendix has a Recommended file structure for raw datasets on
-disk. Please take note of the size limitations of a dataset, as
-defined in the appendix Size limitations
+disk. Please take note of the limitations of a dataset, as
+defined in the appendix Dataset limitations.
 
 ## Definition of metadata<a id="sec-4-3" name="sec-4-3"></a>
 
@@ -375,6 +377,10 @@ proceed to the real ingestion:
 
 For particularly important datasets, you may also want to use the
 parameter &#x2013;tapecopies 2 to store redundant copies of the data.
+To give some numbers, 0.2–0.4% of the tapes get damaged so 
+there is a chance that archiving with only one copy will result in lost 
+data, in very few cases. Keep in mind that archival with redundancy 
+doubles the cost which is billed to the responsible department.
 
 You may be asked whether you want to copy the data first to a central
 system. This step is needed for all files which are not residing on
@@ -967,11 +973,28 @@ just enter the address in abrowser and download the file
 The command line tools are pre-installed in /work/sls/bin. No further
 action needed
 
-## Size limitations<a id="sec-11-2" name="sec-11-2"></a>
+## Dataset limitations<a id="sec-11-2" name="sec-11-2"></a>
+
+### Size limitations<a id="sec-11-2-1" name="sec-11-2-1"></a>
 
 -   a single dataset should currently not have more than 400k files
 -   a single dataset should not be larger than 50 TB
 -   recommended size of a single dataset: between 1GB and 1TB
+
+### SourceFolder and file names limitations<a id="sec-11-2-2" name="sec-11-2-2"></a>
+
+The sourceFolder metadata and the name of the files can contain the following special characters: 
+ - \%
+ - \#
+ - \-
+ - \+
+ - \.
+ - \:
+ - \=
+ - \@
+ - \_
+
+Any other special characters are not guaranteed to work.
 
 ## Recommended file structure for raw datasets<a id="sec-11-3" name="sec-11-3"></a>
 
@@ -2679,6 +2702,12 @@ The connected email distribution lists are {ingestAccount}@psi.ch
 <tr>
 <td class="left">2. Dec 2022</td>
 <td class="left">Extended ingest use cases description of needed parameters Win+Linux</td>
+</tr>
+
+
+<tr>
+<td class="left">21. Dec 2023</td>
+<td class="left">Include redundancy risks and costs and file names limitations</td>
 </tr>
 </tbody>
 </table>
