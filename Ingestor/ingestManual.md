@@ -377,7 +377,7 @@ proceed to the real ingestion:
 
 For particularly important datasets, you may also want to use the
 parameter &#x2013;tapecopies 2 to store redundant copies of the data.
-To give some numbers, 2–4‰ (2-4 permille) of the tapes get damaged so 
+To give some numbers, 0.2–0.4% of the tapes get damaged so 
 there is a chance that archiving with only one copy will result in lost 
 data, in very few cases. Keep in mind that archival with redundancy 
 doubles the cost which is billed to the responsible department.
@@ -2707,7 +2707,7 @@ The connected email distribution lists are {ingestAccount}@psi.ch
 
 <tr>
 <td class="left">21. Dec 2023</td>
-<td class="left">Inlcude redundancy risks and costs and file names limitations</td>
+<td class="left">Include redundancy risks and costs and file names limitations</td>
 </tr>
 </tbody>
 </table>
