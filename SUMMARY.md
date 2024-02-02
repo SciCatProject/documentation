@@ -49,6 +49,7 @@
         * [Proposals](Development/v4.x/backend/authorization/authorization_proposals.md)
         * [Jobs](Development/v4.x/backend/authorization/authorization_jobs.md)
         * [Users](Development/v4.x/backend/authorization/authorization_users.md)
+        * [Samples](Development/v4.x/backend/authorization/authorization_samples.md)
       * [Elastic Search](Development/v4.x/elasticsearch/elasticsearch.md)
       * [Frontend](Development/v4.x/frontend/configuration.md)
     * [Theming](Development/v4.x/Theming.md)
@@ -61,4 +62,4 @@
       * [Frontend](Development/v4.x/frontend/testing.md)   
     * [Migration v3.x to v4.x](Development/v4.x/Migration.md)
   * [Documentation](Development/Documentation.md)
-* [API Documentation](https://scicatproject.github.io/api/)
+<!-- * [API Documentation](https://scicatproject.github.io/api/) -->

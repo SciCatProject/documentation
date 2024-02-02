@@ -37,7 +37,8 @@ For example if you are interested in running only the test named _Authorization 
 The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
 
-List of tests:
+List of tests:  
+  
 | test file | main code | title | description |  
 | ----- | ----- | ----- | ----- |  
 | Auth.js | 0100 | Authorization functionalities | Test login and logout for functional accounts |  
@@ -61,7 +62,7 @@ List of tests:
 | RawDataset.js | 1900 |  |  |  
 | RawDatasetOrigDatablock.js | 2000 |  |  |  
 | ResetDataset.js | 2100 |  |  |  
-| Sample.js | 2200 |  |  |  
+| Sample.js | 2200 | Simple Sample | Samples functionality tests, like create, update and delete |  
 | UserAuthorization.js | 2300 | User Authorization | test that user authorization are correct |  
 | Users.js | 2400 |  |  |  
 
