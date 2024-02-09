@@ -86,7 +86,7 @@ graph LR;
 | GET | Proposals/fullfacet | _ProposalRead_ | Public<br/>_ProposalReadManyPublic_ | Has Access<br/>_ProposalReadManyAccess_ | Has Access<br/>_ProposalReadManyAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
 | GET | Proposals/_pid_ | _ProposalRead_ | Public<br/>_ProposalReadOnePublic_ | Has Access<br/>_ProposalReadOneAccess_ | Has Access<br/>_ProposalReadOneAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
 | GET | Proposals/fullquery | _ProposalRead_ | Public<br/>_ProposalReadOnePublic_ | Has Access<br/>_ProposalReadOneAccess_ | Has Access<br/>_ProposalReadOneAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
-| PATCH | Proposals/_pid_ | _ProposalUpdate_ | __no__ | __no__ | Owner<br/>_ProposalUpdateOwn_ | Any<br/>_ProposalUpdateAny_ | __no__ | |
+| PATCH | Proposals/_pid_ | _ProposalUpdate_ | __no__ | __no__ | Any<br/>_ProposalUpdateAny_ | Any<br/>_ProposalUpdateAny_ | __no__ | |
 | DELETE | Proposals/_pid_ | _ProposalDelete_ | __no__ | __no__ | __no__ | __no__ | Any<br/>_ProposalDeleteAny_ |  |
 |||||
 | POST | Proposals/_pid_/attachements | _ProposalAttachementCreate_ | __no__ | __no__ | Any<br>_ProposalAttachmentCreateAny_ | Any<br>_ProposalAttachmentCreateAny_ | __no__ |  |
