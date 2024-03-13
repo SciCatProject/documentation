@@ -61,4 +61,4 @@
       * [Frontend](Development/v4.x/frontend/testing.md)   
     * [Migration v3.x to v4.x](Development/v4.x/Migration.md)
   * [Documentation](Development/Documentation.md)
-* [API Documentation](https://scicatproject.github.io/api/)
+<!-- * [API Documentation](https://scicatproject.github.io/api/) -->
