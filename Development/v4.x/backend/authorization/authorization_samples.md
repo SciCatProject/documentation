@@ -27,7 +27,7 @@ This is the list of the permissions methods available for Samples and all their 
 - SampleUpdateAny
 - SampleDeleteOwner
 - SampleDeleteAny
-- SampleAttachmentCreateOnwer
+- SampleAttachmentCreateOwner
 - SampleAttachmentCreateAny
 - SampleAttachmentReadManyPublic
 - SampleAttachmentReadManyAccess
@@ -59,8 +59,8 @@ graph LR;
     SampleUpdateOwner-->SampleUpdateAny;
     SampleDelete-->SampleDeleteOwner;
     SampleDeleteOwner-->SampleDeleteAny;
-    SampleAttachmentCreate-->SampleAttachmentCreateOnwer;
-    SampleAttachmentCreateOnwer-->SampleAttachmentCreateAny;
+    SampleAttachmentCreate-->SampleAttachmentCreateOwner;
+    SampleAttachmentCreateOwner-->SampleAttachmentCreateAny;
     SampleAttachmentRead-->SampleAttachmentReadManyPublic;
     SampleAttachmentReadManyPublic-->SampleAttachmentReadManyAccess;
     SampleAttachmentReadManyAccess-->SampleAttachmentReadManyOwner;
@@ -85,11 +85,10 @@ graph LR;
 | GET | Samples/_pid_ | _SampleRead_ | Public<br/>_SampleReadOnePublic_ | Has Access<br/>_SampleReadOneAccess_ | Has Access<br/>_SampleReadOneAccess_ | Has Access<br/>_SampleReadOneAccess_ | Any<br/>_SampleReadAny_ |  __no__  |  |
 | GET | Samples/fullquery | _SampleRead_ | Public<br/>_SampleReadOnePublic_ | Has Access<br/>_SampleReadOneAccess_ | Has Access<br/>_SampleReadOneAccess_ | Has Access<br/>_SampleReadOneAccess_ | Any<br/>_SampleReadAny_ |  __no__  |  |
 | PATCH | Samples/_pid_ | _SampleUpdate_ | __no__ | __no__ | Owner<br/>_SampleUpdateOwn_ | Owner<br/>_SampleUpdateOwn_ | Any<br/>_SampleUpdateAny_ | __no__ | |
-| DELETE | Samples/_pid_ | _SampleDelete_ | __no__ | __no__ | __no__ | __no__ | Any<br/>_SampleDeleteAny_ |  |
+| DELETE | Samples/_pid_ | _SampleDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | Any<br/>_SampleDeleteAny_ |  |
 |||||
-| POST | Samples/_pid_/attachements | _SampleAttachementCreate_ | __no__ | __no__ | Owner<br>_SampleAttachmentCreateOwner_ | Any<br>_SampleAttachmentCreateAny_ | Any<br>_SampleAttachmentCreateAny_ | __no__ |  |
-| GET | Samples/_pid_/attachements | _SampleAttachmentRead_ | Public<br/>_SampleAttachmentReadManyPublic_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Any<br/>_SampleAttachmentReadManyAny_ | __no__ | |
-| PATCH | Samples/_pid_/attachments/_aid_ | _SampleAttachmentUpdate_ | __no__ | __no__ | Owner<br/>_SampleAttachmentUpdateOwner_ | Owner<br/>_SampleAttachmentUpdateOwner_ | Any<br/>_SampleAttachmentUpdateAny_ | __no__ | |
-| DELETE | Samples/_pid_/attachment/_aid_ | _SampleAttachmentDelete_ | __no__ | __no__ | Onwer<br/>_SampleAttachmentDeleteOwner_ | Onwer<br/>_SampleAttachmentDeleteOwner_ | Any<br/>_SampleAttachmentDeleteAny_ | __no__ | |
+| POST | Samples/_pid_/Attachments | _SampleAttachmentCreate_ | __no__ | __no__ | Owner<br>_SampleAttachmentCreateOwner_ | Any<br>_SampleAttachmentCreateAny_ | Any<br>_SampleAttachmentCreateAny_ | __no__ |  |
+| GET | Samples/_pid_/Attachments | _SampleAttachmentRead_ | Public<br/>_SampleAttachmentReadManyPublic_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Has Access<br/>_SampleAttachmentReadManyAccess_ | Any<br/>_SampleAttachmentReadManyAny_ | __no__ | |
+| DELETE | Samples/_pid_/attachment/_aid_ | _SampleAttachmentDelete_ | __no__ | __no__ | Owner<br/>_SampleAttachmentDeleteOwner_ | Owner<br/>_SampleAttachmentDeleteOwner_ | Any<br/>_SampleAttachmentDeleteAny_ | Any<br/>_SampleAttachmentDeleteAny_ | |
 |||||
 | GET | Samples/_pid_/datasets | _SampleDatasetRead_ | Public<br/>_SampleDatasetReadOnePublic_ | Has Access<br/>_SampleDatasetReadOneAccess_ | Has Access<br/>_SampleDatasetReadOneAccess_ | Has Access<br/>_SampleDatasetReadOneAccess_ | Any<br/>_SampleDatasetReadOneAny_ | __no__ | |
