@@ -750,6 +750,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5.2.4.2.6" data-path="authorization/authorization_samples.html">
+            
+                <a href="authorization/authorization_samples.html">
+            
+                    
+                    Samples
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1009,8 +1022,174 @@ The backend can be run from terminl with the command:</p>
 <h2 id="coverage">Coverage</h2>
 <p>The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.</p>
-<p>List of tests:
-| test file | main code | title | description |<br>| ----- | ----- | ----- | ----- |<br>| Auth.js | 0100 | Authorization functionalities | Test login and logout for functional accounts |<br>| CheckDifferentDatasetTypes.js | 0200 | Check Different Dataset Types | Check different dataset types and their inheritance |<br>| DatasetAuthorization.js | 0300 |  |  |<br>| DatasetFilter.js | 0400 |  |  |<br>| DatasetLifecycle.js | 0500 |  |  |<br>| DerivedDatasetDatablock.js | 0600 |  |  |<br>| DerivedDataset.js | 0700 | Derived Datasets | test derived datasets functionalities |<br>| DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |<br>| Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |<br>| InstrumentsFilter.js | 1000 |  |  |<br>| Jobs.js | 1100 |  |  |<br>| LoginUtils.js | 1200 |  |  |<br>| Policy.js | 1300 |  |  |<br>| ProposalAuthorization.js | 1400 |  |  |<br>| Proposal.js | 1500 |  |  |<br>| PublishedData.js | 1600 |  |  |<br>| RandomizedDatasetPermissions.js | 1700 |  |  |<br>| RawDatasetDatablock.js | 1800 |  |  |<br>| RawDataset.js | 1900 |  |  |<br>| RawDatasetOrigDatablock.js | 2000 |  |  |<br>| ResetDataset.js | 2100 |  |  |<br>| Sample.js | 2200 |  |  |<br>| UserAuthorization.js | 2300 | User Authorization | test that user authorization are correct |<br>| Users.js | 2400 |  |  |  </p>
+<p>List of tests:  </p>
+<table>
+<thead>
+<tr>
+<th>test file</th>
+<th>main code</th>
+<th>title</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auth.js</td>
+<td>0100</td>
+<td>Authorization functionalities</td>
+<td>Test login and logout for functional accounts</td>
+</tr>
+<tr>
+<td>CheckDifferentDatasetTypes.js</td>
+<td>0200</td>
+<td>Check Different Dataset Types</td>
+<td>Check different dataset types and their inheritance</td>
+</tr>
+<tr>
+<td>DatasetAuthorization.js</td>
+<td>0300</td>
+<td>Test access to dataset</td>
+<td>Test different use cases with different user and restricted access</td>
+</tr>
+<tr>
+<td>DatasetFilter.js</td>
+<td>0400</td>
+<td>Test retrieving datasets using filtering capabilities</td>
+<td>Leverage fullquery endpoint to retrieve different group of datasets</td>
+</tr>
+<tr>
+<td>DatasetLifecycle.js</td>
+<td>0500</td>
+<td>Test facet and filter queries</td>
+<td></td>
+</tr>
+<tr>
+<td>DatasetTypes.js</td>
+<td>0550</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DerivedDatasetDatablock.js</td>
+<td>0600</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DerivedDataset.js</td>
+<td>0700</td>
+<td>Derived Datasets</td>
+<td>test derived datasets functionalities</td>
+</tr>
+<tr>
+<td>DerivedDatasetOrigDatablock.js</td>
+<td>0800</td>
+<td>DerivedDatasetOrigDatablock</td>
+<td>Test OrigDatablocks and their relation to derived Datasets</td>
+</tr>
+<tr>
+<td>Instrument.js</td>
+<td>0900</td>
+<td>Instrument</td>
+<td>instrument management, creation, update, deletion and search</td>
+</tr>
+<tr>
+<td>InstrumentsFilter.js</td>
+<td>1000</td>
+<td>Test retrieving instruments using filtering capabilities</td>
+<td></td>
+</tr>
+<tr>
+<td>Jobs.js</td>
+<td>1100</td>
+<td>Test New Job Model</td>
+<td></td>
+</tr>
+<tr>
+<td>OrigDatablockForRawDataset</td>
+<td>1200</td>
+<td>Test OrigDatablocks and their relation to raw Datasets using origdatablocks endpoint</td>
+<td></td>
+</tr>
+<tr>
+<td>Policy.js</td>
+<td>1300</td>
+<td>Simple Policy tests</td>
+<td></td>
+</tr>
+<tr>
+<td>ProposalAuthorization.js</td>
+<td>1400</td>
+<td>Test access to proposal</td>
+<td></td>
+</tr>
+<tr>
+<td>Proposal.js</td>
+<td>1500</td>
+<td>Simple Proposal</td>
+<td></td>
+</tr>
+<tr>
+<td>PublishedData.js</td>
+<td>1600</td>
+<td>Test of access to published data</td>
+<td></td>
+</tr>
+<tr>
+<td>RandomizedDatasetPermissions.js</td>
+<td>1700</td>
+<td>permission test with bigger amount of data</td>
+<td></td>
+</tr>
+<tr>
+<td>RawDatasetDatablock.js</td>
+<td>1800</td>
+<td>Test Datablocks and their relation to raw Datasets</td>
+<td></td>
+</tr>
+<tr>
+<td>RawDataset.js</td>
+<td>1900</td>
+<td>Raw Datasets</td>
+<td></td>
+</tr>
+<tr>
+<td>RawDatasetOrigDatablock.js</td>
+<td>2000</td>
+<td>Test OrigDatablocks and their relation to raw Datasets</td>
+<td></td>
+</tr>
+<tr>
+<td>ResetDataset.js</td>
+<td>2100</td>
+<td>Create Dataset and its Datablocks, then reset Datablocks and embedded Datasetlifecycle status</td>
+<td></td>
+</tr>
+<tr>
+<td>Sample.js</td>
+<td>2200</td>
+<td>Simple Sample</td>
+<td>Samples functionality tests, like create, update and delete</td>
+</tr>
+<tr>
+<td>SampleAuthorization.js</td>
+<td>2250</td>
+<td>Sample Authorization</td>
+<td>Test authorization for all samples operations</td>
+</tr>
+<tr>
+<td>UserAuthorization.js</td>
+<td>2300</td>
+<td>User Authorization</td>
+<td>test that user authorization are correct</td>
+</tr>
+<tr>
+<td>Users.js</td>
+<td>2400</td>
+<td>Login with functional accounts</td>
+</tr>
+</tbody>
+</table>
 <h2 id="test-data">Test data</h2>
 <p>It is our intention to save all test data in the file <code>TestData.js</code>.<br>In some cases, we need to code variation of the data directly in the test file.</p>
 <h2 id="functional-and-test-accounts">Functional and Test accounts</h2>
@@ -1166,7 +1345,7 @@ Please make sure to change them, update their password or remove them entirely i
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2024-03-13T16:19:45.013Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-13T16:19:52.910Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2024-03-22T11:06:38.687Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-22T11:06:47.725Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
