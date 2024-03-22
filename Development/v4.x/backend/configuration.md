@@ -37,6 +37,22 @@ The list is compiled according to the configuration class defined in _src/config
   _default_: ""  
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed  
 
+- PROPOSAL\_GROUPS:  
+  list of non admin groups that are allowed to create and update proposals for groups they do not belong to. If set to "#all", all users can create a dataset belonging to any group with explicit pid.  
+  _default_: ""  
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed  
+
+- SAMPLE\_GROUPS:  
+  list of non admin groups that are allowed to create and update samples for the groups they belong to. If set to "#all", all users can create a dataset belonging to their group.  
+  _default_: ""  
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed  
+
+- SAMPLE\_PRIVILEGED\_GROUPS:  
+  list of non admin groups that are allowed to create samples for any groups, but can only update samples belonging to groups they belong to.
+  _default_: ""  
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed  
+
+
 - ACCESS\_GROUPS\_STATIC\_VALUES:  
   List of groups assigned by default to all users. Used in the vanilla implementation for easy configuration.  
   If you do not want or need to assign any default group, it should be set to empty string "".  

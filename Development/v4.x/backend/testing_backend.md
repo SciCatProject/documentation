@@ -37,33 +37,36 @@ For example if you are interested in running only the test named _Authorization 
 The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
 
-List of tests:
+List of tests:  
+  
 | test file | main code | title | description |  
 | ----- | ----- | ----- | ----- |  
 | Auth.js | 0100 | Authorization functionalities | Test login and logout for functional accounts |  
 | CheckDifferentDatasetTypes.js | 0200 | Check Different Dataset Types | Check different dataset types and their inheritance |   
-| DatasetAuthorization.js | 0300 |  |  |  
-| DatasetFilter.js | 0400 |  |  |  
-| DatasetLifecycle.js | 0500 |  |  |  
+| DatasetAuthorization.js | 0300 | Test access to dataset | Test different use cases with different user and restricted access |  
+| DatasetFilter.js | 0400 | Test retrieving datasets using filtering capabilities | Leverage fullquery endpoint to retrieve different group of datasets  |  
+| DatasetLifecycle.js | 0500 | Test facet and filter queries |  |  
+| DatasetTypes.js | 0550 |  |  |  
 | DerivedDatasetDatablock.js | 0600 |  |  |  
 | DerivedDataset.js | 0700 | Derived Datasets | test derived datasets functionalities |  
 | DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |  
 | Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |  
-| InstrumentsFilter.js | 1000 |  |  |  
-| Jobs.js | 1100 |  |  |  
-| LoginUtils.js | 1200 |  |  |  
-| Policy.js | 1300 |  |  |  
-| ProposalAuthorization.js | 1400 |  |  |  
-| Proposal.js | 1500 |  |  |  
-| PublishedData.js | 1600 |  |  |  
-| RandomizedDatasetPermissions.js | 1700 |  |  |  
-| RawDatasetDatablock.js | 1800 |  |  |  
-| RawDataset.js | 1900 |  |  |  
-| RawDatasetOrigDatablock.js | 2000 |  |  |  
-| ResetDataset.js | 2100 |  |  |  
-| Sample.js | 2200 |  |  |  
+| InstrumentsFilter.js | 1000 | Test retrieving instruments using filtering capabilities  |  |  
+| Jobs.js | 1100 | Test New Job Model |  |  
+| OrigDatablockForRawDataset | 1200 | Test OrigDatablocks and their relation to raw Datasets using origdatablocks endpoint | |
+| Policy.js | 1300 | Simple Policy tests |  |  
+| ProposalAuthorization.js | 1400 | Test access to proposal |  |  
+| Proposal.js | 1500 | Simple Proposal |  |  
+| PublishedData.js | 1600 | Test of access to published data |  |  
+| RandomizedDatasetPermissions.js | 1700 | permission test with bigger amount of data |  |  
+| RawDatasetDatablock.js | 1800 | Test Datablocks and their relation to raw Datasets |  |  
+| RawDataset.js | 1900 | Raw Datasets |  |  
+| RawDatasetOrigDatablock.js | 2000 | Test OrigDatablocks and their relation to raw Datasets |  |  
+| ResetDataset.js | 2100 | Create Dataset and its Datablocks, then reset Datablocks and embedded Datasetlifecycle status |  |  
+| Sample.js | 2200 | Simple Sample | Samples functionality tests, like create, update and delete |  
+| SampleAuthorization.js | 2250 | Sample Authorization | Test authorization for all samples operations |  
 | UserAuthorization.js | 2300 | User Authorization | test that user authorization are correct |  
-| Users.js | 2400 |  |  |  
+| Users.js | 2400 | Login with functional accounts |  |  
 
 ## Test data
 
