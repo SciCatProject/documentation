@@ -1107,28 +1107,138 @@ graph LR;
 </tbody>
 </table>
 <h4 id="job-create-authorization-table">Job Create Authorization Table</h4>
-<p>These authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs
-| Job Create Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
-| --- | --- | --- | --- | --- |
-| <em>#all</em> | <em>#all</em> | any user can access this endpoint, both anonymous and authenticated | <em>#all</em> | Any user can create this instance of the job |
-| <em>#admin</em> | ADMIN<em>GROUPS | Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint | ADMIN_GROUPS | Only users belonging to any group listed in ADMIN_GROUPS will be able to create this instance of the job |
-| </em>#authenticated<em> | </em>#user<em> | any valid users can access the endpoint, independently from their groups | </em>#user<em> | any valid users can cretae this instance of the job |
-| </em>#datasetPublic<em> | </em>#all<em> | any user can access this endpoint, both anonymous and and authenticated | </em>#datasetPublic<em> | the job instance will be created only if all the datasets listed are <strong>public</strong> |
-| </em>#datasetAccess<em> | </em>#user<em> | any valid user can access this endpoint, independently from their groups | </em>#datasetAccess<em> | the job instance will be created only if the user has access to all the datasets listed |
-| </em>#datasetOwner<em> | </em>#user<em> | any valid user can access this endpoint, independently from their groups | </em>#datasetOwner<em> | the job instance will be created only if the user is part of all the datasets owner group |
-| <strong><em>GROUP</em></strong> | <strong><em>GROUP</em></strong> | only users that belongs to the specified group can access the endpoint | <strong><em>GROUP</em></strong> | the job instance will be created only if all the datasets listed belong to the group specified |
-| <strong><em>USER</em></strong> | <strong><em>USER</em></strong> | only the specified user can access the endpoint | </em>#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user&apos;s groups |</p>
+<p>These authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs  </p>
+<table>
+<thead>
+<tr>
+<th>Job Create Authorization</th>
+<th>Endpoint Authentication</th>
+<th>Endpoint Authentication Description</th>
+<th>Instance Authentication</th>
+<th>Instance Authentication Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>#all</em></td>
+<td><em>#all</em></td>
+<td>any user can access this endpoint, both anonymous and authenticated</td>
+<td><em>#all</em></td>
+<td>Any user can create this instance of the job</td>
+</tr>
+<tr>
+<td><em>#admin</em></td>
+<td>ADMIN_GROUPS</td>
+<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint</td>
+<td>ADMIN_GROUPS</td>
+<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to create this instance of the job</td>
+</tr>
+<tr>
+<td><em>#authenticated</em></td>
+<td><em>#user</em></td>
+<td>any valid users can access the endpoint, independently from their groups</td>
+<td><em>#user</em></td>
+<td>any valid users can cretae this instance of the job</td>
+</tr>
+<tr>
+<td><em>#datasetPublic</em></td>
+<td><em>#all</em></td>
+<td>any user can access this endpoint, both anonymous and and authenticated</td>
+<td><em>#datasetPublic</em></td>
+<td>the job instance will be created only if all the datasets listed are <strong>public</strong></td>
+</tr>
+<tr>
+<td><em>#datasetAccess</em></td>
+<td><em>#user</em></td>
+<td>any valid user can access this endpoint, independently from their groups</td>
+<td><em>#datasetAccess</em></td>
+<td>the job instance will be created only if the user has access to all the datasets listed</td>
+</tr>
+<tr>
+<td><em>#datasetOwner</em></td>
+<td><em>#user</em></td>
+<td>any valid user can access this endpoint, independently from their groups</td>
+<td><em>#datasetOwner</em></td>
+<td>the job instance will be created only if the user is part of all the datasets owner group</td>
+</tr>
+<tr>
+<td><strong><em>GROUP</em></strong></td>
+<td><strong><em>GROUP</em></strong></td>
+<td>only users that belongs to the specified group can access the endpoint</td>
+<td><strong><em>GROUP</em></strong></td>
+<td>the job instance will be created only if all the datasets listed belong to the group specified</td>
+</tr>
+<tr>
+<td><strong><em>USER</em></strong></td>
+<td><strong><em>USER</em></strong></td>
+<td>only the specified user can access the endpoint</td>
+<td><em>#datasetOwner</em></td>
+<td>the job instance will be created only if all the datasets listed are owned by any of the user&apos;s groups</td>
+</tr>
+</tbody>
+</table>
 <p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing</p>
 <h4 id="job-status-update-authorization-table">Job Status Update Authorization Table</h4>
-<p>These authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs/statusUpdate<br>| Job Status Update Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
-| --- | --- | --- | --- | --- |
-| <em>#all</em> | <em>#all</em> | any user can access this endpoint, both anonymous and authenticated | <em>#all</em> | Any user can update the status of this job instance |
-| <em>#owner</em> | <em>#user</em> | valid user can access the endpoint | <em>#jobOwner</em> | a user that belongs to the group listed as job owner can perform the update |
-| <em>#admin</em> | ADMIN<em>GROUPS | Only users belonging to any group listed in ADMIN<em>GROUPS will be able to access the endpoint | ADMIN<em>GROUPS | Only users belonging to any group listed in ADMIN_GROUPS  are able to update the job status |
-| </em></em></em>\<group\><strong><em> | </em></strong>\<group\><strong><em> | only users that belongs to the specified group can access the endpoint | </em></strong>\<group\><strong><em> | the job instance will be created only if all the datasets listed belong to the group specified |
-| </em></strong>\<user\><strong><em> | </em></strong>\<user\><em>__ | only the specified user can access the endpoint | </em>#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user&apos;s groups |</user\></user\></group\></group\></group\></p>
+<p>These authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs/statusUpdate  </p>
+<table>
+<thead>
+<tr>
+<th>Job Status Update Authorization</th>
+<th>Endpoint Authentication</th>
+<th>Endpoint Authentication Description</th>
+<th>Instance Authentication</th>
+<th>Instance Authentication Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>#all</em></td>
+<td><em>#all</em></td>
+<td>any user can access this endpoint, both anonymous and authenticated</td>
+<td><em>#all</em></td>
+<td>Any user can update the status of this job instance</td>
+</tr>
+<tr>
+<td><em>#owner</em></td>
+<td><em>#user</em></td>
+<td>valid user can access the endpoint</td>
+<td><em>#jobOwner</em></td>
+<td>a user that belongs to the group listed as job owner can perform the update</td>
+</tr>
+<tr>
+<td><em>#admin</em></td>
+<td>ADMIN_GROUPS</td>
+<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint</td>
+<td>ADMIN_GROUPS</td>
+<td>Only users belonging to any group listed in ADMIN_GROUPS  are able to update the job status</td>
+</tr>
+<tr>
+<td><strong><em>GROUP</em></strong></td>
+<td><strong><em>GROUP</em></strong></td>
+<td>only users that belongs to the specified group can access the endpoint</td>
+<td><strong><em>GROUP</em></strong></td>
+<td>the job instance will be created only if all the datasets listed belong to the group specified</td>
+</tr>
+<tr>
+<td><strong><em>USER</em></strong></td>
+<td><strong><em>USER</em></strong></td>
+<td>only the specified user can access the endpoint</td>
+<td><em>#datasetOwner</em></td>
+<td>the job instance will be created only if all the datasets listed are owned by any of the user&apos;s groups</td>
+</tr>
+</tbody>
+</table>
 <p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to update the status of the job. It is mostly use for debuging and testing</p>
-
+<h4 id="job-authorization-priority">Job Authorization priority</h4>
+<p>The endpoint authorization is the most permissive authorization across all the jobs defined.
+The priority between job create and status update authorization is as follow:</p>
+<div class="mermaid">
+graph LR;
+    all--&gt;user;
+    user--&gt;GROUP;
+    GROUP--&gt;USER;
+    USER--&gt;ADMIN_GROUPS;
+</div>
                                 
                                 </section>
                             
@@ -1171,7 +1281,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-03-25T16:14:28.914Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-25T16:14:40.540Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-03-25T16:39:11.020Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-25T16:39:20.445Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
