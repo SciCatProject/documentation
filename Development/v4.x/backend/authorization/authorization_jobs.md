@@ -50,14 +50,14 @@ They apply to the jobs endpoint POST:Jobs
 | _#datasetPublic_ | _#all_ | any user can access this endpoint, both anonymous and and authenticated | _#datasetPublic_ | the job instance will be created only if all the datasets listed are __public__ |
 | _#datasetAccess_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetAccess_ | the job instance will be created only if the user has access to all the datasets listed |
 | _#datasetOwner_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetOwner_ | the job instance will be created only if the user is part of all the datasets owner group |
-| ___\<GROUP\>___ | ___\<GROUP\>___ | only users that belongs to the specified group can access the endpoint | ___\<GROUP\>___ | the job instance will be created only if all the datasets listed belong to the group specified |
-| ___\<USER\>___ | ___\<USER\>___ | only the specified user can access the endpoint | _#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user's groups |
+| __*GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if all the datasets listed belong to the group specified |
+| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | _#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user's groups |
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing
 
 #### Job Status Update Authorization Table
 These authorization permissions are configured directly in the __*update*__ section of the job configuration.  
-They apply to the jobs endpoint POST:Jobs/statusUpdate
+They apply to the jobs endpoint POST:Jobs/statusUpdate  
 | Job Status Update Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can update the status of this job instance |
