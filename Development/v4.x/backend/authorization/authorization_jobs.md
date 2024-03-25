@@ -41,7 +41,8 @@ graph LR;
 
 #### Job Create Authorization Table
 These authorization permissions are configured directly in the __*create*__ section of the job configuration.  
-They apply to the jobs endpoint POST:Jobs
+They apply to the jobs endpoint POST:Jobs  
+  
 | Job Create Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can create this instance of the job |
@@ -58,13 +59,25 @@ __IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new
 #### Job Status Update Authorization Table
 These authorization permissions are configured directly in the __*update*__ section of the job configuration.  
 They apply to the jobs endpoint POST:Jobs/statusUpdate  
+  
 | Job Status Update Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can update the status of this job instance |
 | _#owner_ | _#user_ | valid user can access the endpoint | _#jobOwner_ | a user that belongs to the group listed as job owner can perform the update |
 | _#admin_ | ADMIN_GROUPS | Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint | ADMIN_GROUPS | Only users belonging to any group listed in ADMIN_GROUPS  are able to update the job status |
-| ___\<GROUP\>___ | ___\<GROUP\>___ | only users that belongs to the specified group can access the endpoint | ___\<GROUP\>___ | the job instance will be created only if all the datasets listed belong to the group specified |
-| ___\<USER\>___ | ___\<USER\>___ | only the specified user can access the endpoint | _#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user's groups |
-
+| __*GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if all the datasets listed belong to the group specified |
+| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | _#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user's groups |
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the status of the job. It is mostly use for debuging and testing
+
+#### Job Authorization priority
+The endpoint authorization is the most permissive authorization across all the jobs defined.
+The priority between job create and status update authorization is as follow:
+
+```mermaid
+graph LR;
+    all-->user;
+    user-->GROUP;
+    GROUP-->USER;
+    USER-->ADMIN_GROUPS;
+```
