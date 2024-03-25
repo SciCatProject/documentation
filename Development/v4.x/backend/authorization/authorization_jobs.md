@@ -41,7 +41,7 @@ graph LR;
 
 #### Job Create Authorization Table
 These authorization permissions are configured directly in the __*create*__ section of the job configuration.  
-They apply to the jobs endpoint POST:Jobs
+They apply to the jobs endpoint POST:Jobs  
 | Job Create Authorization | Endpoint Authentication | Endpoint Authentication Description | Instance Authentication | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can create this instance of the job |
