@@ -66,7 +66,7 @@ They apply to the jobs endpoint POST:Jobs/statusUpdate
 | _#owner_ | _#user_ | valid user can access the endpoint | _#jobOwner_ | a user that belongs to the group listed as job owner can perform the update |
 | _#admin_ | ADMIN_GROUPS | Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint | ADMIN_GROUPS | Only users belonging to any group listed in ADMIN_GROUPS  are able to update the job status |
 | __*GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job status can be updated only by users who belong to the group specified |
-| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | _#datasetOwner_ | the job status can be updated only by the user indicated |
+| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job status can be updated only by the user indicated |
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the status of the job. It is mostly use for debuging and testing
 
