@@ -1008,23 +1008,25 @@
 </ul>
 <h3 id="data-instance-authorization">(Data) Instance Authorization</h3>
 <ul>
-<li><em>job_create_configuration</em>: the job create section of the configuration dictates if the user can create the job </li>
-<li>JobCreateAny: users with this privileges can create jobs for any of the users that are defined in the create section of the job configuration </li>
+<li>JobCreateConfiguration (The jobs create section of the configuration dictats if the user can create the job)</li>
+<li>JobCreateOwner (Users with this privileges can create jobs only for themselves)</li>
+<li>JobCreateAny (Users with this privileges can create jobs for any of the users that are defined in the create section of the job configuration)</li>
 <li>JobReadAccess</li>
 <li>JobReadAny</li>
-<li><em>job_satatus_update_configuration</em>: the job update section in configuration dictates if the user can update the status of the job</li>
-<li>JobStatusUpdateAny: users with this privileges can update the status of any job.</li>
+<li>JobStatusUpdateConfiguration (The jobs update section in configuration dictates if the user can update the status of the job)</li>
+<li>JobStatusUpdateOwner (Users with this privileges can update the status of jobs belonging to themselves)</li>
+<li>JobStatusUpdateAny (Users with this privileges can update the status of any job)</li>
 <li>JobDeleteAny</li>
 </ul>
 <h4 id="priority">Priority</h4>
 <div class="mermaid">
 graph LR;
-    JobCreate--&gt;job_create_configuration;
-    job_create_configuration--&gt;JobCreateAny;
+    JobCreate--&gt;JobCreateConfiguration;
+    JobCreateConfiguration--&gt;JobCreateAny;
     JobRead--&gt;JobReadAccess;
     JobReadAccess--&gt;JobReadAny;
-    JobStatusUpdate--&gt;job_status_update_configuration;
-    job_status_update_configuration--&gt;JobStatusUpdateAny;
+    JobStatusUpdate--&gt;JobStatusUpdateConfiguration;
+    JobStatusUpdateConfiguration--&gt;JobStatusUpdateAny;
     JobDelete--&gt;JobDeleteAny;
 </div>
 
@@ -1048,9 +1050,9 @@ graph LR;
 <tr>
 <td>POST</td>
 <td>Jobs</td>
-<td><em>please see job create<br>authorization table</em></td>
-<td><em>please see job create<br>authorization table</em></td>
-<td><em>please see job create<br>authorization table</em></td>
+<td><em>JobCreate</em></td>
+<td><em>JobCreateConfiguration</em></td>
+<td><em>JobCreateConfiguration</em></td>
 <td>Any<br><em>JobsCreateOwner</em></td>
 <td><strong>no</strong></td>
 <td>Any<br><em>JobsCreateAny</em></td>
@@ -1060,7 +1062,7 @@ graph LR;
 <tr>
 <td>GET</td>
 <td>Jobs</td>
-<td><em>JobRead</em></td>
+<td><em>JobReadMany</em></td>
 <td><strong>no</strong></td>
 <td>Has Access<br><em>JobReadAccess</em></td>
 <td>Has Access<br><em>JobReadAccess</em></td>
@@ -1072,7 +1074,7 @@ graph LR;
 <tr>
 <td>GET</td>
 <td>Jobs/<em>jid</em></td>
-<td><em>JobRead</em></td>
+<td><em>JobReadOne</em></td>
 <td><strong>no</strong></td>
 <td>Has Access<br><em>JobReadAccess</em></td>
 <td>Has Access<br><em>JobReadAccess</em></td>
@@ -1084,9 +1086,9 @@ graph LR;
 <tr>
 <td>POST</td>
 <td>Jobs/statusUpdate</td>
-<td><em>please see job create<br>authorization table</em></td>
+<td><em>JobStatusUpdate</em></td>
 <td><strong>no</strong></td>
-<td><em>please see job update<br>authorization table</em></td>
+<td><em>JobStatusUpdateConfiguration</em></td>
 <td><strong>no</strong></td>
 <td>Owner<br><em>JobStatusUpdateOwner</em></td>
 <td>Any<br><em>JobStatusUpdateAny</em></td>
@@ -1107,14 +1109,14 @@ graph LR;
 </tbody>
 </table>
 <h4 id="job-create-authorization-table">Job Create Authorization Table</h4>
-<p>These authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs  </p>
+<p>The <em>JobCreateConfiguration</em> authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br>Any positive match will results in the user acquiring <em>JobCreate</em> endpoint authorization which apply to the jobs endpoint POST:Jobs  </p>
 <table>
 <thead>
 <tr>
 <th>Job Create Authorization</th>
-<th>Endpoint Authentication</th>
+<th>Endpoint Authentication Translation</th>
 <th>Endpoint Authentication Description</th>
-<th>Instance Authentication</th>
+<th>Instance Authentication Translation</th>
 <th>Instance Authentication Description</th>
 </tr>
 </thead>
@@ -1127,11 +1129,11 @@ graph LR;
 <td>Any user can create this instance of the job</td>
 </tr>
 <tr>
-<td><em>#admin</em></td>
-<td>ADMIN_GROUPS</td>
-<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint</td>
-<td>ADMIN_GROUPS</td>
-<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to create this instance of the job</td>
+<td><em>#datasetPublic</em></td>
+<td><em>#all</em></td>
+<td>any user can access this endpoint, both anonymous and and authenticated</td>
+<td><em>#datasetPublic</em></td>
+<td>the job instance will be created only if all the datasets listed are <strong>public</strong></td>
 </tr>
 <tr>
 <td><em>#authenticated</em></td>
@@ -1139,13 +1141,6 @@ graph LR;
 <td>any valid users can access the endpoint, independently from their groups</td>
 <td><em>#user</em></td>
 <td>any valid users can cretae this instance of the job</td>
-</tr>
-<tr>
-<td><em>#datasetPublic</em></td>
-<td><em>#all</em></td>
-<td>any user can access this endpoint, both anonymous and and authenticated</td>
-<td><em>#datasetPublic</em></td>
-<td>the job instance will be created only if all the datasets listed are <strong>public</strong></td>
 </tr>
 <tr>
 <td><em>#datasetAccess</em></td>
@@ -1162,7 +1157,7 @@ graph LR;
 <td>the job instance will be created only if the user is part of all the datasets owner group</td>
 </tr>
 <tr>
-<td><strong><em>GROUP</em></strong></td>
+<td><strong><em>@GROUP</em></strong></td>
 <td><strong><em>GROUP</em></strong></td>
 <td>only users that belongs to the specified group can access the endpoint</td>
 <td><strong><em>GROUP</em></strong></td>
@@ -1179,14 +1174,14 @@ graph LR;
 </table>
 <p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing</p>
 <h4 id="job-status-update-authorization-table">Job Status Update Authorization Table</h4>
-<p>These authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br>They apply to the jobs endpoint POST:Jobs/statusUpdate  </p>
+<p>The <em>JobStatusUpdateConfiguration</em> authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br>Any positive match will results in the user acquiring  <em>JobStatusUpdate</em> endpoint authorization apply to the jobs endpoint POST:Jobs/statusUpdate  </p>
 <table>
 <thead>
 <tr>
 <th>Job Status Update Authorization</th>
-<th>Endpoint Authentication</th>
+<th>Endpoint Authentication Translation</th>
 <th>Endpoint Authentication Description</th>
-<th>Instance Authentication</th>
+<th>Instance Authentication Translation</th>
 <th>Instance Authentication Description</th>
 </tr>
 </thead>
@@ -1199,21 +1194,21 @@ graph LR;
 <td>Any user can update the status of this job instance</td>
 </tr>
 <tr>
-<td><em>#owner</em></td>
+<td><em>#jobOwnerUser</em></td>
 <td><em>#user</em></td>
-<td>valid user can access the endpoint</td>
-<td><em>#jobOwner</em></td>
-<td>a user that belongs to the group listed as job owner can perform the update</td>
+<td>authenticated user can access the endpoint</td>
+<td><em>#jobOwnerUser</em></td>
+<td>only the user that is listed in field <em>ownerUser</em> can perform the update</td>
 </tr>
 <tr>
-<td><em>#admin</em></td>
-<td>ADMIN_GROUPS</td>
-<td>Only users belonging to any group listed in ADMIN_GROUPS will be able to access the endpoint</td>
-<td>ADMIN_GROUPS</td>
-<td>Only users belonging to any group listed in ADMIN_GROUPS  are able to update the job status</td>
+<td><em>#jobOwnerGroup</em></td>
+<td><em>#user</em></td>
+<td>authenticated user can access the endpoint</td>
+<td><em>#jobOwnerGroup</em></td>
+<td>any user that belongs to the group listed in field <em>ownerGroup</em> can perform the update</td>
 </tr>
 <tr>
-<td><strong><em>GROUP</em></strong></td>
+<td><strong><em>@GROUP</em></strong></td>
 <td><strong><em>GROUP</em></strong></td>
 <td>only users that belongs to the specified group can access the endpoint</td>
 <td><strong><em>GROUP</em></strong></td>
@@ -1282,7 +1277,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-03-27T18:07:05.035Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-27T18:07:14.666Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Users","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-04-12T10:08:05.383Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-04-12T10:08:18.375Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
