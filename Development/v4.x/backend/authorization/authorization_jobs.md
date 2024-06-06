@@ -52,8 +52,8 @@ Any positive match will results in the user acquiring _JobCreate_ endpoint autho
 | _#authenticated_ | _#user_ | any valid users can access the endpoint, independently from their groups | _#user_ | any valid users can cretae this instance of the job |
 | _#datasetAccess_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetAccess_ | the job instance will be created only if the user has access to all the datasets listed |
 | _#datasetOwner_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetOwner_ | the job instance will be created only if the user is part of all the datasets owner group |
-| __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if all the datasets listed belong to the group specified |
-| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | _#datasetOwner_ | the job instance will be created only if all the datasets listed are owned by any of the user's groups |
+| __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if the user belongs to the group specified |
+| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job instance can be created only by the user indicated |
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing
 
