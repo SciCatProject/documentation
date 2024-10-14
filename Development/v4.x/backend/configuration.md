@@ -430,3 +430,8 @@ _src/config/configuration.ts_
   Elasticsearch cluster password.
   _default_: no default.
   _format_: string
+
+- JOB\_CONFIGURATION\_FILE:
+  Configuration file for [job actions](configuration/jobconfig.md).
+  _default_: "jobConfig.json", optional.
+  _format_: string
