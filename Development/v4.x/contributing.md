@@ -8,14 +8,12 @@ There are many to get involved with the SciCat project:
    [documentation pages](https://github.com/SciCatProject/documentation), and READMEs in
    the repositories.
 2. Github Issues - This should be the first area to focus on for those that want to
-   amend the code. To see how the project is developed, see the [Git Workflow
-   page.](./Development_Methods.md)
+   amend the code.
 3. [Testing](./testing.md) - Most repositories contain unit tests. Integration between
    components is tested with [scicatlive](https://github.com/SciCatProject/scicatlive),
    which is also the easiest way to run and develop SciCat locally.
 4. Development - Check individual repositories for more information on how to contribute
-   code ([frontend](https://github.com/SciCatProject/frontend),
-   [backend](https://github.com/SciCatProject/scicat-backend-next)).
+   code. For an overview, see the [developer guide](./developers_guide.md).
 
 Communication is done through github issues, a slack channel, and a biweekly developer
 meeting. Please [contact](https://scicatproject.github.io/#team) the project leader, Max

@@ -2,7 +2,7 @@
 
 This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute to the development of the software. See also the [Overview in the Operator Manual](../Operator/) for a helicopter view of the involved components.
 
-If you want to contribute to the software you should also read the [Contributing](../Development/Development_Methods.html) section, which among others links to the git workflow to be used.
+If you want to contribute to the software you should also read the [Contributing](./contributing.md) section.
 
 # Getting an development environment set up
 
