@@ -4,6 +4,8 @@ services:
     command: npm run start
     ports:
       - "4040:4040"
+      # livereload port. Can't be changed (https://github.com/GitbookIO/plugin-livereload/pull/1)
+      - "35729:35729"
     volumes:
       - .:/app
     working_dir: /app
