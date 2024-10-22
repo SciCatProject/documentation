@@ -9,7 +9,7 @@ See the [SciCat Home Webpage](https://scicatproject.github.io) for an overview o
 
 ## Structure of Documentation
 
-The documentaion is split into the following chapters:
+The documentation is split into the following chapters:
 
 * [User Guide](Users) - Users of the system can come here to see screen captures, FAQs and find resources on how to better understand SciCat.
 * [Operator Guide](Operator) - System admins read this part to set up SciCat for their location
