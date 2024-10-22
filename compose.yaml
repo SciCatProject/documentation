@@ -1,0 +1,10 @@
+services:
+  serve:
+    image: honkit/honkit:latest
+    command: npm run start
+    ports:
+      - "4040:4040"
+    volumes:
+      - .:/app
+    working_dir: /app
+    platform: linux/amd64
