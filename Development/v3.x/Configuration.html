@@ -6,7 +6,7 @@
         <title>Configuration · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1024,163 +1024,163 @@
 <pre><code>frontend/src/assets/config.json:
 
 {
-  &quot;accessTokenPrefix&quot;: &quot;&quot;,  // Set the backend token prefix. Should be empty string for current backend or &quot;Bearer &quot; if using scicat-backend-next.
-  &quot;addDatasetEnabled&quot;: true,  // Show/hide the &quot;Create Dataset&quot; button in the Datasets Dashboard.
-  &quot;archiveWorkflowEnabled&quot;: true,  // Enable/disable the archive/retrieve workflow.
-  &quot;datasetReduceEnabled&quot;: true,  // Enable/disable the automatic Dataset reduction/analysis workflow.
-  &quot;editDatasetSampleEnabled&quot;: true,  // Enable/disable editing of which Sample a Dataset belongs to.
-  &quot;editMetadataEnabled&quot;: true,  // Enable/disable editing of Scientific Metadata.
-  &quot;editPublishedData&quot;: true,  // Enable/disable editing of Published Data.
-  &quot;editSampleEnabled&quot;: true,  // Enable/disable editing of Samples.
-  &quot;externalAuthEndpoint&quot;: &quot;/auth/msad&quot;,  // Endpoint used for third party authentication, e.g, LDAP.
-  &quot;facility&quot;: &quot;ESS&quot;,  // Facility running the SciCat instance.
-  &quot;fileColorEnabled&quot;: true,  // Enable/disable file size color representation in the Datasets Dashboard.
-  &quot;fileDownloadEnabled&quot;: true,  // Enable/disable download workflow for Dataset datafiles.
-  &quot;gettingStarted&quot;: null,  // URL to Getting Started guide for SciCat, displayed on the Help page.
-  &quot;ingestManual&quot;: null,  // URL to Ingest Manual for SciCat, displayed on the Help page.
-  &quot;jobsEnabled&quot;: true,  // Enable/disable Job workflow.
-  &quot;jsonMetadataEnabled&quot;: true,  // Show/hide the &quot;Show Metadata&quot; button on the details pages, allowing users to see the JSON represantion of the current document.
-  &quot;jupyterHubUrl&quot;: &quot;https://jupyterhub.esss.lu.se/&quot;,  // URL to Jupyter Hub instance used for data analysis.
-  &quot;landingPage&quot;: &quot;doi2.psi.ch/detail/&quot;,  // URL to the facility&apos;s Landing Page for Published Data.
-  &quot;lbBaseURL&quot;: &quot;http://127.0.0.1:3000&quot;,  // URL to the SciCat Backend.
-  &quot;localColumns&quot;: [                      // Default columns to be displayed in the table on the Datasets Dashboard.
+  "accessTokenPrefix": "",  // Set the backend token prefix. Should be empty string for current backend or "Bearer " if using scicat-backend-next.
+  "addDatasetEnabled": true,  // Show/hide the "Create Dataset" button in the Datasets Dashboard.
+  "archiveWorkflowEnabled": true,  // Enable/disable the archive/retrieve workflow.
+  "datasetReduceEnabled": true,  // Enable/disable the automatic Dataset reduction/analysis workflow.
+  "editDatasetSampleEnabled": true,  // Enable/disable editing of which Sample a Dataset belongs to.
+  "editMetadataEnabled": true,  // Enable/disable editing of Scientific Metadata.
+  "editPublishedData": true,  // Enable/disable editing of Published Data.
+  "editSampleEnabled": true,  // Enable/disable editing of Samples.
+  "externalAuthEndpoint": "/auth/msad",  // Endpoint used for third party authentication, e.g, LDAP.
+  "facility": "ESS",  // Facility running the SciCat instance.
+  "fileColorEnabled": true,  // Enable/disable file size color representation in the Datasets Dashboard.
+  "fileDownloadEnabled": true,  // Enable/disable download workflow for Dataset datafiles.
+  "gettingStarted": null,  // URL to Getting Started guide for SciCat, displayed on the Help page.
+  "ingestManual": null,  // URL to Ingest Manual for SciCat, displayed on the Help page.
+  "jobsEnabled": true,  // Enable/disable Job workflow.
+  "jsonMetadataEnabled": true,  // Show/hide the "Show Metadata" button on the details pages, allowing users to see the JSON represantion of the current document.
+  "jupyterHubUrl": "https://jupyterhub.esss.lu.se/",  // URL to Jupyter Hub instance used for data analysis.
+  "landingPage": "doi2.psi.ch/detail/",  // URL to the facility's Landing Page for Published Data.
+  "lbBaseURL": "http://127.0.0.1:3000",  // URL to the SciCat Backend.
+  "localColumns": [                      // Default columns to be displayed in the table on the Datasets Dashboard.
     {
-      &quot;name&quot;: &quot;select&quot;,
-      &quot;order&quot;: 0,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "select",
+      "order": 0,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;datasetName&quot;,
-      &quot;order&quot;: 1,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "datasetName",
+      "order": 1,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;runNumber&quot;,
-      &quot;order&quot;: 2,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "runNumber",
+      "order": 2,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;sourceFolder&quot;,
-      &quot;order&quot;: 3,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "sourceFolder",
+      "order": 3,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;size&quot;,
-      &quot;order&quot;: 4,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "size",
+      "order": 4,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;creationTime&quot;,
-      &quot;order&quot;: 5,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "creationTime",
+      "order": 5,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;type&quot;,
-      &quot;order&quot;: 6,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "type",
+      "order": 6,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;image&quot;,
-      &quot;order&quot;: 7,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "image",
+      "order": 7,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;metadata&quot;,
-      &quot;order&quot;: 8,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "metadata",
+      "order": 8,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;proposalId&quot;,
-      &quot;order&quot;: 9,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: true
+      "name": "proposalId",
+      "order": 9,
+      "type": "standard",
+      "enabled": true
     },
     {
-      &quot;name&quot;: &quot;ownerGroup&quot;,
-      &quot;order&quot;: 10,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: false
+      "name": "ownerGroup",
+      "order": 10,
+      "type": "standard",
+      "enabled": false
     },
     {
-      &quot;name&quot;: &quot;dataStatus&quot;,
-      &quot;order&quot;: 11,
-      &quot;type&quot;: &quot;standard&quot;,
-      &quot;enabled&quot;: false
+      "name": "dataStatus",
+      "order": 11,
+      "type": "standard",
+      "enabled": false
     }
   ],
-  &quot;logbookEnabled&quot;: true,  // Enable/disable SciChat Logbook integration.
-  &quot;loginFormEnabled&quot;: true,  // Enable/disable the local Login form. Should be disabled if using oAuth2 for authentication.
-  &quot;maxDirectDownloadSize&quot;: 5000000000,  // Set a maximum allowed file size for downloading datafiles over HTTP.
-  &quot;metadataPreviewEnabled&quot;: true,  // Enable/disable Scientific Metadata preview on the Datasets Dashboard.
-  &quot;metadataStructure&quot;: &quot;tree&quot;, // Allow tree structure for Scientific Metadata. Set to empty string for flat structure.
-  &quot;multipleDownloadAction&quot;: &quot;http://localhost:3012/zip&quot;,  // URL to service handling direct download of datafiles.
-  &quot;multipleDownloadEnabled&quot;: true,  // Enable/disable ability to download multiple datafiles.
-  &quot;oAuth2Endpoints&quot;: [],  // List of endpoints used for oAuth2 authentication.
-  &quot;policiesEnabled&quot;: true,  // Enable/disable Dataset Policies workflow.
-  &quot;retrieveDestinations&quot;: [],  // List of destinations for Dataset retrievals.
-  &quot;riotBaseUrl&quot;: &quot;http://scitest.esss.lu.se/riot&quot;,  // URL to SciChat client.
-  &quot;scienceSearchEnabled&quot;: true,  // Enable/disable filtering documents on Scientific Metadata.
-  &quot;scienceSearchUnitsEnabled&quot;: true,  // Enable/disable filtering documents on Scientific Metadata using units.
-  &quot;searchPublicDataEnabled&quot;: true,  // Enable/disable filtering Datasets on public or non-public data.
-  &quot;searchSamples&quot;: true,  // Enable/disable searching Samples on Samples Dashboard.
-  &quot;sftpHost&quot;: &quot;login.esss.dk&quot;,  // URL to SFTP service used for downloading files exceeding maximum allowed file size.
-  &quot;shareEnabled&quot;: true,  // Enable/disable workflow for sharing Datasets with other users using their email address.
-  &quot;shoppingCartEnabled&quot;: true,  // Enable/disable the Dataset cart used for bulk actions.
-  &quot;shoppingCartOnHeader&quot;: true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
-  &quot;tableSciDataEnabled&quot;: true  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
+  "logbookEnabled": true,  // Enable/disable SciChat Logbook integration.
+  "loginFormEnabled": true,  // Enable/disable the local Login form. Should be disabled if using oAuth2 for authentication.
+  "maxDirectDownloadSize": 5000000000,  // Set a maximum allowed file size for downloading datafiles over HTTP.
+  "metadataPreviewEnabled": true,  // Enable/disable Scientific Metadata preview on the Datasets Dashboard.
+  "metadataStructure": "tree", // Allow tree structure for Scientific Metadata. Set to empty string for flat structure.
+  "multipleDownloadAction": "http://localhost:3012/zip",  // URL to service handling direct download of datafiles.
+  "multipleDownloadEnabled": true,  // Enable/disable ability to download multiple datafiles.
+  "oAuth2Endpoints": [],  // List of endpoints used for oAuth2 authentication.
+  "policiesEnabled": true,  // Enable/disable Dataset Policies workflow.
+  "retrieveDestinations": [],  // List of destinations for Dataset retrievals.
+  "riotBaseUrl": "http://scitest.esss.lu.se/riot",  // URL to SciChat client.
+  "scienceSearchEnabled": true,  // Enable/disable filtering documents on Scientific Metadata.
+  "scienceSearchUnitsEnabled": true,  // Enable/disable filtering documents on Scientific Metadata using units.
+  "searchPublicDataEnabled": true,  // Enable/disable filtering Datasets on public or non-public data.
+  "searchSamples": true,  // Enable/disable searching Samples on Samples Dashboard.
+  "sftpHost": "login.esss.dk",  // URL to SFTP service used for downloading files exceeding maximum allowed file size.
+  "shareEnabled": true,  // Enable/disable workflow for sharing Datasets with other users using their email address.
+  "shoppingCartEnabled": true,  // Enable/disable the Dataset cart used for bulk actions.
+  "shoppingCartOnHeader": true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
+  "tableSciDataEnabled": true  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
 }
 </code></pre><h2 id="scicat-backend">SciCat Backend</h2>
 <h3 id="dotenv-config">Dotenv config</h3>
 <p>This is the configuration file for the backend. This file allows the systems administrator to configure connected services, like authentication services and message queues, and also switching on/off almost all non essential features. The configuration file is a <a href="https://www.npmjs.com/package/dotenv" target="_blank">dotenv</a> file and is read by the backend at runtime.</p>
 <p>An example is shown below</p>
 <pre><code>backend/.env
-ACCESS_GROUPS_STATIC_VALUES=&quot;group1,group2,group3,...&quot; // List of groups assigned by default as access groups to all users. Used in the vanilla implementation. Facilities customization might not use this
-ACCESS_GROUP_SERVICE_TOKEN=&quot;90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750&quot; // Token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL
-ACCESS_GROUP_SERVICE_API_URL=&quot;https://my.access.group/service/api/url&quot; // Url of the service API which is used to provide access groups. At the moment only one value is allowed
-DOI_PREFIX=&quot;&lt;DOI_PREFIX&gt;&quot;  // The facility DOI prefix, with trailing slash.
-EXPRESS_SESSION_SECRET=&quot;&lt;EXPRESS_SESSION_SECRET&gt;&quot;  // *Optional* Secret used to set up express session.
+ACCESS_GROUPS_STATIC_VALUES="group1,group2,group3,..." // List of groups assigned by default as access groups to all users. Used in the vanilla implementation. Facilities customization might not use this
+ACCESS_GROUP_SERVICE_TOKEN="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token needed to access the API specified in ACCESS_GROUP_SERVICE_API_URL
+ACCESS_GROUP_SERVICE_API_URL="https://my.access.group/service/api/url" // Url of the service API which is used to provide access groups. At the moment only one value is allowed
+DOI_PREFIX="&lt;DOI_PREFIX&gt;"  // The facility DOI prefix, with trailing slash.
+EXPRESS_SESSION_SECRET="&lt;EXPRESS_SESSION_SECRET&gt;"  // *Optional* Secret used to set up express session.
 HTTP_MAX_REDIRECTS=5  // *Optional* Max redirects for http requests. Defaults to 5.
 HTTP_TIMEOUT=5000  // *Optional* Timeout from http requests in ms. Defaults to 5000.
 JWT_SECRET=&lt;JWT_SECRET&gt;  // The secret for your JWT token, used for authorization.
 JWT_EXPIRES_IN=3600  // *Optional*  How long, in seconds, the JWT token is valid. Defaults to `3600`.
-LDAP_URL=&quot;ldaps://ldap.server.com:636/&quot;  // *Optional* The URL (and port) to your LDAP server.
-LDAP_BIND_DN=&quot;&lt;USERNAME&gt;@server.com&quot;  // *Optional* Bind_DN for your LDAP server.
+LDAP_URL="ldaps://ldap.server.com:636/"  // *Optional* The URL (and port) to your LDAP server.
+LDAP_BIND_DN="&lt;USERNAME&gt;@server.com"  // *Optional* Bind_DN for your LDAP server.
 LDAP_BIND_CREDENTIALS=&lt;PASSWORD&gt;  // *Optional* Credentials for your LDAP server.
 LDAP_SEARCH_BASE=&lt;SEARCH_BASE&gt;  // *Optional* Search base for your LDAP server.
-LDAP_SEARCH_FILTER=&quot;(LDAPUsername={{username}})&quot;  // *Optional* Search filter for you LDAP server.
-OIDC_ISSUER=&quot;https://identity.your.facility/your/realm&quot; // Full URL of the identity provider
-OIDC_CLIENT_ID= &quot;scicat&quot; // Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
-OIDC_CLIENT_SECRET=&quot;90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750&quot; // Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
-OIDC_CALLBACK_URL=&quot;http://localhost:3000/api/v3/oidc/callback&quot; // URL of the endpoint that is called when the authentication has been executed with the OIDC service.
-OIDC_SCOPE=&quot;openid profile email&quot; // Information returned by the OIDC service together with token&quot;
-OIDC_SUCCESS_URL=&quot;http://localhost:3000/explorer&quot; // URL of the endpoint that is called after a successful authentication. IT is not used in the vanilla implementaation.
-OIDC_ACCESS_GROUPS=&quot;access_groups&quot; // field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.
-LOGBOOK_ENABLED=&lt;&quot;yes&quot;|&quot;no&quot;&gt;  // *Optional* Flag to enable/disable the Logbook endpoints. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
-LOGBOOK_BASE_URL=&quot;http://localhost:3030/scichatapi&quot;  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
-LOGBOOK_USERNAME=&quot;&lt;LOGBOOK_USERNAME&gt;&quot;  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
-LOGBOOK_PASSWORD=&quot;&lt;LOGBOOK_PASSWORD&gt;&quot;  // *Optional* The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
+LDAP_SEARCH_FILTER="(LDAPUsername={{username}})"  // *Optional* Search filter for you LDAP server.
+OIDC_ISSUER="https://identity.your.facility/your/realm" // Full URL of the identity provider
+OIDC_CLIENT_ID= "scicat" // Client id used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
+OIDC_CLIENT_SECRET="90f126864824ede0e22f7b4407aa1a5cd8158e6cabbce39aaf091937589f1750" // Token used to convert OIDC code to OIDC token. This is assigned in the OIDC service when the token is generated
+OIDC_CALLBACK_URL="http://localhost:3000/api/v3/oidc/callback" // URL of the endpoint that is called when the authentication has been executed with the OIDC service.
+OIDC_SCOPE="openid profile email" // Information returned by the OIDC service together with token"
+OIDC_SUCCESS_URL="http://localhost:3000/explorer" // URL of the endpoint that is called after a successful authentication. IT is not used in the vanilla implementaation.
+OIDC_ACCESS_GROUPS="access_groups" // field used to retrieve access groups from the OIDC service. It is not used in the vanilla implementation.
+LOGBOOK_ENABLED=&lt;"yes"|"no"&gt;  // *Optional* Flag to enable/disable the Logbook endpoints. Values "yes" or "no". Defaults to "no".
+LOGBOOK_BASE_URL="http://localhost:3030/scichatapi"  // *Optional* The base URL to the SciChat wrapper API. Only required if Logbook is enabled.
+LOGBOOK_USERNAME="&lt;LOGBOOK_USERNAME&gt;"  // *Optional* The username used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
+LOGBOOK_PASSWORD="&lt;LOGBOOK_PASSWORD&gt;"  // *Optional* The password used to authenticate to the SciChat wrapper API. Only required if Logbook is enabled.
 METADATA_KEYS_RETURN_LIMIT=100  // *Optional* The return limit for the `/Datasets/metadataKeys` endpoint.
 METADATA_PARENT_INSTANCES_RETURN_LIMIT=100  // *Optional* The return limit of Datasets to extract metadata keys from for the `/Datasets/metadataKeys` endpoint.
-MONGODB_URI=&quot;mongodb://&lt;USERNAME&gt;:&lt;PASSWORD&gt;@&lt;HOST&gt;:27017/&lt;DB_NAME&gt;&quot;  // The URI for your MongoDB instance.
-OAI_PROVIDER_ROUTE=&quot;&lt;OAI_PROVIDER_ROUTE&gt;&quot;  // *Optional* URI to OAI provider, used for the `/publisheddata/:id/resync` endpoint.
-PID_PREFIX=&quot;&lt;PID_PREFIX&gt;&quot;  // The facility PID prefix, with trailing slash.
-PUBLIC_URL_PREFIX=&quot;https://doi.ess.eu/detail/&quot;  // The base URL to the facility Landing Page.
+MONGODB_URI="mongodb://&lt;USERNAME&gt;:&lt;PASSWORD&gt;@&lt;HOST&gt;:27017/&lt;DB_NAME&gt;"  // The URI for your MongoDB instance.
+OAI_PROVIDER_ROUTE="&lt;OAI_PROVIDER_ROUTE&gt;"  // *Optional* URI to OAI provider, used for the `/publisheddata/:id/resync` endpoint.
+PID_PREFIX="&lt;PID_PREFIX&gt;"  // The facility PID prefix, with trailing slash.
+PUBLIC_URL_PREFIX="https://doi.ess.eu/detail/"  // The base URL to the facility Landing Page.
 PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
-RABBITMQ_ENABLED=&lt;&quot;yes&quot;|&quot;no&quot;&gt;  *Optional* Flag to enable/disable RabbitMQ consumer. Values &quot;yes&quot; or &quot;no&quot;. Defaults to &quot;no&quot;.
-RABBITMQ_HOSTNAME=&quot;localhost&quot;  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-RABBITMQ_USERNAME=&quot;rabbitmq&quot;  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-RABBITMQ_PASSWORD=&quot;rabbitmq&quot;  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-REGISTER_DOI_URI=&quot;https://mds.test.datacite.org/doi&quot;  // URI to the organization that registers the facilities DOIs.
-REGISTER_METADATA_URI=&quot;https://mds.test.datacite.org/metadata&quot;  // URI to the organization that registers the facilities published data metadata.
+RABBITMQ_ENABLED=&lt;"yes"|"no"&gt;  *Optional* Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
+RABBITMQ_HOSTNAME="localhost"  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_USERNAME="rabbitmq"  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.
+REGISTER_METADATA_URI="https://mds.test.datacite.org/metadata"  // URI to the organization that registers the facilities published data metadata.
 SITE=&lt;SITE&gt;  // The name of your site.
 SMTP_HOST=&lt;SMTP_HOST&gt;  // Host of SMTP server.
 SMTP_MESSAGE_FROM=&lt;SMTP_MESSAGE_FROM&gt;  // Email address that emails should be sent from.
@@ -1191,8 +1191,8 @@ SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
 <pre><code>backend/src/config/doiconfig.local.json
 
 {
-  &quot;username&quot;: &quot;&lt;DOI_CONFIG_USERNAME&gt;&quot;,
-  &quot;password&quot;: &quot;&lt;DOI_CONFIG_PASSWORD&gt;&quot;
+  "username": "&lt;DOI_CONFIG_USERNAME&gt;",
+  "password": "&lt;DOI_CONFIG_PASSWORD&gt;"
 }
 </code></pre>
                                 
@@ -1237,7 +1237,7 @@ SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.1.4","depth":3,"next":{"title":"Theming","level":"1.5.1.5","depth":3,"path":"Development/v3.x/Theming.md","ref":"Development/v3.x/Theming.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/Configuration.md","mtime":"2024-08-23T11:57:34.567Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.1.4","depth":3,"next":{"title":"Theming","level":"1.5.1.5","depth":3,"path":"Development/v3.x/Theming.md","ref":"Development/v3.x/Theming.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/Configuration.md","mtime":"2024-10-22T13:28:07.172Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

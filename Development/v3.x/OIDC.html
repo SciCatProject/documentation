@@ -6,7 +6,7 @@
         <title>OIDC Integration · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1014,24 +1014,24 @@
 <h2 id="backend-configuration">Backend Configuration</h2>
 <p>Configuration of the backend for OIDC involves adding a provider to <code>providers.json</code> file. See <a href="StartHere.html">Start Here</a> for more information on configuring this file.</p>
 <p>Here is an example of a provider that uses Google as an authenticator. Google is used here because it is well-documented and commonly available.</p>
-<pre><code class="lang-json">    <span class="hljs-string">&quot;google&quot;</span>: {
-        <span class="hljs-string">&quot;provider&quot;</span>: <span class="hljs-string">&quot;oidc&quot;</span>,
-        <span class="hljs-string">&quot;authScheme&quot;</span>: <span class="hljs-string">&quot;openid connect&quot;</span>,
-        <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;passport-openidconnect&quot;</span>,
-        <span class="hljs-string">&quot;authPath&quot;</span>: <span class="hljs-string">&quot;/auth/google&quot;</span>,
-        <span class="hljs-string">&quot;successRedirect&quot;</span>: <span class="hljs-string">&quot;http://localhost/user&quot;</span>,
-        <span class="hljs-string">&quot;failureRedirect&quot;</span>: <span class="hljs-string">&quot;http://localhost/login&quot;</span>,
-        <span class="hljs-string">&quot;failureFlash&quot;</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-string">&quot;session&quot;</span>: <span class="hljs-literal">false</span>,
-        <span class="hljs-string">&quot;issuer&quot;</span>: <span class="hljs-string">&quot;https://accounts.google.com&quot;</span>,
-        <span class="hljs-string">&quot;authorizationURL&quot;</span>: <span class="hljs-string">&quot;https://accounts.google.com/o/oauth2/v2/auth&quot;</span>,
-        <span class="hljs-string">&quot;tokenURL&quot;</span>: <span class="hljs-string">&quot;https://oauth2.googleapis.com/token&quot;</span>,
-        <span class="hljs-string">&quot;userInfoURL&quot;</span>: <span class="hljs-string">&quot;https://openidconnect.googleapis.com/v1/userinfo&quot;</span>,
-        <span class="hljs-string">&quot;clientID&quot;</span>: <span class="hljs-string">&quot;...&quot;</span>,
-        <span class="hljs-string">&quot;clientSecret&quot;</span>: <span class="hljs-string">&quot;...&quot;</span>,
-        <span class="hljs-string">&quot;callbackURL&quot;</span>: <span class="hljs-string">&quot;http://localhost:3000/auth/google/callback&quot;</span>,
-        <span class="hljs-string">&quot;scope&quot;</span>: [<span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;profile&quot;</span>, <span class="hljs-string">&quot;openid&quot;</span>],
-        <span class="hljs-string">&quot;loginCallback&quot;</span>: <span class="hljs-string">&quot;sampleLoginCallback&quot;</span>
+<pre><code class="lang-json">    <span class="hljs-string">"google"</span>: {
+        <span class="hljs-string">"provider"</span>: <span class="hljs-string">"oidc"</span>,
+        <span class="hljs-string">"authScheme"</span>: <span class="hljs-string">"openid connect"</span>,
+        <span class="hljs-string">"module"</span>: <span class="hljs-string">"passport-openidconnect"</span>,
+        <span class="hljs-string">"authPath"</span>: <span class="hljs-string">"/auth/google"</span>,
+        <span class="hljs-string">"successRedirect"</span>: <span class="hljs-string">"http://localhost/user"</span>,
+        <span class="hljs-string">"failureRedirect"</span>: <span class="hljs-string">"http://localhost/login"</span>,
+        <span class="hljs-string">"failureFlash"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">"session"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">"issuer"</span>: <span class="hljs-string">"https://accounts.google.com"</span>,
+        <span class="hljs-string">"authorizationURL"</span>: <span class="hljs-string">"https://accounts.google.com/o/oauth2/v2/auth"</span>,
+        <span class="hljs-string">"tokenURL"</span>: <span class="hljs-string">"https://oauth2.googleapis.com/token"</span>,
+        <span class="hljs-string">"userInfoURL"</span>: <span class="hljs-string">"https://openidconnect.googleapis.com/v1/userinfo"</span>,
+        <span class="hljs-string">"clientID"</span>: <span class="hljs-string">"..."</span>,
+        <span class="hljs-string">"clientSecret"</span>: <span class="hljs-string">"..."</span>,
+        <span class="hljs-string">"callbackURL"</span>: <span class="hljs-string">"http://localhost:3000/auth/google/callback"</span>,
+        <span class="hljs-string">"scope"</span>: [<span class="hljs-string">"email"</span>, <span class="hljs-string">"profile"</span>, <span class="hljs-string">"openid"</span>],
+        <span class="hljs-string">"loginCallback"</span>: <span class="hljs-string">"sampleLoginCallback"</span>
     }
 </code></pre>
 <blockquote>
@@ -1044,8 +1044,8 @@
 <li><strong>authScheme</strong> is used by the loopback-passport-configurator to build a strategy</li>
 <li><strong>module</strong> describes the passport module to use. passport-openidconnect is already included in the backend</li>
 <li><strong>authPath</strong> is the path that the backend will create (with the help of loopback-passport-configurator) to begin the authentication process. The backend will redirect users to this path (once it is configured, of course!)</li>
-<li><strong>successRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on success. Here we set it to the a development environment&apos;s user page.</li>
-<li><strong>failureRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on failed authentication. Here we set it to the a development environment&apos;s user page login page.</li>
+<li><strong>successRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on success. Here we set it to the a development environment's user page.</li>
+<li><strong>failureRedirect</strong> is the URL passed to the OIDC provider instructing it to redirect the user on failed authentication. Here we set it to the a development environment's user page login page.</li>
 <li><strong>failureFlash</strong> is currently unsupported.</li>
 <li><strong>session</strong> is not needed, since the frontend authenticates outside of sessions.</li>
 <li><strong>authorizationURL</strong> is specific to your OIDC provider</li>
@@ -1061,19 +1061,19 @@
 to create a login session for the user.
  This requires a <em>session secret</em> to be configured in <code>config.local.js</code>:</p>
 <pre><code> module.exports = {
-  expressSessionSecret: &quot;thisIsSuperSecretForUserSession&quot;
+  expressSessionSecret: "thisIsSuperSecretForUserSession"
 </code></pre><h2 id="scicat-frontend-configuration">SciCat Frontend Configuration</h2>
 <p>The default login page in the frontend provides a username/password form that is used both for local and LDAP/AD authentication. When using and OIDC authentication provider, SciCat will not ask the user for credential directly. Instead, the user will be redirected to the OIDC provider to authenticate. So, the frontend provides two configuration settings to modify the login page appropriately.</p>
 <p>These setting are accomplished by modifying the frontend <a href="Environment.md">environment document</a>. </p>
 <pre><code class="lang-javascript">
   <span class="hljs-attr">loginFormEnabled</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">oAuth2Endpoints</span>: [
-    {<span class="hljs-attr">displayText</span>: <span class="hljs-string">&quot;Google&quot;</span>, <span class="hljs-attr">displayImage</span>: <span class="hljs-string">&quot;../../../assets/images/btn_google_light_normal_ios.svg&quot;</span>, <span class="hljs-attr">authURL</span>: <span class="hljs-string">&quot;auth/google&quot;</span>}]
+    {<span class="hljs-attr">displayText</span>: <span class="hljs-string">"Google"</span>, <span class="hljs-attr">displayImage</span>: <span class="hljs-string">"../../../assets/images/btn_google_light_normal_ios.svg"</span>, <span class="hljs-attr">authURL</span>: <span class="hljs-string">"auth/google"</span>}]
 </code></pre>
 <ul>
 <li><strong>loginFormEnabled</strong> sets whether to display the username/password form in the login page</li>
-<li><strong>oAuth2Endpoints</strong> provides information that the frontend uses to display &quot;Sign in with ...&quot; buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.<ul>
-<li><strong>displayText</strong> sets the name of the provider to display in the button. In this case, the button will show &quot;Sign In With Google&quot;</li>
+<li><strong>oAuth2Endpoints</strong> provides information that the frontend uses to display "Sign in with ..." buttons. Note that this is an array, multiple buttons for multiple OIDC providers can be configured.<ul>
+<li><strong>displayText</strong> sets the name of the provider to display in the button. In this case, the button will show "Sign In With Google"</li>
 <li><strong>displayImage</strong> defines an image to display in the button. The image will end up being 24px tall. It is recommended that the image be in SVG format.</li>
 <li><strong>authURL</strong> defines the relative path that the user will be redirected to when they click the button. Note that this maps to the <code>authPath</code> setting described above.</li>
 </ul>
@@ -1089,70 +1089,70 @@ to create a login session for the user.
 <p>In <a href="#backend-configuration">Backend Configuration</a>, we configured the loginCallback. The value of this file is the name of a function that must be defined and exported. See <a href="https://github.com/SciCatProject/backend/blob/develop/server/boot/login-callbacks.js" target="_blank">login-call.js</a> for details.</p>
 <p>Code snippet is presented for as an example, omitting the particular details about communicating with an external system:</p>
 <pre><code class="lang-javascript">
-<span class="hljs-built_in">module</span>.exports.sampleLoginCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, done</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, user, identity, token</span>) </span>{
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>.<span class="hljs-property">sampleLoginCallback</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">req, done</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">err, user, identity, token</span>) {
 
     <span class="hljs-keyword">var</span> authInfo = {
       <span class="hljs-attr">identity</span>: identity,
     };
     <span class="hljs-keyword">if</span> (token) {
-      authInfo.accessToken = token;
+      authInfo.<span class="hljs-property">accessToken</span> = token;
     }
 
-    <span class="hljs-keyword">const</span> requestURL = getUserURL(identity);
+    <span class="hljs-keyword">const</span> requestURL = <span class="hljs-title function_">getUserURL</span>(identity);
     <span class="hljs-keyword">if</span> (!requestURL){
-      logger.logError(<span class="hljs-string">`unexpected authenticator type: <span class="hljs-subst">${identity.provider}</span>`</span>);
-      done();
+      logger.<span class="hljs-title function_">logError</span>(<span class="hljs-string">`unexpected authenticator type: <span class="hljs-subst">${identity.provider}</span>`</span>);
+      <span class="hljs-title function_">done</span>();
       <span class="hljs-keyword">return</span>;
     }
-    request(requestURL, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, body</span>) </span>{
-      <span class="hljs-comment">// ask external system for the user&apos;s profile information</span>
+    <span class="hljs-title function_">request</span>(requestURL, <span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, body</span>) {
+      <span class="hljs-comment">// ask external system for the user's profile information</span>
       <span class="hljs-keyword">if</span> (error){
         <span class="hljs-comment">// and error occurred talking to the external system (possibly from a connection issue)...deny login</span>
-        logger.logError(<span class="hljs-string">`error talking to external <span class="hljs-subst">${error.message}</span>`</span>);
-        done(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+        logger.<span class="hljs-title function_">logError</span>(<span class="hljs-string">`error talking to external <span class="hljs-subst">${error.message}</span>`</span>);
+        <span class="hljs-title function_">done</span>(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
         <span class="hljs-keyword">return</span>;
       }
-      <span class="hljs-keyword">if</span> (response.statusCode == <span class="hljs-number">200</span>) {
-        <span class="hljs-keyword">const</span> bodyObj = <span class="hljs-built_in">JSON</span>.parse(body);
-        logger.logInfo(<span class="hljs-string">&quot;user service returned&quot;</span>, bodyObj);
+      <span class="hljs-keyword">if</span> (response.<span class="hljs-property">statusCode</span> == <span class="hljs-number">200</span>) {
+        <span class="hljs-keyword">const</span> bodyObj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(body);
+        logger.<span class="hljs-title function_">logInfo</span>(<span class="hljs-string">"user service returned"</span>, bodyObj);
       }
       <span class="hljs-keyword">else</span>{
-        logger.logError(<span class="hljs-string">`external system replied with an error <span class="hljs-subst">${response.statusCode}</span> - <span class="hljs-subst">${body}</span>.`</span>);
+        logger.<span class="hljs-title function_">logError</span>(<span class="hljs-string">`external system replied with an error <span class="hljs-subst">${response.statusCode}</span> - <span class="hljs-subst">${body}</span>.`</span>);
         <span class="hljs-comment">// external system replied with a negative response...deny login</span>
-        done(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+        <span class="hljs-title function_">done</span>(err, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
         <span class="hljs-keyword">return</span>;
       }
       <span class="hljs-comment">//accept login</span>
-      done(err, user, authInfo);
+      <span class="hljs-title function_">done</span>(err, user, authInfo);
     });
   };
 };
 </code></pre>
-<h3 id="add-information-to-users-profile">Add information to User&apos;s Profile</h3>
-<p>By default profile information from the Authentication Provider will be added to the user&apos;s profile. This profile is stored in the DaCat database <code>UserIdentity</code> collection. This collection is created by the loopback-component-passport library, and is also used for LDAP authentication. The backend LDAP integrations populate this collection with the user&apos;s LDAP profile information automatically with a callback. One of the most important things that is added to the profile is the user&apos;s accessGroups field, which is critical to calculating a user&apos;s privilege in SciCat.</p>
+<h3 id="add-information-to-users-profile">Add information to User's Profile</h3>
+<p>By default profile information from the Authentication Provider will be added to the user's profile. This profile is stored in the DaCat database <code>UserIdentity</code> collection. This collection is created by the loopback-component-passport library, and is also used for LDAP authentication. The backend LDAP integrations populate this collection with the user's LDAP profile information automatically with a callback. One of the most important things that is added to the profile is the user's accessGroups field, which is critical to calculating a user's privilege in SciCat.</p>
 <p>One way to mimic this with an OAuth2 provider is to use a <code>before save</code> <a href="https://loopback.io/doc/en/lb3/Operation-hooks.html" target="_blank">Loopback Operation Hook</a>. This hook will get called as the user logs in and allows you to add information to the <code>UserIdentity</code> collection, which will be used in a variety of places, including access controls.</p>
 <p>The following code snippet is presented for as an example, omitting the particular details about communicating with an external system:</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Observe saving UserIdentity. This gives us the ability to update the user profile with facility-specific groups</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) </span>{
-  app.models.UserIdentity.observe(<span class="hljs-string">&quot;before save&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ctx, next</span>) </span>{
-    <span class="hljs-keyword">if</span> (!ctx.data){
-      logger.logInfo(<span class="hljs-string">&quot;No context data from UserIdentity&quot;</span>);
-      next();
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) {
+  app.<span class="hljs-property">models</span>.<span class="hljs-property">UserIdentity</span>.<span class="hljs-title function_">observe</span>(<span class="hljs-string">"before save"</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">ctx, next</span>) {
+    <span class="hljs-keyword">if</span> (!ctx.<span class="hljs-property">data</span>){
+      logger.<span class="hljs-title function_">logInfo</span>(<span class="hljs-string">"No context data from UserIdentity"</span>);
+      <span class="hljs-title function_">next</span>();
       <span class="hljs-keyword">return</span>;
     }
-    request(userURL, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, _body</span>) </span>{
+    <span class="hljs-title function_">request</span>(userURL, <span class="hljs-keyword">function</span> (<span class="hljs-params">error, response, _body</span>) {
       <span class="hljs-comment">// ask external system for user information so we can get group info</span>
       <span class="hljs-keyword">if</span> (error){
-        logger.logError(<span class="hljs-string">`error talking to external system <span class="hljs-subst">${error.message}</span>`</span>);
-        next();
+        logger.<span class="hljs-title function_">logError</span>(<span class="hljs-string">`error talking to external system <span class="hljs-subst">${error.message}</span>`</span>);
+        <span class="hljs-title function_">next</span>();
         <span class="hljs-keyword">return</span>;
       }
-      <span class="hljs-keyword">if</span> (response.statusCode == <span class="hljs-number">200</span>){
+      <span class="hljs-keyword">if</span> (response.<span class="hljs-property">statusCode</span> == <span class="hljs-number">200</span>){
         <span class="hljs-comment">// add groups to profile, saving in the UserIdentity model</span>
-        ctx.data.profile.accessGroups = <span class="hljs-built_in">JSON</span>.parse(response.body).groups;
+        ctx.<span class="hljs-property">data</span>.<span class="hljs-property">profile</span>.<span class="hljs-property">accessGroups</span> = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(response.<span class="hljs-property">body</span>).<span class="hljs-property">groups</span>;
       }
-      next();
+      <span class="hljs-title function_">next</span>();
     });
   });
 };
@@ -1200,7 +1200,7 @@ to create a login session for the user.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OIDC Integration","level":"1.5.1.7","depth":3,"next":{"title":"State Management in Angular","level":"1.5.1.8","depth":3,"path":"Development/v3.x/Ngrx.md","ref":"Development/v3.x/Ngrx.md","articles":[]},"previous":{"title":"Login and Accounts","level":"1.5.1.6","depth":3,"path":"Development/v3.x/Login.md","ref":"Development/v3.x/Login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/OIDC.md","mtime":"2024-08-23T11:57:34.571Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OIDC Integration","level":"1.5.1.7","depth":3,"next":{"title":"State Management in Angular","level":"1.5.1.8","depth":3,"path":"Development/v3.x/Ngrx.md","ref":"Development/v3.x/Ngrx.md","articles":[]},"previous":{"title":"Login and Accounts","level":"1.5.1.6","depth":3,"path":"Development/v3.x/Login.md","ref":"Development/v3.x/Login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/OIDC.md","mtime":"2024-10-22T13:28:07.172Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

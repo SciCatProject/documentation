@@ -6,7 +6,7 @@
         <title>Overview of Backend and Model · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1012,9 +1012,9 @@
                                 <h2 id="overview-of-backend-and-model">Overview of Backend and Model</h2>
 <p>This page provides a brief introduction to the overall workings of the SciCat data model, how things connect and links to more details on each component.</p>
 <h3 id="backend">Backend</h3>
-<p>First off, the backend is the key component here and you will see there is next to hand written code here (aside from some tests). The folder you will be working in most is: <code>common/models</code> and this is NodeJS application based on the Loopback framework. Go away and read the docs for Loopback (3) and come back here when you are fairly comfortable. I&apos;ll wait.</p>
+<p>First off, the backend is the key component here and you will see there is next to hand written code here (aside from some tests). The folder you will be working in most is: <code>common/models</code> and this is NodeJS application based on the Loopback framework. Go away and read the docs for Loopback (3) and come back here when you are fairly comfortable. I'll wait.</p>
 <p>Got it? Good. OK, so, SciCat stores all of its data in a MongoDB but you will almost never need to perform any admin on the database. The connection between loopback and Mongo is handled by the loopback-mongo-connector. The only thing you need to provide is the file in <code>server/datasources.json</code> , this provides the connection string and any connection specific info.</p>
-<p>If you take a look at a model, you will see that some of them have a datasource of <code>transient</code> and others are specified as MongoDB. The <code>transient</code> models are not stored or handled by the mongo connector. You will see some other sections, so let&apos;s go through them:</p>
+<p>If you take a look at a model, you will see that some of them have a datasource of <code>transient</code> and others are specified as MongoDB. The <code>transient</code> models are not stored or handled by the mongo connector. You will see some other sections, so let's go through them:</p>
 <h4 id="model-definitions">Model Definitions:</h4>
 <ul>
 <li>Properties: These are the values, types and other information. None of these are mongo specific and can all map to a relational database just as easily.</li>
@@ -1039,40 +1039,40 @@
 </ul>
 <h4 id="editing-the-configs">Editing the Configs</h4>
 <h5 id="datasourcesjson">datasources.json</h5>
-<p>Make sure that the host field of the json is configured to your mongo hostname e.g. for a local instance of mongo with hostname &quot;mongodb&quot;:</p>
-<pre><code>   &quot;mongo&quot;: {
-      &quot;host&quot;: &quot;mongodb&quot;,
-      &quot;port&quot;: 27017,
-      &quot;url&quot;: &quot;&quot;,
-      &quot;database&quot;: &quot;dacat&quot;,
-      &quot;name&quot;: &quot;mongo&quot;,
-      &quot;connector&quot;: &quot;mongodb&quot;,
-      &quot;useNewUrlParser&quot;: true,
-      &quot;allowExtendedOperators&quot;:true
+<p>Make sure that the host field of the json is configured to your mongo hostname e.g. for a local instance of mongo with hostname "mongodb":</p>
+<pre><code>   "mongo": {
+      "host": "mongodb",
+      "port": 27017,
+      "url": "",
+      "database": "dacat",
+      "name": "mongo",
+      "connector": "mongodb",
+      "useNewUrlParser": true,
+      "allowExtendedOperators":true
     }
 </code></pre><h5 id="configlocaljs">config.local.js</h5>
 <p>Here you can configure many aspects of scicat for your institute. Here is an example config file, where you delete parts to turn off certain features:</p>
-<pre><code>var p = require(&apos;../package.json&apos;);
-var version = p.version.split(&apos;.&apos;).shift();
+<pre><code>var p = require('../package.json');
+var version = p.version.split('.').shift();
 module.exports = {
-    restApiRoot: &apos;/api&apos; + (version &gt; 0 ? &apos;/v&apos; + version : &apos;&apos;),
-    host: process.env.HOST || &apos;0.0.0.0&apos;,
+    restApiRoot: '/api' + (version &gt; 0 ? '/v' + version : ''),
+    host: process.env.HOST || '0.0.0.0',
     port: process.env.PORT || 3000,
-    pidPrefix: &apos;PutYourPIDPrefixHere&apos;,
+    pidPrefix: 'PutYourPIDPrefixHere',
     policyPublicationShiftInYears: 3,
     policyRetentionShiftInYears: 10,
-    site: &apos;YOUR-SITE&apos;,
-    facilities: [&quot;Facility1&quot;, &quot;Facility2&quot;],
+    site: 'YOUR-SITE',
+    facilities: ["Facility1", "Facility2"],
     metadataKeysReturnLimit: 100,
-    registerMetadataUri : &quot;https://mds.test.datacite.org/metadata&quot;,
-    registerDoiUri : &quot;https://mds.test.datacite.org/doi&quot;,
+    registerMetadataUri : "https://mds.test.datacite.org/metadata",
+    registerDoiUri : "https://mds.test.datacite.org/doi",
     grayLog: {
       enabled: false,
-      host: &quot;my.graylog.host&quot;,
+      host: "my.graylog.host",
       port: 0000,
-      facility: &quot;facility&quot;,
-      owner: &quot;owner&quot;,
-      service: &quot;service&quot;
+      facility: "facility",
+      owner: "owner",
+      service: "service"
     },
     # Add to this section if you want to use RabbitMQ for the Proposals mechanism
     rabbitmq: {
@@ -1083,57 +1083,57 @@ module.exports = {
     },
     # Remove this if you want to use the Jobs mechanism without SMTP or configure for your SMTP service.
     smtpSettings: {
-      host: &apos;SMTP.YOUR.DOMAIN&apos;,
+      host: 'SMTP.YOUR.DOMAIN',
       port: 25,
       secure: false    },
     smtpMessage: {
-      from: &apos;scicatarchivemanager@YOUR.DOMAIN&apos;,
+      from: 'scicatarchivemanager@YOUR.DOMAIN',
       to: undefined,
-      subject: &apos;[SciCat &apos;+process.env.NODE_ENV+&apos;]&apos;,
+      subject: '[SciCat '+process.env.NODE_ENV+']',
       text: undefined // can also set html key and this will override this
     },
     # Keep this if you want to set your queue service to rabbitmq, remove if you are not using a messaging service
-    queue: &apos;rabbitmq&apos;
+    queue: 'rabbitmq'
 };
 </code></pre><h5 id="component-configjson">component-config.json</h5>
-<p>If you want to use RabbitMQ to reach out to a microservice through the Jobs mechanism in Scicat you will need to edit the component-config.json file. You will also need to add the <code>queue: &quot;rabbitmq&quot;</code> line in the 
+<p>If you want to use RabbitMQ to reach out to a microservice through the Jobs mechanism in Scicat you will need to edit the component-config.json file. You will also need to add the <code>queue: "rabbitmq"</code> line in the 
 config.local.js file for this to work (see above section.) In order to connect to rabbitMQ you will need a user and password already defined in a rabbitMQ service to connect and the service should be up and running.
 To set this up add the following to the component-config.json and change the username and password to those you have defined in your rabbitMQ service. Also edit the hostname in the <code>uri</code> field to be the hostname of your RabbitMQ service. </p>
-<pre><code>&quot;../node_modules/loopback-component-mq/lib&quot;:{
-&quot;options&quot;:{
-&quot;restPort&quot;:15672,
-&quot;acls&quot;:[
+<pre><code>"../node_modules/loopback-component-mq/lib":{
+"options":{
+"restPort":15672,
+"acls":[
 {
-&quot;accessType&quot;:&quot;*&quot;,
-&quot;principalType&quot;:&quot;ROLE&quot;,
-&quot;principalId&quot;:&quot;$unauthenticated&quot;,
-&quot;permission&quot;:&quot;DENY&quot;
+"accessType":"*",
+"principalType":"ROLE",
+"principalId":"$unauthenticated",
+"permission":"DENY"
 }
 ]
 },
-&quot;topology&quot;:{
-&quot;connection&quot;:{
-&quot;uri&quot;:&quot;amqp://&lt;username&gt;:&lt;password&gt;@&lt;rabbitmqhost&gt;:5672/&quot;
+"topology":{
+"connection":{
+"uri":"amqp://&lt;username&gt;:&lt;password&gt;@&lt;rabbitmqhost&gt;:5672/"
 },
-&quot;exchanges&quot;:[
+"exchanges":[
 {
-&quot;name&quot;:&quot;jobs.write&quot;,
-&quot;type&quot;:&quot;topic&quot;,
-&quot;persistent&quot;:true
+"name":"jobs.write",
+"type":"topic",
+"persistent":true
 }
 ],
-&quot;queues&quot;:[
+"queues":[
 {
-&quot;name&quot;:&quot;client.jobs.write&quot;,
-&quot;subscribe&quot;:true
+"name":"client.jobs.write",
+"subscribe":true
 }
 ],
-&quot;bindings&quot;:[
+"bindings":[
 {
-&quot;exchange&quot;:&quot;jobs.write&quot;,
-&quot;target&quot;:&quot;client.jobs.write&quot;,
-&quot;keys&quot;:[
-&quot;jobqueue&quot;
+"exchange":"jobs.write",
+"target":"client.jobs.write",
+"keys":[
+"jobqueue"
 ]
 }
 ]
@@ -1188,7 +1188,7 @@ To set this up add the following to the component-config.json and change the use
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"next":{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"path":"Development/v3.x/Data_Model.md","ref":"Development/v3.x/Data_Model.md","articles":[]},"previous":{"title":"v3.x","level":"1.5.1","depth":2,"path":"Development/v3.x/README.md","ref":"Development/v3.x/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"path":"Development/v3.x/StartHere.md","ref":"Development/v3.x/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"path":"Development/v3.x/Data_Model.md","ref":"Development/v3.x/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},{"title":"Configuration","level":"1.5.1.4","depth":3,"path":"Development/v3.x/Configuration.md","ref":"Development/v3.x/Configuration.md","articles":[]},{"title":"Theming","level":"1.5.1.5","depth":3,"path":"Development/v3.x/Theming.md","ref":"Development/v3.x/Theming.md","articles":[]},{"title":"Login and Accounts","level":"1.5.1.6","depth":3,"path":"Development/v3.x/Login.md","ref":"Development/v3.x/Login.md","articles":[]},{"title":"OIDC Integration","level":"1.5.1.7","depth":3,"path":"Development/v3.x/OIDC.md","ref":"Development/v3.x/OIDC.md","articles":[]},{"title":"State Management in Angular","level":"1.5.1.8","depth":3,"path":"Development/v3.x/Ngrx.md","ref":"Development/v3.x/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.1.9","depth":3,"path":"Development/v3.x/Testing_backend.md","ref":"Development/v3.x/Testing_backend.md","articles":[]},{"title":"Testing Frontend","level":"1.5.1.10","depth":3,"path":"Development/v3.x/Testing.md","ref":"Development/v3.x/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.1.11","depth":3,"path":"Development/v3.x/Contributing.md","ref":"Development/v3.x/Contributing.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.1.12","depth":3,"path":"Development/v3.x/Development_Methods.md","ref":"Development/v3.x/Development_Methods.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/StartHere.md","mtime":"2024-08-23T11:57:34.571Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"next":{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"path":"Development/v3.x/Data_Model.md","ref":"Development/v3.x/Data_Model.md","articles":[]},"previous":{"title":"v3.x","level":"1.5.1","depth":2,"path":"Development/v3.x/README.md","ref":"Development/v3.x/README.md","articles":[{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"path":"Development/v3.x/StartHere.md","ref":"Development/v3.x/StartHere.md","articles":[]},{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"path":"Development/v3.x/Data_Model.md","ref":"Development/v3.x/Data_Model.md","articles":[]},{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},{"title":"Configuration","level":"1.5.1.4","depth":3,"path":"Development/v3.x/Configuration.md","ref":"Development/v3.x/Configuration.md","articles":[]},{"title":"Theming","level":"1.5.1.5","depth":3,"path":"Development/v3.x/Theming.md","ref":"Development/v3.x/Theming.md","articles":[]},{"title":"Login and Accounts","level":"1.5.1.6","depth":3,"path":"Development/v3.x/Login.md","ref":"Development/v3.x/Login.md","articles":[]},{"title":"OIDC Integration","level":"1.5.1.7","depth":3,"path":"Development/v3.x/OIDC.md","ref":"Development/v3.x/OIDC.md","articles":[]},{"title":"State Management in Angular","level":"1.5.1.8","depth":3,"path":"Development/v3.x/Ngrx.md","ref":"Development/v3.x/Ngrx.md","articles":[]},{"title":"Testing Backend","level":"1.5.1.9","depth":3,"path":"Development/v3.x/Testing_backend.md","ref":"Development/v3.x/Testing_backend.md","articles":[]},{"title":"Testing Frontend","level":"1.5.1.10","depth":3,"path":"Development/v3.x/Testing.md","ref":"Development/v3.x/Testing.md","articles":[]},{"title":"Contributing","level":"1.5.1.11","depth":3,"path":"Development/v3.x/Contributing.md","ref":"Development/v3.x/Contributing.md","articles":[]},{"title":"Git Flow Workflow","level":"1.5.1.12","depth":3,"path":"Development/v3.x/Development_Methods.md","ref":"Development/v3.x/Development_Methods.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/StartHere.md","mtime":"2024-10-22T13:28:07.172Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

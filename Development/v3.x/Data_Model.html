@@ -6,7 +6,7 @@
         <title>An Introduction to the Data Model · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1013,7 +1013,7 @@
 <h2 id="model">Model</h2>
 <p>There are many models within the catalog and many of them are self explanatory. The API server creates routes for creation, retrieval, modification and deletion. However, it is worth explaining the core models that are used.</p>
 <p>The following graph shows a simplified class diagramm of the main model classes. It was generated semi-automatically from the swagger.json file using the <a href="https://github.com/opendata-for-all/wapiml" target="_blank">WAPIml tool</a></p>
-<p><img src="img/Class_Diagram.PNG" alt="Model Diagram"></p>
+<p><img src="img/Class_Diagram.PNG" alt="Model Diagram"></img></p>
 <h3 id="the-ownable-base-model">The Ownable base model</h3>
 <p>Most models inherit the ownable base model which regulates access based on the ownerGroup/ accessGroups fields. Relationships are defined by including the ID of the respective model (handled by loopback model definitions).</p>
 <h3 id="dataset">Dataset</h3>
@@ -1051,7 +1051,7 @@ contain links to the corresponding Proposal.</p>
 <p>You should always add the <code>OrigDataBlock</code> information when ingesting, whereas the Datablocks information is optional and would be filled later by the archive system, when it did its work of writing chunks of data to tape. For instance, a <code>Datablock</code>can correspond to a single tar file which is written to tape and the contents of the Datablock is essentially the file listing of the tar file.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/OrigDatablock.create" target="_blank">here</a> and <a href="https://scicatproject.github.io/api/#operation/Datablock.create" target="_blank">here</a>.</p>
 <h3 id="job">Job</h3>
-<p>When a user wants to archive, retrieve or publish a dataset, SciCat must interact with the facility&apos;s storage and archiving system. This is done by creating a <code>Job</code> to track the interaction. The exact actions taken for each Job are often customized for each facility. A common action would be to forward the new Job entry to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. For example, at PSI the RabbitMQ queue is emptied by a Node-RED process, which reads the Job information from the RabbitMQ queue. Alternatively, you can use other messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with status updates to the Job model, when there job is finished. As the job progresses, the system can make PUT/PATCH API calls back that update the <code>Job Status Message</code> and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.</p>
+<p>When a user wants to archive, retrieve or publish a dataset, SciCat must interact with the facility's storage and archiving system. This is done by creating a <code>Job</code> to track the interaction. The exact actions taken for each Job are often customized for each facility. A common action would be to forward the new Job entry to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. For example, at PSI the RabbitMQ queue is emptied by a Node-RED process, which reads the Job information from the RabbitMQ queue. Alternatively, you can use other messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with status updates to the Job model, when there job is finished. As the job progresses, the system can make PUT/PATCH API calls back that update the <code>Job Status Message</code> and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/Job.create" target="_blank">here</a>.</p>
 <h3 id="proposals">Proposals</h3>
 <p>A proposal is a written intention declaration of what kind of measurement people want to perform when and where. Such information is often available in an existing system outside of the data catalog, like digital user office systems for institutes which offer their instruments to other users.</p>
@@ -1076,17 +1076,17 @@ contain links to the corresponding Proposal.</p>
 <p>The API explorer is a feature of Loopback and allows one to test various endpoints. This section outlines the core functionality. The first point to note is that requests require a token. You can use the <code>login</code> route under the <code>User</code> tab to obtain one of these, or use a CURL command.</p>
 <h3 id="main-screen">Main Screen</h3>
 <p>The top right entry field is where the token should be included. The token will define your access rights, so not all routes will be accessible. Each model has a tab which relates to its endpoint. Expanding the tab shows the routes section below.</p>
-<p><img src="img/explorer.png" alt="explorer"></p>
+<p><img src="img/explorer.png" alt="explorer"></img></p>
 <h3 id="routes">Routes</h3>
 <p>Each section outlines the routes for the chosen model. This is configurable but the HTTP verbs are supported here for most routes and conform to the standards. Error codes are also consistent. Expanding the chosen route allows one to test the response with sample data, or their own.</p>
-<p><img src="img/explorer_routes.png" alt="routes"></p>
+<p><img src="img/explorer_routes.png" alt="routes"></img></p>
 <h3 id="single-route">Single Route</h3>
 <p>Selecting a route shows the expected JSON object and provides an editor to allow you to test the route. Response information is shown below.
 Clicking the <code>data type</code> box will insert it into your request for easy testing.</p>
-<p><img src="img/explorer_single_route.png" alt="route"></p>
+<p><img src="img/explorer_single_route.png" alt="route"></img></p>
 <h3 id="model">Model</h3>
 <p>The model view can be accessed by clicking the link next to <code>Example Value</code> and shows the fields that Loopback is expecting to receive, as well as their type and whether they are required.</p>
-<p><img src="img/explorer_model.png" alt="model"></p>
+<p><img src="img/explorer_model.png" alt="model"></img></p>
 
                                 
                                 </section>
@@ -1130,7 +1130,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"next":{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"path":"Development/v3.x/StartHere.md","ref":"Development/v3.x/StartHere.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/Data_Model.md","mtime":"2024-08-23T11:57:34.567Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.1.2","depth":3,"next":{"title":"Running the Components","level":"1.5.1.3","depth":3,"path":"Development/v3.x/Running.md","ref":"Development/v3.x/Running.md","articles":[]},"previous":{"title":"Overview of Backend and Model","level":"1.5.1.1","depth":3,"path":"Development/v3.x/StartHere.md","ref":"Development/v3.x/StartHere.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v3.x/Data_Model.md","mtime":"2024-10-22T13:28:07.172Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

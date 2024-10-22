@@ -6,7 +6,7 @@
         <title>Elastic Search · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1077,7 +1077,7 @@
 </tbody>
 </table>
 <h2 id="note-">** NOTE **</h2>
-<p><code>ES_REFRESH=&quot;wait_for&quot;</code> is used for better testing flow. For production it should be set to false. Detailed docs about this setting can be found: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html" target="_blank">docs-refresh</a></p>
+<p><code>ES_REFRESH="wait_for"</code> is used for better testing flow. For production it should be set to false. Detailed docs about this setting can be found: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html" target="_blank">docs-refresh</a></p>
 <h1 id="steps-to-synchronize-data-with-elasitcsearch">Steps to synchronize data with Elasitcsearch</h1>
 <p>To enable search queries in Elasticsearch, you should adhere to the following steps:</p>
 <ol>
@@ -1088,17 +1088,17 @@
 </ol>
 <p>If you see the following response, it means Elasticsearch is ready for use.</p>
 <pre><code>{
-  &quot;total&quot;: 21670,
-  &quot;failed&quot;: 0,
-  &quot;retry&quot;: 0,
-  &quot;successful&quot;: 21670,
-  &quot;noop&quot;: 0,
-  &quot;time&quot;: 4777,
-  &quot;bytes&quot;: 279159021,
-  &quot;aborted&quot;: false
+  "total": 21670,
+  "failed": 0,
+  "retry": 0,
+  "successful": 21670,
+  "noop": 0,
+  "time": 4777,
+  "bytes": 279159021,
+  "aborted": false
 }
 </code></pre><h1 id="index-analysis-and-mapping-settings">Index, analysis and mapping settings</h1>
-<p>Index settings in Elasticsearch are used to define various configurations and behaviors for an index. Index settings are vital for optimizing Elasticsearch&apos;s performance, relevance of search results, and resource management, ensuring that the index operates efficiently and effectively according to the specific needs of the application using it.</p>
+<p>Index settings in Elasticsearch are used to define various configurations and behaviors for an index. Index settings are vital for optimizing Elasticsearch's performance, relevance of search results, and resource management, ensuring that the index operates efficiently and effectively according to the specific needs of the application using it.</p>
 <p>Pre-defined index settings &amp; dynamic mapping for nested objects can be found <code>/src/elastic-search/configuration/indexSetting.ts</code></p>
 <p>Fields to be mapped into Elasticsearch index can be found <code>/src/elastic-search/configuration/datasetFieldMapping.ts</code></p>
 <p><strong>Index settings:</strong></p>
@@ -1118,11 +1118,11 @@
   analysis: {
     analyzer: {
       autocomplete: {
-        tokenizer: &quot;autocomplete&quot;,
-        filter: [&quot;lowercase&quot;],
+        tokenizer: "autocomplete",
+        filter: ["lowercase"],
       },
       autocomplete_search: {
-        tokenizer: &quot;lowercase&quot;,
+        tokenizer: "lowercase",
       },
     },
     tokenizer: {
@@ -1170,20 +1170,20 @@
 <pre><code>export const dynamic_template: Record&lt;string, MappingDynamicTemplate&gt;[] = [
   {
     string_as_keyword: {
-      path_match: &quot;scientificMetadata.*.*&quot;,
-      match_mapping_type: &quot;string&quot;,
+      path_match: "scientificMetadata.*.*",
+      match_mapping_type: "string",
       mapping: {
-        type: &quot;keyword&quot;,
+        type: "keyword",
         ignore_above: 256,
       },
     },
   },
   {
     long_as_double: {
-      path_match: &quot;scientificMetadata.*.*&quot;,
-      match_mapping_type: &quot;long&quot;,
+      path_match: "scientificMetadata.*.*",
+      match_mapping_type: "long",
       mapping: {
-        type: &quot;double&quot;,
+        type: "double",
         coerce: true,
         ignore_malformed: true,
       },
@@ -1191,10 +1191,10 @@
   },
   {
     date_as_keyword: {
-      path_match: &quot;scientificMetadata.*.*&quot;,
-      match_mapping_type: &quot;date&quot;,
+      path_match: "scientificMetadata.*.*",
+      match_mapping_type: "date",
       mapping: {
-        type: &quot;keyword&quot;,
+        type: "keyword",
         ignore_above: 256,
       },
     },
@@ -1228,7 +1228,7 @@
 </tr>
 <tr>
 <td>/api/v3/elastic-search/search</td>
-<td><code>{ &quot;text&quot;: &quot;&quot;, &quot;ownerGroup&quot;: [], &quot;creationLocation&quot;: [], &quot;type&quot;: [], &quot;keywords&quot;: [], &quot;isPublished&quot;: false, &quot;scientific&quot;: [{&quot;lhs&quot;: &quot;&quot;, &quot;relation&quot;: &quot;&quot;, &quot;rhs&quot;: 0, &quot;unit&quot;: &quot;&quot;}]}</code></td>
+<td><code>{ "text": "", "ownerGroup": [], "creationLocation": [], "type": [], "keywords": [], "isPublished": false, "scientific": [{"lhs": "", "relation": "", "rhs": 0, "unit": ""}]}</code></td>
 <td>body</td>
 <td>Search query</td>
 </tr>
@@ -1319,7 +1319,7 @@
 </tr>
 <tr>
 <td>ELASTIC_PASSWORD</td>
-<td>Password for the &apos;elastic&apos; user; not needed if security is disabled.</td>
+<td>Password for the 'elastic' user; not needed if security is disabled.</td>
 </tr>
 <tr>
 <td>bootstrap.memory_lock</td>
@@ -1377,7 +1377,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Samples","level":"1.5.2.4.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/elasticsearch/elasticsearch.md","mtime":"2024-08-23T11:57:34.583Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"next":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]},"previous":{"title":"Samples","level":"1.5.2.4.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/elasticsearch/elasticsearch.md","mtime":"2024-10-22T13:28:07.184Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

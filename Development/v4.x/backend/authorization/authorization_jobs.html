@@ -6,7 +6,7 @@
         <title>Jobs · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1011,7 +1011,7 @@
                                 
                                 <h1 id="jobs-authorization">Jobs Authorization</h1>
 <h2 id="casl-ability-actions">CASL ability actions</h2>
-<p>This is the list of the permissions methods available for Jobs and all their endpoints.<br>The authorization for jobs is consistently different from all the other endpoints </p>
+<p>This is the list of the permissions methods available for Jobs and all their endpoints.<br></br>The authorization for jobs is consistently different from all the other endpoints </p>
 <h3 id="endpoint-authorization">Endpoint Authorization</h3>
 <ul>
 <li>JobCreate</li>
@@ -1066,9 +1066,9 @@ graph LR;
 <td><em>JobCreate</em></td>
 <td><em>JobCreateConfiguration</em></td>
 <td><em>JobCreateConfiguration</em></td>
-<td>Any<br><em>JobsCreateOwner</em></td>
+<td>Any<br></br><em>JobsCreateOwner</em></td>
 <td><strong>no</strong></td>
-<td>Any<br><em>JobsCreateAny</em></td>
+<td>Any<br></br><em>JobsCreateAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
 </tr>
@@ -1077,10 +1077,10 @@ graph LR;
 <td>Jobs</td>
 <td><em>JobReadMany</em></td>
 <td><strong>no</strong></td>
-<td>Has Access<br><em>JobReadAccess</em></td>
-<td>Has Access<br><em>JobReadAccess</em></td>
+<td>Has Access<br></br><em>JobReadAccess</em></td>
+<td>Has Access<br></br><em>JobReadAccess</em></td>
 <td><strong>no</strong></td>
-<td>Any<br><em>JobReadAny</em></td>
+<td>Any<br></br><em>JobReadAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
 </tr>
@@ -1089,10 +1089,10 @@ graph LR;
 <td>Jobs/<em>jid</em></td>
 <td><em>JobReadOne</em></td>
 <td><strong>no</strong></td>
-<td>Has Access<br><em>JobReadAccess</em></td>
-<td>Has Access<br><em>JobReadAccess</em></td>
+<td>Has Access<br></br><em>JobReadAccess</em></td>
+<td>Has Access<br></br><em>JobReadAccess</em></td>
 <td><strong>no</strong></td>
-<td>Any<br><em>JobReadAny</em></td>
+<td>Any<br></br><em>JobReadAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
 </tr>
@@ -1103,8 +1103,8 @@ graph LR;
 <td><strong>no</strong></td>
 <td><em>JobStatusUpdateConfiguration</em></td>
 <td><strong>no</strong></td>
-<td>Owner<br><em>JobStatusUpdateOwner</em></td>
-<td>Any<br><em>JobStatusUpdateAny</em></td>
+<td>Owner<br></br><em>JobStatusUpdateOwner</em></td>
+<td>Any<br></br><em>JobStatusUpdateAny</em></td>
 <td><strong>no</strong></td>
 <td></td>
 </tr>
@@ -1122,7 +1122,7 @@ graph LR;
 </tbody>
 </table>
 <h4 id="job-create-authorization-table">Job Create Authorization Table</h4>
-<p>The <em>JobCreateConfiguration</em> authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br>Any positive match will results in the user acquiring <em>JobCreate</em> endpoint authorization which apply to the jobs endpoint POST:Jobs  </p>
+<p>The <em>JobCreateConfiguration</em> authorization permissions are configured directly in the <strong><em>create</em></strong> section of the job configuration.<br></br>Any positive match will results in the user acquiring <em>JobCreate</em> endpoint authorization which apply to the jobs endpoint POST:Jobs  </p>
 <table>
 <thead>
 <tr>
@@ -1187,7 +1187,7 @@ graph LR;
 </table>
 <p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing</p>
 <h4 id="job-status-update-authorization-table">Job Status Update Authorization Table</h4>
-<p>The <em>JobStatusUpdateConfiguration</em> authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br>Any positive match will results in the user acquiring  <em>JobStatusUpdate</em> endpoint authorization apply to the jobs endpoint POST:Jobs/statusUpdate  </p>
+<p>The <em>JobStatusUpdateConfiguration</em> authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br></br>Any positive match will results in the user acquiring  <em>JobStatusUpdate</em> endpoint authorization apply to the jobs endpoint POST:Jobs/statusUpdate  </p>
 <table>
 <thead>
 <tr>
@@ -1290,7 +1290,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-08-23T11:57:34.583Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2024-10-22T13:28:07.184Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

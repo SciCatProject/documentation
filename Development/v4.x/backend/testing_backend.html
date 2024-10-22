@@ -6,7 +6,7 @@
         <title>Backend · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1024,14 +1024,14 @@ The backend can be run from terminl with the command:</p>
 <p><code>npm run dev</code></p>
 <p>In a different terminal, you can run all the following tests:</p>
 <ul>
-<li>unit tests:<br><code>npm run test</code></li>
-<li>linting tests:<br><code>npm run lint</code></li>
+<li>unit tests:<br></br><code>npm run test</code></li>
+<li>linting tests:<br></br><code>npm run lint</code></li>
 <li>api tests based on mocha
 <code>npm run test:api:mocha</code></li>
 </ul>
 <p>If you would like to run the mocha tests directly, you can use the following command: </p>
 <p><code>mocha --config ./test/config/.mocharc.json --timeout=5000 --reporter=nyan</code></p>
-<p>If you are interested in a specific subset of API tests, you can add the <em>--grep</em> option to the mocha command.<br>For example if you are interested in running only the test named <em>Authorization functionalities</em>, you can use the following command:<br><code>mocha --config ./test/config/.mocharc.json --grep \&quot;Authorization functionalities\ --timeout=5000 --reporter=nyan</code></p>
+<p>If you are interested in a specific subset of API tests, you can add the <em>--grep</em> option to the mocha command.<br></br>For example if you are interested in running only the test named <em>Authorization functionalities</em>, you can use the following command:<br></br><code>mocha --config ./test/config/.mocharc.json --grep \"Authorization functionalities\ --timeout=5000 --reporter=nyan</code></p>
 <h2 id="coverage">Coverage</h2>
 <p>The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.</p>
@@ -1204,7 +1204,7 @@ The coverage might not be complete. If you find any use case  that is not covere
 </tbody>
 </table>
 <h2 id="test-data">Test data</h2>
-<p>It is our intention to save all test data in the file <code>TestData.js</code>.<br>In some cases, we need to code variation of the data directly in the test file.</p>
+<p>It is our intention to save all test data in the file <code>TestData.js</code>.<br></br>In some cases, we need to code variation of the data directly in the test file.</p>
 <h2 id="functional-and-test-accounts">Functional and Test accounts</h2>
 <p>All tests are performed assuming the following user accounts, groups and configuration are present.
 Users and groups can be defined in the configuration structure defined in <code>src/config/configuration.ts</code>, although the preferred method for configuring functional/tests accounts is through the <code>functional_accounts.json</code> file present in the following folder ``
@@ -1311,7 +1311,7 @@ Please make sure to change them, update their password or remove them entirely i
 <h2 id="test-details">Test Details</h2>
 <p>This section provides details on how all the tests files listed above are organized. Each subsection, provides a list of the test included in each file and the details of each one of them.</p>
 <ul>
-<li><a href>Datasets</a> </li>
+<li><a href="">Datasets</a> </li>
 <li><a href="testing/instrument.html">0900: Instrument</a></li>
 <li><a href="testing/user_authorization.html">2300: User Authorization</a></li>
 </ul>
@@ -1358,7 +1358,7 @@ Please make sure to change them, update their password or remove them entirely i
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2024-08-23T11:57:34.583Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2024-10-22T13:28:07.184Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>Ingest Manual PSI · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="generator" content="HonKit 5.1.4">
         
         
         
@@ -1083,9 +1083,9 @@
 <li><a href="#sec-11-3">11.3. Recommended file structure for raw datasets</a></li>
 <li><a href="#sec-11-4">11.4. Metadata Field Definitions</a>
 <ul>
-<li><a href="#sec-11-4-1">11.4.1. Metadata field definitions for datasets of type &quot;base&quot;</a></li>
-<li><a href="#sec-11-4-2">11.4.2. Additional fields for type=&quot;raw&quot;</a></li>
-<li><a href="#sec-11-4-3">11.4.3. Additional fields for type=&quot;derived&quot;</a></li>
+<li><a href="#sec-11-4-1">11.4.1. Metadata field definitions for datasets of type "base"</a></li>
+<li><a href="#sec-11-4-2">11.4.2. Additional fields for type="raw"</a></li>
+<li><a href="#sec-11-4-3">11.4.3. Additional fields for type="derived"</a></li>
 </ul>
 </li>
 <li><a href="#sec-11-5">11.5. About Scientific Values and Units</a></li>
@@ -1138,7 +1138,7 @@ Archive is designed to be suitable for:</p>
 <li>Data required to reproduce PSI research and publications, e.g FAIR data</li>
 </ul>
 <p>All data which are added to the data catalog must either not be
-classified or have a classification level of &quot;normal&quot;.
+classified or have a classification level of "normal".
 You are not allowed to add any personal or private data. You are not
 allowed to use the data catalog as a backup system. Data must come
 from scientific activities pursued at PSI. If data from external
@@ -1184,7 +1184,7 @@ many files into a single dataset. </p>
 catalog by providing both metadata about the dataset and the file
 listing comprising the dataset. For each dataset a persistent
 identifier (PID) is automatically created.</p>
-<p>It is important to note that the data catalog is a &quot;passive&quot; system in
+<p>It is important to note that the data catalog is a "passive" system in
 the sense that it has to be told if new data arrives. The data catalog
 has no direct access to the file systems containing the actual
 files. In contrast the <strong>datasetIngestor</strong> program is run from systems, which
@@ -1193,10 +1193,10 @@ have access to the data files.</p>
 these groups have access to the data, unless the dataset is being
 published. At PSI there are two types of ownerGroups,</p>
 <ul>
-<li>pgroups, starting with letter &quot;p&quot;. They are used for experimental
+<li>pgroups, starting with letter "p". They are used for experimental
 data linked to a proposal system. They are managed by the digital
 user office DUO</li>
-<li>a-groups, starting with &quot;a-&quot; for any other data to be archived</li>
+<li>a-groups, starting with "a-" for any other data to be archived</li>
 </ul>
 <p>Once data is contained in the data catalog, this information is
 considered to be stored permanently. However after a retention period
@@ -1240,7 +1240,7 @@ first. Installation is described in the appendix Installation of Tools</p>
   username/password is not possible for normal users (this limitation
   is caused by the switch to a new authentication protocol). The
   easiest to get such an API token is to sign it at
-  <a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a>, then follow the &quot;Login with PSI account&quot;
+  <a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a>, then follow the "Login with PSI account"
   button. This will bring you to the user settings page, from where
   you can copy the token with a click on the corresponding copy
   button. </p>
@@ -1267,7 +1267,7 @@ who is the owner etc. There are both mandatory and optional fields
 and the fields depend on the type of the dataset
 (generic/raw/derived), see Section 11.4
 below. The most important metadata field for ownership is the value
-of the &quot;ownerGroup&quot; field, which defines a group name, whose member
+of the "ownerGroup" field, which defines a group name, whose member
 have access to the data.</li>
 <li>scientific metadata: this depends on the scientific discipline and
 can be defined in a flexible way by respective research group. It is
@@ -1282,46 +1282,46 @@ principle be saved anywhere, but keeping it with your archived data is
 recommended.</p>
 <p>Here is a minimalistic example the file metadata.json for raw data:</p>
 <pre><code>{
-    &quot;creationLocation&quot;: &quot;/PSI/SLS/TOMCAT&quot;,
-    &quot;sourceFolder&quot;: &quot;/data/p16/p16623/June2020&quot;,
-    &quot;type&quot;: &quot;raw&quot;,
-    &quot;ownerGroup&quot;:&quot;p16623&quot;
+    "creationLocation": "/PSI/SLS/TOMCAT",
+    "sourceFolder": "/data/p16/p16623/June2020",
+    "type": "raw",
+    "ownerGroup":"p16623"
 }
 </code></pre><p>In the Appendix Use Case Examples you find many more examples for
 metadata.json files, both for raw and derived data.  Here is a more
 real life example from Bio department:</p>
 <pre><code>{
-    &quot;principalInvestigator&quot;: &quot;albrecht.gessler@psi.ch&quot;,
-    &quot;creationLocation&quot;: &quot;/PSI/EMF/JEOL2200FS&quot;,
-    &quot;dataFormat&quot;: &quot;TIFF+LZW Image Stack&quot;,
-    &quot;sourceFolder&quot;: &quot;/gpfs/group/LBR/pXXX/myimages&quot;,
-    &quot;datasetName&quot;: &quot;myimages&quot;,
-    &quot;owner&quot;: &quot;Wilhelm Tell&quot;,
-    &quot;ownerEmail&quot;: &quot;wilhelm.tell@psi.ch&quot;,
-    &quot;type&quot;: &quot;raw&quot;,
-    &quot;description&quot;: &quot;EM micrographs of amygdalin&quot;,
-    &quot;ownerGroup&quot;: &quot;a-12345&quot;,
-    &quot;scientificMetadata&quot;: {
-        &quot;sample&quot;: {
-            &quot;name&quot;: &quot;Amygdalin beta-glucosidase 1&quot;,
-            &quot;uniprot&quot;: &quot;P29259&quot;,
-            &quot;species&quot;: &quot;Apple&quot;
+    "principalInvestigator": "albrecht.gessler@psi.ch",
+    "creationLocation": "/PSI/EMF/JEOL2200FS",
+    "dataFormat": "TIFF+LZW Image Stack",
+    "sourceFolder": "/gpfs/group/LBR/pXXX/myimages",
+    "datasetName": "myimages",
+    "owner": "Wilhelm Tell",
+    "ownerEmail": "wilhelm.tell@psi.ch",
+    "type": "raw",
+    "description": "EM micrographs of amygdalin",
+    "ownerGroup": "a-12345",
+    "scientificMetadata": {
+        "sample": {
+            "name": "Amygdalin beta-glucosidase 1",
+            "uniprot": "P29259",
+            "species": "Apple"
         },
-        &quot;dataCollection&quot;: {
-            &quot;date&quot;: &quot;2018-08-01&quot;
+        "dataCollection": {
+            "date": "2018-08-01"
         },
-        &quot;microscopeParameters&quot;: {
-            &quot;pixel size&quot;: {
-                &quot;value&quot;: 0.885,
-                &quot;unit&quot;: &quot;A&quot;
+        "microscopeParameters": {
+            "pixel size": {
+                "value": 0.885,
+                "unit": "A"
             },
-            &quot;voltage&quot;: {
-                &quot;value&quot;: 200,
-                &quot;unit&quot;: &quot;kV&quot;
+            "voltage": {
+                "value": 200,
+                "unit": "kV"
             },
-            &quot;dosePerFrame&quot;: {
-                &quot;value&quot;: 1.277,
-                &quot;unit&quot;: &quot;e/A2&quot;
+            "dosePerFrame": {
+                "value": 1.277,
+                "unit": "e/A2"
             }
         }
     }
@@ -1340,7 +1340,7 @@ for data associated with a DUO experiment and p-group. Type <code>SciCat</code> 
 get started after loading the datacatalog module. The GUI also
 replaces the the command-line ingestion decribed below.</p>
 <p>After preparing your metadata.json file, run the following steps to
-ingest the data. First, perform a &quot;dry-run&quot; that will check the
+ingest the data. First, perform a "dry-run" that will check the
 metadata for errors: ( Please note that in the following only the
 Linux type notation is used. For the changes which apply to Windows
 see the separate section below)</p>
@@ -1382,9 +1382,9 @@ first. Therefore you need to specify all of the above parameters
 <p>Please also note the syntax, that has to be used for the definition of
 the sourceFolder inside the metadata.json file: this has to be in the
 following form:</p>
-<pre><code>&quot;sourceFolder&quot;: &quot;/C/Somefolder/etc&quot;,
-</code></pre><p>, i.e. <strong>forward slashes</strong> and <strong>no colon</strong> &quot;:&quot; after the drive letter like
-&quot;C:&quot; in this case.</p>
+<pre><code>"sourceFolder": "/C/Somefolder/etc",
+</code></pre><p>, i.e. <strong>forward slashes</strong> and <strong>no colon</strong> ":" after the drive letter like
+"C:" in this case.</p>
 <h3 id="for-linux">For Linux.<a id="sec-4-4-2" name="sec-4-4-2"></a></h3>
 <p>You must have a valid kerberos ticket in order to be able to copy the
 data to the intermediate storage server. You can use the kinit command
@@ -1395,15 +1395,15 @@ to get this ticket.</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -1502,15 +1502,15 @@ automatically as part of the ingestion</p>
 </code></pre><p>In this case directly after ingestion a job is created to copy the
 data to tape.  Your dataset should now be in the queue. Check the data
 catalog: <a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a>. Your job should have status
-&apos;WorkInProgress&apos;. You will receive an email when the ingestion is
+'WorkInProgress'. You will receive an email when the ingestion is
 complete.</p>
 <p>The second method is to use the discovery.psi.ch to interactively
-start the archive job: click on the &quot;Archivable&quot; button. You should
+start the archive job: click on the "Archivable" button. You should
 see the newly ingested datasets. Select all the datasets you want to
-have archived and click &apos;Archive&apos;. You should see the status change
-from &apos;datasetCreated&apos; to &apos;scheduleArchiveJob&apos;. This indicates that the
+have archived and click 'Archive'. You should see the status change
+from 'datasetCreated' to 'scheduleArchiveJob'. This indicates that the
 data is in the process of being transferred to CSCS. After some time
-the dataset&apos;s status will change to &apos;datasetOnAchive&apos; indicating the
+the dataset's status will change to 'datasetOnAchive' indicating the
 data is stored.</p>
 <p>A third option is to use a command line version datasetArchiver.</p>
 <pre><code>datasetArchiver [options] (ownerGroup | space separated list of datasetIds) 
@@ -1544,7 +1544,7 @@ central retrieve server. From there the data needs to be copied to the
 final destination system of your choice.</p>
 <h2 id="first-step">First Step<a id="sec-6-1" name="sec-6-1"></a></h2>
 <p>For the first step: login to <a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a> , find the
-datasets you want to retrieve and selected all &quot;Retrievable&quot; datasets
+datasets you want to retrieve and selected all "Retrievable" datasets
 by clicking the corresponding button. Finally click the retrieve
 button. This will create a retrieve job. Once it is finshed you will
 get an email. Depending on the size of your datasets this may take
@@ -1627,13 +1627,13 @@ sftp -P 4222 your-username@pb-retrieve.psi.ch
 # or for the test system
 sftp -P 4222 your-username@pbt-retrieve.psi.ch
 </code></pre><p>After the connection is built up you can copy files recursively,
-e.g. using the &quot;get -r *&quot; command. With the filezilla GUI you can
+e.g. using the "get -r *" command. With the filezilla GUI you can
 achieve the same via drag and drop operations</p>
 <h1 id="ingest-archive-and-retrieve-with-qt-desktop-application-scicat">Ingest, Archive and Retrieve with QT desktop application SciCat<a id="sec-7" name="sec-7"></a></h1>
 <h2 id="important-update-since-april-14th-2022">Important Update since April 14th 2022:<a id="sec-7-1" name="sec-7-1"></a></h2>
 <p>You currently first need to get a token before you can use SciCat: the
 easiest to get such an API token is to sign it at
-<a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a>, then follow the &quot;Login with PSI account&quot;
+<a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a>, then follow the "Login with PSI account"
 button. This will bring you to the user settings page, from where you
 can copy the token with a click on the corresponding copy button.</p>
 <h2 id="general-considerations">General considerations<a id="sec-7-2" name="sec-7-2"></a></h2>
@@ -1667,24 +1667,24 @@ enter your PSI credentials. Functional accounts are not supported. </p>
 <h2 id="pgroup-selection">Pgroup selection<a id="sec-7-5" name="sec-7-5"></a></h2>
 <p>The first step is always to select the pgroup. If there is no proposal assigned to 
 this account, you will have to specify the information about the PI manually. </p>
-<p><img src="screenshots/proposal_found.png" alt="img" title="Pgroup selection"></p>
+<p><img src="screenshots/proposal_found.png" alt="img" title="Pgroup selection"></img></p>
 <h2 id="archiving">Archiving<a id="sec-7-6" name="sec-7-6"></a></h2>
 <p>After selection the files, you will be prompted with a metadata editor, where you can modify 
 the general info, such as dataset name, description etc. Please make 
 sure that you select the correct data type (raw or derived). As a general rule of thumb, it is 
 a derived dataset if you can specify a raw dataset as input. If you want to ingest a derived dataset, 
-you can specify corresponding raw datasets on the &quot;Input datasets&quot; tab. 
-To edit scientific metadata, switch to &quot;Scientific metadata&quot; tab. </p>
+you can specify corresponding raw datasets on the "Input datasets" tab. 
+To edit scientific metadata, switch to "Scientific metadata" tab. </p>
 <h2 id="retrieval">Retrieval<a id="sec-7-7" name="sec-7-7"></a></h2>
 <p>Retrieving successfully archived datasets from SciCat is a two-step process. First you will have to 
 retrieve to an intermediate server. Once the data is there, you will be notified by email. 
 The final step is to copy the data to the final destination on your machine. 
 Both steps can be steered from within the GUI. </p>
 <p>On the retrieve page, all datasets of your pgroup are listed. If the data has been archived successfully, 
-the cell in column &quot;retrievable&quot; is set to &quot;true&quot;. To retrieve the data to the intermediate file server,
-select the datasets that you want to retrieve and click on &quot;Retrieve.&quot; After the retrieval, the column
-&quot;retrieved&quot; is set to true. You are now able to start copying the data to you local machine by selecting
-the desired datasets and clicking on &quot;Save.&quot; </p>
+the cell in column "retrievable" is set to "true". To retrieve the data to the intermediate file server,
+select the datasets that you want to retrieve and click on "Retrieve." After the retrieval, the column
+"retrieved" is set to true. You are now able to start copying the data to you local machine by selecting
+the desired datasets and clicking on "Save." </p>
 <h2 id="settings">Settings<a id="sec-7-8" name="sec-7-8"></a></h2>
 <p>Additional settings, such as the default value for certain fields can be modified in settings panel (button
 on the lower left corner). </p>
@@ -1700,27 +1700,27 @@ journal publication.</p>
 <p>You publish data in the following way: go to <a href="https://discovery.psi.ch" target="_blank">https://discovery.psi.ch</a> ,
 login and select all the datasets, that you want to publish under a
 new DOI. </p>
-<p><img src="screenshots/PublishingData1.png" alt="img" title="Selecting Datasets to be published"></p>
-<p>Then you add these datasest a a &quot;shopping cart&quot; by using the &quot;add to
-Cart&quot; button. You can repeat this often as needed. Once finished with
-the selection you can &quot;check out&quot; the cart (click on the cart in the
-top bar) and pick the &quot;Publish&quot; action.</p>
-<p><img src="screenshots/PublishingData2.png" alt="img" title="Check out cart"></p>
+<p><img src="screenshots/PublishingData1.png" alt="img" title="Selecting Datasets to be published"></img></p>
+<p>Then you add these datasest a a "shopping cart" by using the "add to
+Cart" button. You can repeat this often as needed. Once finished with
+the selection you can "check out" the cart (click on the cart in the
+top bar) and pick the "Publish" action.</p>
+<p><img src="screenshots/PublishingData2.png" alt="img" title="Check out cart"></img></p>
 <p>This opens a form
 with prefilled information derived from the connected proposal
 data. This data can then be edited by the user and finally saved.</p>
-<p><img src="screenshots/PublishingData3.png" alt="img" title="Defining metadata of published data"></p>
+<p><img src="screenshots/PublishingData3.png" alt="img" title="Defining metadata of published data"></img></p>
 <p>This defines the data as to be published and makes it known to the
 data catalog, but the corresponding DOI is not yet made globally
 available. For this last step to happen, someone with access to this
 newly generated published data definition (e.g. the person defining
-the published data or e.g. the PI) has to hit the &quot;register&quot;
+the published data or e.g. the PI) has to hit the "register"
 button. This will trigger the global publication of the DOI. The links
 on <a href="https://doi.org" target="_blank">https://doi.org</a> are usually updated within one day, so wait one day
 before following these links or searching for the doi via the doi
 reolver.</p>
 <p>All published data definitions are then openly available via the so
-called &quot;Landing Pages&quot;, which are hosted on <a href="https://doi.psi.ch" target="_blank">https://doi.psi.ch</a> .</p>
+called "Landing Pages", which are hosted on <a href="https://doi.psi.ch" target="_blank">https://doi.psi.ch</a> .</p>
 <p>The file data itself data becomes available via the normal data export
 System of the Ra cluster, which requires however a PSI account. If you
 want to make the file data anonymously available you need to send a
@@ -1750,7 +1750,7 @@ Certificate invalid: name is not a listed principal
 You can avoid the warning by first running kinit (PSI linux systems).</p>
 <h2 id="long-running-copy-commands">Long Running copy commands<a id="sec-10-3" name="sec-10-3"></a></h2>
 <p>For decentral ingestion cases, the copy step is indicated by a message
-&apos;Running [/usr/bin/rsync -e ssh -avxz …&apos;. It is expected that this
+'Running [/usr/bin/rsync -e ssh -avxz …'. It is expected that this
 step will take a long time and may appear to have hung. You can check
 what files have been successfully transfered using rsync:</p>
 <pre><code>rsync--list-only user_n@pb-archive.psi.ch:archive/UID/PATH/
@@ -1762,9 +1762,9 @@ transferred.</p>
 <h2 id="kerberos-tickets">Kerberos tickets<a id="sec-10-4" name="sec-10-4"></a></h2>
 <p>As a normal user you should have a valid Kerberos ticket. This is
 usually the case on the centrally provided Linux machines
-automtically. You can verify the existence with the &quot;klist&quot;
+automtically. You can verify the existence with the "klist"
 command. In case no valid ticket is returned you have to get one using
-the &quot;kinit&quot; command. (Note: beamline accounts do not need this)</p>
+the "kinit" command. (Note: beamline accounts do not need this)</p>
 <pre><code>klist
 # if no Ticket listed get one by
 kinit
@@ -1806,7 +1806,7 @@ the above commands to get the latest version.</p>
 <p>You can call the ingestion scripts using the full path
 (~/bin/datasetIngestor) or else add ~/bin to your unix PATH. To do so,
 add the following line to your ~/.bashrc file:</p>
-<pre><code>export PATH=&quot;$HOME/bin:$PATH&quot;
+<pre><code>export PATH="$HOME/bin:$PATH"
 </code></pre><h3 id="installation-on-windows-systems">Installation on Windows Systems<a id="sec-11-1-4" name="sec-11-1-4"></a></h3>
 <p>On Windows the executables can be downloaded from the following URL,
 just enter the address in abrowser and download the file</p>
@@ -1838,7 +1838,7 @@ action needed</p>
 <p>Any other special characters are not guaranteed to work.</p>
 <h2 id="recommended-file-structure-for-raw-datasets">Recommended file structure for raw datasets<a id="sec-11-3" name="sec-11-3"></a></h2>
 <p>One recommended way of structuring your data on disk is the following:</p>
-<pre><code>e12345   &lt;--- user&apos;s group e-account, linked to a DUO proposal
+<pre><code>e12345   &lt;--- user's group e-account, linked to a DUO proposal
 
   - sampleName  &lt;-- contains measurement for a given sample
      - datasetfolder1   &lt;-- name can be anything
@@ -1848,7 +1848,7 @@ action needed</p>
        ... dito
      - etc...
      - derived-dataset1 (optional, for online processed data
-                         name should contain &quot;derived&quot;) 
+                         name should contain "derived") 
        ... in here all the files and only the files
        ... which make up the derived data 
      - derived-dataset2
@@ -1856,32 +1856,32 @@ action needed</p>
 
   - nextSampleName... 
 
-e12375    &lt;--- next user&apos;s group e-account
+e12375    &lt;--- next user's group e-account
 </code></pre><h2 id="metadata-field-definitions">Metadata Field Definitions<a id="sec-11-4" name="sec-11-4"></a></h2>
 <p>The following table defines the mandatory and optional fields for the
 administrative metadata, which have to be provided (status June
-2021). All fields marked &quot;m&quot; are mandatory, the rest is optional. Some
+2021). All fields marked "m" are mandatory, the rest is optional. Some
 fields are filled automatically if possible, see comments. For the
 most recent status see this URL
 <a href="https://scicatproject.github.io/api-documentation/" target="_blank">https://scicatproject.github.io/api-documentation/</a> and follow the link
-called &quot;Model&quot; for the respective datamodel (e.g. Dataset), visible
+called "Model" for the respective datamodel (e.g. Dataset), visible
 e.g. inside the GET API call section. Or see the model definitions as
 defined in the SciCat backend, see the json files in
 <a href="https://github.com/SciCatProject/catamel/tree/develop/common/models" target="_blank">https://github.com/SciCatProject/catamel/tree/develop/common/models</a></p>
-<p>All &quot;Date&quot; fields must follow the date/time format defined in RFC
+<p>All "Date" fields must follow the date/time format defined in RFC
 3339, section 5.6, see <a href="https://www.ietf.org/rfc/rfc3339.txt" target="_blank">https://www.ietf.org/rfc/rfc3339.txt</a></p>
-<h3 id="metadata-field-definitions-for-datasets-of-type-base">Metadata field definitions for datasets of type &quot;base&quot;<a id="sec-11-4-1" name="sec-11-4-1"></a></h3>
+<h3 id="metadata-field-definitions-for-datasets-of-type-base">Metadata field definitions for datasets of type "base"<a id="sec-11-4-1" name="sec-11-4-1"></a></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -1912,7 +1912,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">ownerEmail</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by datasetIngestor if missing</td>
 </tr>
 
@@ -1920,8 +1920,8 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">orcidOfOwner</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
@@ -1936,8 +1936,8 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">datasetName</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left">set to &quot;tail&quot; of sourceFolder path if missing</td>
+<td class="left">&nbsp;</td>
+<td class="left">set to "tail" of sourceFolder path if missing</td>
 </tr>
 
 
@@ -1945,14 +1945,14 @@ defined in the SciCat backend, see the json files in
 <td class="left">sourceFolder</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">size</td>
 <td class="left">number</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">autofilled when OrigDataBlock created</td>
 </tr>
 
@@ -1960,7 +1960,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">packedSize</td>
 <td class="left">number</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">autofilled when DataBlock created</td>
 </tr>
 
@@ -1984,31 +1984,31 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">validationStatus</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">keywords</td>
 <td class="left">Array[string]</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">description</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">classification</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by API or datasetIngestor if missing</td>
 </tr>
 
@@ -2016,7 +2016,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">license</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by datasetIngestor if missing (CC By-SA 4.0)</td>
 </tr>
 
@@ -2024,7 +2024,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">version</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">autofilled by API</td>
 </tr>
 
@@ -2032,7 +2032,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">doi</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled as part of publication workflow</td>
 </tr>
 
@@ -2040,7 +2040,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">isPublished</td>
 <td class="left">boolean</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by datasetIngestor if missing (false)</td>
 </tr>
 
@@ -2056,40 +2056,40 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">accessGroups</td>
 <td class="left">Array[string]</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by datasetIngestor to beamline specific group</td>
 </tr>
 
 
 <tr>
-<td class="left"> </td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 <td class="left">derived from creationLocation</td>
 </tr>
 
 
 <tr>
-<td class="left"> </td>
-<td class="left"> </td>
-<td class="left"> </td>
-<td class="left">e.g. /PSI/SLS/TOMCAT -&gt; accessGroups=[&quot;slstomcat&quot;]</td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
+<td class="left">e.g. /PSI/SLS/TOMCAT -&gt; accessGroups=["slstomcat"]</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="additional-fields-for-typeraw">Additional fields for type=&quot;raw&quot;<a id="sec-11-4-2" name="sec-11-4-2"></a></h3>
+<h3 id="additional-fields-for-typeraw">Additional fields for type="raw"<a id="sec-11-4-2" name="sec-11-4-2"></a></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -2112,7 +2112,7 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">endTime</td>
 <td class="left">date</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled from datasetIngetor if missing</td>
 </tr>
 
@@ -2128,40 +2128,40 @@ defined in the SciCat backend, see the json files in
 <tr>
 <td class="left">dataFormat</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">scientificMetadata</td>
 <td class="left">object</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">proposalId</td>
 <td class="left">string</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">filled by API automatically if missing</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="additional-fields-for-typederived">Additional fields for type=&quot;derived&quot;<a id="sec-11-4-3" name="sec-11-4-3"></a></h3>
+<h3 id="additional-fields-for-typederived">Additional fields for type="derived"<a id="sec-11-4-3" name="sec-11-4-3"></a></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -2177,7 +2177,7 @@ defined in the SciCat backend, see the json files in
 <td class="left">investigator</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
@@ -2185,7 +2185,7 @@ defined in the SciCat backend, see the json files in
 <td class="left">inputDatasets</td>
 <td class="left">Array[string]</td>
 <td class="left">m</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
@@ -2193,31 +2193,31 @@ defined in the SciCat backend, see the json files in
 <td class="left">usedSoftware</td>
 <td class="left">string</td>
 <td class="left">m</td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">jobParameters</td>
 <td class="left">object</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">jobLogData</td>
 <td class="left">string</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 
 
 <tr>
 <td class="left">scientificMetadata</td>
 <td class="left">object</td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -2225,40 +2225,40 @@ defined in the SciCat backend, see the json files in
 <h2 id="about-scientific-values-and-units">About Scientific Values and Units<a id="sec-11-5" name="sec-11-5"></a></h2>
 <p>It is strongly recommended that physical quantities are stored in the
  following format (the field names are just examples, the structure
- with the two fields &quot;value&quot; and &quot;unit&quot; is important here)</p>
-<pre><code>&quot;scientificMetadata&quot;: {
+ with the two fields "value" and "unit" is important here)</p>
+<pre><code>"scientificMetadata": {
        ...
-       &quot;beamlineParameters&quot;: {
-           &quot;Ring current&quot;: {
-               &quot;value&quot;: 402.246,
-               &quot;unit&quot;: &quot;mA&quot;
+       "beamlineParameters": {
+           "Ring current": {
+               "value": 402.246,
+               "unit": "mA"
            },
-           &quot;Beam energy&quot;: {
-               &quot;value&quot;: 22595,
-               &quot;unit&quot;: &quot;eV&quot;
+           "Beam energy": {
+               "value": 22595,
+               "unit": "eV"
            }
        }
        ....
 }
 </code></pre><p>In future for such quantities the data catalog will automatically add
-two additional fields &quot;valueSI&quot; and &quot;unitSI&quot; with the corresponding
+two additional fields "valueSI" and "unitSI" with the corresponding
 SI units. The rationale for this is to support value queries in a
 reliable manner across datasets with potentially different units
 chosen for the same quantity:</p>
-<pre><code>&quot;scientificMetadata&quot;: {
+<pre><code>"scientificMetadata": {
        ...
-       &quot;beamlineParameters&quot;: {
-           &quot;Ring current&quot;: {
-               &quot;value&quot;: 402.246,
-               &quot;unit&quot;: &quot;mA&quot;,
-               &quot;valueSI&quot;: 0.402246,
-               &quot;unitSI&quot;: &quot;A&quot;
+       "beamlineParameters": {
+           "Ring current": {
+               "value": 402.246,
+               "unit": "mA",
+               "valueSI": 0.402246,
+               "unitSI": "A"
            },
-           &quot;Beam energy&quot;: {
-               &quot;value&quot;: 22595,
-               &quot;unit&quot;: &quot;eV&quot;,
-               &quot;valueSI&quot;: 3.6201179E-15
-               &quot;unitSI&quot;:&quot;J&quot;
+           "Beam energy": {
+               "value": 22595,
+               "unit": "eV",
+               "valueSI": 3.6201179E-15
+               "unitSI":"J"
            }
        }
        ....
@@ -2290,114 +2290,114 @@ administrative metadata</p>
 </li>
 <li><p>Example of minimal json file for raw data:</p>
 <pre><code>{
-    &quot;creationLocation&quot;: &quot;/PSI/SLS/TOMCAT&quot;,
-    &quot;sourceFolder&quot;: &quot;/scratch/devops&quot;,
-    &quot;type&quot;: &quot;raw&quot;,
-    &quot;ownerGroup&quot;:&quot;p16623&quot;
+    "creationLocation": "/PSI/SLS/TOMCAT",
+    "sourceFolder": "/scratch/devops",
+    "type": "raw",
+    "ownerGroup":"p16623"
 }
 </code></pre></li>
 <li><p>Example for raw data including scientific metadata</p>
 <pre><code>{
-    &quot;principalInvestigator&quot;: &quot;egon.meier@psi.ch&quot;,
-    &quot;creationLocation&quot;: &quot;/PSI/SLS/TOMCAT&quot;,
-    &quot;dataFormat&quot;: &quot;Tomcat pre HDF5 format 2017&quot;,
-    &quot;sourceFolder&quot;: &quot;/sls/X02DA/data/e12345/Data10/disk3/817b_B2_&quot;,
-    &quot;owner&quot;: &quot;Egon Meier&quot;,
-    &quot;ownerEmail&quot;: &quot;egon.meier@psi.ch&quot;,
-    &quot;type&quot;: &quot;raw&quot;,
-    &quot;description&quot;: &quot;Add  a short description here for this dataset ...&quot;,
-    &quot;ownerGroup&quot;: &quot;p12345&quot;,
-    &quot;scientificMetadata&quot;: {
-        &quot;beamlineParameters&quot;: {
-            &quot;Monostripe&quot;: &quot;Ru/C&quot;,
-            &quot;Ring current&quot;: {
-                &quot;value&quot;: 0.402246,
-                &quot;unit&quot;: &quot;A&quot;
+    "principalInvestigator": "egon.meier@psi.ch",
+    "creationLocation": "/PSI/SLS/TOMCAT",
+    "dataFormat": "Tomcat pre HDF5 format 2017",
+    "sourceFolder": "/sls/X02DA/data/e12345/Data10/disk3/817b_B2_",
+    "owner": "Egon Meier",
+    "ownerEmail": "egon.meier@psi.ch",
+    "type": "raw",
+    "description": "Add  a short description here for this dataset ...",
+    "ownerGroup": "p12345",
+    "scientificMetadata": {
+        "beamlineParameters": {
+            "Monostripe": "Ru/C",
+            "Ring current": {
+                "value": 0.402246,
+                "unit": "A"
             },
-            &quot;Beam energy&quot;: {
-                &quot;value&quot;: 22595,
-                &quot;unit&quot;: &quot;eV&quot;
+            "Beam energy": {
+                "value": 22595,
+                "unit": "eV"
             }
         },
-        &quot;detectorParameters&quot;: {
-            &quot;Objective&quot;: 20,
-            &quot;Scintillator&quot;: &quot;LAG 20um&quot;,
-            &quot;Exposure time&quot;: {
-                &quot;value&quot;: 0.4,
-                &quot;unit&quot;: &quot;s&quot;
+        "detectorParameters": {
+            "Objective": 20,
+            "Scintillator": "LAG 20um",
+            "Exposure time": {
+                "value": 0.4,
+                "unit": "s"
             }
         },
-        &quot;scanParameters&quot;: {
-            &quot;Number of projections&quot;: 1801,
-            &quot;Rot Y min position&quot;: {
-                &quot;value&quot;: 0,
-                &quot;unit&quot;: &quot;deg&quot;
+        "scanParameters": {
+            "Number of projections": 1801,
+            "Rot Y min position": {
+                "value": 0,
+                "unit": "deg"
             },
-            &quot;Inner scan flag&quot;: 0,
-            &quot;File Prefix&quot;: &quot;817b_B2_&quot;,
-            &quot;Sample In&quot;: {
-                &quot;value&quot;: 0,
-                &quot;unit&quot;: &quot;m&quot;
+            "Inner scan flag": 0,
+            "File Prefix": "817b_B2_",
+            "Sample In": {
+                "value": 0,
+                "unit": "m"
             },
-            &quot;Number of darks&quot;: 10,
-            &quot;Rot Y max position&quot;: {
-                &quot;value&quot;: 180,
-                &quot;unit&quot;: &quot;deg&quot;
+            "Number of darks": 10,
+            "Rot Y max position": {
+                "value": 180,
+                "unit": "deg"
             },
-            &quot;Angular step&quot;: {
-                &quot;value&quot;: 0.1,
-                &quot;unit&quot;: &quot;deg&quot;
+            "Angular step": {
+                "value": 0.1,
+                "unit": "deg"
             },
-            &quot;Number of flats&quot;: 120,
-            &quot;Sample Out&quot;: {
-                &quot;value&quot;: -0.005,
-                &quot;unit&quot;: &quot;m&quot;
+            "Number of flats": 120,
+            "Sample Out": {
+                "value": -0.005,
+                "unit": "m"
             },
-            &quot;Flat frequency&quot;: 0,
-            &quot;Number of inter-flats&quot;: 0
+            "Flat frequency": 0,
+            "Number of inter-flats": 0
         }
     }
 }
 </code></pre></li>
 <li><p>Example of minimal json file for derived data:</p>
-<pre><code>{ &quot;sourceFolder&quot; : &quot;/data/test/myExampleData&quot;,
-  &quot;type&quot; : &quot;derived&quot;,
-  &quot;ownerGroup&quot;: &quot;p12345&quot;,
-  &quot;investigator&quot;:&quot;federika.marone@psi.ch&quot;,
-  &quot;inputDatasets&quot;: [&quot;/data/test/input1.dat&quot;,
-                    &quot;20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027&quot;],
-  &quot;usedSoftware&quot;: [&quot;https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2&quot;]
+<pre><code>{ "sourceFolder" : "/data/test/myExampleData",
+  "type" : "derived",
+  "ownerGroup": "p12345",
+  "investigator":"federika.marone@psi.ch",
+  "inputDatasets": ["/data/test/input1.dat",
+                    "20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027"],
+  "usedSoftware": ["https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2"]
   }
 </code></pre><ul>
 <li>owner and contactEmail will be filled automatically</li>
 <li><p>important: in case you ingest derived datasets with a <strong>beamline
 account</strong> , such as slstomcat (instead of a personal account), you <strong>have</strong> to add the beamline account
 to the accessGroups field like this:</p>
-<p>{ &quot;sourceFolder&quot; : &quot;/data/test/myExampleData&quot;,
-  &quot;type&quot; : &quot;derived&quot;,
-  &quot;ownerGroup&quot;: &quot;p12345&quot;,
-  &quot;accessGroups&quot;:[&quot;slstomcat&quot;], 
-  &quot;investigator&quot;:&quot;federika.marone@psi.ch&quot;,
-  &quot;inputDatasets&quot;: [&quot;/data/test/input1.dat&quot;,</p>
-<pre><code>                &quot;20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027&quot;],
-</code></pre><p>  &quot;usedSoftware&quot;: [&quot;<a href="https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2" target="_blank">https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2</a>&quot;]
+<p>{ "sourceFolder" : "/data/test/myExampleData",
+  "type" : "derived",
+  "ownerGroup": "p12345",
+  "accessGroups":["slstomcat"], 
+  "investigator":"federika.marone@psi.ch",
+  "inputDatasets": ["/data/test/input1.dat",</p>
+<pre><code>                "20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027"],
+</code></pre><p>  "usedSoftware": ["<a href="https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2" target="_blank">https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2</a>"]
   }</p>
 </li>
 <li><p>Extended derived example</p>
 <pre><code>{
-    &quot;sourceFolder&quot;: &quot;/some/folder/containg/the/derived/data&quot;,
-    &quot;owner&quot;: &quot;Thomas Meier&quot;,
-    &quot;ownerEmail&quot;: &quot;thomas.meier@psi.ch&quot;,
-    &quot;contactEmail&quot;: &quot;eugen.mueller@psi.ch&quot;,
-    &quot;type&quot;: &quot;derived&quot;,
-    &quot;ownerGroup&quot;: &quot;p13268&quot;,
-    &quot;creationTime&quot;: &quot;2011-09-14T12:08:25.000Z&quot;,
-    &quot;investigator&quot;: &quot;thomas.meier@psi.ch&quot;,
-    &quot;inputDatasets&quot;: [
-        &quot;20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027&quot;,
-        &quot;20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf028&quot;
+    "sourceFolder": "/some/folder/containg/the/derived/data",
+    "owner": "Thomas Meier",
+    "ownerEmail": "thomas.meier@psi.ch",
+    "contactEmail": "eugen.mueller@psi.ch",
+    "type": "derived",
+    "ownerGroup": "p13268",
+    "creationTime": "2011-09-14T12:08:25.000Z",
+    "investigator": "thomas.meier@psi.ch",
+    "inputDatasets": [
+        "20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf027",
+        "20.500.11935/000031f3-0675-4d30-b5ca-b9c674bcf028"
     ],
-    &quot;usedSoftware&quot;: [&quot;https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2&quot;]
+    "usedSoftware": ["https://gitlab.psi.ch/MyAnalysisRepo/tomcatScripts/commit/60629a1cbef493a26aac626602ba8f1a6c9e14d2"]
 }
 </code></pre></li>
 </ul>
@@ -2420,9 +2420,9 @@ allFilesInThisDirectory
 </code></pre></li>
 <li><p>Optionally: for multiple datasets to be created</p>
 <p>If you have many sourceFolders containing data, each to be turned into
-a dataset then the easiest method is to define a &apos;folderlisting.txt&apos;
+a dataset then the easiest method is to define a 'folderlisting.txt'
 file.  (the file must have exactly this name). This is a useful option
-to archive large amounts of &quot;historic&quot; data.</p>
+to archive large amounts of "historic" data.</p>
 <p>Each line in this file is the absolute path to the sourceFolder In
 this case it is assumed, that the metadata.json file is valid for all
 datasets and that <strong>all</strong> files inside the sourceFolder are part of the
@@ -2435,15 +2435,15 @@ folderlisting.txt option)</p>
 </code></pre></li>
 <li><p>Starting the ingest</p>
 <p>Just run the following command in a terminal as a first test if
-everything is okay. This is a so called &quot;dry run&quot; and nothing will
+everything is okay. This is a so called "dry run" and nothing will
 actually be stored, but the consistency of the data will be checked
 and the folders will be scanned for files</p>
-<pre><code>datasetIngestor metadata.json [filelisting.txt | &apos;folderlisting.txt&apos;]
+<pre><code>datasetIngestor metadata.json [filelisting.txt | 'folderlisting.txt']
 </code></pre><p>You will be prompted for your username and password.</p>
 <p>If everything looks as expected you should now repeat the command with
-the &quot;–ingest&quot; flag to actually store the dataset(s) in the data
+the "–ingest" flag to actually store the dataset(s) in the data
 catalog</p>
-<pre><code>datasetIngestor --ingest metadata.json [filelisting.txt | &apos;folderlisting.txt&apos;]
+<pre><code>datasetIngestor --ingest metadata.json [filelisting.txt | 'folderlisting.txt']
 </code></pre><p>When the job is finshed all needed metadata will be ingested into the
 data catalog (and for decentral data the data will be copied to the
 central cache file server).</p>
@@ -2478,7 +2478,7 @@ smaller or larger in some cases.</p>
 specic account. In order to run fully automatic all potential
 questions asked interactively by the program must be pre-answered
 through a set of command line options:</p>
-<pre><code>datasetIngestor [options] metadata-file [filelisting-file|&apos;folderlisting.txt&apos;]
+<pre><code>datasetIngestor [options] metadata-file [filelisting-file|'folderlisting.txt']
 
   -allowexistingsource
         Defines if existing sourceFolders can be reused
@@ -2491,7 +2491,7 @@ through a set of command line options:</p>
   -ingest
         Defines if this command is meant to actually ingest data
   -linkfiles string
-        Define what to do with symbolic links: (keep|delete|keepInternalOnly) (default &quot;keepInternalOnly&quot;)
+        Define what to do with symbolic links: (keep|delete|keepInternalOnly) (default "keepInternalOnly")
   -noninteractive
         If set no questions will be asked and the default settings for all undefined flags will be assumed
   -tapecopies int
@@ -2519,7 +2519,7 @@ this meta data is collected by the controls system). </p>
 </li>
 <li><p>HDF5 Files</p>
 <p>If the raw data exists in form of HDF5 files, there is a good chance
-that the meta data can be extracted from the HDF5 files&apos; meta data. In
+that the meta data can be extracted from the HDF5 files' meta data. In
 such a case the meta data extraction must be done as part of the part
 beamline preparation scripts. Example of such HDF5 extraction scripts
 exist which can the basis of a beamline specific solution, again
@@ -2537,13 +2537,13 @@ not available on central file systems. Data from the old PSI archiv
 system fall in this category or data from local PCs, Laptops or
 instruments. If this data is not assigned to a p-group (given via the
 DUO digital user office, usually linked to a proposal) then you must
-assign this data to an a-group. The allocation of an &quot;a-group&quot; for
+assign this data to an a-group. The allocation of an "a-group" for
 this kind of data must be done beforehand by a tool currently in
-preparation at AIT. The &quot;a-group&quot; will define the ownership and
+preparation at AIT. The "a-group" will define the ownership and
 therefor the access to the data by listing a number of users onside the
 group.</p>
-<p>Otherwise just follow the description in the section &quot;Manual ingest
-using datasetIngestor program&quot; and use the option -copy, e.g.</p>
+<p>Otherwise just follow the description in the section "Manual ingest
+using datasetIngestor program" and use the option -copy, e.g.</p>
 <pre><code>datasetIngestor -autoarchive -copy -ingest metadata.json
 </code></pre><p>This command will copy the data to a central rsync server, from where
 the archive system can then copy the files to tape, in this case
@@ -2554,8 +2554,8 @@ the latter case it will, after a confirmation by the user, copy the
 data automatically to the rsync cache server, even if the copy flag is
 not provided.</p>
 <h3 id="use-case-ingest-datasets-from-simulationsmodel-calculations">Use Case: Ingest datasets from simulations/model calculations<a id="sec-11-6-4" name="sec-11-6-4"></a></h3>
-<p>These can be treated like datasets of type &quot;base&quot; or &quot;raw&quot;. In the
-latter case specify the field &quot;creationLocation&quot; as the name of the
+<p>These can be treated like datasets of type "base" or "raw". In the
+latter case specify the field "creationLocation" as the name of the
 server or cluster which produced the simulation files. Otherwise the
 procedure is identical to the previous use case.</p>
 <h2 id="policy-settings-and-email-notifications">Policy settings and email notifications<a id="sec-11-7" name="sec-11-7"></a></h2>
@@ -2585,7 +2585,7 @@ again.</p>
 <p>Policy parameters can be defined at site level or at ownerGroup
 level. For each ownerGroup at least one manager must be defined
 (e.g. a principal investigator (PI) via the linked proposal
-information) in the policy model (field &quot;manager&quot;) . Only the manager
+information) in the policy model (field "manager") . Only the manager
 can change the policy settings at ownerGroup level, but all group
 mebers can see them.</p>
 <p>Changes to this policy settings only effect future dataset creation
@@ -2594,13 +2594,13 @@ and archiving</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -2701,7 +2701,7 @@ terms of tables and graphs. Example notebooks are provided.</p>
 <p>Simply follow the following link and login with your PSI account:
 <a href="https://jupyterhub.apps.ocp4a.psi.ch/" target="_blank">https://jupyterhub.apps.ocp4a.psi.ch/</a> .  The initial start of the
 Jupyter environments takes some time (about 40 seconds), but
-subsequent starts are much faster. You will then see a &quot;bootstrap&quot;
+subsequent starts are much faster. You will then see a "bootstrap"
 notebook which you can execute to populate your Jupyter home directory
 with the example notebooks. </p>
 <p>The example notebooks require you to login to the data catalog API
@@ -2721,26 +2721,26 @@ and copy it to a place for which backup exists, like your home
 directory.</p>
 <h2 id="access-to-the-api-for-script-developers">Access to the API (for script developers)<a id="sec-11-9" name="sec-11-9"></a></h2>
 <p>The data catalog can also be accessed directly via a REST API. There
-exists an API &quot;Explorer&quot; which allows to test such API calls
+exists an API "Explorer" which allows to test such API calls
 conveniently. The explorer can be found at
 <a href="https://dacat-qa.psi.ch/explorer" target="_blank">https://dacat-qa.psi.ch/explorer</a> .The explorer works with a test
 database which is separate from the production database and contains
 other data.</p>
 <p>For most of the API calls you will need an access token first. You
-create such an access token by &quot;login&quot; to the data catalog via the
+create such an access token by "login" to the data catalog via the
 following curl command:</p>
-<pre><code># for &quot;functional&quot; accounts
-curl -X POST --header &apos;Content-Type: application/json&apos;  -d &apos;{&quot;username&quot;:&quot;YOUR-LOGIN&quot;,&quot;password&quot;:&quot;YOUR-PASSWORD&quot;}&apos; &apos;https://dacat-qa.psi.ch/api/v3/Users/login&apos;
+<pre><code># for "functional" accounts
+curl -X POST --header 'Content-Type: application/json'  -d '{"username":"YOUR-LOGIN","password":"YOUR-PASSWORD"}' 'https://dacat-qa.psi.ch/api/v3/Users/login'
 
 # for normal user accounts
-curl -X POST --header &apos;Content-Type: application/json&apos;  -d &apos;{&quot;username&quot;:&quot;YOUR-LOGIN&quot;,&quot;password&quot;:&quot;YOUR-PASSWORD&quot;}&apos; &apos;https://dacat-qa.psi.ch/auth/msad&apos;
+curl -X POST --header 'Content-Type: application/json'  -d '{"username":"YOUR-LOGIN","password":"YOUR-PASSWORD"}' 'https://dacat-qa.psi.ch/auth/msad'
 
 # reply if succesful:
-{&quot;id&quot;:&quot;NQhe3...&quot;,&quot;ttl&quot;:1209600,&quot;created&quot;:&quot;2019-01-22T07:03:21.422Z&quot;,&quot;userId&quot;:&quot;5a745bde4d12b30008020843&quot;}
-</code></pre><p>The &quot;id&quot; field contains the access token, which you copy in to the corresponding field at the top of the explorer page.</p>
+{"id":"NQhe3...","ttl":1209600,"created":"2019-01-22T07:03:21.422Z","userId":"5a745bde4d12b30008020843"}
+</code></pre><p>The "id" field contains the access token, which you copy in to the corresponding field at the top of the explorer page.</p>
 <p>Afterwards you can test the full API. If you found the right API call
 you can finally apply the call to the production system by replacing
-&quot;dacat-qa&quot; by &quot;dacat&quot; and then by retrieving the access token from the
+"dacat-qa" by "dacat" and then by retrieving the access token from the
 production system.</p>
 <h2 id="using-datasetingestor-inside-wrapper-scripts-for-developers">Using datasetIngestor inside wrapper scripts (for developers)<a id="sec-11-10" name="sec-11-10"></a></h2>
 <p>The command datasetIngestor returns with a return code equal zero in
@@ -2761,10 +2761,10 @@ one line per dataset.</p>
 <h2 id="ingestion-of-datasets-which-should-never-be-published">Ingestion of datasets which should never be published<a id="sec-11-11" name="sec-11-11"></a></h2>
 <p>For datasets which should never be published you should add the
 following fields at ingest time to your metadata.json file:</p>
-<pre><code>&quot;datasetlifecycle&quot;: {
-    &quot;publishable&quot;:false,
-    &quot;dateOfPublishing&quot;:&quot;2099-12-31T00:00:00.000Z&quot;,
-    &quot;archiveRetentionTime&quot;:&quot;2099-12-31T00:00:00.000Z&quot;
+<pre><code>"datasetlifecycle": {
+    "publishable":false,
+    "dateOfPublishing":"2099-12-31T00:00:00.000Z",
+    "archiveRetentionTime":"2099-12-31T00:00:00.000Z"
 }
 </code></pre><ul>
 <li>this will move the time of publication to a date in some far future
@@ -2788,11 +2788,11 @@ inside the digital user office DUO</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -2950,11 +2950,11 @@ inside the digital user office DUO</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -3007,11 +3007,11 @@ inside the digital user office DUO</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -3128,9 +3128,9 @@ inside the digital user office DUO</p>
 
 
 <tr>
-<td class="left"> </td>
-<td class="left"> </td>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
+<td class="left">&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -3141,11 +3141,11 @@ inside the digital user office DUO</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -3205,9 +3205,9 @@ inside the digital user office DUO</p>
 
 
 <colgroup>
-<col class="left">
+<col class="left"></col>
 
-<col class="left">
+<col class="left"></col>
 </colgroup>
 <thead>
 <tr>
@@ -3266,7 +3266,7 @@ inside the digital user office DUO</p>
 
 
 <tr>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">datasetArchiver and datasetGetProposal</td>
 </tr>
 
@@ -3308,7 +3308,7 @@ inside the digital user office DUO</p>
 
 
 <tr>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">Added infos about email notifications</td>
 </tr>
 
@@ -3332,7 +3332,7 @@ inside the digital user office DUO</p>
 
 
 <tr>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">dangling links, ingest for other person, need for kerberos ticket as user)</td>
 </tr>
 
@@ -3344,7 +3344,7 @@ inside the digital user office DUO</p>
 
 
 <tr>
-<td class="left"> </td>
+<td class="left">&nbsp;</td>
 <td class="left">Progress indicators, chksum test updated</td>
 </tr>
 
@@ -3506,7 +3506,7 @@ inside the digital user office DUO</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2024-08-23T11:57:34.595Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-08-23T11:57:40.212Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"next":{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},"previous":{"title":"Ingestor Guide","level":"1.4","depth":1,"path":"Ingestor/README.md","ref":"Ingestor/README.md","articles":[{"title":"Ingest Manual PSI","level":"1.4.1","depth":2,"path":"Ingestor/ingestManual.md","ref":"Ingestor/ingestManual.md","articles":[]},{"title":"Ingest Instructions ESS","level":"1.4.2","depth":2,"path":"Ingestor/IngestManual_ESS.md","ref":"Ingestor/IngestManual_ESS.md","articles":[]},{"title":"Manual Ingest the Hard Way","level":"1.4.3","depth":2,"path":"Ingestor/GettingMetadataIntoScicat.md","ref":"Ingestor/GettingMetadataIntoScicat.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Ingestor/ingestManual.md","mtime":"2024-10-22T13:28:07.196Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
