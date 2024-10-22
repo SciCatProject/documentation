@@ -25,7 +25,7 @@ Mode details are found in each individual page
 ### Running the backend
 
 The backend can be run as it is, provided that a number of environmental variables are defined.
-For the list of the environment variables available please see the [Backend Configuration page](Documentation/v4.x/backend/configuration.md).
+For the list of the environment variables available please see the [Backend Configuration page](backend/configuration.md).
 
 To start the backend is as simple as running the following command:
 ```
@@ -40,9 +40,8 @@ There are multiple type of tests that can be run on the backend:
   npm run tests
   ```
 - api tests
-  These tests are defined in the `test` folder and tests the endpoint. 
+  These tests are defined in the `test` folder and tests the endpoint.
   To run them use the command:
   ```
   npm run test:api:mocha
   ```
-

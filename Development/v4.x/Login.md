@@ -2,10 +2,10 @@
 
 Two login routes are provided - for functional accounts and for AD/LDAP logins.
 
-Loopback provides a UserIdentity for third party logins, (e.g. AD/LDAP, google, Twitter etc) 
+Loopback provides a UserIdentity for third party logins, (e.g. AD/LDAP, google, Twitter etc)
 A document is created in the db.UserIdentity collection.
 
-The UserIdentity is fetched from MongoDB and stored in the ngrx store, (```store.user.userIdentity```) where 
+The UserIdentity is fetched from MongoDB and stored in the ngrx store, (```store.user.userIdentity```) where
 it is used to access e.g. email for job initiators.
 
 The login method needs to be defined in the client configuartion (environment file) usign the field `externalAuthEndpoint`. For example `externalAuthEndpoint: "/auth/msad"`.
@@ -30,4 +30,4 @@ These users should be defined in a seperate secrets repo in a file called functi
 ```
 
 ## OIDC
-For OIDC integration, see the [OIDC](./OIDC.html) for details.
+For OIDC integration, see the [OIDC](./OIDC.md) for details.

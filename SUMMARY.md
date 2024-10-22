@@ -60,7 +60,7 @@
       - [Backend](Development/v4.x/backend/testing_backend.md)
         - [Instrument](Development/v4.x/backend/testing/instrument.md)
         - [User Authorization](Development/v4.x/backend/testing/user_authorization.md)
-      - [Frontend](Development/v4.x/frontend/testing.md)
+      - [Frontend](Development/v4.x/frontend/testing_frontend.md)
     - [Migration v3.x to v4.x](Development/v4.x/Migration.md)
   - [Documentation](Development/Documentation.md)
   <!-- * [API Documentation](https://scicatproject.github.io/api/) -->
