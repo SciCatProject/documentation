@@ -3,67 +3,30 @@
 ## Overview
 The documentation consists of three main parts.
 
-* The "Home Webgpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io 
-* The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at https://github.com/SciCatProject/documentation .  It covers all components of the software, i.e  frontend and backend. The documentation tool [honkit](https://honkit.netlify.app/) (successor of gitbook) is used.
-* The documentation of the REST API of the backend. This is generated from the swagger.json file, which itself is generated from the model descriptions in loopback
-
+* The "Home Webgpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io
+* The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at https://github.com/SciCatProject/documentation . It covers all components of the software, i.e  frontend and backend. The documentation tool [honkit](https://honkit.netlify.app/) (successor of gitbook) is used.
+* The documentation of the REST API of the backend. This is generated from the OpenAPI description, which itself is generated from the model descriptions in the backend code.
 
 All parts are hosted on the [GitHub Pages platform](https://pages.github.com/). The documentation part is "injected" into the GitHub pages automatically by a travis job, which runs after each commit to the documentation repository
 
 The live web site is then visible on the following URLs respectively
 * https://scicatproject.github.io/
 * https://scicatproject.github.io/documentation
-* https://scicatproject.github.io/api
+* The REST API not generated statically but is available from each running SciCat
+  backend (for example, the public [ESS instance](https://scicat.ess.eu/explorer)).
+  <!-- TODO update following completion of https://github.com/SciCatProject/documentation/issues/42 -->
 
 ## Changes and Deployment of Home Webpage
 
-```
-git clone https://github.com/SciCatProject/scicatproject.github.io`
-cd scicatproject.github.io
+The homepage is built using [Jekyll](https://jekyllrb.com/) and hosted on GitHub pages.
+The source is located in the repository
+[SciCatProject/scicatproject.github.io](https://github.com/SciCatProject/scicatproject.github.io).
 
-# make your changes on index.html directly, then git add and git commit as usual
-
-git push origin master
-```
-
-After pushing the changes they will immediately become visible at the URL https://scicatproject.github.io/
+After pushing the changes they will become visible at the URL https://scicatproject.github.io/
 
 ## Changes and Deployment of Manuals
 
-```
-git clone https://github.com/SciCatProject/documentation.git`
-cd documentation
-
-# make your edit/add/commit cycle
-
-npm install honkit --save
-npx honkit build
-```
-
-### Serving the Documentation locally
-
-`npx honkit serve --port 4040`
-
-### Publishing the documentation
-
-`git push origin master`
-
-The push to the origin repo will trigger a travis job, which will publish the resulting documentation to https://scicatproject.github.io/documentation
-
-## Changes and Deployment of API Documentation
-
-Use the following command to regenerate  the API with an up-to-date swagger.json file
-
-```
-    # to install redoc-cli:
-    # sudo npm install -g redoc-cli
-
-    # to get an updated swagger.json file
-    # wget https://YOUR-API-SERVER/explorer/swagger.json
-
-    redoc-cli bundle -o index.html swagger.json
-
-    # the make commit which replaces the index.html file at 
-    # https://github.com/SciCatProject/scicatproject.github.io/tree/master/api
-```
-
+Manuals are built using [honkit](https://honkit.netlify.app/) from the
+[SciCatProject/documentation](https://github.com/SciCatProject/documentation)
+repository. After pushing the changes they will become visible at the URL
+https://scicatproject.github.io/documentation.
