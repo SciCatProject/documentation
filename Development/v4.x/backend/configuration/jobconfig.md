@@ -73,22 +73,17 @@ is available
 The top-level configuration is structured like this:
 
 ```
-{
-  "configVersion": "v1.0",
-  "jobs": [
-    {
-      "jobType": "archive",
-      "create": {
-        "auth": "#all",
-        "actions": [...]
-      },
-      "update": {
-        "auth": "archivemanager",
-        "actions": [...]
-      }
-    }
-  ]
-}
+configVersion: v1.0
+jobs:
+  - jobType: archive
+    create:
+      auth: "#all"
+      actions:
+        - ...
+    update:
+      auth: archivemanager
+      actions:
+        - ...
 ```
 
 - `configVersion` is a string that indicates the version of this configuration file. It
@@ -110,76 +105,91 @@ Values for `auth` are described in [Jobs Authorization](../authorization/authori
 
 ### Actions Configuration
 
+The following actions are built-in to SciCat and can be included in the `actions` array.
 
 #### URLAction
 
+Makes a URL request. Most fields can be templated with the job DTO and body.
+
 **Configuration**:
 ```
-{
-  "actionType": "url",
-  "url": "http://localhost:3000/api/v3/health?jobid={{id}}",
-  "method": "GET",
-  "headers": {
-    "accept": "application/json"
-  }
-},
+- actionType: url
+  url: http://localhost:3000/api/v3/health?jobid={{id}}
+  method: GET
+  headers:
+    accept: application/json
 ```
 
 #### Validate
 
+The `validate` action is used to check validate requests to the job endpoints. It is
+used to enforce custom constraints on `jobParams` or `jobResultObject` for each job
+type. If other actions rely on custom fields in their templates they should first be
+validated with this action.
+
 **Configuration**:
+ValidateAction is configured with a single parameter, `request`, which is checked
+against the request body (aka the DTO). The config file will look like this:
 ```
-{
-  "actionType": "validate",
-  "request": {
-    "jobParams.datasetIds[*]": {
-      "type": "object",
-      "required": ["pid","files"]
-    }
-  }
-}
+- actionType: validate
+  request:
+    <path>: <typecheck>
+    ...
+```
+
+Usually `<path>` will be a dot-delimited field in the DTO, eg. "jobParams.name".
+Technically it is a [JSONPath-Plus](https://github.com/JSONPath-Plus/JSONPath)
+expression, which is applied to the request body to extract any matching items.
+When writing a jobconfig file it may be helpful to test an expected request body
+against the [JSONPath demo](https://jsonpath-plus.github.io/JSONPath/demo/).
+
+The `<typecheck>` expression is a JSON Schema. While complicated schemas are possible,
+the combination with JSONPath makes common type checks very concise and legible.
+Here are some example `<typecheck>` expressions:
+
+```
+- actionType: validate
+  request:
+    jobParams.name: # match simple types
+      type: string
+    jobParams.answers[*]: # literal values (here applied to an array)
+      enum: ["yes", "no"]
+    jobResultObject.archivable: # enforce a value
+      const: true
+    "jobParams": # Apply external JSON Schema to all params
+      $ref: https://json.schemastore.org/schema-org-thing.json
 ```
 
 #### Email
 
 **Configuration**:
 ```
-{
-  "actionType": "email",
-  "auth": {
-    "user": "user",
-    "password": "password"
-  },
-  "to": "{{contactEmail}}",
-  "from": "from",
-  "subject": "[SciCat] Your {{type}} job was submitted successfully",
-  "bodyTemplateFile": "src/common/email-templates/job-template-simplified.html"
-}
+- actionType: email
+  to: "{{contactEmail}}"
+  subject: "[SciCat] Your {{type}} job was submitted successfully"
+  bodyTemplateFile: src/common/email-templates/job-template-simplified.html
 ```
 
 #### RabbitMQ
 
 **Configuration**:
 ```
-{
-  "actionType": "rabbitmq",
-  "hostname": "rabbitmq",
-  "port": 5672,
-  "username": "guest",
-  "password": "guest",
-  "exchange": "jobs.write",
-  "queue": "client.jobs.write",
-  "key": "jobqueue"
-}
+- actionType: rabbitmq
+  exchange: jobs.write
+  queue: client.jobs.write
+  key: jobqueue
 ```
+
+The RabbitMQ connection must first be configured through environmental variables
+as described in [configuration](./configuration.md).
 
 #### Log
 
+This is a dummy action, useful for debugging. It adds a log entry when executed.
+
 **Configuration**:
 ```
-{
-  "actionType": "log"
-}
+- actionType: log
 ```
 
-This is a dummy action, useful for debugging. It adds a log entry when executed.
+The log action does not have any configuration options.

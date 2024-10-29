@@ -433,5 +433,5 @@ _src/config/configuration.ts_
 
 - JOB\_CONFIGURATION\_FILE:
   Configuration file for [job actions](configuration/jobconfig.md).
-  _default_: "jobConfig.json", optional.
+  _default_: "jobConfig.yaml", optional.
   _format_: string
