@@ -2,18 +2,18 @@
 
 When using the official release image, Backend configuration can be achieved by setting
 the environmental variables listed below through an orchestration/containerization
-system, the .env file or with a suitable method compatible with your environment. The
-current source code contains an example .env file, named _.env.sample_ listing all the
+system, the _.env_ file, or with a suitable method compatible with your environment. The
+current source code contains an example _.env_ file, named `.env.example`, listing all the
 environment variable available to configure the backend.
 
 If you are compiling the application from source, you can edit the file
-_serc/config/configuration.ts_ with the correct values for your infrastructure. This
+`src/config/configuration.ts` with the correct values for your infrastructure. This
 option is still undocumented, although it is our intention to provide a detailed how-to
 guide as soon as we can.
 
 ## Environment Variables
 
-This is complete the list of environment variable that can be used to configure SciCat
+This is the complete list of environment variable that can be used to configure SciCat
 backend. The list is compiled according to the configuration class defined in
 _src/config/configuration.ts_
 
@@ -306,6 +306,12 @@ _src/config/configuration.ts_
   _deprecated_. Will be removed in future releases.
   _default_: no default
   _default_: string
+
+- RABBITMQ\_PORT:
+  The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+  _deprecated_. Will be removed in future releases.
+  _default_: no default
+  _default_: number
 
 - RABBITMQ\_USERNAME:
   The username used to authenticate to the RabbitMQ message broker. Only required if

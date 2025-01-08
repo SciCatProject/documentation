@@ -62,7 +62,7 @@ Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:
 
 ### Actions
 
-After _create_ and _update_ stages a series of actions can be performed by SciCat. This
+After _create_ and _update_ stages, a series of actions can be performed by SciCat. This
 can be things like sending an email, posting a message to a message broker, or calling
 an API. The `jobParams` and `jobResultObject` are used to add additional information
 that the actions may need, such as the list of datasets the job refers to.
@@ -201,7 +201,7 @@ jobs:
 
 ##### Example 2: Enforce datasetLifecycle state
 
-Many job types require a dataset to be include. These are specified in
+Many job types require a dataset to be included. These are specified in
 `jobParams.datasetList` like this:
 
 ```json
@@ -262,9 +262,7 @@ jobs:
       auth: archivemanager
 ```
 
-
-##### Configuration
-
+**Configuration**:
 The config file for a validate action will look like this:
 
 ```yml
@@ -316,18 +314,34 @@ or if any values matching the path do not validate against the provided schema.
 ```
 
 #### RabbitMQ
-> **TODO** Expand this section.
+
+The `RabbitMQ` action implements a way for the backend to connect to a Message Broker.
+It publishes the new or updated Job entry to a messaging queue,
+from where it can be picked up by any program willing to react to this Job.
 
 **Configuration**:
+The RabbitMQ _service_ must first be configured through environmental variables,
+as described in the [configuration](../configuration.md).
+Upon instantiation, it will create a RabbitMQ connection and channel.
+
+The RabbitMQ _action_, per job stage (_create_, _update_) if defined,
+must be configured in `jobConfig.yaml`, for example:
 ```
 - actionType: rabbitmq
   exchange: jobs.write
-  queue: client.jobs.write
   key: jobqueue
+  queue: client.jobs.write
 ```
+Where:
+- An exchange is a routing mechanism that receives messages and routes them to the appropriate queues.
+- A routing key is a string used to label messages, to specify the message's purpose or destination.
+- A queue is a storage buffer where messages are held until they are consumed.
 
-The RabbitMQ connection must first be configured through environmental variables
-as described in [configuration](./configuration.md).
+If needed, different queues can be defined for different purposes.
+Exchanges and keys can be reused for different queues. 
+
+Trying to configure a RabbitMQ action, when the service is not enabled,
+will throw an error that will prevent the application from running.
 
 #### Log
 

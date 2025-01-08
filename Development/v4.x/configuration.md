@@ -275,15 +275,17 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     REGISTER_METADATA_URI [string] URI to the organization that registers the facilities published data metadata.
 
-## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon 
-<!-- 
+## Message queue settings - only required when using the jobs settings.
+
     RABBITMQ_ENABLED [string] Optional Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 
     RABBITMQ_HOSTNAME [string] Optional The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
+    RABBITMQ_PORT [number]  Optional The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+
     RABBITMQ_USERNAME [string] Optional The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
-    RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled. -->
+    RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
 ## SMTP Settings - need this option if you require Scicat to send emails.     
 
