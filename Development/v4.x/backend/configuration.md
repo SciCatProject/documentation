@@ -70,6 +70,30 @@ _src/config/configuration.ts_
   _default_: ""
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
 
+- CREATE\_JOB\_GROUPS:
+  list of non admin groups that are allowed to create jobs for groups
+  they do not belong to. If set to "#all", all users can create a job belonging to
+  any group.
+  _default_: ""
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _example_: "group1,group2,group3,..."
+
+- UPDATE\_JOB\_GROUPS:
+  list of non admin groups that are allowed to update jobs for groups
+  they do not belong to. If set to "#all", all users can update a job belonging to
+  any group.
+  _default_: ""
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _example_: "group1,group2,group3,..."
+
+- DELETE\_JOB\_GROUPS:
+  list of non admin groups that are allowed to delete jobs for groups
+  they do not belong to. If set to "#all", all users can delete a job belonging to
+  any group.
+  _default_: ""
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _example_: "group1,group2,group3,..."
+
 - ACCESS\_GROUPS\_STATIC\_VALUES:
   List of groups assigned by default to all users. Used in the vanilla implementation
   for easy configuration. If you do not want or need to assign any default group, it

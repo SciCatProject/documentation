@@ -193,7 +193,15 @@ Valid environment variables for the .env file. See .env.example for examples val
     PROPOSAL_GROUPS [string] Optional Comma separated list of proposal groups with permission to create any proposals. Example: "proposaladmin, proposalingestor". For more details check: Scicat Documentation
 
     SAMPLE_GROUPS [string] Optional Comma separated list of sample groups with permission to create any samples. Example: "sampleadmin, sampleingestor". For more details check: Scicat Documentation
-    
+
+## Jobs
+
+  CREATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: Scicat Documentation
+
+  UPDATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: Scicat Documentation
+
+  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: Scicat Documentation
+
 ## Access groups from external administration systems
 
     ACCESS_GROUPS_STATIC_VALUES [string] Optional Comma separated list of access groups automatically assigned to all users. Example: "scicat, user"
