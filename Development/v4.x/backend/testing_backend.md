@@ -37,7 +37,7 @@ For example if you are interested in running only the test named _Authorization 
 The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
 The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
 
-List of tests:  
+**List of tests:**  
   
 | test file | main code | title | description |  
 | ----- | ----- | ----- | ----- |  
@@ -52,7 +52,7 @@ List of tests:
 | DerivedDatasetOrigDatablock.js | 0800 | DerivedDatasetOrigDatablock | Test OrigDatablocks and their relation to derived Datasets |  
 | Instrument.js | 0900 | Instrument | instrument management, creation, update, deletion and search |  
 | InstrumentsFilter.js | 1000 | Test retrieving instruments using filtering capabilities  |  |  
-| Jobs.js | 1100 | Test New Job Model |  |  
+| Jobs.js | 1100 | Test New Job Model | Test authorization and CRUD operations for jobs |  
 | OrigDatablockForRawDataset | 1200 | Test OrigDatablocks and their relation to raw Datasets using origdatablocks endpoint | |
 | Policy.js | 1300 | Simple Policy tests |  |  
 | ProposalAuthorization.js | 1400 | Test access to proposal |  |  
@@ -79,34 +79,36 @@ All tests are performed assuming the following user accounts, groups and configu
 Users and groups can be defined in the configuration structure defined in ```src/config/configuration.ts```, although the preferred method for configuring functional/tests accounts is through the `functional_accounts.json` file present in the following folder ``
 These settings are meant only for testing and to demonstrate the capabilities of backend V4.x. IT is highly recommended to remove accounts that are not needed and change passwords and group affiliations as needed.
 
-### Deafault Accounts
+### Default Accounts
 The following table lists the accounts that are provided by default in a vanilla installation.
 Please make sure to change them, update their password or remove them entirely in your production environment.
 
-| Account | Groups | Admin Group | Delete Group | Create Dataset w/o pid| Create Dataset w/ pid | Create Dataset Privileged | Create Job | Update Job |
-| ----- | ----- | ----- | ----- | ----- |
-| admin | admin, global | yes | no | Any |
-| ingestor | ingestor | yes | no | Any |
-| archiveManager | archivemanager | yes | yes | no |
-| proposalIngestor | proposalingestor | no | no | no |
-| user 1 | group1 | no | no | Own |
-| user 2 | group2 | no | no | Own |
-| user 3 | group3 | no | no | Own |
-| user 4 | group4 | no | no | no |
+| Account | Groups | Admin Group | Delete Group | Create Dataset w/o pid | Create Dataset w/ pid | Create Dataset Privileged | Create Job | Update Job | Delete Job |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| admin | admin, global | yes | no | Any |  |  | Any | Any | no |
+| ingestor | ingestor | yes | no | Any |  |  | Any | Any | no |
+| archiveManager | archivemanager | yes | yes | no |  |  | Any | Any | Any |
+| proposalIngestor | proposalingestor | no | no | no |  |  | no | no | no |
+| user 1 | group1 | no | no | Own |  |  | Own | Own | no |
+| user 2 | group2 | no | no | Own |  |  | Own | Own | no |
+| user 3 | group3 | no | no | Own |  |  | Own | Own | no |
+| user 4 | group4 | no | no | no |  |  | no | no | no |
 
 ### Group permissions
 | Environmental variable | List of groups |
 | ----- | ----- | 
 | ADMIN_GROUPS | admin, ingestor, archivemanager |
 | DELETE_GROUPS | archivemanager |
-| CREATE_DATASET_GROUPS | group1,group2,group3 |
+| CREATE_DATASET_GROUPS | group1, group2, group3 |
 
 
 ## Test Details
 
 This section provides details on how all the tests files listed above are organized. Each subsection, provides a list of the test included in each file and the details of each one of them.
 
-- [Datasets]() 
-- [0900: Instrument](./testing/instrument.md)
-- [2300: User Authorization](./testing/user_authorization.md)
-
+- [Dataset Types](./testing/dataset_types.md) 
+- [Dataset Authorization](./testing/dataset_authorization.md) 
+- [Instrument](./testing/instrument.md)
+- [Jobs](./testing/jobs.md)
+- [Sample Authorization](./testing/sample_authorization.md)
+- [User Authorization](./testing/user_authorization.md)

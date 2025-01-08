@@ -10,7 +10,7 @@ The authorization for jobs is consistently different from all the other endpoint
 - JobDelete
 
 ### (Data) Instance Authorization
-- JobCreateConfiguration (The jobs create section of the configuration dictats if the user can create the job)
+- JobCreateConfiguration (The jobs create section of the configuration dictates if the user can create the job)
 - JobCreateOwner (Users with this privileges can create jobs only for themselves)
 - JobCreateAny (Users with this privileges can create jobs for any of the users that are defined in the create section of the job configuration)
 - JobReadAccess
@@ -18,7 +18,6 @@ The authorization for jobs is consistently different from all the other endpoint
 - JobStatusUpdateConfiguration (The jobs update section in configuration dictates if the user can update the status of the job)
 - JobStatusUpdateOwner (Users with this privileges can update the status of jobs belonging to themselves)
 - JobStatusUpdateAny (Users with this privileges can update the status of any job)
-- JobDeleteAny
 
 #### Priority
 ```mermaid
@@ -29,17 +28,17 @@ graph LR;
     JobReadAccess-->JobReadAny;
     JobStatusUpdate-->JobStatusUpdateConfiguration;
     JobStatusUpdateConfiguration-->JobStatusUpdateAny;
-    JobDelete-->JobDeleteAny;
+    JobDelete;
 ```
 
 #### Authorization table
-| HTTP method | Endpoint | Endpoint Authentication | Anonymous | Authenticated | Create Jobs Groups | Update Jobs Groups | Admin Groups | Delete Groups | Notes |
-| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| POST | Jobs | _JobCreate_ | _JobCreateConfiguration_ | _JobCreateConfiguration_ | Any<br>_JobsCreateOwner_ | __no__ | Any<br>_JobsCreateAny_ | __no__ |  |
-| GET | Jobs | _JobReadMany_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |  |
-| GET | Jobs/_jid_ | _JobReadOne_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |  |
-| POST | Jobs/statusUpdate | _JobStatusUpdate_ | __no__ | _JobStatusUpdateConfiguration_ | __no__ | Owner<br>_JobStatusUpdateOwner_ | Any<br>_JobStatusUpdateAny_ | __no__ |  |
-| DELETE | Jobs/_jid_ | _JobDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | _JobDeleteAny_ | | 
+| HTTP method | Endpoint | Endpoint Authentication | Anonymous | Authenticated | Create Jobs Groups | Update Jobs Groups | Admin Groups | Delete Groups |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| POST | Jobs | _JobCreate_ | _JobCreateConfiguration_ | _JobCreateConfiguration_ | Any<br>_JobsCreateOwner_ | __no__ | Any<br>_JobsCreateAny_ | __no__ |
+| GET | Jobs | _JobReadMany_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
+| GET | Jobs/_jid_ | _JobReadOne_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
+| POST | Jobs/statusUpdate | _JobStatusUpdate_ | __no__ | _JobStatusUpdateConfiguration_ | __no__ | Owner<br>_JobStatusUpdateOwner_ | Any<br>_JobStatusUpdateAny_ | __no__ |
+| DELETE | Jobs/_jid_ | _JobDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | __no__ |
 
 #### Job Create Authorization Table
 The _JobCreateConfiguration_ authorization permissions are configured directly in the __*create*__ section of the job configuration.  
