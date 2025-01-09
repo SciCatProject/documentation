@@ -35,239 +35,252 @@ Users are contained in file `functionalAccount.json.test` and are the following:
 | user5.1 | group5 | _none_ |
 | user5.2 | group5 | _none_ |
 
-**Tests List:**
+## Tests List
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 0010 | adds dataset 1 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0020 | adds dataset 2 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0030 | adds dataset 3 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0040 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#all' configuration with no datasets in job parameters, which should fail | POST | /api/v3/Jobs | admin | 400 | ```TestData.BadRequestStatusCode``` |
-| 0050 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#all' configuration with not existing dataset IDs, which should fail | POST | /api/v3/Jobs | admin | 400 | ```TestData.BadRequestStatusCode``` |
-| 0060 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetPublic' configuration with no jobParams parameter, which should fail | POST | /api/v3/Jobs | admin | 400 | ```TestData.BadRequestStatusCode``` |
-<!-- | 0065 | POST | /api/v3/Jobs | admin | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0070 | POST | /api/v3/Jobs | admin | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0080 | POST | /api/v3/Jobs | admin | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0090 | POST | /api/v3/Jobs | admin | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0100 | POST | /api/v3/Jobs | admin | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0110 | POST | /api/v3/Jobs | user1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0120 | POST | /api/v3/Jobs | user1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0130 | POST | /api/v3/Jobs | user1 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0140 | POST | /api/v3/Jobs | user1 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0150 | POST | /api/v3/Jobs | user1 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0160 | POST | /api/v3/Jobs | user5.1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0170 | POST | /api/v3/Jobs | user5.1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0180 | POST | /api/v3/Jobs | user5.1 | 400 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0190 | POST | /api/v3/Jobs | user5.1 | 400 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0200 | POST | /api/v3/Jobs | user5.1 | 400 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0210 | POST | /api/v3/Jobs | unauthenticated | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0220 | POST | /api/v3/Jobs | unauthenticated | 400 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0230 | POST | /api/v3/Jobs | admin | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0240 | POST | /api/v3/Jobs | admin | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0250 | POST | /api/v3/Jobs | admin | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0260 | POST | /api/v3/Jobs | admin | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0270 | POST | /api/v3/Jobs | admin | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0280 | POST | /api/v3/Jobs | user1 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0290 | POST | /api/v3/Jobs | user1 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0300 | POST | /api/v3/Jobs | user5.1 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0310 | POST | /api/v3/Jobs | user5.1 | 403 | ```TestData.AccessForbiddenStatusCode``` |
-| 0311 | POST | /api/v3/Jobs | user5.1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0312 | POST | /api/v3/Jobs | user5.1 | 409 | ```TestData.ConflictStatusCode``` |
-| 0313 | POST | /api/v3/Jobs | user5.1 | 201 | ```archiveJob``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0314 | POST | /api/v3/Jobs | user5.1 | 409 | ```retrieveJob``` | ```TestData.ConflictStatusCode``` |
-| 0315 | POST | /api/v3/Jobs | user5.1 | 400 | 400 | ```TestData.BadRequestStatusCode``` |
-| 0316 | POST | /api/v3/Jobs | user5.1 | 201 | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0320 | POST | /api/v3/Jobs | unauthenticated | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0330 | POST | /api/v3/Jobs | unauthenticated | 403 | ```TestData.AccessForbiddenStatusCode``` |
-| 0340 | POST | /api/v3/Jobs | admin | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0350 | POST | /api/v3/Jobs | admin | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0360 | POST | /api/v3/Jobs | admin | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0370 | POST | /api/v3/Jobs | admin | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0380 | POST | /api/v3/Jobs | user1 | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0390 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobAuthenticated``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0400 | POST | /api/v3/Jobs | unauthenticated | 403 | ```jobAuthenticated``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0410 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0420 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0430 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0435 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0440 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0450 | POST | /api/v3/Jobs | user1 | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0460 | POST | /api/v3/Jobs | user1 | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0470 | POST | /api/v3/Jobs | user1 | 400 | ```jobDatasetAccess``` | 400 | ```TestData.BadRequestStatusCode``` |
-| 0480 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobDatasetAccess``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0490 | POST | /api/v3/Jobs | user5.1 | 403 | ```jobDatasetAccess``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0500 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0510 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0520 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0530 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0535 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0540 | POST | /api/v3/Jobs | admin | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0550 | POST | /api/v3/Jobs | user1 | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0560 | POST | /api/v3/Jobs | user1 | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0570 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobDatasetOwner``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0580 | POST | /api/v3/Jobs | user5.1 | 403 | ```jobDatasetOwner``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0590 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0600 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0610 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0615 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0616 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0620 | POST | /api/v3/Jobs | admin | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0630 | POST | /api/v3/Jobs | user1 | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0640 | POST | /api/v3/Jobs | user1 | 400 | ```jobUser51``` | 400 | ```TestData.BadRequestStatusCode``` |
-| 0650 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0660 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobUser51``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0670 | POST | /api/v3/Jobs | user5.2 | 403 | ```jobUser51``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0680 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0690 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0700 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0705 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0706 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0710 | POST | /api/v3/Jobs | admin | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0720 | POST | /api/v3/Jobs | user1 | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0730 | POST | /api/v3/Jobs | user1 | 400 | ```jobGroup5``` | 400 | ```TestData.BadRequestStatusCode``` |
-| 0740 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0750 | POST | /api/v3/Jobs | user5.1 | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0760 | POST | /api/v3/Jobs | user5.2 | 201 | ```jobGroup5``` | 201 | ```TestData.EntryCreatedStatusCode``` |
-| 0770 | POST | /api/v3/Jobs | user3 | 403 | ```jobGroup5``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0780 | PATCH | /api/v3/Jobs/${encodedJobId1} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0790 | PATCH | /api/v3/Jobs/${encodedJobId2} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0800 | PATCH | /api/v3/Jobs/${encodedJobId3} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0810 | PATCH | /api/v3/Jobs/${encodedJobId6} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0820 | PATCH | /api/v3/Jobs/${encodedJobId2} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0830 | PATCH | /api/v3/Jobs/${encodedJobId4} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0840 | PATCH | /api/v3/Jobs/${encodedJobId3} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0850 | PATCH | /api/v3/Jobs/${encodedJobId5} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0860 | PATCH | /api/v3/Jobs/${encodedJobId6} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0870 | PATCH | /api/v3/Jobs/${encodedJobId4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0880 | PATCH | /api/v3/Jobs/${encodedJobId2} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0890 | PATCH | /api/v3/Jobs/${encodedJobId5} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0900 | PATCH | /api/v3/Jobs/${encodedJobId3} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0910 | PATCH | /api/v3/Jobs/${encodedJobId6} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0920 | PATCH | /api/v3/Jobs/${encodedJobId6} | unauthenticated | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0930 | PATCH | /api/v3/Jobs/${encodedJobId3} | unauthenticated | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0940 | PATCH | /api/v3/Jobs/${encodedJobId2} | unauthenticated | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 0950 | PATCH | /api/v3/Jobs/${encodedJobIdUser1} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0960 | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0970 | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0980 | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 0990 | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1000 | PATCH | /api/v3/Jobs/${encodedJobIdUser4} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1010 | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1020 | PATCH | /api/v3/Jobs/${encodedJobIdUser5} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1030 | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1040 | PATCH | /api/v3/Jobs/${encodedJobIdUser4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1050 | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1060 | PATCH | /api/v3/Jobs/${encodedJobIdUser5} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1070 | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1080 | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1090 | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | unauthenticated | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1100 | PATCH | /api/v3/Jobs/${encodedJobIdGroup1} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1110 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1120 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1130 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1140 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1150 | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1160 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1170 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1180 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1190 | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1200 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1210 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1220 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1230 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1240 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | unauthenticated | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1250 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec1} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1260 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1270 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec3} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1280 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1290 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1300 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1310 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec3} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1320 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec5} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1330 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1340 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1350 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1360 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec5} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1370 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1380 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1390 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.2 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1400 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | user5.2 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1410 | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.2 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1420 | PATCH | /api/v3/Jobs/${encodedJobIdGroup1} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1430 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1440 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1450 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | admin | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1460 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1470 | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1480 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1490 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1500 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1510 | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1520 | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1530 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.1 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1540 | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1550 | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user5.1 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1560 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.2 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1570 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.2 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1580 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.2 | 200 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.SuccessfulPatchStatusCode``` |
-| 1590 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user3 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1600 | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user3 | 403 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1610 | PATCH | /api/v3/Jobs/nonExistingJobId | admin | 400 | ```{ statusMessage: "update status of a job", statusCode: "job finished/blocked/etc" }``` | 400 | ```TestData.BadRequestStatusCode``` |
-| 1620 | GET | /api/v3/Jobs | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1630 | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1640 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1650 | GET | /api/v3/Jobs?createdBy=user5.1 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1660 | GET | /api/v3/Jobs?createdBy=user5.2 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1670 | GET | /api/v3/Jobs?createdBy=anonymous | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1680 | GET | /api/v3/Jobs | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1690 | GET | /api/v3/Jobs?createdBy=admin | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1700 | GET | /api/v3/Jobs?createdBy=user1 | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1710 | GET | /api/v3/Jobs | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1720 | GET | /api/v3/Jobs?createdBy=admin | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1730 | GET | /api/v3/Jobs | user5.2 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1740 | GET | /api/v3/Jobs | unauthenticated | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1750 | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1760 | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1770 | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1780 | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1790 | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1800 | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1810 | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1820 | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1830 | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1840 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1850 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1860 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1870 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1880 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1890 | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1900 | GET | /api/v3/Jobs/${jobId1} | unauthenticated | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1910 | DELETE | /api/v3/Jobs/${jobId1} | archiveManager | 200 | ```null``` | ```TestData.SuccessfulDeleteStatusCode``` |
-| 1920 | DELETE | /api/v3/Jobs/${jobId1} | admin | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1930 | DELETE | /api/v3/Jobs/${jobId1} | user1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1940 | DELETE | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 1950 | DELETE | /api/v3/Jobs/nonExistingJobId | archiveManager | 400 | ```null``` | 400 | ```TestData.BadRequestStatusCode``` |
-| 1960 | GET | /api/v3/Jobs | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1970 | GET | /api/v3/Jobs?limit=5 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1980 | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 1990 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2000 | GET | /api/v3/Jobs?createdBy=user5.1&limit=5 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2010 | GET | /api/v3/Jobs?createdBy=user5.2 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2020 | GET | /api/v3/Jobs?createdBy=anonymous | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2040 | GET | /api/v3/Jobs?createdBy=admin | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2050 | GET | /api/v3/Jobs?createdBy=user1 | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2060 | GET | /api/v3/Jobs | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2070 | GET | /api/v3/Jobs?createdBy=admin | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2080 | GET | /api/v3/Jobs | user5.2 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2090 | GET | /api/v3/Jobs | unauthenticated | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 2100 | GET | /api/v3/Jobs/facet | unauthenticated | 403 | ```null``` | ```TestData.AccessForbiddenStatusCode``` |
-| 2110 | GET | /api/v3/Jobs/facet?createdBy=admin | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2120 | GET | /api/v3/Jobs/facet?createdBy=user1 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2130 | GET | /api/v3/Jobs/facet?createdBy=user5.1 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2140 | GET | /api/v3/Jobs/facet?createdBy=user5.2 | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2150 | GET | /api/v3/Jobs/facet?createdBy=anonymous | admin | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2160 | GET | /api/v3/Jobs/facet?createdBy=admin | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2170 | GET | /api/v3/Jobs/facet?createdBy=user1 | user1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2180 | GET | /api/v3/Jobs/facet | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2190 | GET | /api/v3/Jobs/facet?createdBy=admin | user5.1 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` |
-| 2200 | GET | /api/v3/Jobs/facet | user5.2 | 200 | ```null``` | ```TestData.SuccessfulGetStatusCode``` | -->
+| 0010 | Add dataset 1 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
+| 0020 | Add dataset 2 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
+| 0030 | Add dataset 3 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
+| 0040 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#all' configuration with no datasets in job parameters, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0050 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#all' configuration with not existing dataset IDs, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0060 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetPublic' configuration with no jobParams parameter, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0065 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetPublic' configuration with empty jobParams parameter | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0070 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0080 | Add a new job as a user from ADMIN_GROUPS for another user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0090 | Add a new job as a user from ADMIN_GROUPS for undefined user from another group user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0100 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#all' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0120 | Add a new job as a user from CREATE_JOB_GROUPS for his/her group in '#all' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0130 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0140 | Add a new job as a user from CREATE_JOB_GROUPS for another group in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0150 | Add a new job as a user from CREATE_JOB_GROUPS for anonymous user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0160 | Add a new job as a normal user for himself/herself in '#all' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0170 | Add a new job as a normal user for his/her group in '#all' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0180 | Add a new job as a normal user for another user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0190 | Add a new job as a normal user for another group in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0200 | Add a new job as a normal user for anonymous user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0210 | Add a new job as unauthenticated user in '#all' configuration | POST | /api/v3/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
+| 0220 | Add a new job as unauthenticated user for another user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | unauthenticated | 400 | ```BadRequestStatusCode``` |
+| 0230 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetPublic' configuration with all published datasets | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0240 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0250 | Add a new job as a user from ADMIN_GROUPS for another user in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0260 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0270 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0280 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetPublic' configuration with all published datasets | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0290 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0300 | Add a new job as a normal user himself/herself in '#datasetPublic' configuration with a published dataset | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0310 | Add a new job as a normal user himself/herself in '#datasetPublic' configuration with unpublished datasets, which should fail as forbidden | POST | /api/v3/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0311 | Add a new public job as a normal user himself/herself with a published dataset | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0312 | Add a new public job as a normal user himself/herself with unpublished datasets, which should fail | POST | /api/v3/Jobs | user5.1 | 409 | ```ConflictStatusCode``` |
+| 0313 | Add a new archive job as a normal user himself/herself with an archivable dataset | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0314 | Add a new retrieve job as a normal user himself/herself with a non retrievable dataset, which should fail | POST | /api/v3/Jobs | user5.1 | 409 | ```ConflictStatusCode``` |
+| 0315 | Add a new public job as a normal user himself/herself with unknown files, which should fail | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0316 | Add a new public job as a normal user himself/herself choosing only specific files | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0320 | Add a new job as anonymous user in '#datasetPublic' configuration with all published datasets | POST | /api/v3/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
+| 0330 | Add a new job as anonymous user in '#datasetPublic' configuration with one unpublished dataset, which should fail as forbidden | POST | /api/v3/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0340 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#authenticated' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0350 | Add a new job as a user from ADMIN_GROUPS for another user in '#authenticated' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0360 | Add a new job as a user from ADMIN_GROUPS for another group in '#authenticated' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0370 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#authenticated' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0380 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#authenticated' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0390 | Add a new job as a normal user for himself/herself in '#authenticated' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0400 | Add a new job as unauthenticated user in '#authenticated' configuration, which should fail as forbidden | POST | /api/v3/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0410 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetAccess' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0420 | Add a new job as a user from ADMIN_GROUPS for another user in '#datasetAccess' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0430 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetAccess' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0435 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetAccess' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0440 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetAccess' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0450 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0460 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetAccess' configuration with no access to datasets | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0470 | Add a new job as user1 for user5.1 ownerUser and group5 ownerGroup for #datasetAccess, which should fail | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0480 | Add a new job as a normal user for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0490 | Add a new job as a normal user for himself/herself in '#datasetAccess' configuration with no access to datasets, which should fail as forbidden | POST | /api/v3/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0500 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0510 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0520 | Add a new job as a user from ADMIN_GROUPS for another user in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0530 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0535 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0540 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetOwner' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0550 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0560 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0570 | Add a new job as a normal user for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0580 | Add a new job as a normal user for himself/herself in '#datasetOwner' configuration with datasets not owned by his/her group, which should fail as forbidden | POST | /api/v3/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0590 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0600 | Add a new job as a user from ADMIN_GROUPS for another user in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0610 | Add a new job as a user from ADMIN_GROUPS for another group in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0615 | Add a new job as a user from ADMIN_GROUPS for another group in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0616 | Add a new job as a user from ADMIN_GROUPS for another user in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0620 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#USER5.1' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0630 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself user in '#USER5.1' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0640 | Add a new job as a user from CREATE_JOB_GROUPS for user5.1 in '#USER5.1' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0650 | Add a new job as user5.1 himself/herself in '#USER5.1' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0660 | Add a new job as user5.1 for no ownerUser and group5 ownerGroup in #USER5.1 configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0670 | Add a new job as user5.2 for himself/herself in #USER5.1, which should fail as forbidden | POST | /api/v3/Jobs | user5.2 | 403 | ```AccessForbiddenStatusCode``` |
+| 0680 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0690 | Add a new job as a user from ADMIN_GROUPS for another user in '#@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0700 | Add a new job as a user from ADMIN_GROUPS for another group in '#@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0705 | Add a new job as a user from ADMIN_GROUPS for another group in '#@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0706 | Add a new job as a user from ADMIN_GROUPS for another user in '@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0710 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#@group5' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0720 | Add a new job as a user from CREATE_JOB_GROUPS for another group in '#@group5' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0730 | Add a new job as a user from CREATE_JOB_GROUPS for user 5.1 in '#@group5' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
+| 0740 | Add a new job as a user 5.1 for himself/herself in '#@group5' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0750 | Add a new job as a user 5.1 for another user in his/her group in '#@group5' configuration | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0760 | Add a new job as a user 5.2 for himself/herself in '#@group5' configuration | POST | /api/v3/Jobs | user5.2 | 201 | ```EntryCreatedStatusCode``` |
+| 0770 | Add a new job as user3 for himself/herself in #@group5 configuration, which should fail as forbidden | POST | /api/v3/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 0780 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0790 | Add a Status update to a job as a user from ADMIN_GROUPS for another user's job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId2} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0800 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId3} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0810 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId6} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0820 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId2} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0830 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId4} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0840 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId3} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0850 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId5} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0860 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId6} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0870 | Add a Status update to a job as a normal user  for his/her job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0880 | Add a Status update to a job as a normal user for another user's job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId2} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0890 | Add a Status update to a job as a normal user for his/her group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0900 | Add a Status update to a job as a normal user for another user's group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId3} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0910 | Add a Status update to a job as a normal user for anonymous user's group in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId6} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0920 | Add a Status update to a job as unauthhenticated user for anonymous job in '#all' configuration | PATCH | /api/v3/Jobs/${encodedJobId6} | unauthenticated | 200 | ```SuccessfulPatchStatusCode``` |
+| 0930 | Add a Status update to a job as unauthhenticated user for anouther group's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobId3} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0940 | Adds a Status update to a job as unauthhenticated user for another user's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobId2} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0950 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0960 | Adds a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0970 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0980 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0990 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1000 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser4} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1010 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1020 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1030 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1040 | Adds a Status update to a job as a normal user  for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUser4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1050 | Adds a Status update to a job as a normal user for another user's job in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser2} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1060 | Adds a Status update to a job as a normal user for his/her group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser5} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1070 | Adds a Status update to a job as a normal user for another user's group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser3} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1080 | Adds a Status update to a job as a normal user for anonymous user's group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1090 | Adds a Status update to a job as unauthhenticated user for anonymous user's group in '#jobOwnerUser' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUser6} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 1100 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1110 | Adds a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1120 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1130 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1140 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1150 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1160 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1170 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1180 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1190 | Adds a Status update to a job as a normal user  for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1200 | Adds a Status update to a job as a normal user for another user's job in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup2} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1210 | Adds a Status update to a job as a normal user for his/her group in '#jobOwnerGroup' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1220 | Adds a Status update to a job as a normal user for another user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup3} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1230 | Adds a Status update to a job as a normal user for anonymous user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1240 | Adds a Status update to a job as unauthhenticated user for anonymous user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroup6} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 1250 | Adds a Status update to a job as a user from ADMIN_GROUPS for his/her job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1260 | Adds a Status update to a job as a user from ADMIN_GROUPS for another group's job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1270 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec3} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1280 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1290 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1300 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1310 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec3} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1320 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1330 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1340 | Adds a Status update to a job as user5.1 for his/her job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1350 | Adds a Status update to a job as user5.1 for another user's job in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec2} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1360 | Adds a Status update to a job as user5.1 for his/her group in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1370 | Adds a Status update to a job as user5.1 for another user's group in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1380 | Adds a Status update to a job as user5.1 for anonymous user's group in 'USER5.1' configuration | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec6} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1390 | Adds a Status update to a job as user5.2 for his/her job in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec7} | user5.2 | 403 | ```AccessForbiddenStatusCode``` |
+| 1400 | Adds a Status update to a job as user5.2 for user's 5.1 in same group job in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec4} | user5.2 | 403 | ```AccessForbiddenStatusCode``` |
+| 1410 | Adds a Status update to a job as user5.2 for another user in his/her group job in 'USER5.1' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdUserSpec5} | user5.2 | 403 | ```AccessForbiddenStatusCode``` |
+| 1420 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1430 | Adds a Status update to a job as a user from ADMIN_GROUPS for another group's job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1440 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec3} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1450 | Adds a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec6} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 1460 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1470 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec4} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1480 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec3} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1490 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1500 | Adds a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec6} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1510 | Adds a Status update to a job as user5.1 for his/her job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1520 | Adds a Status update to a job as user5.1 for another user's job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1530 | Adds a Status update to a job as user5.1 for his/her group in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1540 | Adds a Status update to a job as user5.1 for another user's group in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec4} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1550 | Adds a Status update to a job as user5.1 for anonymous user's group in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec6} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1560 | Adds a Status update to a job as user5.2 for his/her job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec5} | user5.2 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1570 | Adds a Status update to a job as user5.2 for user's 5.1 in same group job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | user5.2 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1580 | Adds a Status update to a job as user5.2 for another user in his/her group job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec3} | user5.2 | 200 | ```SuccessfulPatchStatusCode``` |
+| 1590 | Adds a Status update to a job as user3 for his/her job in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec4} | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 1600 | Adds a Status update to a job as user3 for user's 5.1 job in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 1610 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v3/Jobs/nonExistingJobId | admin | 400 | ```BadRequestStatusCode``` |
+| 1620 | Access jobs as a user from ADMIN_GROUPS | GET | /api/v3/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1630 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1640 | Access jobs as a user from ADMIN_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1650 | Access jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v3/Jobs?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1660 | Access jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v3/Jobs?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1670 | Access jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v3/Jobs?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1680 | Access jobs as a user from CREATE_JOB_GROUPS | GET | /api/v3/Jobs | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1690 | Access jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1700 | Access jobs as a user from CREATE_JOB_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1710 | Access jobs as a normal user | GET | /api/v3/Jobs | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1720 | Access jobs as a normal user (user5.1) that were created by admin | GET | /api/v3/Jobs?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1730 | Access jobs as another normal user (user5.2) | GET | /api/v3/Jobs | user5.2 | 200 | ```SuccessfulGetStatusCode``` |
+| 1740 | Access jobs as unauthenticated user, which should be forbidden | GET | /api/v3/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 1750 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1760 | Get user1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1770 | Get group1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1780 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1790 | Get admin's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1800 | Get his/her own job as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1810 | Get a job from his/her own group as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1820 | Get other user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1830 | Get anonymous user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1840 | Get admin's job as normal, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1850 | Get other user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1860 | Get his/her own job as normal user | GET | /api/v3/Jobs/${jobId1} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1870 | Get job of another user in his/her group as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1880 | Get job from his/her own group as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1890 | Get anonymous user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1900 | Get anonymous user's job as anonymous user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 1910 | Delete job 1 as Archive Manager | DELETE | /api/v3/Jobs/${jobId1} | archiveManager | 200 | ```SuccessfulDeleteStatusCode``` |
+| 1920 | Delete job 1 as Admin, which should fail | DELETE | /api/v3/Jobs/${jobId1} | admin | 403 | ```AccessForbiddenStatusCode``` |
+| 1930 | Delete job 1 as CREATE_JOB_GROUPS user, which should fail | DELETE | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1940 | Delete job 1 as normal user, which should fail | DELETE | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1950 | Delete job not existing in database as Archive Manager, which should fail | DELETE | /api/v3/Jobs/nonExistingJobId | archiveManager | 400 | ```BadRequestStatusCode``` |
+| 1960 | Access jobs as a user from ADMIN_GROUPS, which should be one less than before proving that delete works | GET | /api/v3/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1970 | Fullquery jobs as a user from ADMIN_GROUPS, limited by 5 | GET | /api/v3/Jobs?limit=5 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1980 | Fullquery jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1990 | Fullquery jobs as a user from ADMIN_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2000 | Fullquery jobs as a user from ADMIN_GROUPS that were created by User5.1, limited by 5 | GET | /api/v3/Jobs?createdBy=user5.1&limit=5 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2010 | Fullquery jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v3/Jobs?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2020 | Fullquery jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v3/Jobs?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2040 | Fullquery jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2050 | Fullquery jobs as a user from CREATE_JOB_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2060 | Fullquery jobs as a normal user | GET | /api/v3/Jobs | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2070 | Fullquery jobs as a normal user (user5.1) that were created by admin | GET | /api/v3/Jobs?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2080 | Fullquery jobs as another normal user (user5.2) | GET | /api/v3/Jobs | user5.2 | 200 | ```SuccessfulGetStatusCode``` |
+| 2090 | Fullquery jobs as unauthenticated user, which should be forbidden | GET | /api/v3/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 2100 | Fullfacet jobs as unauthenticated user, which should be forbidden | GET | /api/v3/Jobs/facet | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 2110 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs/facet?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2120 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User1 | GET | /api/v3/Jobs/facet?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2130 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v3/Jobs/facet?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2140 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v3/Jobs/facet?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2150 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v3/Jobs/facet?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 2160 | Fullfacet jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v3/Jobs/facet?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2170 | Fullfacet jobs as a user from CREATE_JOB_GROUPS that were created by User1 | GET | /api/v3/Jobs/facet?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2180 | Fullfacet jobs as a normal user | GET | /api/v3/Jobs/facet | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2190 | Fullfacet jobs as a normal user (user5.1) that were created by admin | GET | /api/v3/Jobs/facet?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 2200 | Fullfacet jobs as another normal user (user5.2) | GET | /api/v3/Jobs/facet | user5.2 | 200 | ```SuccessfulGetStatusCode``` |
+
+### 3120: Validate Job Action
+
+| Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0010 | Create validate job fails without required parameters | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0020 | Create validate job fails with the wrong types | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0030 | Create validate job fails with the wrong types | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0040 | Create validate job fails with the wrong types | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0050 | Create validate succeeds with the right types | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0060 | Update validate fails without the required parameters | PATCH | /api/v3/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
+| 0070 | Update validate fails with incorrect types | PATCH | /api/v3/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
+| 0080 | Updating validate succeeds with the required parameters | PATCH | /api/v3/Jobs/${encodedJobIdValidate1} | admin | 200 | ```SuccessfulPatchStatusCode``` |

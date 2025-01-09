@@ -83,16 +83,16 @@ These settings are meant only for testing and to demonstrate the capabilities of
 The following table lists the accounts that are provided by default in a vanilla installation.
 Please make sure to change them, update their password or remove them entirely in your production environment.
 
-| Account | Groups | Admin Group | Delete Group | Create Dataset w/o pid | Create Dataset w/ pid | Create Dataset Privileged | Create Job | Update Job | Delete Job |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| admin | admin, global | yes | no | Any |  |  | Any | Any | no |
-| ingestor | ingestor | yes | no | Any |  |  | Any | Any | no |
-| archiveManager | archivemanager | yes | yes | no |  |  | Any | Any | Any |
-| proposalIngestor | proposalingestor | no | no | no |  |  | no | no | no |
-| user 1 | group1 | no | no | Own |  |  | Own | Own | no |
-| user 2 | group2 | no | no | Own |  |  | Own | Own | no |
-| user 3 | group3 | no | no | Own |  |  | Own | Own | no |
-| user 4 | group4 | no | no | no |  |  | no | no | no |
+| Account | Groups | Admin Group | Delete Group | Create Dataset w/o pid | Create Dataset w/ pid | Create Dataset Privileged |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| admin | admin, global | yes | no | Any |  |  |
+| ingestor | ingestor | yes | no | Any |  |  |
+| archiveManager | archivemanager | yes | yes | no |  |  |
+| proposalIngestor | proposalingestor | no | no | no |  |  |
+| user 1 | group1 | no | no | Own |  |  |
+| user 2 | group2 | no | no | Own |  |  |
+| user 3 | group3 | no | no | Own |  |  |
+| user 4 | group4 | no | no | no |  |  |
 
 ### Group permissions
 | Environmental variable | List of groups |
