@@ -1,4 +1,4 @@
-# User Authorization
+# 2300: User Authorization
 
 User authorization tests access to the Users endpoints according to the default configuration provided in the vanilla installation and illustrated at the beginning of this document.
 
