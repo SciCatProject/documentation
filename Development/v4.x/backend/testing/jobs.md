@@ -22,7 +22,7 @@ Users are contained in file `functionalAccount.json.test` and are the following:
 
 | User | Group | Permission Group |
 | --- | --- | --- |
-| admin | admin | Admin Groups |
+| admin | admin | Admin Groups, Delete Job Groups |
 | adminIngestor | adminingestor | Admin Groups |
 | archiveManager | archivemanager | Delete Groups, Delete Job Groups |
 | datasetIngestor | datasetingestor | Create Dataset Privileged Groups |
@@ -212,7 +212,7 @@ Users are contained in file `functionalAccount.json.test` and are the following:
 | 1580 | Adds a Status update to a job as user5.2 for another user in his/her group job in '@group5' configuration | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec3} | user5.2 | 200 | ```SuccessfulPatchStatusCode``` |
 | 1590 | Adds a Status update to a job as user3 for his/her job in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec4} | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 1600 | Adds a Status update to a job as user3 for user's 5.1 job in '@group5' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedJobIdGroupSpec2} | user3 | 403 | ```AccessForbiddenStatusCode``` |
-| 1610 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v3/Jobs/nonExistingJobId | admin | 400 | ```BadRequestStatusCode``` |
+| 1610 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v3/Jobs/${badJobId} | admin | 400 | ```BadRequestStatusCode``` |
 | 1620 | Access jobs as a user from ADMIN_GROUPS | GET | /api/v3/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 1630 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 1640 | Access jobs as a user from ADMIN_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
@@ -226,27 +226,27 @@ Users are contained in file `functionalAccount.json.test` and are the following:
 | 1720 | Access jobs as a normal user (user5.1) that were created by admin | GET | /api/v3/Jobs?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 1730 | Access jobs as another normal user (user5.2) | GET | /api/v3/Jobs | user5.2 | 200 | ```SuccessfulGetStatusCode``` |
 | 1740 | Access jobs as unauthenticated user, which should be forbidden | GET | /api/v3/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
-| 1750 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 1760 | Get user1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 1770 | Get group1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 1780 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${jobId1} | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 1790 | Get admin's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1800 | Get his/her own job as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 1810 | Get a job from his/her own group as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${jobId1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 1820 | Get other user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1830 | Get anonymous user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1840 | Get admin's job as normal, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1850 | Get other user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1860 | Get his/her own job as normal user | GET | /api/v3/Jobs/${jobId1} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
-| 1870 | Get job of another user in his/her group as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1880 | Get job from his/her own group as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1890 | Get anonymous user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1900 | Get anonymous user's job as anonymous user, which should be forbidden | GET | /api/v3/Jobs/${jobId1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
-| 1910 | Delete job 1 as Archive Manager | DELETE | /api/v3/Jobs/${jobId1} | archiveManager | 200 | ```SuccessfulDeleteStatusCode``` |
-| 1920 | Delete job 1 as Admin, which should fail | DELETE | /api/v3/Jobs/${jobId1} | admin | 403 | ```AccessForbiddenStatusCode``` |
-| 1930 | Delete job 1 as CREATE_JOB_GROUPS user, which should fail | DELETE | /api/v3/Jobs/${jobId1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1940 | Delete job 1 as normal user, which should fail | DELETE | /api/v3/Jobs/${jobId1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 1950 | Delete job not existing in database as Archive Manager, which should fail | DELETE | /api/v3/Jobs/nonExistingJobId | archiveManager | 400 | ```BadRequestStatusCode``` |
+| 1750 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser1} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1760 | Get user1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser2} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1770 | Get group1's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser3} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1780 | Get admin's job as user from ADMIN_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser6} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 1790 | Get admin's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1800 | Get his/her own job as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser2} | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1810 | Get a job from his/her own group as user from CREATE_JOB_GROUP | GET | /api/v3/Jobs/${encodedJobIdUser3} | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1820 | Get other user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser4} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1830 | Get anonymous user's job as user from CREATE_JOB_GROUP, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser6} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1840 | Get admin's job as normal, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1850 | Get other user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser2} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1860 | Get his/her own job as normal user | GET | /api/v3/Jobs/${encodedJobIdUser4} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1870 | Get job of another user in his/her group as normal user, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUserSpec7} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1880 | Get job from his/her own group as normal user, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser5} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1890 | Get anonymous user's job as normal user, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser6} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1900 | Get anonymous user's job as anonymous user, which should be forbidden | GET | /api/v3/Jobs/${encodedJobIdUser6} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 1910 | Delete job 1 as Archive Manager | DELETE | /api/v3/Jobs/${encodedJobIdUser1} | archiveManager | 200 | ```SuccessfulDeleteStatusCode``` |
+| 1920 | Delete job 1 as Admin | DELETE | /api/v3/Jobs/${encodedJobIdUser2} | admin | 200 | ```SuccessfulDeleteStatusCode``` |
+| 1930 | Delete job 1 as CREATE_JOB_GROUPS user, which should fail | DELETE | /api/v3/Jobs/${encodedJobIdUser3} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1940 | Delete job 1 as normal user, which should fail | DELETE | /api/v3/Jobs/${encodedJobIdUser3} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 1950 | Delete job not existing in database as Archive Manager, which should fail | DELETE | /api/v3/Jobs/${fakeJobId} | archiveManager | 400 | ```BadRequestStatusCode``` |
 | 1960 | Access jobs as a user from ADMIN_GROUPS, which should be one less than before proving that delete works | GET | /api/v3/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 1970 | Fullquery jobs as a user from ADMIN_GROUPS, limited by 5 | GET | /api/v3/Jobs?limit=5 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 1980 | Fullquery jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
