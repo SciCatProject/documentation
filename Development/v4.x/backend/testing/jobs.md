@@ -113,7 +113,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0400 | Adds a Status update to a job as unauthenticated user for another user's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v3/Jobs/${encodedAllJobOwnedByUser1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 | 0410 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v3/Jobs/${badJobId} | admin | 400 | ```BadRequestStatusCode``` |
 | 0420 | Access jobs as a user from ADMIN_GROUPS | GET | /api/v3/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 1630 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0430 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v3/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0440 | Access jobs as a user from ADMIN_GROUPS that were created by User1 | GET | /api/v3/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0450 | Access jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v3/Jobs?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0460 | Access jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v3/Jobs?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
