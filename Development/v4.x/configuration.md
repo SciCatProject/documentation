@@ -7,9 +7,9 @@
 
 ## SciCat Frontend
 
-This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. 
+This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features.
 
-The configuration file can be served from the backend, via the `admin/client/config.json` endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume `/home/node/app/dist/config/frontend.config.json` for it to be served through this endpoint. 
+The configuration file can be served from the backend, via the `admin/client/config.json` endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume `/home/node/app/dist/config/frontend.config.json` for it to be served through this endpoint.
 
 
 An example is shown below
@@ -144,9 +144,9 @@ This is the configuration file for the backend. This file allows the systems adm
 There are currently many configurable additions to SciCat which makes it very flexible these are:
 - OIDC for authenticatoin
 - LDAP for authentication
-- Elastic Search 
+- Elastic Search
 - SMTP for sending emails to notify users of SciCat jobs
-- AMQP to provide a message queue for the jobs 
+- AMQP to provide a message queue for the jobs
 
 An minimal example is shown below followed by a full example:
 
@@ -193,7 +193,7 @@ Valid environment variables for the .env file. See .env.example for examples val
     PROPOSAL_GROUPS [string] Optional Comma separated list of proposal groups with permission to create any proposals. Example: "proposaladmin, proposalingestor". For more details check: Scicat Documentation
 
     SAMPLE_GROUPS [string] Optional Comma separated list of sample groups with permission to create any samples. Example: "sampleadmin, sampleingestor". For more details check: Scicat Documentation
-    
+
 ## Access groups from external administration systems
 
     ACCESS_GROUPS_STATIC_VALUES [string] Optional Comma separated list of access groups automatically assigned to all users. Example: "scicat, user"
@@ -201,7 +201,7 @@ Valid environment variables for the .env file. See .env.example for examples val
     ACCESS_GROUPS_SERVICE_TOKEN [string] Optional Authentication token used if access groups are obtained from a third party service. This value is not used by the vanilla installation, but only if the instance is customized to use an external service to provide user groups, like the ESS example
 
     ACCESS_GROUP_SERVICE_API_URL [string] Optional URL of the service providing the users' access groups. This value is not used by the vanilla installation, but only if the instance is customized to use an external service to provide user groups, like the ESS example
-   
+
 ## Secrets, tokens and http settings
 
     EXPRESS_SESSION_SECRET [string] Optional Secret used to set up express session.
@@ -275,8 +275,8 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     REGISTER_METADATA_URI [string] URI to the organization that registers the facilities published data metadata.
 
-## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon 
-<!-- 
+## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon
+<!--
     RABBITMQ_ENABLED [string] Optional Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 
     RABBITMQ_HOSTNAME [string] Optional The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
@@ -285,18 +285,31 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled. -->
 
-## SMTP Settings - need this option if you require Scicat to send emails.     
+## Email Settings - use these options if you require Scicat to send emails.
+
+General settings:
+
+    EMAIL_TYPE: [string] Optional The type of your email provider. Values "smtp" or "ms365". Defaults to "smtp".
+
+    EMAIL_FROM [string] Optional Email address that emails should be sent from.
+
+For SMTP emails:
 
     SMTP_HOST [string] Optional Host of SMTP server.
 
-    SMTP_MESSAGE_FROM [string] Optional Email address that emails should be sent from.
+    SMTP_PORT [number] Optional Port of SMTP server. Defaults to 587.
 
-    SMTP_PORT [string] Optional Port of SMTP server.
+    SMTP_SECURE [boolean] Optional Use encrypted SMTPS. Defaults to "no".
 
-    SMTP_SECURE [string] Optional Secure of SMTP server.
-    
+For Microsoft 365 emails using the Graph API:
 
-## Elastic Search settings - use these to enable elastic search 
+    MS365_TENANT_ID` [string] Optional Tenant ID for sending emails over Microsoft Graph API.
+
+    MS365_CLIENT_ID` [string] Optional Client ID for sending emails over Microsoft Graph API.
+
+    MS365_CLIENT_SECRET` [string] Optional Client Secret for sending emails over Microsoft Graph API.
+
+## Elastic Search settings - use these to enable elastic search
 
     ELASTICSEARCH_ENABLED [string] Flag to enable/disable the Elasticsearch endpoints. Values "yes" or "no". Defaults to "no"
 
