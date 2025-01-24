@@ -125,10 +125,13 @@ The following actions are built-in to SciCat and can be included in the `actions
 
 #### URLAction
 
-Makes a URL request. Most fields can be templated with the job DTO and body.
+The `URL` action responds to a Job event by making an HTTP call.
 
 **Configuration**:
+The _URL action_, per job stage (_create_, _update_) if defined, must be configured in `jobConfig.yaml`.
+It supports templating, by extracting the values from the job schema.
 
+For example:
 ```yml
 - actionType: url
   url: http://localhost:3000/api/v3/health?jobid={{id}}
@@ -137,7 +140,11 @@ Makes a URL request. Most fields can be templated with the job DTO and body.
     accept: application/json
 ```
 
-> **TODO** Expand this section.
+Where:
+  - `url` (required): The URL for the request.This can include template variables.
+  - `method` (optional): The HTTP method for the request, e.g. "GET", "POST".
+  - `headers` (optional): An object containing HTTP headers to be included in the request.
+  - `body` (optional): The body of the request, for methods like "POST" or "PUT".
 
 #### Validate
 
@@ -303,29 +310,62 @@ Validation will result in a `400 Bad Request` response if either the path is not
 or if any values matching the path do not validate against the provided schema.
 
 #### Email
-> **TODO** Expand this section.
+
+The `Email` action responds to a Job event by sending an email.
 
 **Configuration**:
+The _Mail service_ must first be configured through environmental variables, as described in the [configuration](../configuration.md).
+There you can define the `EMAIL_TYPE`, which can be either `smtp` or `ms365`, along with the type's respective configuration values.
+While SMTP is the default, MS365 adds support for [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=graph-rest-1.0) for sending emails.
+This is an alternative to SMTP for MS365 accounts that would otherwise require interactive OAuth logins, making it useful for automated emails.
+To use MS365, you (or your azure admin) will need to generate a `tenantId`, `clientId`, and `clientSecret` with permissions to send email.
+The process is described [here](https://docs.emailengine.app/setting-up-oauth2-with-outlook/).
+Upon instantiation, the service will create the configured transporter, ready to sent emails upon request.
+
+The _Email action_, per job stage (_create_, _update_) if defined, must be configured in `jobConfig.yaml`.
+It supports templating, by extracting the values from the job schema.
+
+Example:
 ```
 - actionType: email
   to: "{{contactEmail}}"
-  subject: "[SciCat] Your {{type}} job was submitted successfully"
-  bodyTemplateFile: src/common/email-templates/job-template-simplified.html
+  from: "sender@example.com",
+  subject: "[SciCat] Your {{type}} job was submitted successfully."
+  bodyTemplateFile: "path/to/job-template-file.html"
+```
+
+Where:
+- `to`: The recipient's email address. This can include template variables.
+- `from`: The sender's email address. If no value is provided, then the default sender email address will be used, as defined in [configuration](../configuration.md).
+- `subject`: The subject of the email. This can include template variables.
+- `bodyTemplateFile`: The path to the HTML template file for the email body.
+
+You can create your own template for the email's body, which should be a valid html file - for example:
+```
+<html>
+<head>
+  <style type="text/css">
+  ...
+  </style>
+</head>
+  <body>
+    <p>
+      Your {{type}} job with id {{id}} has been submitted ...
+    </p>
+  </body>
+</html>
 ```
 
 #### RabbitMQ
 
 The `RabbitMQ` action implements a way for the backend to connect to a Message Broker.
-It publishes the new or updated Job entry to a messaging queue,
-from where it can be picked up by any program willing to react to this Job.
+It publishes the new or updated Job entry to a messaging queue, from where it can be picked up by any program willing to react to this Job.
 
 **Configuration**:
-The RabbitMQ _service_ must first be configured through environmental variables,
-as described in the [configuration](../configuration.md).
+The _RabbitMQ service_ must first be configured through environmental variables, as described in the [configuration](../configuration.md). 
 Upon instantiation, it will create a RabbitMQ connection and channel.
 
-The RabbitMQ _action_, per job stage (_create_, _update_) if defined,
-must be configured in `jobConfig.yaml`, for example:
+The _RabbitMQ action_, per job stage (_create_, _update_) if defined, must be configured in `jobConfig.yaml`, for example:
 ```
 - actionType: rabbitmq
   exchange: jobs.write
@@ -333,15 +373,14 @@ must be configured in `jobConfig.yaml`, for example:
   queue: client.jobs.write
 ```
 Where:
-- An exchange is a routing mechanism that receives messages and routes them to the appropriate queues.
-- A routing key is a string used to label messages, to specify the message's purpose or destination.
-- A queue is a storage buffer where messages are held until they are consumed.
+- An `exchange` is a routing mechanism that receives messages and routes them to the appropriate queues.
+- A routing `key` is a string used to label messages, to specify the message's purpose or destination.
+- A `queue` is a storage buffer where messages are held until they are consumed.
 
 If needed, different queues can be defined for different purposes.
 Exchanges and keys can be reused for different queues. 
 
-Trying to configure a RabbitMQ action, when the service is not enabled,
-will throw an error that will prevent the application from running.
+Trying to configure a RabbitMQ action, when the service is not enabled, will throw an error that will prevent the application from running.
 
 #### Log
 
