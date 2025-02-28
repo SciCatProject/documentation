@@ -176,6 +176,7 @@ PUBLIC_URL_PREFIX="https://doi.ess.eu/detail/"  // The base URL to the facility 
 PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
 RABBITMQ_ENABLED=<"yes"|"no">  *Optional* Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 RABBITMQ_HOSTNAME="localhost"  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_PORT=5672  // *Optional* The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 RABBITMQ_USERNAME="rabbitmq"  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.

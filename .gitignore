@@ -17,3 +17,7 @@ docs
 *.pdf
 .idea
 cat
+
+# Website output
+_site
+.jekyll-cache

@@ -193,7 +193,15 @@ Valid environment variables for the .env file. See .env.example for examples val
     PROPOSAL_GROUPS [string] Optional Comma separated list of proposal groups with permission to create any proposals. Example: "proposaladmin, proposalingestor". For more details check: Scicat Documentation
 
     SAMPLE_GROUPS [string] Optional Comma separated list of sample groups with permission to create any samples. Example: "sampleadmin, sampleingestor". For more details check: Scicat Documentation
-    
+
+## Jobs
+
+  CREATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: Scicat Documentation
+
+  UPDATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: Scicat Documentation
+
+  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: Scicat Documentation
+
 ## Access groups from external administration systems
 
     ACCESS_GROUPS_STATIC_VALUES [string] Optional Comma separated list of access groups automatically assigned to all users. Example: "scicat, user"
@@ -275,15 +283,17 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     REGISTER_METADATA_URI [string] URI to the organization that registers the facilities published data metadata.
 
-## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon 
-<!-- 
+## Message queue settings - only required when using the jobs settings.
+
     RABBITMQ_ENABLED [string] Optional Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 
     RABBITMQ_HOSTNAME [string] Optional The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
+    RABBITMQ_PORT [number]  Optional The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+
     RABBITMQ_USERNAME [string] Optional The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
-    RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled. -->
+    RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 
 ## SMTP Settings - need this option if you require Scicat to send emails.     
 

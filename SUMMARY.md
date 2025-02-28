@@ -43,6 +43,7 @@
     - [Running the Components](Development/v4.x/running.md)
     - [Configuration](Development/v4.x/configuration.md)
       - [Backend](Development/v4.x/backend/configuration.md)
+        - [Jobs](Development/v4.x/backend/configuration/jobconfig.md)
       - [Authorization](Development/v4.x/backend/authorization.md)
         - [Datasets](Development/v4.x/backend/authorization/authorization_datasets.md)
         - [OrigDatablocks](Development/v4.x/backend/authorization/authorization_origdatablocks.md)
