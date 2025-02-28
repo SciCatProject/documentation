@@ -6,7 +6,7 @@ The authorization for jobs is consistently different from all the other endpoint
 ### Endpoint Authorization
 - JobCreate
 - JobRead
-- JobStatusUpdate
+- JobUpdate
 - JobDelete
 
 ### (Data) Instance Authorization
@@ -15,9 +15,9 @@ The authorization for jobs is consistently different from all the other endpoint
 - JobCreateAny (Users with this privileges can create jobs for any of the users that are defined in the create section of the job configuration)
 - JobReadAccess
 - JobReadAny
-- JobStatusUpdateConfiguration (The jobs update section in configuration dictates if the user can update the status of the job)
-- JobStatusUpdateOwner (Users with this privileges can update the status of jobs belonging to themselves)
-- JobStatusUpdateAny (Users with this privileges can update the status of any job)
+- JobUpdateConfiguration (The jobs update section in configuration dictates if the user can update the job)
+- JobUpdateOwner (Users with this privileges can update jobs belonging to themselves)
+- JobUpdateAny (Users with this privileges can update any job)
 
 #### Priority
 ```mermaid
@@ -26,8 +26,8 @@ graph LR;
     JobCreateConfiguration-->JobCreateAny;
     JobRead-->JobReadAccess;
     JobReadAccess-->JobReadAny;
-    JobStatusUpdate-->JobStatusUpdateConfiguration;
-    JobStatusUpdateConfiguration-->JobStatusUpdateAny;
+    JobUpdate-->JobUpdateConfiguration;
+    JobUpdateConfiguration-->JobUpdateAny;
     JobDelete;
 ```
 
@@ -37,7 +37,7 @@ graph LR;
 | POST | Jobs | _JobCreate_ | _JobCreateConfiguration_ | _JobCreateConfiguration_ | Any<br>_JobsCreateOwner_ | __no__ | Any<br>_JobsCreateAny_ | __no__ |
 | GET | Jobs | _JobReadMany_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
 | GET | Jobs/_jid_ | _JobReadOne_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
-| POST | Jobs/statusUpdate | _JobStatusUpdate_ | __no__ | _JobStatusUpdateConfiguration_ | __no__ | Owner<br>_JobStatusUpdateOwner_ | Any<br>_JobStatusUpdateAny_ | __no__ |
+| PATCH | Jobs/_jid_  | _JobUpdate_ | __no__ | _JobUpdateConfiguration_ | __no__ | Owner<br>_JobUpdateOwner_ | Any<br>_JobUpdateAny_ | __no__ |
 | DELETE | Jobs/_jid_ | _JobDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | __no__ |
 
 #### Job Create Authorization Table
@@ -56,23 +56,23 @@ Any positive match will results in the user acquiring _JobCreate_ endpoint autho
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly use for debuging and testing
 
-#### Job Status Update Authorization Table
-The _JobStatusUpdateConfiguration_ authorization permissions are configured directly in the __*update*__ section of the job configuration.  
-Any positive match will results in the user acquiring  _JobStatusUpdate_ endpoint authorization apply to the jobs endpoint POST:Jobs/statusUpdate  
+#### Job Update Authorization Table
+The _JobUpdateConfiguration_ authorization permissions are configured directly in the __*update*__ section of the job configuration.  
+Any positive match will results in the user acquiring  _JobUpdate_ endpoint authorization apply to the jobs endpoint PATCH:Jobs/id  
   
-| Job Status Update Authorization | Endpoint Authentication Translation | Endpoint Authentication Description | Instance Authentication Translation | Instance Authentication Description |
+| Job Update Authorization | Endpoint Authentication Translation | Endpoint Authentication Description | Instance Authentication Translation | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
-| _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can update the status of this job instance |
+| _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can update this job instance |
 | _#jobOwnerUser_ | _#user_ | authenticated user can access the endpoint | _#jobOwnerUser_ | only the user that is listed in field _ownerUser_ can perform the update |
 | _#jobOwnerGroup_ | _#user_ | authenticated user can access the endpoint | _#jobOwnerGroup_ | any user that belongs to the group listed in field _ownerGroup_ can perform the update |
-| __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job status can be updated only by users who belong to the group specified |
-| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job status can be updated only by the user indicated |
+| __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job can be updated only by users who belong to the group specified |
+| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job can be updated only by the user indicated |
 
-__IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the status of the job. It is mostly use for debuging and testing
+__IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the job. It is mostly use for debuging and testing
 
 #### Job Authorization priority
 The endpoint authorization is the most permissive authorization across all the jobs defined.
-The priority between job create and status update authorization is as follow:
+The priority between job create and update authorization is as follow:
 
 ```mermaid
 graph LR;

@@ -243,7 +243,7 @@ jobs:
           datasets:
             datasetlifecycle.archivable:
               const: true
-    statusUpdate:
+    update:
       auth: archivemanager
       actions: []
   - jobType: retrieve
@@ -254,7 +254,7 @@ jobs:
           datasets:
             datasetlifecycle.retrievable:
               const: true
-    statusUpdate:
+    update:
       auth: archivemanager
       actions: []
   - jobType: public
@@ -265,7 +265,7 @@ jobs:
           datasets:
             isPublished:
               const: true
-    statusUpdate:
+    update:
       auth: archivemanager
 ```
 
