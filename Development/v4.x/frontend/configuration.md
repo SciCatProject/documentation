@@ -181,10 +181,14 @@ RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to
 REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.
 REGISTER_METADATA_URI="https://mds.test.datacite.org/metadata"  // URI to the organization that registers the facilities published data metadata.
 SITE=<SITE>  // The name of your site.
+EMAIL_TYPE=<"smtp"|"ms365">  // Type of email provider. Default "smtp"
+EMAIL_FROM=<MESSAGE_FROM>  // Email address that emails should be sent from.
 SMTP_HOST=<SMTP_HOST>  // Host of SMTP server.
-SMTP_MESSAGE_FROM=<SMTP_MESSAGE_FROM>  // Email address that emails should be sent from.
 SMTP_PORT=<SMTP_PORT>  // Port of SMTP server.
-SMTP_SECURE=<SMTP_SECURE>  // Secure of SMTP server.
+SMTP_SECURE=<"yes"|"no">  // Use SMTPS
+MS365_TENANT_ID=<tenantId>  // tenantId for Microsoft Graph API
+MS365_CLIENT_ID=<clientId>  // clientId for Microsoft Graph API
+MS365_CLIENT_SECRET=<clientSecret>  // clientSecret for Microsoft Graph API
 
 ```
 
