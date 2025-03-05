@@ -1182,10 +1182,14 @@ RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to
 REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.
 REGISTER_METADATA_URI="https://mds.test.datacite.org/metadata"  // URI to the organization that registers the facilities published data metadata.
 SITE=&lt;SITE&gt;  // The name of your site.
+EMAIL_TYPE=&lt;"smtp"|"ms365"&gt;  // Type of email provider. Default "smtp"
+EMAIL_FROM=&lt;MESSAGE_FROM&gt;  // Email address that emails should be sent from.
 SMTP_HOST=&lt;SMTP_HOST&gt;  // Host of SMTP server.
-SMTP_MESSAGE_FROM=&lt;SMTP_MESSAGE_FROM&gt;  // Email address that emails should be sent from.
 SMTP_PORT=&lt;SMTP_PORT&gt;  // Port of SMTP server.
-SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
+SMTP_SECURE=&lt;"yes"|"no"&gt;  // Use SMTPS
+MS365_TENANT_ID=&lt;tenantId&gt;  // tenantId for Microsoft Graph API
+MS365_CLIENT_ID=&lt;clientId&gt;  // clientId for Microsoft Graph API
+MS365_CLIENT_SECRET=&lt;clientSecret&gt;  // clientSecret for Microsoft Graph API
 </code></pre><h3 id="doi-config">DOI Config</h3>
 <p>This config file contains the username and password for authenicating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.</p>
 <pre><code>backend/src/config/doiconfig.local.json
@@ -1237,7 +1241,7 @@ SMTP_SECURE=&lt;SMTP_SECURE&gt;  // Secure of SMTP server.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"next":{"title":"Theming","level":"1.5.2.5","depth":3,"path":"Development/v4.x/Theming.md","ref":"Development/v4.x/Theming.md","articles":[]},"previous":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/frontend/configuration.md","mtime":"2024-10-22T13:28:07.184Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"next":{"title":"Theming","level":"1.5.2.5","depth":3,"path":"Development/v4.x/Theming.md","ref":"Development/v4.x/Theming.md","articles":[]},"previous":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/frontend/configuration.md","mtime":"2025-03-05T10:16:42.957Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-05T10:16:47.740Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

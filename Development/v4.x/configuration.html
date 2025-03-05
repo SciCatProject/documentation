@@ -1019,8 +1019,8 @@
 </li>
 </ul>
 <h2 id="scicat-frontend">SciCat Frontend</h2>
-<p>This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features. </p>
-<p>The configuration file can be served from the backend, via the <code>admin/client/config.json</code> endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume <code>/home/node/app/dist/config/frontend.config.json</code> for it to be served through this endpoint. </p>
+<p>This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features.</p>
+<p>The configuration file can be served from the backend, via the <code>admin/client/config.json</code> endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume <code>/home/node/app/dist/config/frontend.config.json</code> for it to be served through this endpoint.</p>
 <p>An example is shown below</p>
 <pre><code>frontend.config.json:
 
@@ -1146,9 +1146,9 @@
 <ul>
 <li>OIDC for authenticatoin</li>
 <li>LDAP for authentication</li>
-<li>Elastic Search </li>
+<li>Elastic Search</li>
 <li>SMTP for sending emails to notify users of SciCat jobs</li>
-<li>AMQP to provide a message queue for the jobs </li>
+<li>AMQP to provide a message queue for the jobs</li>
 </ul>
 <p>An minimal example is shown below followed by a full example:</p>
 <h4 id="minimal-backend-config-example">Minimal Backend Config Example</h4>
@@ -1269,8 +1269,8 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     REGISTER_METADATA_URI [string] URI to the organization that registers the facilities published data metadata.
 
-## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon 
-&lt;!-- 
+## Message queue settings - only required when using the jobs settings. This currently does not work in release 4.4 but will be released soon
+&lt;!--
     RABBITMQ_ENABLED [string] Optional Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 
     RABBITMQ_HOSTNAME [string] Optional The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
@@ -1279,18 +1279,31 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     RABBITMQ_PASSWORD [string] Optional The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled. --&gt;
 
-## SMTP Settings - need this option if you require Scicat to send emails.     
+## Email Settings - use these options if you require Scicat to send emails.
+
+General settings:
+
+    EMAIL_TYPE: [string] Optional The type of your email provider. Values "smtp" or "ms365". Defaults to "smtp".
+
+    EMAIL_FROM [string] Optional Email address that emails should be sent from.
+
+For SMTP emails:
 
     SMTP_HOST [string] Optional Host of SMTP server.
 
-    SMTP_MESSAGE_FROM [string] Optional Email address that emails should be sent from.
+    SMTP_PORT [number] Optional Port of SMTP server. Defaults to 587.
 
-    SMTP_PORT [string] Optional Port of SMTP server.
+    SMTP_SECURE [boolean] Optional Use encrypted SMTPS. Defaults to "no".
 
-    SMTP_SECURE [string] Optional Secure of SMTP server.
+For Microsoft 365 emails using the Graph API:
 
+    MS365_TENANT_ID` [string] Optional Tenant ID for sending emails over Microsoft Graph API.
 
-## Elastic Search settings - use these to enable elastic search 
+    MS365_CLIENT_ID` [string] Optional Client ID for sending emails over Microsoft Graph API.
+
+    MS365_CLIENT_SECRET` [string] Optional Client Secret for sending emails over Microsoft Graph API.
+
+## Elastic Search settings - use these to enable elastic search
 
     ELASTICSEARCH_ENABLED [string] Flag to enable/disable the Elasticsearch endpoints. Values "yes" or "no". Defaults to "no"
 
@@ -1358,7 +1371,7 @@ Valid environment variables for the .env file. See .env.example for examples val
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.2.4","depth":3,"next":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.4.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/configuration.md","mtime":"2024-10-22T13:28:07.184Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-10-22T13:28:11.761Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Configuration","level":"1.5.2.4","depth":3,"next":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},"previous":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"articles":[{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[]},{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.4.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},{"title":"Frontend","level":"1.5.2.4.4","depth":4,"path":"Development/v4.x/frontend/configuration.md","ref":"Development/v4.x/frontend/configuration.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/configuration.md","mtime":"2025-03-05T10:16:42.956Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-05T10:16:47.740Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
