@@ -82,6 +82,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0090 | Add a new job as a user from ADMIN_GROUPS for another user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0100 | Add a new job as a user from ADMIN_GROUPS for undefined user from another group user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0110 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#all' configuration | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0115 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#all' configuration without contactEmail, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0120 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#all' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0130 | Add a new job as a user from CREATE_JOB_GROUPS for his/her group in '#all' configuration | POST | /api/v3/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0140 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#all' configuration, which should fail as bad request | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
