@@ -254,6 +254,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0320 | Access jobs as a User1 | GET | /api/v3/Jobs/ | user1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0330 | Access jobs as a User1 | GET | /api/v3/Jobs/ | user2 | 200 | ```SuccessfulGetStatusCode``` |
 | 0340 | Access jobs as a User1 | GET | /api/v3/Jobs/ | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0350 | Access jobs as a User5.1 | GET | /api/v3/Jobs/ | user51 | 200 | ```SuccessfulGetStatusCode``` |
 
 ### 1160: Jobs: Test New Job Model Authorization for #dataset_public jobs configuration
 
