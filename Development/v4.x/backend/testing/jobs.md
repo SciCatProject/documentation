@@ -62,13 +62,14 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0020 | Create validate job fails with the wrong types | POST | /api/v4/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0030 | Create validate job fails with the wrong types | POST | /api/v4/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0040 | Create validate job fails with the wrong types | POST | /api/v4/Jobs | admin | 400 | ```BadRequestStatusCode``` |
-| 0050 | Create validate succeeds with the right types | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0060 | Update validate fails without the required parameters | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
-| 0070 | Update validate fails with incorrect types | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
-| 0080 | Updating validate succeeds with the required parameters | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0050 | Create validate fails without datasetList | POST | /api/v4/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0060 | Create validate succeeds with the right types | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0070 | Update validate fails without the required parameters | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
+| 0080 | Update validate fails with incorrect types | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 400 | ```BadRequestStatusCode``` |
+| 0090 | Updating validate succeeds with the required parameters | PATCH | /api/v4/Jobs/${encodedJobIdValidate1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 
 
-### 1120: Jobs: Test New Job Model Authorization for #all_access jobs type
+### 1120: Jobs: Test New Job Model Authorization for all_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -97,22 +98,22 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0220 | Add a new job as unauthenticated user in '#all' configuration | POST | /api/v4/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0230 | Add a new job as unauthenticated user for another user in '#all' configuration, which should fail as bad request | POST | /api/v4/Jobs | unauthenticated | 400 | ```BadRequestStatusCode``` |
 | 0240 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0250 | Add a Status update to a job as a user from ADMIN_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0260 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0270 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0280 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser1} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0290 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser51} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0300 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup1} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0310 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup5} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0320 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAnonym} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0330 | Add a Status update to a job as a normal user  for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0340 | Add a Status update to a job as a normal user for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0350 | Add a Status update to a job as a normal user for his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0360 | Add a Status update to a job as a normal user for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0370 | Add a Status update to a job as a normal user for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAnonym} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0380 | Add a Status update to a job as unauthenticated user for anonymous job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAnonym} | unauthenticated | 200 | ```SuccessfulPatchStatusCode``` |
-| 0390 | Add a Status update to a job as unauthenticated user for another group's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
-| 0400 | Adds a Status update to a job as unauthenticated user for another user's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0250 | Add a Status update to a job as a user from ADMIN_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0260 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0270 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0280 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0290 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0300 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0310 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0320 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0330 | Add a Status update to a job as a normal user  for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0340 | Add a Status update to a job as a normal user for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0350 | Add a Status update to a job as a normal user for his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0360 | Add a Status update to a job as a normal user for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0370 | Add a Status update to a job as a normal user for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0380 | Add a Status update to a job as unauthenticated user for anonymous job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | unauthenticated | 200 | ```SuccessfulPatchStatusCode``` |
+| 0390 | Add a Status update to a job as unauthenticated user for another group's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
+| 0400 | Adds a Status update to a job as unauthenticated user for another user's job in '#all' configuration, which should fail as forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 | 0410 | Adds a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v4/Jobs/${badJobId} | admin | 400 | ```BadRequestStatusCode``` |
 | 0420 | Access jobs as a user from ADMIN_GROUPS | GET | /api/v4/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0430 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v4/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
@@ -166,7 +167,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0910 | Fullfacet jobs as a normal user (user5.1) that were created by admin | GET | /api/v4/Jobs/fullfacet?facet?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 
 
-### 1130: Jobs: Test New Job Model Authorization for #authenticated_access jobs type
+### 1130: Jobs: Test New Job Model Authorization for authenticated_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -182,7 +183,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0100 | Add a new job as unauthenticated user in '#authenticated' configuration, which should fail as forbidden | POST | /api/v4/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 
 
-### 1140: Jobs: Test New Job Model Authorization for #dataset_access jobs type
+### 1140: Jobs: Test New Job Model Authorization for dataset_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -216,7 +217,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0280 | Adds a Status update to a job as unauthenticated user for anonymous user's group in '#jobOwnerGroup' configuration, which should fail as forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 
 
-### 1150: Jobs: Test New Job Model Authorization for #owner_access jobs type
+### 1150: Jobs: Test New Job Model Authorization for owner_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -256,7 +257,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0340 | Access jobs as a User1 | GET | /api/v4/Jobs/ | user3 | 200 | ```SuccessfulGetStatusCode``` |
 | 0350 | Access jobs as a User5.1 | GET | /api/v4/Jobs/ | user51 | 200 | ```SuccessfulGetStatusCode``` |
 
-### 1160: Jobs: Test New Job Model Authorization for #public_access jobs type
+### 1160: Jobs: Test New Job Model Authorization for public_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
