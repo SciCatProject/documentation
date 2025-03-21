@@ -378,11 +378,11 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0060 | Get via /api/v4 the anonymous job as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0070 | Get via /api/v3 the anonymous job as user1, which should fail | GET | /api/v3/Jobs/${encodedJobOwnedByAdmin} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0080 | Get via /api/v4 the anonymous job as user1, which should fail | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0090 | Add via /api/v3 a new job with emailJobInitiator for user1, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs |admin | EntryCreatedStatusCode
+| 0090 | Add via /api/v3 a new job with emailJobInitiator for user1, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs |admin |  ```EntryCreatedStatusCode ``` |
 | 0100 | Get via /api/v4 the job added for user1, as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByuser1} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0110 | Get via /api/v4 the job added for user1, as user1, which should fail because ownerUser does not exist | GET | /api/v4/Jobs/${encodedJobOwnedByuser1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0120 | Get via /api/v3 the job added for user1, as user1, which should fail because ownerUser does not exist | GET | /api/v3/Jobs/${encodedJobOwnedByuser1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0130 | Add via /api/v3 a new job with a complete dto for user1 and other contactEmail, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs" | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0130 | Add via /api/v3 a new job with a complete dto for user1 and other contactEmail, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0140 | Get via /api/v4 the job added for user1, as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByuser1} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0150 | Get via /api/v4 the job added for user1, as user1 | GET | /api/v4/Jobs/${encodedJobOwnedByuser1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0160 | Get via /api/v3 the job added for user1, as user1 | GET | /api/v3/Jobs/${encodedJobOwnedByuser1} | user1 | 200 | ```SuccessfulGetStatusCode``` |
@@ -401,7 +401,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0290 | Fullquery via /api/v3 all jobs that were created by user1, as user1 | GET | /api/v3/Jobs/fullquery?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0300 | Fullfacet via /api/v3 jobs that were created by admin, as a user from ADMIN_GROUPS | GET | /api/v3/Jobs/fullfacet?facet?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0310 | Fullfacet via /api/v3 jobs that were created by user1, as a user from ADMIN_GROUPS | GET | /api/v3/Jobs/fullfacet?facet?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0320 | Delete via /api/v3 a job created by admin, as a user from ADMIN_GROUPS | DELETE | /api/v3/Jobs/${encodedJobOwnedByAdmin} | admin | SuccessfulDeleteStatusCode |
+| 0320 | Delete via /api/v3 a job created by admin, as a user from ADMIN_GROUPS | DELETE | /api/v3/Jobs/${encodedJobOwnedByAdmin} | admin |  200 | ```SuccessfulDeleteStatusCode``` |
 | 0330 | Get via /api/v3 all accessible jobs as a user from ADMIN_GROUPS, which should be one less than before, proving that delete works | GET | /api/v3/Jobs/ | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0340 | Add via /api/v3 an anonymous job as user1, which should fail | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
 | 0350 | Add via /api/v3 an anonymous job as user1, providing another contactEmail, which should fail | POST | /api/v3/Jobs | user1 | 400 | ```BadRequestStatusCode``` |
