@@ -96,7 +96,7 @@ Other jobs test files are separated into distinct ones based on the authorizatio
 | 0210 | Add a new job as a normal user for anonymous user in '#all' configuration, which should fail as bad request | POST | /api/v4/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
 | 0220 | Add a new job as unauthenticated user in '#all' configuration | POST | /api/v4/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0230 | Add a new job as unauthenticated user for another user in '#all' configuration, which should fail as bad request | POST | /api/v4/Jobs | unauthenticated | 400 | ```BadRequestStatusCode``` |
-| 0240 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
+| 0240 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0250 | Add a Status update to a job as a user from ADMIN_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0260 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0270 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedAllJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
