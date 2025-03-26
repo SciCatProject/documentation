@@ -1,8 +1,5 @@
 # Job Configuration
 
-> _**Development Feature**. This section documents features that are still under
-> development as part of the `release-jobs` branch._
-
 ## Overview
 
 The SciCat job system is used for any interactions between SciCat and external services.
@@ -12,10 +9,11 @@ Example jobs include:
 - Request an **archive system** to *archive* or *retrieve* data from tape storage
 - Move data to a *public* location (e.g. to access data from a [DOI landing
   page](https://github.com/SciCatProject/LandingPageServer))
-- Run maintenance tasks such as emailing users.
+- Run maintenance tasks such as emailing users
 
-If you just plan to use SciCat for cataloging data and don't plan to use its data
-management features then you may not need any job types. If no job types are configured then SciCat will reject any backend requests to create jobs. In this case [frontend features](../../frontend/configuration.md) for archiving (`archiveWorkflowEnabled: false`) and retrieval should be disabled.
+If you just plan to use SciCat for cataloging data and don't plan to use its data management features then you may not need any job types.
+If no job types are configured then SciCat will reject any backend requests to create jobs.
+In this case [frontend features](../../frontend/configuration.md) for archiving (`archiveWorkflowEnabled: false`) and retrieval should be disabled.
 
 ### Migration Notes
 
@@ -64,7 +62,7 @@ Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:
 
 After _create_ and _update_ stages, a series of actions can be performed by SciCat. This
 can be things like sending an email, posting a message to a message broker, or calling
-an API. The `jobParams` and `jobResultObject` are used to add additional information
+an API. The `jobParams` and `jobResultObject` are used to provide additional information
 that the actions may need, such as the list of datasets the job refers to.
 
 A full list of built-in actions is given below. A plugin mechanism for registering new
@@ -80,7 +78,7 @@ The available jobs are configured in the file `jobConfig.yaml` (or can be overri
 with the `JOB_CONFIGURATION_FILE` [environment
 variable](../configuration.md#environment-variables)). An example `jobConfig.example.yaml` file
 is available
-[here](https://github.com/SciCatProject/scicat-backend-next/blob/release-jobs/jobConfig.example.yaml).
+[here](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml).
 
 ### Configuration overview
 The top-level configuration is structured like this:
@@ -148,7 +146,7 @@ Where:
 
 #### Validate
 
-The `validate` action is used to check validate requests to the job endpoints. It is
+The `validate` action is used to validate requests to the job endpoints. It is
 used to enforce custom constraints on `jobParams` or `jobResultObject` for each job
 type. If other actions rely on custom fields in their templates they should first be
 validated with this action.

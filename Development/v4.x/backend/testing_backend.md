@@ -1,7 +1,7 @@
 # Testing
 
 ## Packages
-Following is the list of hte main packages used to build, run and manage testing for the project
+Following is the list of the main packages used to build, run and manage testing for the project:
 
 * [Chai](https://github.com/chaijs/chai) - Assertion
 * [Supertest](https://github.com/visionmedia/supertest) - NodeJS testing for HTTP calls
@@ -9,10 +9,10 @@ Following is the list of hte main packages used to build, run and manage testing
 
 ## API tests
 
-SciCat backend v4.x comes with many API tests. They are locate under the `/test` folder in the backend repository
+SciCat backend v4.x comes with many API tests. They are located under the `/test` folder in the backend repository.
 
 In order to run the tests you need to have the backend running with an accessible mongodb instance.
-The backend can be run from terminl with the command:
+The backend can be run from terminal with the command:
 
 `npm run dev`
 
@@ -35,7 +35,7 @@ For example if you are interested in running only the test named _Authorization 
 ## Coverage
 
 The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
-The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
+The coverage might not be complete. If you find any use case that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.
 
 **List of tests:**  
   
