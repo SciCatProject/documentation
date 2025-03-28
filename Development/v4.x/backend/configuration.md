@@ -319,35 +319,29 @@ _src/config/configuration.ts_
   _format_: integer
 
 - RABBITMQ\_ENABLED:
-  Flag to enable/disable RabbitMQ consumer.
-  accepted values: "yes", "no"
-  _deprecated_. Will be removed in future releases.
+  Flag to enable/disable RabbitMQ consumer. Accepted values: "yes", "no"
   _default_: no
   _format_: string
 
 - RABBITMQ\_HOSTNAME:
   The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-  _deprecated_. Will be removed in future releases.
   _default_: no default
   _default_: string
 
 - RABBITMQ\_PORT:
   The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
-  _deprecated_. Will be removed in future releases.
   _default_: no default
   _default_: number
 
 - RABBITMQ\_USERNAME:
   The username used to authenticate to the RabbitMQ message broker. Only required if
   RabbitMQ is enabled.
-  _deprecated_. Will be removed in future releases.
   _default_: no default
   _format_: string
 
 - RABBITMQ\_PASSWORD:
   The password used to authenticate to the RabbitMQ message broker. Only required if
   RabbitMQ is enabled.
-  _deprecated_. Will be removed in future releases.
   _default_: no default
   _format_: string
 
@@ -463,5 +457,6 @@ _src/config/configuration.ts_
 
 - JOB\_CONFIGURATION\_FILE:
   Configuration file for [job actions](configuration/jobconfig.md).
+  If omitted, the jobs subsystem is inactive.
   _default_: "jobConfig.yaml", optional.
   _format_: string

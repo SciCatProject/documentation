@@ -190,6 +190,7 @@ SMTP_SECURE=<"yes"|"no">  // Use SMTPS
 MS365_TENANT_ID=<tenantId>  // tenantId for Microsoft Graph API
 MS365_CLIENT_ID=<clientId>  // clientId for Microsoft Graph API
 MS365_CLIENT_SECRET=<clientSecret>  // clientSecret for Microsoft Graph API
+JOB_CONFIGURATION_FILE=<"jobConfig.yaml">  // *Optional* Configuration file for job actions. If omitted, the jobs subsystem is inactive.
 
 ```
 
