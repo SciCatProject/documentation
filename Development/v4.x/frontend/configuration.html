@@ -669,6 +669,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.4.1.1" data-path="../backend/configuration/jobconfig.html">
+            
+                <a href="../backend/configuration/jobconfig.html">
+            
+                    
+                    Jobs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.5.2.4.2" data-path="../backend/authorization.html">
@@ -1177,6 +1196,7 @@ PUBLIC_URL_PREFIX="https://doi.ess.eu/detail/"  // The base URL to the facility 
 PORT=3000  // *Optional* The port on which you want to access the app. Defaults to `3000`.
 RABBITMQ_ENABLED=&lt;"yes"|"no"&gt;  *Optional* Flag to enable/disable RabbitMQ consumer. Values "yes" or "no". Defaults to "no".
 RABBITMQ_HOSTNAME="localhost"  // *Optional* The hostname of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
+RABBITMQ_PORT=5672  // *Optional* The port of the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 RABBITMQ_USERNAME="rabbitmq"  // *Optional* The username used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 RABBITMQ_PASSWORD="rabbitmq"  // *Optional* The password used to authenticate to the RabbitMQ message broker. Only required if RabbitMQ is enabled.
 REGISTER_DOI_URI="https://mds.test.datacite.org/doi"  // URI to the organization that registers the facilities DOIs.
@@ -1190,6 +1210,7 @@ SMTP_SECURE=&lt;"yes"|"no"&gt;  // Use SMTPS
 MS365_TENANT_ID=&lt;tenantId&gt;  // tenantId for Microsoft Graph API
 MS365_CLIENT_ID=&lt;clientId&gt;  // clientId for Microsoft Graph API
 MS365_CLIENT_SECRET=&lt;clientSecret&gt;  // clientSecret for Microsoft Graph API
+JOB_CONFIGURATION_FILE=&lt;"jobConfig.yaml"&gt;  // *Optional* Configuration file for job actions. If omitted, the jobs subsystem is inactive.
 </code></pre><h3 id="doi-config">DOI Config</h3>
 <p>This config file contains the username and password for authenicating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.</p>
 <pre><code>backend/src/config/doiconfig.local.json
@@ -1241,7 +1262,7 @@ MS365_CLIENT_SECRET=&lt;clientSecret&gt;  // clientSecret for Microsoft Graph AP
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"next":{"title":"Theming","level":"1.5.2.5","depth":3,"path":"Development/v4.x/Theming.md","ref":"Development/v4.x/Theming.md","articles":[]},"previous":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/frontend/configuration.md","mtime":"2025-03-05T10:16:42.957Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-05T10:16:47.740Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Frontend","level":"1.5.2.4.4","depth":4,"next":{"title":"Theming","level":"1.5.2.5","depth":3,"path":"Development/v4.x/Theming.md","ref":"Development/v4.x/Theming.md","articles":[]},"previous":{"title":"Elastic Search","level":"1.5.2.4.3","depth":4,"path":"Development/v4.x/elasticsearch/elasticsearch.md","ref":"Development/v4.x/elasticsearch/elasticsearch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/frontend/configuration.md","mtime":"2025-03-28T14:38:29.034Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

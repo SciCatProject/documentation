@@ -669,6 +669,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.4.1.1" data-path="backend/configuration/jobconfig.html">
+            
+                <a href="backend/configuration/jobconfig.html">
+            
+                    
+                    Jobs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.5.2.4.2" data-path="backend/authorization.html">
@@ -1051,7 +1070,7 @@ contain links to the corresponding Proposal.</p>
 <p>You should always add the <code>OrigDataBlock</code> information when ingesting, whereas the Datablocks information is optional and would be filled later by the archive system, when it did its work of writing chunks of data to tape. For instance, a <code>Datablock</code>can correspond to a single tar file which is written to tape and the contents of the Datablock is essentially the file listing of the tar file.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/OrigDatablock.create" target="_blank">here</a> and <a href="https://scicatproject.github.io/api/#operation/Datablock.create" target="_blank">here</a>.</p>
 <h3 id="job">Job</h3>
-<p>When a user wants to archive, retrieve or publish a dataset, SciCat must interact with the facility's storage and archiving system. This is done by creating a <code>Job</code> to track the interaction. The exact actions taken for each Job are often customized for each facility. A common action would be to forward the new Job entry to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. For example, at PSI the RabbitMQ queue is emptied by a Node-RED process, which reads the Job information from the RabbitMQ queue. Alternatively, you can use other messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with status updates to the Job model, when there job is finished. As the job progresses, the system can make PUT/PATCH API calls back that update the <code>Job Status Message</code> and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.</p>
+<p>When a user wants to archive, retrieve or publish a dataset, SciCat must interact with the facility's storage and archiving system. This is done by creating a <code>Job</code> to track the interaction. The exact actions taken for each Job are often customized for each facility. A common action would be to forward the new Job entry to a Message Broker, e.g. RabbitMQ, from where it can be picked up by any program willing to react to this Job. For example, at PSI the RabbitMQ queue is emptied by a Node-RED process, which reads the Job information from the RabbitMQ queue. Alternatively, you can use other messaging solutions, such as Apache Kafka. In this way the (site specific) logic to handle the Jobs is kept outside the core of the SciCat system, giving a greater degree of flexibility. The external systems should ideally respond with updates to the Job model, when the job is finished. As the job progresses, the system can make PUT/PATCH API calls back that update the <code>Job Status</code> etc and, when necessary, also the individual status of the involved datasets by updating the DatasetLifecycle information.</p>
 <p>The data model and its API endpoints are described <a href="https://scicatproject.github.io/api/#operation/Job.create" target="_blank">here</a>.</p>
 <h3 id="proposals">Proposals</h3>
 <p>A proposal is a written intention declaration of what kind of measurement people want to perform when and where. Such information is often available in an existing system outside of the data catalog, like digital user office systems for institutes which offer their instruments to other users.</p>
@@ -1130,7 +1149,7 @@ Clicking the <code>data type</code> box will insert it into your request for eas
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2.2","depth":3,"next":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"previous":{"title":"Overview","level":"1.5.2.1","depth":3,"path":"Development/v4.x/overview.md","ref":"Development/v4.x/overview.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/Data_Model.md","mtime":"2025-03-05T10:16:42.955Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-05T10:16:47.740Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"An Introduction to the Data Model","level":"1.5.2.2","depth":3,"next":{"title":"Running the Components","level":"1.5.2.3","depth":3,"path":"Development/v4.x/running.md","ref":"Development/v4.x/running.md","articles":[]},"previous":{"title":"Overview","level":"1.5.2.1","depth":3,"path":"Development/v4.x/overview.md","ref":"Development/v4.x/overview.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/Data_Model.md","mtime":"2025-03-28T14:38:29.032Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

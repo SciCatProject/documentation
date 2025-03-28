@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Instruments · SciCat Documentation</title>
+        <title>Jobs · SciCat Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 5.1.4">
@@ -60,10 +60,10 @@
     <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="authorization_users.html" />
+    <link rel="next" href="../authorization.html" />
     
     
-    <link rel="prev" href="authorization_jobs.html" />
+    <link rel="prev" href="../configuration.html" />
     
 
     </head>
@@ -672,9 +672,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.2.4.1.1" data-path="../configuration/jobconfig.html">
+        <li class="chapter active" data-level="1.5.2.4.1.1" data-path="jobconfig.html">
             
-                <a href="../configuration/jobconfig.html">
+                <a href="jobconfig.html">
             
                     
                     Jobs
@@ -704,9 +704,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.2.4.2.1" data-path="authorization_datasets.html">
+        <li class="chapter " data-level="1.5.2.4.2.1" data-path="../authorization/authorization_datasets.html">
             
-                <a href="authorization_datasets.html">
+                <a href="../authorization/authorization_datasets.html">
             
                     
                     Datasets
@@ -717,9 +717,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.2" data-path="authorization_origdatablocks.html">
+        <li class="chapter " data-level="1.5.2.4.2.2" data-path="../authorization/authorization_origdatablocks.html">
             
-                <a href="authorization_origdatablocks.html">
+                <a href="../authorization/authorization_origdatablocks.html">
             
                     
                     OrigDatablocks
@@ -730,9 +730,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.3" data-path="authorization_proposals.html">
+        <li class="chapter " data-level="1.5.2.4.2.3" data-path="../authorization/authorization_proposals.html">
             
-                <a href="authorization_proposals.html">
+                <a href="../authorization/authorization_proposals.html">
             
                     
                     Proposals
@@ -743,9 +743,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.4" data-path="authorization_jobs.html">
+        <li class="chapter " data-level="1.5.2.4.2.4" data-path="../authorization/authorization_jobs.html">
             
-                <a href="authorization_jobs.html">
+                <a href="../authorization/authorization_jobs.html">
             
                     
                     Jobs
@@ -756,9 +756,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.2.4.2.5" data-path="authorization_instruments.html">
+        <li class="chapter " data-level="1.5.2.4.2.5" data-path="../authorization/authorization_instruments.html">
             
-                <a href="authorization_instruments.html">
+                <a href="../authorization/authorization_instruments.html">
             
                     
                     Instruments
@@ -769,9 +769,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.6" data-path="authorization_users.html">
+        <li class="chapter " data-level="1.5.2.4.2.6" data-path="../authorization/authorization_users.html">
             
-                <a href="authorization_users.html">
+                <a href="../authorization/authorization_users.html">
             
                     
                     Users
@@ -782,9 +782,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2.4.2.7" data-path="authorization_samples.html">
+        <li class="chapter " data-level="1.5.2.4.2.7" data-path="../authorization/authorization_samples.html">
             
-                <a href="authorization_samples.html">
+                <a href="../authorization/authorization_samples.html">
             
                     
                     Samples
@@ -1013,7 +1013,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../../.." >Instruments</a>
+        <a href="../../../.." >Jobs</a>
     </h1>
 </div>
 
@@ -1028,92 +1028,323 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="instruments-authorization">Instruments Authorization</h1>
-<h2 id="casl-ability-actions">CASL ability actions</h2>
-<p>This is the list of the permissions methods available for Instrument and all their endpoints</p>
-<h3 id="endpoint-authorization">Endpoint Authorization</h3>
+                                <h1 id="job-configuration">Job Configuration</h1>
+<h2 id="overview">Overview</h2>
+<p>The SciCat job system is used for any interactions between SciCat and external services.</p>
+<p>Example jobs include:</p>
 <ul>
-<li>InstrumentCreate</li>
-<li>InstrumentRead</li>
-<li>InstrumentUpdate</li>
-<li>InstrumentDelete</li>
+<li>Request an <strong>archive system</strong> to <em>archive</em> or <em>retrieve</em> data from tape storage</li>
+<li>Move data to a <em>public</em> location (e.g. to access data from a <a href="https://github.com/SciCatProject/LandingPageServer" target="_blank">DOI landing
+page</a>)</li>
+<li>Run maintenance tasks such as emailing users</li>
 </ul>
-<h4 id="priority">Priority</h4>
-<div class="mermaid">
-graph LR;
-    InstrumentCreate;
-    InstrumentRead;
-    InstrumentUpdate;
-    InstrumentDelete;
-</div>
-
-<h4 id="authorization-table">Authorization table</h4>
-<table>
-<thead>
-<tr>
-<th>HTTP method</th>
-<th>Endpoint</th>
-<th>Endpoint Authentication</th>
-<th>Anonymous</th>
-<th>Authenticated User</th>
-<th>Admin Groups</th>
-<th>Delete Groups</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td>instruments</td>
-<td><em>InstrumentCreate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><em>InstrumentCreate</em></td>
-<td><strong>no</strong></td>
-<td>-</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>instruments</td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><strong>no</strong></td>
-<td>-</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>instruments/<em>id</em></td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><em>InstrumentRead</em></td>
-<td><strong>no</strong></td>
-<td>-</td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>instruments/<em>id</em></td>
-<td><em>InstrumentUpdate</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><em>InstrumentUpdate</em></td>
-<td><strong>no</strong></td>
-<td>-</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>instruments/<em>id</em></td>
-<td><em>InstrumentDelete</em></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><strong>no</strong></td>
-<td><em>InstrumentDelete</em></td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
+<p>If you just plan to use SciCat for cataloging data and don't plan to use its data management features then you may not need any job types.
+If no job types are configured then SciCat will reject any backend requests to create jobs.
+In this case <a href="../../frontend/configuration.html">frontend features</a> for archiving (<code>archiveWorkflowEnabled: false</code>) and retrieval should be disabled.</p>
+<h3 id="migration-notes">Migration Notes</h3>
+<p>In v3.x the <code>archive</code>, <code>retrieve</code>, and <code>public</code> jobs were hard-coded. In v4.x the job
+types can be arbitrary strings; however we recommend using the standard job names to
+avoid confusion.</p>
+<p>Also note that some checks that were preformed by default in v3.x for certain job types
+must now be configured explicitly as actions. These are included in the provided
+<code>jobConfig.example.yaml</code> file and are also noted below.</p>
+<h3 id="job-lifecycle">Job lifecycle</h3>
+<p>Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:</p>
+<ol>
+<li><p>Jobs are <em>created</em> via a <code>POST</code> request to <code>/jobs</code>. This can be the result of a frontend
+interaction (eg selecting a dataset for publishing) or through the REST API.</p>
+<p>The body of the request should follow the CreateJobDto (Data Transfer Object):</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"archive"</span>,
+  <span class="hljs-string">"ownerUser"</span>: <span class="hljs-string">"owner"</span>,
+  <span class="hljs-string">"ownerGroup"</span>: <span class="hljs-string">"group"</span>,
+  <span class="hljs-string">"contactEmail"</span>: <span class="hljs-string">"email@example.com"</span>
+  <span class="hljs-string">"jobParams"</span>: {}
+}
+</code></pre>
+</li>
+<li>Jobs can be <em>read</em> via a <code>GET</code> request to <code>/jobs/:id</code> or through the <code>/jobs/fullquery</code>
+search endpoint. The frontend uses this to display the list of jobs.</li>
+<li><p>Jobs are <em>updated</em> via a <code>PATCH</code> or <code>PUT</code> request to <code>/jobs/:id</code>. This is usually
+used by facility services to update the job status and provide feedback.</p>
+<p>The body of the request should follow the UpdateJobDto:</p>
+<pre><code>{
+  "statusCode": "string",
+  "statusMessage": "string",
+  "jobResultObject": {}
+}
+</code></pre></li>
+<li>Jobs may be <em>deleted</em> periodically during maintenance. This is usually not done by
+users.</li>
+</ol>
+<h3 id="actions">Actions</h3>
+<p>After <em>create</em> and <em>update</em> stages, a series of actions can be performed by SciCat. This
+can be things like sending an email, posting a message to a message broker, or calling
+an API. The <code>jobParams</code> and <code>jobResultObject</code> are used to provide additional information
+that the actions may need, such as the list of datasets the job refers to.</p>
+<p>A full list of built-in actions is given below. A plugin mechanism for registering new
+actions is also planned for a future SciCat release.</p>
+<h2 id="configuration">Configuration</h2>
+<p>In SciCat v3.x, a limited number of jobs were hard-coded into the code base. This was
+changed in v4.x to allow each site to configure their own set of jobs and customize
+actions based on the job status.</p>
+<p>The available jobs are configured in the file <code>jobConfig.yaml</code> (or can be overridden
+with the <code>JOB_CONFIGURATION_FILE</code> <a href="../configuration.html#environment-variables">environment
+variable</a>). An example <code>jobConfig.example.yaml</code> file
+is available
+<a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml" target="_blank">here</a>.</p>
+<h3 id="configuration-overview">Configuration overview</h3>
+<p>The top-level configuration is structured like this:</p>
+<pre><code>configVersion: v1.0
+jobs:
+  - jobType: archive
+    create:
+      auth: "#datasetOwner"
+      actions:
+        - ...
+    update:
+      auth: archivemanager
+      actions:
+        - ...
+</code></pre><ul>
+<li><code>configVersion</code> is a string that indicates the version of this configuration file. It
+is not used by SciCat itself, but is useful for migrating jobs if the configuration
+changes. SciCat will log a warning if a job was updated with a different config
+version than it was created with.</li>
+<li><code>jobs</code> is an array allowing the configuration of different job types</li>
+<li><code>jobType</code> can be defined for each SciCat instance, but the names <code>archive</code>,
+<code>retrieve</code>, and <code>public</code> are traditionally the most common jobs. Only jobs matching a
+configured jobType will be accepted by the backend.</li>
+<li><code>create</code> and <code>update</code> correspond to <code>POST</code> and <code>PATCH</code> requests to the <code>/jobs</code>
+endpoint. These configure 'actions' which are run when at different phases of the job
+lifecycle. The actions are defined in the <a href="#job-actions">job actions section</a>.</li>
+<li><code>auth</code> configures the roles authorized to use the endpoint for each job operation.</li>
+<li><code>actions</code> give a list of actions to run when the endpoint is called.</li>
+</ul>
+<h3 id="authorization">Authorization</h3>
+<p>Values for <code>auth</code> are described in <a href="../authorization/authorization_jobs.html">Jobs Authorization</a>. Some authorization values may require certain information to be passed in the request body; for instance, <code>"#datasetOwner"</code> requires that a dataset be passed.</p>
+<blockquote>
+<p><strong>Caution</strong> Setting <code>auth</code> to a permissive value (eg <code>#all</code>) could expose archiving services to external users. Please consider the security model carefully when configuring jobs.</p>
+</blockquote>
+<h3 id="actions-configuration">Actions Configuration</h3>
+<p>The following actions are built-in to SciCat and can be included in the <code>actions</code> array.</p>
+<h4 id="urlaction">URLAction</h4>
+<p>The <code>URL</code> action responds to a Job event by making an HTTP call.</p>
+<p><strong>Configuration</strong>:
+The <em>URL action</em>, per job stage (<em>create</em>, <em>update</em>) if defined, must be configured in <code>jobConfig.yaml</code>.
+It supports templating, by extracting the values from the job schema.</p>
+<p>For example:</p>
+<pre><code class="lang-yml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">url</span>
+  <span class="hljs-attr">url:</span> <span class="hljs-string">http://localhost:3000/api/v3/health?jobid={{id}}</span>
+  <span class="hljs-attr">method:</span> <span class="hljs-string">GET</span>
+  <span class="hljs-attr">headers:</span>
+    <span class="hljs-attr">accept:</span> <span class="hljs-string">application/json</span>
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>url</code> (required): The URL for the request.This can include template variables.</li>
+<li><code>method</code> (optional): The HTTP method for the request, e.g. "GET", "POST".</li>
+<li><code>headers</code> (optional): An object containing HTTP headers to be included in the request.</li>
+<li><code>body</code> (optional): The body of the request, for methods like "POST" or "PUT".</li>
+</ul>
+<h4 id="validate">Validate</h4>
+<p>The <code>validate</code> action is used to validate requests to the job endpoints. It is
+used to enforce custom constraints on <code>jobParams</code> or <code>jobResultObject</code> for each job
+type. If other actions rely on custom fields in their templates they should first be
+validated with this action.</p>
+<p>ValidateAction is configured with a series of <code>&lt;path&gt;: &lt;typecheck&gt;</code> pairs which describe
+a constraint to be validated. These can be applied to different contexts:</p>
+<ul>
+<li><strong><code>request</code></strong> - Checks the incoming request body (aka the DTO).</li>
+<li><strong><code>datasets</code></strong> - (CREATE only) requires that a list of datasets be included in
+<code>jobParams.datasetList</code>. Checks are applied to each dataset</li>
+</ul>
+<p>Validation occurs before the job gets created in the database, while most other actions
+are performed after the job is created. This means that correctly configuring validation
+is important to detect user errors early.</p>
+<p>Configuration is described in detail below. However, a few illustrative examples are
+provided first.</p>
+<h5 id="example-1-require-extra-template-data">Example 1: Require extra template data</h5>
+<p>Consider a case where you want to pass a value from the request body through to other
+actions. For example, you want to allow the requestor to specify the subject of an email
+to be sent in the request body like this:</p>
+<pre><code class="lang-json"><span class="hljs-variable constant_">POST</span> /jobs
+{
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"email_demo"</span>,
+  <span class="hljs-string">"jobParams"</span>: {
+    <span class="hljs-string">"subject"</span>: <span class="hljs-string">"Thanks for using scicat!"</span>
+  }
+}
+</code></pre>
+<p>In this case an <code>email</code> action would be configured using handlebars to insert the
+<code>jobParams.subject</code> value. However, a <code>validate</code> action should also be configured to
+catch errors early where the subject is not specified:</p>
+<p><code>jobConfig.yaml</code>:</p>
+<pre><code>jobs:
+  - jobType: email_demo
+    create:
+      auth: admin
+      actions:
+        - actionType: validate
+          request:
+            jobParams.subject:
+              type: string
+        - actionType: email
+          to: "{{contactEmail}}"
+          subject: "[SciCat] {{jobParams.subject}}"
+          bodyTemplate: demo_email.html
+    update:
+      auth: admin
+      actions: []
+</code></pre><h5 id="example-2-enforce-datasetlifecycle-state">Example 2: Enforce datasetLifecycle state</h5>
+<p>Many job types require a dataset to be included. These are specified in
+<code>jobParams.datasetList</code> like this:</p>
+<pre><code class="lang-json"><span class="hljs-variable constant_">POST</span> /jobs
+{
+  <span class="hljs-string">"owner"</span>...
+  <span class="hljs-string">"jobParams"</span>: {
+    <span class="hljs-string">"datasetList"</span>: [
+      {
+        <span class="hljs-string">"pid"</span>: <span class="hljs-string">"examplePID"</span>,
+        <span class="hljs-string">"files"</span>: []
+      }
+    ]
+  }
+}
+</code></pre>
+<p>Permission to access to the datasets is checked with the <code>#dataset*</code> authentication
+methods, but other properties need to be enforced with a <code>validate</code> action.</p>
+<p>The following validate actions are recommended for <code>archive</code>, <code>retrieve</code> and <code>publish</code>
+jobs:</p>
+<p><code>jobConfig.yaml</code>:</p>
+<pre><code class="lang-yml"><span class="hljs-attr">jobs:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">jobType:</span> <span class="hljs-string">archive</span>
+    <span class="hljs-attr">create:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">"#datasetOwner"</span>
+      <span class="hljs-attr">actions:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+          <span class="hljs-attr">datasets:</span>
+            <span class="hljs-attr">datasetlifecycle.archivable:</span>
+              <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">archivemanager</span>
+      <span class="hljs-attr">actions:</span> []
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">jobType:</span> <span class="hljs-string">retrieve</span>
+    <span class="hljs-attr">create:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">"#datasetOwner"</span>
+      <span class="hljs-attr">actions:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+          <span class="hljs-attr">datasets:</span>
+            <span class="hljs-attr">datasetlifecycle.retrievable:</span>
+              <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">archivemanager</span>
+      <span class="hljs-attr">actions:</span> []
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">jobType:</span> <span class="hljs-string">public</span>
+    <span class="hljs-attr">create:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">"#all"</span>
+      <span class="hljs-attr">actions:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+          <span class="hljs-attr">datasets:</span>
+            <span class="hljs-attr">isPublished:</span>
+              <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">auth:</span> <span class="hljs-string">archivemanager</span>
+</code></pre>
+<p><strong>Configuration</strong>:
+The config file for a validate action will look like this:</p>
+<pre><code class="lang-yml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+  <span class="hljs-attr">request:</span>
+    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
+  <span class="hljs-attr">datasets:</span>
+    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
+</code></pre>
+<p>Usually <code>&lt;path&gt;</code> will be a dot-delimited field in the DTO, eg. "jobParams.name".
+Technically it is a <a href="https://github.com/JSONPath-Plus/JSONPath" target="_blank">JSONPath-Plus</a>
+expression, which is applied to the request body or dataset to extract any matching
+items. When writing a jobconfig file it may be helpful to test an expected request body
+against the <a href="https://jsonpath-plus.github.io/JSONPath/demo/" target="_blank">JSONPath demo</a>.</p>
+<p>The <code>&lt;typecheck&gt;</code> expression is a JSON Schema. While complicated schemas are possible,
+the combination with JSONPath makes common type checks very concise and legible.
+Here are some example <code>&lt;typecheck&gt;</code> expressions:</p>
+<pre><code>- actionType: validate
+  request: # applies to the request body
+    jobParams.stringVal: # match simple types
+      type: string
+    jobParams.enumVal: # literal values
+      enum: ["yes", "no"]
+    jobResultObject.mustBeTrue: # enforce a value
+      const: true
+    "jobParams": # Apply external JSON Schema to all params
+      $ref: https://json.schemastore.org/schema-org-thing.json
+  dataset: # applies to all datasets
+    datasetLifecycle.archivable:
+      const: true
+</code></pre><p>Validation will result in a <code>400 Bad Request</code> response if either the path is not found
+or if any values matching the path do not validate against the provided schema.</p>
+<h4 id="email">Email</h4>
+<p>The <code>Email</code> action responds to a Job event by sending an email.</p>
+<p><strong>Configuration</strong>:
+The <em>Mail service</em> must first be configured through environmental variables, as described in the <a href="../configuration.html">configuration</a>.
+There you can define the <code>EMAIL_TYPE</code>, which can be either <code>smtp</code> or <code>ms365</code>, along with the type's respective configuration values.
+While SMTP is the default, MS365 adds support for <a href="https://learn.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=graph-rest-1.0" target="_blank">Microsoft Graph API</a> for sending emails.
+This is an alternative to SMTP for MS365 accounts that would otherwise require interactive OAuth logins, making it useful for automated emails.
+To use MS365, you (or your azure admin) will need to generate a <code>tenantId</code>, <code>clientId</code>, and <code>clientSecret</code> with permissions to send email.
+The process is described <a href="https://docs.emailengine.app/setting-up-oauth2-with-outlook/" target="_blank">here</a>.
+Upon instantiation, the service will create the configured transporter, ready to sent emails upon request.</p>
+<p>The <em>Email action</em>, per job stage (<em>create</em>, <em>update</em>) if defined, must be configured in <code>jobConfig.yaml</code>.
+It supports templating, by extracting the values from the job schema.</p>
+<p>Example:</p>
+<pre><code>- actionType: email
+  to: "{{contactEmail}}"
+  from: "sender@example.com",
+  subject: "[SciCat] Your {{type}} job was submitted successfully."
+  bodyTemplateFile: "path/to/job-template-file.html"
+</code></pre><p>Where:</p>
+<ul>
+<li><code>to</code>: The recipient's email address. This can include template variables.</li>
+<li><code>from</code>: The sender's email address. If no value is provided, then the default sender email address will be used, as defined in <a href="../configuration.html">configuration</a>.</li>
+<li><code>subject</code>: The subject of the email. This can include template variables.</li>
+<li><code>bodyTemplateFile</code>: The path to the HTML template file for the email body.</li>
+</ul>
+<p>You can create your own template for the email's body, which should be a valid html file - for example:</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style type="text/css"&gt;
+  ...
+  &lt;/style&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      Your {{type}} job with id {{id}} has been submitted ...
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="rabbitmq">RabbitMQ</h4>
+<p>The <code>RabbitMQ</code> action implements a way for the backend to connect to a Message Broker.
+It publishes the new or updated Job entry to a messaging queue, from where it can be picked up by any program willing to react to this Job.</p>
+<p><strong>Configuration</strong>:
+The <em>RabbitMQ service</em> must first be configured through environmental variables, as described in the <a href="../configuration.html">configuration</a>. 
+Upon instantiation, it will create a RabbitMQ connection and channel.</p>
+<p>The <em>RabbitMQ action</em>, per job stage (<em>create</em>, <em>update</em>) if defined, must be configured in <code>jobConfig.yaml</code>, for example:</p>
+<pre><code>- actionType: rabbitmq
+  exchange: jobs.write
+  key: jobqueue
+  queue: client.jobs.write
+</code></pre><p>Where:</p>
+<ul>
+<li>An <code>exchange</code> is a routing mechanism that receives messages and routes them to the appropriate queues.</li>
+<li>A routing <code>key</code> is a string used to label messages, to specify the message's purpose or destination.</li>
+<li>A <code>queue</code> is a storage buffer where messages are held until they are consumed.</li>
+</ul>
+<p>If needed, different queues can be defined for different purposes.
+Exchanges and keys can be reused for different queues. </p>
+<p>Trying to configure a RabbitMQ action, when the service is not enabled, will throw an error that will prevent the application from running.</p>
+<h4 id="log">Log</h4>
+<p>This is a dummy action, useful for debugging. It adds a log entry when executed.</p>
+<p><strong>Configuration</strong>:</p>
+<pre><code>- actionType: log
+</code></pre><p>The log action does not have any configuration options.</p>
 
                                 
                                 </section>
@@ -1141,12 +1372,12 @@ graph LR;
 
             
                 
-                <a href="authorization_jobs.html" class="navigation navigation-prev " aria-label="Previous page: Jobs">
+                <a href="../configuration.html" class="navigation navigation-prev " aria-label="Previous page: Backend">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="authorization_users.html" class="navigation navigation-next " aria-label="Next page: Users">
+                <a href="../authorization.html" class="navigation navigation-next " aria-label="Next page: Authorization">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1157,7 +1388,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"next":{"title":"Users","level":"1.5.2.4.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},"previous":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_instruments.md","mtime":"2025-03-28T14:38:29.033Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.4.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.4.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.4.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.4.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.4.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.4.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.4.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-03-28T14:38:29.033Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

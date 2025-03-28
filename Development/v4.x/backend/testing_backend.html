@@ -669,6 +669,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.4.1.1" data-path="configuration/jobconfig.html">
+            
+                <a href="configuration/jobconfig.html">
+            
+                    
+                    Jobs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.5.2.4.2" data-path="authorization.html">
@@ -1011,16 +1030,16 @@
                                 
                                 <h1 id="testing">Testing</h1>
 <h2 id="packages">Packages</h2>
-<p>Following is the list of hte main packages used to build, run and manage testing for the project</p>
+<p>Following is the list of the main packages used to build, run and manage testing for the project:</p>
 <ul>
 <li><a href="https://github.com/chaijs/chai" target="_blank">Chai</a> - Assertion</li>
 <li><a href="https://github.com/visionmedia/supertest" target="_blank">Supertest</a> - NodeJS testing for HTTP calls</li>
 <li><a href="https://github.com/mochajs/mocha" target="_blank">Mocha</a> - Test runner framework</li>
 </ul>
 <h2 id="api-tests">API tests</h2>
-<p>SciCat backend v4.x comes with many API tests. They are locate under the <code>/test</code> folder in the backend repository</p>
+<p>SciCat backend v4.x comes with many API tests. They are located under the <code>/test</code> folder in the backend repository.</p>
 <p>In order to run the tests you need to have the backend running with an accessible mongodb instance.
-The backend can be run from terminl with the command:</p>
+The backend can be run from terminal with the command:</p>
 <p><code>npm run dev</code></p>
 <p>In a different terminal, you can run all the following tests:</p>
 <ul>
@@ -1034,8 +1053,8 @@ The backend can be run from terminl with the command:</p>
 <p>If you are interested in a specific subset of API tests, you can add the <em>--grep</em> option to the mocha command.<br></br>For example if you are interested in running only the test named <em>Authorization functionalities</em>, you can use the following command:<br></br><code>mocha --config ./test/config/.mocharc.json --grep \"Authorization functionalities\ --timeout=5000 --reporter=nyan</code></p>
 <h2 id="coverage">Coverage</h2>
 <p>The following is the list of the current tests groups. We are trying to cover all the different components and endpoints of SciCat backend v4.x and we keep adding new tests every release cycle.
-The coverage might not be complete. If you find any use case  that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.</p>
-<p>List of tests:  </p>
+The coverage might not be complete. If you find any use case that is not covered by our tests, feel free to open an issue or, even better, to write a new set of tests and submit a PR.</p>
+<p><strong>List of tests:</strong>  </p>
 <table>
 <thead>
 <tr>
@@ -1116,7 +1135,7 @@ The coverage might not be complete. If you find any use case  that is not covere
 <td>Jobs.js</td>
 <td>1100</td>
 <td>Test New Job Model</td>
-<td></td>
+<td>Test authorization and CRUD operations for jobs</td>
 </tr>
 <tr>
 <td>OrigDatablockForRawDataset</td>
@@ -1209,7 +1228,7 @@ The coverage might not be complete. If you find any use case  that is not covere
 <p>All tests are performed assuming the following user accounts, groups and configuration are present.
 Users and groups can be defined in the configuration structure defined in <code>src/config/configuration.ts</code>, although the preferred method for configuring functional/tests accounts is through the <code>functional_accounts.json</code> file present in the following folder ``
 These settings are meant only for testing and to demonstrate the capabilities of backend V4.x. IT is highly recommended to remove accounts that are not needed and change passwords and group affiliations as needed.</p>
-<h3 id="deafault-accounts">Deafault Accounts</h3>
+<h3 id="default-accounts">Default Accounts</h3>
 <p>The following table lists the accounts that are provided by default in a vanilla installation.
 Please make sure to change them, update their password or remove them entirely in your production environment.</p>
 <table>
@@ -1222,8 +1241,6 @@ Please make sure to change them, update their password or remove them entirely i
 <th>Create Dataset w/o pid</th>
 <th>Create Dataset w/ pid</th>
 <th>Create Dataset Privileged</th>
-<th>Create Job</th>
-<th>Update Job</th>
 </tr>
 </thead>
 <tbody>
@@ -1233,6 +1250,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>yes</td>
 <td>no</td>
 <td>Any</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ingestor</td>
@@ -1240,6 +1259,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>yes</td>
 <td>no</td>
 <td>Any</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>archiveManager</td>
@@ -1247,6 +1268,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>yes</td>
 <td>yes</td>
 <td>no</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>proposalIngestor</td>
@@ -1254,6 +1277,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>no</td>
 <td>no</td>
 <td>no</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>user 1</td>
@@ -1261,6 +1286,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>no</td>
 <td>no</td>
 <td>Own</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>user 2</td>
@@ -1268,6 +1295,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>no</td>
 <td>no</td>
 <td>Own</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>user 3</td>
@@ -1275,6 +1304,8 @@ Please make sure to change them, update their password or remove them entirely i
 <td>no</td>
 <td>no</td>
 <td>Own</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>user 4</td>
@@ -1282,6 +1313,7 @@ Please make sure to change them, update their password or remove them entirely i
 <td>no</td>
 <td>no</td>
 <td>no</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1304,16 +1336,19 @@ Please make sure to change them, update their password or remove them entirely i
 </tr>
 <tr>
 <td>CREATE_DATASET_GROUPS</td>
-<td>group1,group2,group3</td>
+<td>group1, group2, group3</td>
 </tr>
 </tbody>
 </table>
 <h2 id="test-details">Test Details</h2>
 <p>This section provides details on how all the tests files listed above are organized. Each subsection, provides a list of the test included in each file and the details of each one of them.</p>
 <ul>
-<li><a href="">Datasets</a> </li>
-<li><a href="testing/instrument.html">0900: Instrument</a></li>
-<li><a href="testing/user_authorization.html">2300: User Authorization</a></li>
+<li><a href="testing/dataset_types.md">Dataset Types</a> </li>
+<li><a href="testing/dataset_authorization.md">Dataset Authorization</a> </li>
+<li><a href="testing/instrument.html">Instrument</a></li>
+<li><a href="testing/jobs.md">Jobs</a></li>
+<li><a href="testing/sample_authorization.md">Sample Authorization</a></li>
+<li><a href="testing/user_authorization.html">User Authorization</a></li>
 </ul>
 
                                 
@@ -1358,7 +1393,7 @@ Please make sure to change them, update their password or remove them entirely i
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2025-03-05T10:16:42.956Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-05T10:16:47.740Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Backend","level":"1.5.2.8.1","depth":4,"next":{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},"previous":{"title":"Testing","level":"1.5.2.8","depth":3,"path":"Development/v4.x/testing.md","ref":"Development/v4.x/testing.md","articles":[{"title":"Backend","level":"1.5.2.8.1","depth":4,"path":"Development/v4.x/backend/testing_backend.md","ref":"Development/v4.x/backend/testing_backend.md","articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}]},{"title":"Frontend","level":"1.5.2.8.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]}]},"articles":[{"title":"Instrument","level":"1.5.2.8.1.1","depth":5,"path":"Development/v4.x/backend/testing/instrument.md","ref":"Development/v4.x/backend/testing/instrument.md","articles":[]},{"title":"User Authorization","level":"1.5.2.8.1.2","depth":5,"path":"Development/v4.x/backend/testing/user_authorization.md","ref":"Development/v4.x/backend/testing/user_authorization.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/testing_backend.md","mtime":"2025-03-28T14:38:29.034Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
