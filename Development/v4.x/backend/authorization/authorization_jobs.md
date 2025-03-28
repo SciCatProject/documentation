@@ -2,6 +2,7 @@
 ## CASL ability actions
 This is the list of the permission methods available for Jobs and all their endpoints.  
 The authorization for jobs is consistently different from all the other endpoints.
+Users in `ADMIN_GROUPS` have elevated access and are allowed to do any operation listed bellow.
 
 ### Endpoint Authorization
 - JobCreate
