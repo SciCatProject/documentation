@@ -372,27 +372,44 @@ _src/config/configuration.ts_
   _default_: no default
   _format_: string
 
-- SMTP\_HOST:
-  Host of SMTP server.
-  _deprecated_. Will be removed in future releases.
+- EMAIL\_TYPE:
+  The type of your email provider.
+  Values "smtp" or "ms365".
+  _default_: smtp
+  _format_: string
+
+- EMAIL\_FROM:
+  Email address that emails should be sent from.
   _default_: no default
   _format_: string
 
-- SMTP\_MESSAGE\_FROM:
-  Email address that emails should be sent from.
-  _deprecated_. Will be removed in future releases.
+- SMTP\_HOST:
+  Host of SMTP server.
   _default_: no default
-  _format_: string, email
+  _format_: string
 
 - SMTP\_PORT:
   Port of SMTP server.
-  _deprecated_. Will be removed in future releases.
+  _default_: 587
+  _format_: number
+
+- SMTP\_SECURE:
+  Use encrypted SMTPS.
+  _default_: no
+  _format_: string
+
+- MS365\_TENANT\_ID:
+  Tenant ID for sending emails over Microsoft Graph API.
   _default_: no default
   _format_: string
 
-- SMTP\_SECURE:
-  Secure of SMTP server.
-  _deprecated_. Will be removed in future releases.
+- MS365\_CLIENT\_ID:
+  Client ID for sending emails over Microsoft Graph API.
+  _default_: no default
+  _format_: string
+
+- MS365\_CLIENT\_SECRET:
+  Client Secret for sending emails over Microsoft Graph API.
   _default_: no default
   _format_: string
 

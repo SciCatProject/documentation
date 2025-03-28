@@ -9,7 +9,7 @@
 
 This is the configuration file for the frontend client. The configuration file allows the systems administrator to configure every aspect of the client including switching on/off almost all non essential features.
 
-The configuration file can be served from the backend, via the `admin/client/config.json` endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work.  The configuration file can also be mounted to the volume `/home/node/app/dist/config/frontend.config.json` for it to be served through this endpoint.
+The configuration file can be served from the backend, via the `admin/client/config.json` endpoint. The frontend would expect the backend to be served on port 3000 in a routing configuration for this  to work. The configuration file can also be mounted to the volume `/home/node/app/dist/config/frontend.config.json` for it to be served through this endpoint.
 
 
 An example is shown below
@@ -196,6 +196,8 @@ Valid environment variables for the .env file. See .env.example for examples val
 
 ## Jobs
 
+  JOB_CONFIGURATION_FILE [string] Optional Configuration file for job actions. If omitted, the jobs subsystem is inactive. Example: "jobConfig.yaml"
+
   CREATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: Scicat Documentation
 
   UPDATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: Scicat Documentation
@@ -309,15 +311,15 @@ For SMTP emails:
 
     SMTP_PORT [number] Optional Port of SMTP server. Defaults to 587.
 
-    SMTP_SECURE [boolean] Optional Use encrypted SMTPS. Defaults to "no".
+    SMTP_SECURE [string] Optional Use encrypted SMTPS. Defaults to "no".
 
 For Microsoft 365 emails using the Graph API:
 
-    MS365_TENANT_ID` [string] Optional Tenant ID for sending emails over Microsoft Graph API.
+    MS365_TENANT_ID [string] Optional Tenant ID for sending emails over Microsoft Graph API.
 
-    MS365_CLIENT_ID` [string] Optional Client ID for sending emails over Microsoft Graph API.
+    MS365_CLIENT_ID [string] Optional Client ID for sending emails over Microsoft Graph API.
 
-    MS365_CLIENT_SECRET` [string] Optional Client Secret for sending emails over Microsoft Graph API.
+    MS365_CLIENT_SECRET [string] Optional Client Secret for sending emails over Microsoft Graph API.
 
 ## Elastic Search settings - use these to enable elastic search
 
