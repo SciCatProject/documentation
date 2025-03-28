@@ -1,12 +1,12 @@
 # SciCat Data Catalogue Developer Guide
 
-This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute back to develop and improve this tool.  
+This guide aims to help developers understand the overall structure of the software and therefore enables people to contribute back to develop and improve this tool.
 Please refer to [Overview in the Operator Manual](../Operator/) for a bird-eye view of the components that are part of SciCat.
 
-If you want to contribute to this software, please read the [Contributing](../Development/Development_Methods.html) section, which among others links to the git workflow to be used.  
+If you want to contribute to this software, please read the [Contributing](./contributing.md) section, which among others links to the git workflow to be used.
 
 ## Introduction to SciCat architecture
-SciCat architecture has been designed embracing the micro-services philosophy.  
+SciCat architecture has been designed embracing the micro-services philosophy.
 The software has two main components:
 * Frontend
 * Backend
@@ -27,8 +27,8 @@ Technologies:
 ### Frontend
 The frontend provides a single page UI application running in the browser intended to provide a easy to use interface to the backend functionalities
 Technologies:
-* [Angular 9+](https://angular.io/) 
-* [Angular Material Widgets and Design](https://material.angular.io/) 
+* [Angular 9+](https://angular.io/)
+* [Angular Material Widgets and Design](https://material.angular.io/)
 * [NGRX for State Management](https://ngrx.io/)
 * [Loopback SDK generator for Angular](https://github.com/mean-expert-official/loopback-sdk-builder)
 
