@@ -1,4 +1,4 @@
-# Sample Authorization
+# 2250: Sample Authorization
 
 Dataset Authorization tests that authorization is correctly set for all the dataset endpoints for all the different type of users.
 

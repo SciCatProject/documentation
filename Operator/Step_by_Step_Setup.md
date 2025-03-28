@@ -280,7 +280,7 @@ before running the backend. A basic rabbitMQ set up in the component-config.loca
 
 ``` 
 The exchange and the binding key must be named `jobs.write` and `jobqueue` respectively, the queue name can take any value. 
-The backend expects and exchange called `jobs.write` to publish jobs messages to bound with that key.
+The backend expects an exchange called `jobs.write` to publish jobs messages to bound with that key.
 
 #### Use in Practice
 If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
