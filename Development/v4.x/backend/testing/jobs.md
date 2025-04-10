@@ -435,4 +435,5 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0370 | Add a new job as anonymous user with all published datasets | POST | /api/v3/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0380 | Get via /api/v4 the anonymous job as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobAnonymous} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0390 | Get via /api/v3 the anonymous job as user5.1, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0400 | Get via /api/v3 the anonymous job as the user of its contactEmail, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 403 | ```AccessForbiddenStatusCode``` |
+| 0400 | Get via /api/v3 the anonymous job as the normal user in its contactEmail, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0410 | Get via /api/v3 the anonymous job as a user in CREATE_JOB_GROUPS | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 200 | ```SuccessfulGetStatusCode``` |
