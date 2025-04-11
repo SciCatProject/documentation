@@ -178,13 +178,13 @@ Valid environment variables for the .env file. See .env.example for examples val
 
 ## Data Management
 
-    ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: "admin, ingestor". For more details check: Scicat Documentation
+    ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: "admin, ingestor". For more details check: [Vanilla Configuration](authorization.md)
 
-    CREATE_DATASET_GROUPS [string] Optional Comma separated list of create dataset groups. Users belong to the listed groups can create dataset with/without PID. Example: "group1, group2". For more details check: Scicat Documentation
+    CREATE_DATASET_GROUPS [string] Optional Comma separated list of create dataset groups. Users belong to the listed groups can create dataset with/without PID. Example: "group1, group2". For more details check: [Vanilla Configuration](authorization.md)
 
-    CREATE_DATASET_WITH_PID_GROUPS [string] Optional Comma separated list of create dataset with pid groups. Users belong to the listed groups can create dataset with PID. Example: "group1, group2". For more details check: Scicat Documentation
+    CREATE_DATASET_WITH_PID_GROUPS [string] Optional Comma separated list of create dataset with pid groups. Users belong to the listed groups can create dataset with PID. Example: "group1, group2". For more details check: [Vanilla Configuration](authorization.md)
 
-    DELETE_GROUPS [string] Optional Comma separated list of delete groups. Users belong to the listed groups can delete any dataset, origDatablocks, datablocks etc. For more details check: Scicat Documentation
+    DELETE_GROUPS [string] Optional Comma separated list of delete groups. Users belong to the listed groups can delete any dataset, origDatablocks, datablocks etc. For more details check: [Vanilla Configuration](authorization.md)
 
     DATASET_CREATION_VALIDATION_ENABLED [boolean] Flag to enable/disable dataset validation to validate if requested new dataset is valid with given regular expression. Preconfigure DATASET_CREATION_VALIDATION_REGEX variable is required. Default value: false
 
@@ -198,11 +198,11 @@ Valid environment variables for the .env file. See .env.example for examples val
 
   JOB_CONFIGURATION_FILE [string] Optional Configuration file for job actions. If omitted, the jobs subsystem is inactive. Example: "jobConfig.yaml"
 
-  CREATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: Scicat Documentation
+  CREATE_JOB_PRIVILEGED_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
-  UPDATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: Scicat Documentation
+  UPDATE_JOB_PRIVILEGED_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
-  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: Scicat Documentation
+  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
 ## Access groups from external administration systems
 

@@ -28,9 +28,9 @@ Users are contained in file `functionalAccount.json.test` and are the following:
 | datasetIngestor | datasetingestor | Create Dataset Privileged Groups |
 | proposalIngestor | proposalingestor | Proposal Groups |
 | sampleIngestor | sampleingestor | Sample Privileged Groups |
-| user1 | group1 | Create Job Groups, Create Dataset Groups, Sample Groups |
-| user2 | group2 | Create Job Groups, Create Dataset Groups, Create Dataset with Pid Groups |
-| user3 | group3 | Update Job Groups, Create Dataset Groups, Create Dataset Privileged Groups |
+| user1 | group1 | Create Job Privileged Groups, Create Dataset Groups, Sample Groups |
+| user2 | group2 | Create Job Privileged Groups, Create Dataset Groups, Create Dataset with Pid Groups |
+| user3 | group3 | Update Privileged Job Groups, Create Dataset Groups, Create Dataset Privileged Groups |
 | user4 | group4 | _none_ |
 | user5.1 | group5 | _none_ |
 | user5.2 | group5 | _none_ |
@@ -88,12 +88,12 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0100 | Add a new job as a user from ADMIN_GROUPS for undefined user from another group user in '#all' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0110 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#all' configuration without contactEmail, which should fail | POST | /api/v4/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0120 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#all' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0130 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0140 | Add a new job as a user from CREATE_JOB_GROUPS for his/her group in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0150 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0160 | Add a new job as a user from CREATE_JOB_GROUPS for another group in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0170 | Add a new job as a user from CREATE_JOB_GROUPS for anonymous user in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0180 | Add a new job as a user from UPDATE_JOB_GROUPS for anonymous user in '#all' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 0130 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0140 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for his/her group in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0150 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0160 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another group in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0170 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user in '#all' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0180 | Add a new job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user in '#all' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0190 | Add a new job as a normal user for himself/herself in '#all' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0200 | Add a new job as a normal user for his/her group in '#all' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0210 | Add a new job as a normal user for another user in '#all' configuration, which should fail as bad request | POST | /api/v4/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
@@ -105,12 +105,12 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0270 | Add a status update to a job as a user from ADMIN_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0280 | Add a status update to a job as a user from ADMIN_GROUPS for another group's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0290 | Add a status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0300 | Add a status update to a job as a user from CREATE_JOB_GROUPS for anonymous user's job in '#all' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0310 | Add a status update to a job as a user from UPDATE_JOB_GROUPS his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0320 | Add a status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0330 | Add a status update to a job as a user from UPDATE_JOB_GROUPS for admin's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0340 | Add a status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0350 | Add a status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0300 | Add a status update to a job as a user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user's job in '#all' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0310 | Add a status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0320 | Add a status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0330 | Add a status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for admin's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0340 | Add a status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0350 | Add a status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0360 | Add a status update to a job as a normal user  for his/her job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0370 | Add a status update to a job as a normal user for another user's job in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0380 | Add a status update to a job as a normal user for his/her group in '#all' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
@@ -122,14 +122,14 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0440 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#all' configuration with non-existing jobId, which should fail as bad request | PATCH | /api/v4/Jobs/${badJobId} | admin | 400 | ```BadRequestStatusCode``` |
 | 0450 | Access jobs as a user from ADMIN_GROUPS | GET | /api/v4/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0460 | Access jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v4/Jobs?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0470 | Access jobs as a user from ADMIN_GROUPS that were created by user in CREATE_JOB_GROUPS | GET | /api/v4/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0470 | Access jobs as a user from ADMIN_GROUPS that were created by user in CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v4/Jobs?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0480 | Access jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v4/Jobs?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0490 | Access jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v4/Jobs?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0500 | Access jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v4/Jobs?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0510 | Access jobs as a user from CREATE_JOB_GROUPS | GET | /api/v4/Jobs | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0520 | Access jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v4/Jobs?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0530 | Access jobs as a user from CREATE_JOB_GROUPS that were created by user1 | GET | /api/v4/Jobs?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0540 | Access jobs as a user from UPDATE_JOB_GROUPS | GET | /api/v4/Jobs | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0510 | Access jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v4/Jobs | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0520 | Access jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by admin | GET | /api/v4/Jobs?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0530 | Access jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by user1 | GET | /api/v4/Jobs?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0540 | Access jobs as a user from UPDATE_JOB_PRIVILEGED_GROUPS | GET | /api/v4/Jobs | user3 | 200 | ```SuccessfulGetStatusCode``` |
 | 0550 | Access jobs as a normal user | GET | /api/v4/Jobs | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0560 | Access jobs as a normal user (user5.1) that were created by admin | GET | /api/v4/Jobs?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0570 | Access jobs as another normal user (user5.2) | GET | /api/v4/Jobs | user5.2 | 200 | ```SuccessfulGetStatusCode``` |
@@ -155,7 +155,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0770 | Get anonymous user's job as anonymous user, which should be forbidden | GET | /api/v4/Jobs/${encodedJobOwnedByAnonym} | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 | 0780 | Delete job created by admin as Archive Manager | DELETE | /api/v4/Jobs/${encodedJobOwnedByAdmin} | archiveManager | 200 | ```SuccessfulDeleteStatusCode``` |
 | 0790 | Delete job created by admin as Admin | DELETE | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulDeleteStatusCode``` |
-| 0800 | Delete job created by admin as CREATE_JOB_GROUPS user, which should be forbidden | DELETE | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user1 | 403 | ```DeleteForbiddenStatusCode``` |
+| 0800 | Delete job created by admin as CREATE_JOB_PRIVILEGED_GROUPS user, which should be forbidden | DELETE | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user1 | 403 | ```DeleteForbiddenStatusCode``` |
 | 0810 | Delete job created by admin as normal user, which should be forbidden | DELETE | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user5.1 | 403 | ```DeleteForbiddenStatusCode``` |
 | 0820 | Delete job not existing in database as Archive Manager, which should fail | DELETE | /api/v4/Jobs/${fakeJobId} | archiveManager | 400 | ```BadRequestStatusCode``` |
 | 0830 | Access jobs as a user from ADMIN_GROUPS, which should be one less than before proving that delete works | GET | /api/v4/Jobs | admin | 200 | ```SuccessfulGetStatusCode``` |
@@ -163,10 +163,10 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0850 | Fullquery jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0860 | Fullquery jobs as a user from ADMIN_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullquery?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0870 | Fullquery jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v4/Jobs/fullquery?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0880 | Fullquery jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0890 | Fullquery jobs as a user from CREATE_JOB_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullquery?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0900 | Fullquery jobs as a user from UPDATE_JOB_GROUPS that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | user3 | 200 | ```SuccessfulGetStatusCode``` |
-| 0910 | Fullquery jobs as a user from UPDATE_JOB_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullquery?createdBy=user1 | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0880 | Fullquery jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0890 | Fullquery jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullquery?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0900 | Fullquery jobs as a user from UPDATE_JOB_PRIVILEGED_GROUPS that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0910 | Fullquery jobs as a user from UPDATE_JOB_PRIVILEGED_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullquery?createdBy=user1 | user3 | 200 | ```SuccessfulGetStatusCode``` |
 | 0920 | Fullquery jobs as a normal user | GET | /api/v4/Jobs/fullquery | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0930 | Fullquery jobs as a normal user (user5.1) that were created by admin | GET | /api/v4/Jobs/fullquery?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0940 | Fullquery jobs as unauthenticated user, which should be forbidden | GET | /api/v4/Jobs/fullquery | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
@@ -174,10 +174,10 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0960 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0970 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullfacet?createdBy=user1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0980 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by anonymous user | GET | /api/v4/Jobs/fullfacet?createdBy=anonymous | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0990 | Fullfacet jobs as a user from CREATE_JOB_GROUPS that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 1000 | Fullfacet jobs as a user from CREATE_JOB_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullfacet?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
-| 1010 | Fullfacet jobs as a user from UPDATE_JOB_GROUPS that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | user3 | 200 | ```SuccessfulGetStatusCode``` |
-| 1020 | Fullfacet jobs as a user from UPDATE_JOB_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullfacet?createdBy=user1 | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0990 | Fullfacet jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1000 | Fullfacet jobs as a user from CREATE_JOB_PRIVILEGED_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullfacet?createdBy=user1 | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 1010 | Fullfacet jobs as a user from UPDATE_JOB_PRIVILEGED_GROUPS that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 1020 | Fullfacet jobs as a user from UPDATE_JOB_PRIVILEGED_GROUPS that were created by user1 | GET | /api/v4/Jobs/fullfacet?createdBy=user1 | user3 | 200 | ```SuccessfulGetStatusCode``` |
 | 1030 | Fullfacet jobs as a normal user | GET | /api/v4/Jobs/fullfacet | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 1040 | Fullfacet jobs as a normal user (user5.1) that were created by admin | GET | /api/v4/Jobs/fullfacet?createdBy=admin | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 
@@ -193,7 +193,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0050 | Add a new job as a user from ADMIN_GROUPS for another user in '#authenticated' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0060 | Add a new job as a user from ADMIN_GROUPS for another group in '#authenticated' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0070 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#authenticated' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0080 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#authenticated' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0080 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#authenticated' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0090 | Add a new job as a normal user for himself/herself in '#authenticated' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0100 | Add a new job as unauthenticated user in '#authenticated' configuration, which should be forbidden | POST | /api/v4/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 
@@ -210,19 +210,19 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0060 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetAccess' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0070 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetAccess' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetAccess' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0090 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetAccess' configuration with no access to datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0110 | Add a new job as user from CREATE_JOB_GROUPS for another user ownerGroup for #datasetAccess | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0090 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetAccess' configuration with no access to datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for another user ownerGroup for #datasetAccess | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0120 | Add a new job as a normal user for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0130 | Add a new job as a normal user for himself/herself in '#datasetAccess' configuration with no access to datasets, which should be forbidden | POST | /api/v4/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0140 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0150 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0160 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0170 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0180 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0190 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0200 | AAdd a Status update to a job as a user from UPDATE_JOB_GROUPS for admin's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user3 | 403 | ```SuccessfulPatchStatusCode``` |
-| 0210 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 403 | ```SuccessfulPatchStatusCode``` |
+| 0180 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0190 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0200 | AAdd a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for admin's job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user3 | 403 | ```SuccessfulPatchStatusCode``` |
+| 0210 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 403 | ```SuccessfulPatchStatusCode``` |
 | 0220 | Add a Status update to a job as a normal user  for his/her job in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0230 | Add a Status update to a job as a normal user for another user's job in '#jobOwnerGroup' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0240 | Add a Status update to a job as a normal user for his/her group in '#jobOwnerGroup' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
@@ -244,25 +244,25 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0070 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0090 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetOwner' configuration with dataset owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0110 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0120 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#datasetOwner' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetOwner' configuration with dataset owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0120 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#datasetOwner' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0130 | Add a new job as a normal user for himself/herself in '#datasetOwner' configuration with datasets owned by his/her group | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0140 | Add a new job as a normal user for himself/herself in '#datasetOwner' configuration with datasets not owned by his/her group, which should be forbidden | POST | /api/v4/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0150 | Add a new job as a user from ADMIN_GROUPS for group2 and user1 in '#datasetOwner' configuration | POST | /api/v4/Jobs| admin | 200 | ```EntryCreatedStatusCode``` |
 | 0160 | Add a new job as a user from ADMIN_GROUPS for group1 and user2 in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 200 | ```EntryCreatedStatusCode``` |
-| 0170 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#datasetOwner' configuration (user3 has no access to some of these datasets) | POST | /api/v4/Jobs | user1 | 200 | ```EntryCreatedStatusCode``` |
+| 0170 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#datasetOwner' configuration (user3 has no access to some of these datasets) | POST | /api/v4/Jobs | user1 | 200 | ```EntryCreatedStatusCode``` |
 | 0180 | Add a new job as a user from ADMIN_GROUPS for group1 and user3 in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 200 | ```EntryCreatedStatusCode``` |
 | 0190 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0200 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0210 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0220 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0230 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0240 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0250 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for job owned by CREATE_JOB_GROUPS in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0260 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0270 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0280 | Add a Status update to a job as a user from CREATE_JOB_GROUPS for other group in '#jobOwnerUser' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0230 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser3} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0240 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0250 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for job owned by CREATE_JOB_PRIVILEGED_GROUPS in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0260 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's group in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0270 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0280 | Add a Status update to a job as a user from CREATE_JOB_PRIVILEGED_GROUPS for other group in '#jobOwnerUser' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0290 | Add a Status update to a job as a normal user  for his/her job in '#jobOwnerUser' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0300 | Add a Status update to a job as a normal user for another user's job in '#jobOwnerUser' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0310 | Add a Status update to a job by his group with no ownerUser as a normal user in '#jobOwnerUser' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
@@ -288,8 +288,8 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0060 | Add a new job as a user from ADMIN_GROUPS for another user in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0070 | Add a new job as a user from ADMIN_GROUPS for another group in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#datasetPublic' configuration with one unpublished dataset | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0090 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetPublic' configuration with all published datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself in '#datasetPublic' configuration with one unpublished dataset for another group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0090 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetPublic' configuration with all published datasets | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#datasetPublic' configuration with one unpublished dataset for another group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0110 | Add a new job as a normal user himself/herself in '#datasetPublic' configuration with a published dataset | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0120 | Add a new job as a normal user himself/herself in '#datasetPublic' configuration with unpublished datasets, which should be forbidden | POST | /api/v4/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0130 | Add a new job as anonymous user in '#datasetPublic' configuration with all published datasets | POST | /api/v4/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
@@ -309,26 +309,26 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0070 | Add a new job as a user from ADMIN_GROUPS for another group in '#@group5' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from ADMIN_GROUPS for another user in '@group5' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0090 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#@group5' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_GROUPS for his/her own group in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0110 | Add a new job as a user from CREATE_JOB_GROUPS for user 5.1 in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0120 | Add a new job as a user from CREATE_JOB_GROUPS for user 4 in '#@group5' configuration | POST | /api/v4/Jobs/ user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0130 | Add a new job as a user from UPDATE_JOB_GROUPS for user 5.1 in '#@group5' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for his/her own group in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user 5.1 in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0120 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user 4 in '#@group5' configuration | POST | /api/v4/Jobs/ user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0130 | Add a new job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for user 5.1 in '#@group5' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0140 | Add a new job as a user 5.1 for himself/herself in '#@group5' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as a user 5.1 for another user in his/her group in '#@group5' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0160 | Add a new job as a user 5.2 for himself/herself in '#@group5' configuration | POST | /api/v4/Jobs | user5.2 | 201 | ```EntryCreatedStatusCode``` |
 | 0170 | Add a new job as a user 5.1 for another user in '#@group5' configuration, which should fail as bad request | POST | /api/v4/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
-| 0180 | Add a new job as user from UPDATE_JOB_GROUPS for himself/herself in #@group5 configuration, which should fail as forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 0180 | Add a new job as user from UPDATE_JOB_PRIVILEGED_GROUPS for himself/herself in #@group5 configuration, which should fail as forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0190 | Add a new job as a normal user not in group5 for himself/herself in #@group5 configuration, which should be forbidden | POST | /api/v4/Jobs | user4 | 403 | ```AccessForbiddenStatusCode``` |
 | 0200 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0210 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0220 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0230 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0240 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0250 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0260 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0270 | 0260: Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0280 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0290 | Add a Status update to a job as a user from CREATE_JOB_GROUPS for anonymous user's group in '@group5' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0240 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0250 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0260 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0270 | 0260: Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0280 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0290 | Add a Status update to a job as a user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in '@group5' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0300 | Add a Status update to a job as user5.1 for his/her job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0310 | Add a Status update to a job as user5.1 for another user's job in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0320 | Add a Status update to a job as user5.1 for his/her group in '@group5' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
@@ -362,10 +362,10 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0070 | Add a new job as a user from ADMIN_GROUPS for another group in '#USER5.1' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from ADMIN_GROUPS for another user in '#USER5.1' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0090 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#USER5.1' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_GROUPS for himself/herself user in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0110 | Add a new job as a user from CREATE_JOB_GROUPS for user5.1 in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0120 | Add a new job as a user from CREATE_JOB_GROUPS for another user in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0130 | Add a new job as a user from UPDATE_JOB_GROUPS for another user in '#USER5.1' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself user in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user5.1 in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0120 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#USER5.1' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0130 | Add a new job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user in '#USER5.1' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0140 | Add a new job as user5.1 himself/herself in '#USER5.1' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as user5.1 for no ownerUser and group5 ownerGroup in #USER5.1 configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0160 | Add a new job as user5.2 for himself/herself in #USER5.1, which should be forbidden | POST | /api/v4/Jobs | user5.2 | 403 | ```AccessForbiddenStatusCode``` |
@@ -373,11 +373,11 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0180 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0190 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0200 | Add a Status update to a job as a user from ADMIN_GROUPS for anonymous user's job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | admin | 200 | ```SuccessfulPatchStatusCode``` |
-| 0210 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0220 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's job in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0230 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for his/her group in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
-| 0240 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for another user's group in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0250 | Add a Status update to a job as a user from UPDATE_JOB_GROUPS for anonymous user's group in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0210 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0220 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's job in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0230 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for his/her group in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user3 | 200 | ```SuccessfulPatchStatusCode``` |
+| 0240 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for another user's group in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0250 | Add a Status update to a job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for anonymous user's group in 'USER5.1' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByAnonym} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0260 | Add a Status update to a job as user5.1 for his/her job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0270 | Add a Status update to a job as user5.1 for another user's job in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
 | 0280 | Add a Status update to a job as user5.1 for his/her group in 'USER5.1' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulPatchStatusCode``` |
@@ -435,4 +435,5 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0370 | Add a new job as anonymous user with all published datasets | POST | /api/v3/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0380 | Get via /api/v4 the anonymous job as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobAnonymous} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0390 | Get via /api/v3 the anonymous job as user5.1, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0400 | Get via /api/v3 the anonymous job as the user of its contactEmail, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 403 | ```AccessForbiddenStatusCode``` |
+| 0400 | Get via /api/v3 the anonymous job as the normal user in its contactEmail, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user51 | 403 | ```AccessForbiddenStatusCode``` |
+| 0410 | Get via /api/v3 the anonymous job as a user in CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 200 | ```SuccessfulGetStatusCode``` |

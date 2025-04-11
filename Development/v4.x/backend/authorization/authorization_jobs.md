@@ -1,8 +1,22 @@
 # Jobs Authorization
+
+Jobs subsystem relies on groups defined in the configuration file for the backend: 
+
+
+| Configuration Group List | Description |
+| ------------------------ | ----------- | 
+| ADMIN_GROUPS | Users of the listed groups can create, modify and read any job. They cannot delete jobs. |
+| | |
+| CREATE_JOB_PRIVILEGED_GROUPS | Users of the listed groups can create and read any job. They can only modify jobs that belong to their user or group depending on the configuration of given job (see Job Create Authorization Table ). They cannot delete jobs. |
+| | |
+| UPDATE_JOB_PRIVILEGED_GROUPS | Users of the listed groups can modify and read any job. They can only create jobs that belong to their user or group depending on the configuration of given job (see Job Update Authorization Table ). They cannot delete jobs. |
+| | |
+| DELETE_JOB_GROUPS | Users whose group is listed here are allowed to delete any job |
+
+
 ## CASL ability actions
 This is the list of the permission methods available for Jobs and all their endpoints.  
 The authorization for jobs is consistently different from all the other endpoints.
-Users in `ADMIN_GROUPS` have elevated access and are allowed to do any operation listed bellow.
 
 ### Endpoint Authorization
 - JobCreate
