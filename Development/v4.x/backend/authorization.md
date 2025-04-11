@@ -58,7 +58,7 @@ The permissions in the vanilla installation provides a set of user groups which 
 | | Users are allowed to perform all operations on datablocks for any datasets, except delete | DatasetDatablockCreateAny , DatasetDatablockReadAny , DatasetDatablockUpdateAny |
 | | Users can view logbook for any datasets| DatasetLogbookReadAny | 
 | | |
-| DELETE_GROUPS | Users whos group is listed here are allowed to delete datasets, origdatablock or datablock | DatasetDeleteAny , DatasetOrigdatablockDeleteAny , DatasetDatablockDeleteAny |
+| DELETE_GROUPS | Users whose group is listed here are allowed to delete datasets, origdatablock or datablock | DatasetDeleteAny , DatasetOrigdatablockDeleteAny , DatasetDatablockDeleteAny |
 
 ## Subsystems
 - [Datasets](authorization/authorization_datasets.md)
