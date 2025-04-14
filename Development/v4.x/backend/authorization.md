@@ -46,7 +46,7 @@ The permissions in the vanilla installation provides a set of user groups which 
 | | Users are allowed to create and update datablocks for datasets belonging to one of their group | DatasetDatablockCreateOwn , DatasetDatablockReadOwn , DatasetDatablockUpdateOwn |
 | | Users can view the logbook of the datasets that belong to one of their group | DatasetLogbookReadOwn |
 | | |
-| CREATE_DATASET_PRIVELEGED_GROUPS | Users of the listed groups can create datasets for any group, but can only modify datasets belong to one of the group they belong to. They are allowed to specify pids for new datasets. This settings are suggessted for ingestion functional accounts | DatasetCreateAll , DatasetReadOwn , DatasetUpdateOwn |
+| CREATE_DATASET_PRIVILEGED_GROUPS | Users of the listed groups can create datasets for any group, but can only modify datasets belong to one of the group they belong to. They are allowed to specify pids for new datasets. This settings are suggessted for ingestion functional accounts | DatasetCreateAll , DatasetReadOwn , DatasetUpdateOwn |
 | | Users are allowed to perform all operations on attachments for datasets belonging to one of their group | DatasetAttachmentCreateOwn , DatasetAttachmentReadOwn , DatasetAtatchementUpdateOwn , DatasetAttachmentDeleteOwn  |
 | | Users are allowed to create origdatablocks for any datasets, but can only update them for datasets belonging to one of their group | DatasetOrigdatablockCreateAny , DatasetOrigdatablockReadOwn , DatasetOrigdatablockUpdateOwn |
 | | Users are allowed to create and update datablocks for datasets belonging to one of their group | DatasetDatablockCreateOwn , DatasetDatablockReadOwn , DatasetDatablockUpdateOwn |
@@ -58,7 +58,7 @@ The permissions in the vanilla installation provides a set of user groups which 
 | | Users are allowed to perform all operations on datablocks for any datasets, except delete | DatasetDatablockCreateAny , DatasetDatablockReadAny , DatasetDatablockUpdateAny |
 | | Users can view logbook for any datasets| DatasetLogbookReadAny | 
 | | |
-| DELETE_GROUPS | Users whos group is listed here are allowed to delete datasets, origdatablock or datablock | DatasetDeleteAny , DatasetOrigdatablockDeleteAny , DatasetDatablockDeleteAny |
+| DELETE_GROUPS | Users whose group is listed here are allowed to delete datasets, origdatablock or datablock | DatasetDeleteAny , DatasetOrigdatablockDeleteAny , DatasetDatablockDeleteAny |
 
 ## Subsystems
 - [Datasets](authorization/authorization_datasets.md)

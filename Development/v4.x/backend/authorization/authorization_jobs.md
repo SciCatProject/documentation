@@ -1,8 +1,22 @@
 # Jobs Authorization
+
+Jobs subsystem relies on groups defined in the configuration file for the backend: 
+
+
+| Configuration Group List | Description |
+| ------------------------ | ----------- | 
+| ADMIN_GROUPS | Users of the listed groups can create, modify and read any job. They cannot delete jobs. |
+| | |
+| CREATE_JOB_PRIVILEGED_GROUPS | Users of the listed groups can create and read any job. They can only modify jobs that belong to their user or group depending on the configuration of given job (see Job Create Authorization Table ). They cannot delete jobs. |
+| | |
+| UPDATE_JOB_PRIVILEGED_GROUPS | Users of the listed groups can modify and read any job. They can only create jobs that belong to their user or group depending on the configuration of given job (see Job Update Authorization Table ). They cannot delete jobs. |
+| | |
+| DELETE_JOB_GROUPS | Users whose group is listed here are allowed to delete any job |
+
+
 ## CASL ability actions
 This is the list of the permission methods available for Jobs and all their endpoints.  
 The authorization for jobs is consistently different from all the other endpoints.
-Users in `ADMIN_GROUPS` have elevated access and are allowed to do any operation listed bellow.
 
 ### Endpoint Authorization
 - JobCreate
@@ -12,12 +26,12 @@ Users in `ADMIN_GROUPS` have elevated access and are allowed to do any operation
 
 ### (Data) Instance Authorization
 - JobCreateConfiguration (The job's create section of the configuration dictates if the user can create the job)
-- JobCreateOwner (Users with this privilege can create jobs only for themselves)
+- JobCreateOwner (Users with this privilege can create jobs for others)
 - JobCreateAny (Users with this privilege can create jobs for any of the users that are defined in the create section of the job configuration)
 - JobReadAccess
 - JobReadAny
 - JobUpdateConfiguration (The job's update section in configuration dictates if the user can update the job)
-- JobUpdateOwner (Users with this privilege can update jobs belonging to themselves)
+- JobUpdateOwner (Users with this privilege can update jobs belonging to others)
 - JobUpdateAny (Users with this privilege can update any job)
 
 #### Priority
@@ -55,7 +69,7 @@ Any positive match will result in the user acquiring _JobCreate_ endpoint author
 | __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if the user belongs to the group specified |
 | __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job instance can be created only by the user indicated |
 
-__IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly used for debuging and testing.
+__IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly used for debugging and testing.
 
 #### Job Update Authorization Table
 The _JobUpdateConfiguration_ authorization permissions are configured directly in the __*update*__ section of the job configuration.  
@@ -69,7 +83,7 @@ Any positive match will result in the user acquiring  _JobUpdate_ endpoint autho
 | __*@GROUP*__ | __*GROUP*__ | only users that belong to the specified group can access the endpoint | __*GROUP*__ | the job can be updated only by users who belong to the group specified |
 | __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job can be updated only by the user indicated |
 
-__IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the job. It is mostly used for debuging and testing.
+__IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the job. It is mostly used for debugging and testing.
 
 #### Job Authorization priority
 The endpoint authorization is the most permissive authorization across all the jobs defined.

@@ -33,7 +33,7 @@ frontend.config.json:
   "gettingStarted": null,  // URL to Getting Started guide for SciCat, displayed on the Help page.
   "ingestManual": null,  // URL to Ingest Manual for SciCat, displayed on the Help page.
   "jobsEnabled": true,  // Enable/disable Job workflow.
-  "jsonMetadataEnabled": true,  // Show/hide the "Show Metadata" button on the details pages, allowing users to see the JSON represantion of the current document.
+  "jsonMetadataEnabled": true,  // Show/hide the "Show Metadata" button on the details pages, allowing users to see the JSON representation of the current document.
   "jupyterHubUrl": "https://jupyterhub.esss.lu.se/",  // URL to Jupyter Hub instance used for data analysis.
   "landingPage": "doi2.psi.ch/detail/",  // URL to the facility's Landing Page for Published Data.
   "lbBaseURL": "http://127.0.0.1:3000",  // URL to the SciCat Backend.
@@ -142,7 +142,7 @@ frontend.config.json:
 This is the configuration file for the backend. This file allows the systems administrator to configure connected services, like authentication services and message queues, and also switching on/off almost all non essential features. The configuration file is a [dotenv](https://www.npmjs.com/package/dotenv) file and is read by the backend at runtime.
 
 There are currently many configurable additions to SciCat which makes it very flexible these are:
-- OIDC for authenticatoin
+- OIDC for authentication
 - LDAP for authentication
 - Elastic Search
 - SMTP for sending emails to notify users of SciCat jobs
@@ -178,13 +178,13 @@ Valid environment variables for the .env file. See .env.example for examples val
 
 ## Data Management
 
-    ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: "admin, ingestor". For more details check: Scicat Documentation
+    ADMIN_GROUPS [string] Optional Comma separated list of admin groups with admin permission assigned to the listed users. Example: "admin, ingestor". For more details check: [Vanilla Configuration](authorization.md)
 
-    CREATE_DATASET_GROUPS [string] Optional Comma seperated list of create dataset groups. Users belong to the listed groups can create dataset with/without PID. Example: "group1, group2". For more details check: Scicat Documentation
+    CREATE_DATASET_GROUPS [string] Optional Comma separated list of create dataset groups. Users belong to the listed groups can create dataset with/without PID. Example: "group1, group2". For more details check: [Vanilla Configuration](authorization.md)
 
-    CREATE_DATASET_WITH_PID_GROUPS [string] Optional Comma seperated list of create dataset with pid groups. Users belong to the listed groups can create dataset with PID. Example: "group1, group2". For more details check: Scicat Documentation
+    CREATE_DATASET_WITH_PID_GROUPS [string] Optional Comma separated list of create dataset with pid groups. Users belong to the listed groups can create dataset with PID. Example: "group1, group2". For more details check: [Vanilla Configuration](authorization.md)
 
-    DELETE_GROUPS [string] Optional Comma seperated list of delete groups. Users belong to the listed groups can delete any dataset, origDatablocks, datablocks etc. For more details check: Scicat Documentation
+    DELETE_GROUPS [string] Optional Comma separated list of delete groups. Users belong to the listed groups can delete any dataset, origDatablocks, datablocks etc. For more details check: [Vanilla Configuration](authorization.md)
 
     DATASET_CREATION_VALIDATION_ENABLED [boolean] Flag to enable/disable dataset validation to validate if requested new dataset is valid with given regular expression. Preconfigure DATASET_CREATION_VALIDATION_REGEX variable is required. Default value: false
 
@@ -198,11 +198,11 @@ Valid environment variables for the .env file. See .env.example for examples val
 
   JOB_CONFIGURATION_FILE [string] Optional Configuration file for job actions. If omitted, the jobs subsystem is inactive. Example: "jobConfig.yaml"
 
-  CREATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: Scicat Documentation
+  CREATE_JOB_PRIVILEGED_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
-  UPDATE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: Scicat Documentation
+  UPDATE_JOB_PRIVILEGED_GROUPS [string] Optional Comma separated list of groups with permission to update any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
-  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: Scicat Documentation
+  DELETE_JOB_GROUPS [string] Optional Comma separated list of groups with permission to delete any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 
 ## Access groups from external administration systems
 
@@ -244,7 +244,7 @@ Valid environment variables for the .env file. See .env.example for examples val
 
     OIDC_CLIENT_SECRET [string] Optional Secret to provide to the oidc service to obtain the user token. Example: Aa1JIw3kv3mQlGFWhRrE3gOdkH6xreAwro
 
-    OIDC_CALLBACK_URL [string] Optional SciCat callback URL that we want th eoidc service to redirect to, in case of successful login. Example: http://myscicat/api/v3/oidc/callback
+    OIDC_CALLBACK_URL [string] Optional SciCat callback URL that we want the oidc service to redirect to, in case of successful login. Example: http://myscicat/api/v3/oidc/callback
 
     OIDC_SCOPE [string] Optional Space separated list of the info returned by the oidc service. Example: "openid profile email"
 
@@ -337,14 +337,14 @@ For Microsoft 365 emails using the Graph API:
 
     ES_FIELDS_LIMIT [number] The total number of fields in an index. Default value: 1000
 
-    ES_REFRESH [string] If set to wait_for Elasticsearch will wait till data is insereted to specificied index then return response. Unless you have a good reason to wait for the change to become visible, always use false (the default setting).
+    ES_REFRESH [string] If set to wait_for Elasticsearch will wait till data is inserted to specified index then return response. Unless you have a good reason to wait for the change to become visible, always use false (the default setting).
 
 
 ```
 
 ### DOI Config
 
-This config file contains the username and password for authenicating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.
+This config file contains the username and password for authenticating against your DOI provider, e.g., DataCite, which is used when registering the DOI and metadata of your published data.
 
 ```
 backend/src/config/doiconfig.local.json
