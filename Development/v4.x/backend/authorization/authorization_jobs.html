@@ -1029,9 +1029,47 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="jobs-authorization">Jobs Authorization</h1>
+<p>Jobs subsystem relies on groups defined in the configuration file for the backend: </p>
+<table>
+<thead>
+<tr>
+<th>Configuration Group List</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADMIN_GROUPS</td>
+<td>Users of the listed groups can create, modify and read any job. They cannot delete jobs.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CREATE_JOB_PRIVILEGED_GROUPS</td>
+<td>Users of the listed groups can create and read any job. They can only modify jobs that belong to their user or group depending on the configuration of given job (see Job Create Authorization Table ). They cannot delete jobs.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UPDATE_JOB_PRIVILEGED_GROUPS</td>
+<td>Users of the listed groups can modify and read any job. They can only create jobs that belong to their user or group depending on the configuration of given job (see Job Update Authorization Table ). They cannot delete jobs.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DELETE_JOB_GROUPS</td>
+<td>Users whose group is listed here are allowed to delete any job</td>
+</tr>
+</tbody>
+</table>
 <h2 id="casl-ability-actions">CASL ability actions</h2>
-<p>This is the list of the permission methods available for Jobs and all their endpoints.<br></br>The authorization for jobs is consistently different from all the other endpoints.
-Users in <code>ADMIN_GROUPS</code> have elevated access and are allowed to do any operation listed bellow.</p>
+<p>This is the list of the permission methods available for Jobs and all their endpoints.<br></br>The authorization for jobs is consistently different from all the other endpoints.</p>
 <h3 id="endpoint-authorization">Endpoint Authorization</h3>
 <ul>
 <li>JobCreate</li>
@@ -1042,12 +1080,12 @@ Users in <code>ADMIN_GROUPS</code> have elevated access and are allowed to do an
 <h3 id="data-instance-authorization">(Data) Instance Authorization</h3>
 <ul>
 <li>JobCreateConfiguration (The job's create section of the configuration dictates if the user can create the job)</li>
-<li>JobCreateOwner (Users with this privilege can create jobs only for themselves)</li>
+<li>JobCreateOwner (Users with this privilege can create jobs for others)</li>
 <li>JobCreateAny (Users with this privilege can create jobs for any of the users that are defined in the create section of the job configuration)</li>
 <li>JobReadAccess</li>
 <li>JobReadAny</li>
 <li>JobUpdateConfiguration (The job's update section in configuration dictates if the user can update the job)</li>
-<li>JobUpdateOwner (Users with this privilege can update jobs belonging to themselves)</li>
+<li>JobUpdateOwner (Users with this privilege can update jobs belonging to others)</li>
 <li>JobUpdateAny (Users with this privilege can update any job)</li>
 </ul>
 <h4 id="priority">Priority</h4>
@@ -1199,7 +1237,7 @@ graph LR;
 </tr>
 </tbody>
 </table>
-<p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to create a new job. It is mostly used for debuging and testing.</p>
+<p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to create a new job. It is mostly used for debugging and testing.</p>
 <h4 id="job-update-authorization-table">Job Update Authorization Table</h4>
 <p>The <em>JobUpdateConfiguration</em> authorization permissions are configured directly in the <strong><em>update</em></strong> section of the job configuration.<br></br>Any positive match will result in the user acquiring  <em>JobUpdate</em> endpoint authorization, which applies to the jobs endpoint <code>PATCH:Jobs/id</code> </p>
 <table>
@@ -1250,7 +1288,7 @@ graph LR;
 </tr>
 </tbody>
 </table>
-<p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to update the job. It is mostly used for debuging and testing.</p>
+<p><strong>IMPORTANT</strong>: use option <em>#all</em> carefully, as it allows anybody to update the job. It is mostly used for debugging and testing.</p>
 <h4 id="job-authorization-priority">Job Authorization priority</h4>
 <p>The endpoint authorization is the most permissive authorization across all the jobs defined.
 The priority between job create and update authorization is as follows:</p>
@@ -1304,7 +1342,7 @@ graph LR;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2025-03-28T14:38:29.033Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-03-28T14:38:39.906Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.4.2.4","depth":5,"next":{"title":"Instruments","level":"1.5.2.4.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},"previous":{"title":"Proposals","level":"1.5.2.4.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/authorization/authorization_jobs.md","mtime":"2025-04-14T13:35:11.062Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-04-14T13:35:16.812Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
