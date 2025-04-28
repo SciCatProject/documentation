@@ -531,4 +531,4 @@ All arguments are optional.
   request body (aka DTO) is available as a Handlebars context. Default: ""
 - `performJob` (optional): Log message to print after the job is saved to the database.
   The updated job object is available as a Handlebars context.
-  Default: `"Performing job for {{{type}}}"`
+  Default: `"Performing job for {{ type }}"`
