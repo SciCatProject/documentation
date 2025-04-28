@@ -65,7 +65,7 @@ Any positive match will result in the user acquiring _JobCreate_ endpoint author
 | _#datasetPublic_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetPublic_ | the job instance will be created only if all the datasets listed are __public__ |
 | _#authenticated_ | _#user_ | any valid users can access the endpoint, independently from their groups | _#user_ | any valid users can create this instance of the job |
 | _#datasetAccess_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetAccess_ | the job instance will be created only if the specified user group or otherwise any of the user's groups has access to all the datasets listed |
-| _#datasetOwner_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetOwner_ | the job instance will be created only if any of user's group is part of all the datasets' owner group |
+| _#datasetOwner_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetOwner_ | the job instance will be created only if the specified user group or otherwise any of the user's groups is part of all the datasets' owner group |
 | __*@GROUP*__ | _#all_ | any user can access this endpoint, both anonymous and authenticated | __*GROUP*__ | the job instance will be created only if the user belongs to the group specified |
 | __*USER*__ | _#all_ | any user can access this endpoint, both anonymous and authenticated  | __*USER*__ | the job instance can be created only by the user indicated |
 | #jobAdmin | #all | any user can access this endpoint, both anonymous and authenticated | _#jobAdmin_ | the job instance can be created by users of ADMIN_GROUPS and CREATE_JOB_PRIVILEGED only |
