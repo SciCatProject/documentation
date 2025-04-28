@@ -64,11 +64,11 @@ Any positive match will result in the user acquiring _JobCreate_ endpoint author
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can create this instance of the job |
 | _#datasetPublic_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetPublic_ | the job instance will be created only if all the datasets listed are __public__ |
 | _#authenticated_ | _#user_ | any valid users can access the endpoint, independently from their groups | _#user_ | any valid users can create this instance of the job |
-| _#datasetAccess_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetAccess_ | the job instance will be created only if the user has access to all the datasets listed |
-| _#datasetOwner_ | _#user_ | any valid user can access this endpoint, independently from their groups | _#datasetOwner_ | the job instance will be created only if the user is part of all the datasets' owner group |
-| __*@GROUP*__ | __*GROUP*__ | only users that belongs to the specified group can access the endpoint | __*GROUP*__ | the job instance will be created only if the user belongs to the group specified |
-| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job instance can be created only by the user indicated |
-
+| _#datasetAccess_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetAccess_ | the job instance will be created only if the specified user group or otherwise any of the user's groups has access to all the datasets listed |
+| _#datasetOwner_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#datasetOwner_ | the job instance will be created only if the specified user group or otherwise any of the user's groups is part of all the datasets' owner group |
+| __*@GROUP*__ | _#all_ | any user can access this endpoint, both anonymous and authenticated | __*GROUP*__ | the job instance will be created only if the user belongs to the group specified |
+| __*USER*__ | _#all_ | any user can access this endpoint, both anonymous and authenticated  | __*USER*__ | the job instance can be created only by the user indicated |
+| #jobAdmin | #all | any user can access this endpoint, both anonymous and authenticated | _#jobAdmin_ | the job instance can be created by users of ADMIN_GROUPS and CREATE_JOB_PRIVILEGED only |
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to create a new job. It is mostly used for debugging and testing.
 
 #### Job Update Authorization Table
@@ -78,10 +78,11 @@ Any positive match will result in the user acquiring  _JobUpdate_ endpoint autho
 | Job Update Authorization | Endpoint Authentication Translation | Endpoint Authentication Description | Instance Authentication Translation | Instance Authentication Description |
 | --- | --- | --- | --- | --- |
 | _#all_ | _#all_ | any user can access this endpoint, both anonymous and authenticated | _#all_ | Any user can update this job instance |
-| _#jobOwnerUser_ | _#user_ | authenticated user can access the endpoint | _#jobOwnerUser_ | only the user that is listed in field _ownerUser_ can perform the update |
-| _#jobOwnerGroup_ | _#user_ | authenticated user can access the endpoint | _#jobOwnerGroup_ | any user that belongs to the group listed in field _ownerGroup_ can perform the update |
-| __*@GROUP*__ | __*GROUP*__ | only users that belong to the specified group can access the endpoint | __*GROUP*__ | the job can be updated only by users who belong to the group specified |
-| __*USER*__ | __*USER*__ | only the specified user can access the endpoint | __*USER*__ | the job can be updated only by the user indicated |
+| _#jobOwnerUser_ | _#user_ | any user can access this endpoint, both anonymous and authenticated | _#jobOwnerUser_ | only the user that is listed in field _ownerUser_ can perform the update |
+| _#jobOwnerGroup_ | _#user_ | any user can access this endpoint, both anonymous and authenticated | _#jobOwnerGroup_ | any user that belongs to the group listed in field _ownerGroup_ can perform the update |
+| __*@GROUP*__ | __*GROUP*__ | any user can access this endpoint, both anonymous and authenticated | __*GROUP*__ | the job can be updated only by users who belong to the group specified |
+| __*USER*__ | __*USER*__ | any user can access this endpoint, both anonymous and authenticated | __*USER*__ | the job can be updated only by the user indicated |
+| #jobAdmin | #all | any user can access this endpoint, both anonymous and authenticated | _#jobAdmin_ | the job instance can be created by users of ADMIN_GROUPS and UPDATE_JOB_PRIVILEGED only |
 
 __IMPORTANT__: use option _#all_ carefully, as it allows anybody to update the job. It is mostly used for debugging and testing.
 
