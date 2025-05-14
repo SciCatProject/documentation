@@ -1056,51 +1056,30 @@
 <h2 id="overview">Overview</h2>
 <p>The documentation consists of three main parts.</p>
 <ul>
-<li>The "Home Webgpage" of the project , describing the purpose and use cases for the software. The source is located at <a href="https://github.com/SciCatProject/scicatproject.github.io" target="_blank">https://github.com/SciCatProject/scicatproject.github.io</a> </li>
-<li>The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at <a href="https://github.com/SciCatProject/documentation" target="_blank">https://github.com/SciCatProject/documentation</a> .  It covers all components of the software, i.e  frontend and backend. The documentation tool <a href="https://honkit.netlify.app/" target="_blank">honkit</a> (successor of gitbook) is used.</li>
-<li>The documentation of the REST API of the backend. This is generated from the swagger.json file, which itself is generated from the model descriptions in loopback</li>
+<li>The "Home Webpage" of the project , describing the purpose and use cases for the software. The source is located at <a href="https://github.com/SciCatProject/scicatproject.github.io" target="_blank">https://github.com/SciCatProject/scicatproject.github.io</a></li>
+<li>The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at <a href="https://github.com/SciCatProject/documentation" target="_blank">https://github.com/SciCatProject/documentation</a> . It covers all components of the software, i.e  frontend and backend. The documentation tool <a href="https://honkit.netlify.app/" target="_blank">honkit</a> (successor of gitbook) is used.</li>
+<li>The documentation of the REST API of the backend. This is generated from the OpenAPI description, which itself is generated from the model descriptions in the backend code.</li>
 </ul>
 <p>All parts are hosted on the <a href="https://pages.github.com/" target="_blank">GitHub Pages platform</a>. The documentation part is "injected" into the GitHub pages automatically by a travis job, which runs after each commit to the documentation repository</p>
 <p>The live web site is then visible on the following URLs respectively</p>
 <ul>
 <li><a href="https://scicatproject.github.io/" target="_blank">https://scicatproject.github.io/</a></li>
 <li><a href="https://scicatproject.github.io/documentation" target="_blank">https://scicatproject.github.io/documentation</a></li>
-<li><a href="https://scicatproject.github.io/api" target="_blank">https://scicatproject.github.io/api</a></li>
+<li>The REST API not generated statically but is available from each running SciCat
+backend (for example, the public <a href="https://scicat.ess.eu/explorer" target="_blank">ESS instance</a>).<!-- TODO update following completion of https://github.com/SciCatProject/documentation/issues/42 -->
+</li>
 </ul>
 <h2 id="changes-and-deployment-of-home-webpage">Changes and Deployment of Home Webpage</h2>
-<pre><code>git clone https://github.com/SciCatProject/scicatproject.github.io`
-cd scicatproject.github.io
-
-# make your changes on index.html directly, then git add and git commit as usual
-
-git push origin master
-</code></pre><p>After pushing the changes they will immediately become visible at the URL <a href="https://scicatproject.github.io/" target="_blank">https://scicatproject.github.io/</a></p>
+<p>The homepage is built using <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> and hosted on GitHub pages.
+The source is located in the repository
+<a href="https://github.com/SciCatProject/scicatproject.github.io" target="_blank">SciCatProject/scicatproject.github.io</a>.</p>
+<p>After pushing the changes they will become visible at the URL <a href="https://scicatproject.github.io/" target="_blank">https://scicatproject.github.io/</a></p>
 <h2 id="changes-and-deployment-of-manuals">Changes and Deployment of Manuals</h2>
-<pre><code>git clone https://github.com/SciCatProject/documentation.git`
-cd documentation
+<p>Manuals are built using <a href="https://honkit.netlify.app/" target="_blank">honkit</a> from the
+<a href="https://github.com/SciCatProject/documentation" target="_blank">SciCatProject/documentation</a>
+repository. After pushing the changes they will become visible at the URL
+<a href="https://scicatproject.github.io/documentation" target="_blank">https://scicatproject.github.io/documentation</a>.</p>
 
-# make your edit/add/commit cycle
-
-npm install honkit --save
-npx honkit build
-</code></pre><h3 id="serving-the-documentation-locally">Serving the Documentation locally</h3>
-<p><code>npx honkit serve --port 4040</code></p>
-<h3 id="publishing-the-documentation">Publishing the documentation</h3>
-<p><code>git push origin master</code></p>
-<p>The push to the origin repo will trigger a travis job, which will publish the resulting documentation to <a href="https://scicatproject.github.io/documentation" target="_blank">https://scicatproject.github.io/documentation</a></p>
-<h2 id="changes-and-deployment-of-api-documentation">Changes and Deployment of API Documentation</h2>
-<p>Use the following command to regenerate  the API with an up-to-date swagger.json file</p>
-<pre><code>    # to install redoc-cli:
-    # sudo npm install -g redoc-cli
-
-    # to get an updated swagger.json file
-    # wget https://YOUR-API-SERVER/explorer/swagger.json
-
-    redoc-cli bundle -o index.html swagger.json
-
-    # the make commit which replaces the index.html file at 
-    # https://github.com/SciCatProject/scicatproject.github.io/tree/master/api
-</code></pre>
                                 
                                 </section>
                             
@@ -1139,7 +1118,7 @@ npx honkit build
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Documentation","level":"1.5.3","depth":2,"previous":{"title":"Migration v3.x to v4.x","level":"1.5.2.11","depth":3,"path":"Development/v4.x/Migration.md","ref":"Development/v4.x/Migration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Documentation.md","mtime":"2025-05-07T13:48:51.165Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-07T13:49:01.491Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Documentation","level":"1.5.3","depth":2,"previous":{"title":"Migration v3.x to v4.x","level":"1.5.2.11","depth":3,"path":"Development/v4.x/Migration.md","ref":"Development/v4.x/Migration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/Documentation.md","mtime":"2025-05-14T12:26:12.560Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-14T12:26:19.798Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

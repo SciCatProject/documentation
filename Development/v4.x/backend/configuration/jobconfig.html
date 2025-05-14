@@ -1163,6 +1163,48 @@ for instance, <code>"#datasetOwner"</code> requires that a dataset be passed.</p
 services to external users. Please consider the security model carefully when
 configuring jobs.</p>
 </blockquote>
+<h3 id="templates">Templates</h3>
+<p>Many actions can be configured using templates, which get filled when the action runs.
+Template strings use <a href="https://handlebarsjs.com/" target="_blank">Handlebars</a> syntax. The following
+top-level variables are availabe in the handlebars context:</p>
+<table>
+<thead>
+<tr>
+<th>Top-level variable</th>
+<th>Type</th>
+<th>Examples</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request</code></td>
+<td><code>CreateJobDto</code> or<br></br><code>UpdateJobDto</code></td>
+<td><code>{{request.type}}</code><br></br><code>{{request.jobParams}}</code></td>
+<td>HTTP Request body</td>
+</tr>
+<tr>
+<td><code>job</code></td>
+<td><code>JobClass</code></td>
+<td><code>{{job.id}}</code></td>
+<td>The job, as stored in the database. Not available for validate actions.</td>
+</tr>
+<tr>
+<td><code>datasets</code></td>
+<td><code>DatasetClass[]</code></td>
+<td><code>{{#each datasets}}{{pid}}{{/each}}</code></td>
+<td>All datasets referenced in <code>job.jobParams.datasetsList</code>.</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>object</code></td>
+<td><code>{{env.SECRET_TOKEN}}</code></td>
+<td>Access environmental variables</td>
+</tr>
+</tbody>
+</table>
+<p>Environmental variables are particularly useful for secrets that should not be stored in
+the config file.</p>
 <h3 id="actions-configuration">Actions Configuration</h3>
 <p>The following actions are built-in to SciCat and can be included in the <code>actions</code> array.</p>
 <h4 id="urlaction">URLAction</h4>
@@ -1172,10 +1214,11 @@ The <em>URL action</em>, per job stage (<em>create</em>, <em>update</em>) if def
 <code>jobConfig.yaml</code>. It supports templating, by extracting the values from the job schema.</p>
 <p>For example:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">url</span>
-  <span class="hljs-attr">url:</span> <span class="hljs-string">http://localhost:3000/api/v3/health?jobid={{id}}</span>
+  <span class="hljs-attr">url:</span> <span class="hljs-string">http://localhost:3000/api/v3/health?jobid={{request.id}}</span>
   <span class="hljs-attr">method:</span> <span class="hljs-string">GET</span>
   <span class="hljs-attr">headers:</span>
     <span class="hljs-attr">accept:</span> <span class="hljs-string">application/json</span>
+    <span class="hljs-attr">Authorization:</span> <span class="hljs-string">"Bearer <span class="hljs-template-variable">{{env.ARCHIVER_AUTH_TOKEN}}</span>"</span><span class="hljs-string">,</span>
 </code></pre>
 <p>Where:</p>
 <ul>
@@ -1184,6 +1227,8 @@ The <em>URL action</em>, per job stage (<em>create</em>, <em>update</em>) if def
 <li><code>headers</code> (optional): An object containing HTTP headers to be included in the request.</li>
 <li><code>body</code> (optional): The body of the request, for methods like "POST" or "PUT".</li>
 </ul>
+<p>It is recommended that authorization tokens be stored as environmental variables rather
+than included directly in the jobConfig.yaml file.</p>
 <h4 id="validate">Validate</h4>
 <p>The <code>validate</code> action is used to validate requests to the job endpoints. It is used to
 enforce custom constraints on <code>jobParams</code> or <code>jobResultObject</code> for each job type. If
@@ -1227,8 +1272,8 @@ catch errors early where the subject is not specified:</p>
             <span class="hljs-attr">jobParams.subject:</span>
               <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
         <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-          <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{contactEmail}}</span>"</span>
-          <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] <span class="hljs-template-variable">{{jobParams.subject}}</span>"</span>
+          <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{job.contactEmail}}</span>"</span>
+          <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] <span class="hljs-template-variable">{{job.jobParams.subject}}</span>"</span>
           <span class="hljs-attr">bodyTemplate:</span> <span class="hljs-string">demo_email.html</span>
     <span class="hljs-attr">update:</span>
       <span class="hljs-attr">auth:</span> <span class="hljs-string">admin</span>
@@ -1335,9 +1380,9 @@ Upon instantiation, the service will create the configured transporter, ready to
 It supports templating, by extracting the values from the job schema.</p>
 <p>Example:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-  <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{contactEmail}}</span>"</span>
+  <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{job.contactEmail}}</span>"</span>
   <span class="hljs-attr">from:</span> <span class="hljs-string">"sender@example.com"</span><span class="hljs-string">,</span>
-  <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{type}}</span> job was submitted successfully."</span>
+  <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{job.type}}</span> job was submitted successfully."</span>
   <span class="hljs-attr">bodyTemplateFile:</span> <span class="hljs-string">"path/to/job-template-file.html"</span>
 </code></pre>
 <p>Where:</p>
@@ -1356,7 +1401,7 @@ It supports templating, by extracting the values from the job schema.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-      Your {{type}} job with id {{id}} has been submitted ...
+      Your {{job.type}} job with id {{job.id}} has been submitted ...
     <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
@@ -1495,7 +1540,7 @@ section from jobConfig.yaml is available as a Handlebars context. Default: ""</l
 request body (aka DTO) is available as a Handlebars context. Default: ""</li>
 <li><code>performJob</code> (optional): Log message to print after the job is saved to the database.
 The updated job object is available as a Handlebars context.
-Default: <code>"Performing job for "</code></li>
+Default: <code>"Performing job for {{type}}"</code></li>
 </ul>
 
                                 
@@ -1540,7 +1585,7 @@ Default: <code>"Performing job for "</code></li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-07T13:48:51.179Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-07T13:49:01.491Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-14T12:26:12.572Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-14T12:26:19.798Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

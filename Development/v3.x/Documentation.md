@@ -3,7 +3,7 @@
 ## Overview
 The documentation consists of three main parts.
 
-* The "Home Webgpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io 
+* The "Home Webpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io
 * The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at https://github.com/SciCatProject/documentation .  It covers all components of the software, i.e  frontend and backend. The documentation tool [honkit](https://honkit.netlify.app/) (successor of gitbook) is used.
 * The documentation of the REST API of the backend. This is generated from the swagger.json file, which itself is generated from the model descriptions in loopback
 
@@ -63,7 +63,6 @@ Use the following command to regenerate  the API with an up-to-date swagger.json
 
     redoc-cli bundle -o index.html swagger.json
 
-    # the make commit which replaces the index.html file at 
+    # the make commit which replaces the index.html file at
     # https://github.com/SciCatProject/scicatproject.github.io/tree/master/api
 ```
-

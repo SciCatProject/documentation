@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "honkit serve --port 4500",
+    "start": "honkit serve --port 4040",
+    "build": "honkit build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
