@@ -129,6 +129,22 @@ for instance, `"#datasetOwner"` requires that a dataset be passed.
 > services to external users. Please consider the security model carefully when
 > configuring jobs.
 
+### Templates
+
+Many actions can be configured using templates, which get filled when the action runs.
+Template strings use [Handlebars](https://handlebarsjs.com/) syntax. The following
+top-level variables are availabe in the handlebars context:
+
+| Top-level variable | Type | Examples | Description |
+|---|---|---|---|
+| `request` | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body |
+| `job` | `JobClass` | `{{job.id}}` | The job, as stored in the database. Not available for validate actions. |
+| `datasets` | `DatasetClass[]` | `{{#each datasets}}{{pid}}{{/each}}` | All datasets referenced in `job.jobParams.datasetsList`. |
+| `env` | `object` | `{{env.SECRET_TOKEN}}` | Access environmental variables |
+
+Environmental variables are particularly useful for secrets that should not be stored in
+the config file.
+
 ### Actions Configuration
 
 The following actions are built-in to SciCat and can be included in the `actions` array.
@@ -145,10 +161,11 @@ For example:
 
 ```yaml
 - actionType: url
-  url: http://localhost:3000/api/v3/health?jobid={{id}}
+  url: http://localhost:3000/api/v3/health?jobid={{request.id}}
   method: GET
   headers:
     accept: application/json
+    Authorization: "Bearer {{env.ARCHIVER_AUTH_TOKEN}}",
 ```
 
 Where:
@@ -157,6 +174,9 @@ Where:
 - `method` (optional): The HTTP method for the request, e.g. "GET", "POST".
 - `headers` (optional): An object containing HTTP headers to be included in the request.
 - `body` (optional): The body of the request, for methods like "POST" or "PUT".
+
+It is recommended that authorization tokens be stored as environmental variables rather
+than included directly in the jobConfig.yaml file.
 
 #### Validate
 
@@ -212,8 +232,8 @@ jobs:
             jobParams.subject:
               type: string
         - actionType: email
-          to: "{{contactEmail}}"
-          subject: "[SciCat] {{jobParams.subject}}"
+          to: "{{job.contactEmail}}"
+          subject: "[SciCat] {{job.jobParams.subject}}"
           bodyTemplate: demo_email.html
     update:
       auth: admin
@@ -344,9 +364,9 @@ Example:
 
 ```yaml
 - actionType: email
-  to: "{{contactEmail}}"
+  to: "{{job.contactEmail}}"
   from: "sender@example.com",
-  subject: "[SciCat] Your {{type}} job was submitted successfully."
+  subject: "[SciCat] Your {{job.type}} job was submitted successfully."
   bodyTemplateFile: "path/to/job-template-file.html"
 ```
 
@@ -368,7 +388,7 @@ You can create your own template for the email's body, which should be a valid h
 </head>
   <body>
     <p>
-      Your {{type}} job with id {{id}} has been submitted ...
+      Your {{job.type}} job with id {{job.id}} has been submitted ...
     </p>
   </body>
 </html>
