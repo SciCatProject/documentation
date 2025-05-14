@@ -135,12 +135,14 @@ Many actions can be configured using templates, which get filled when the action
 Template strings use [Handlebars](https://handlebarsjs.com/) syntax. The following
 top-level variables are availabe in the handlebars context:
 
+{% raw %}
 | Top-level variable | Type | Examples | Description |
 |---|---|---|---|
 | `request` | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body |
 | `job` | `JobClass` | `{{job.id}}` | The job, as stored in the database. Not available for validate actions. |
 | `datasets` | `DatasetClass[]` | `{{#each datasets}}{{pid}}{{/each}}` | All datasets referenced in `job.jobParams.datasetsList`. |
 | `env` | `object` | `{{env.SECRET_TOKEN}}` | Access environmental variables |
+{% endraw %}
 
 Environmental variables are particularly useful for secrets that should not be stored in
 the config file.
@@ -545,10 +547,12 @@ an incoming job.
 
 All arguments are optional.
 
+{% raw %}
 - `init` (optional): Log message to print during startup. The actions's configuration
   section from jobConfig.yaml is available as a Handlebars context. Default: ""
 - `validate` (optional): Log message to print when the job request is received. The
   request body (aka DTO) is available as a Handlebars context. Default: ""
 - `performJob` (optional): Log message to print after the job is saved to the database.
   The updated job object is available as a Handlebars context.
-  Default: `"Performing job for {{ type }}"`
+  Default: `"Performing job for {{type}}"`
+{% endraw %}

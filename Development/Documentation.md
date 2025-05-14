@@ -3,7 +3,7 @@
 ## Overview
 The documentation consists of three main parts.
 
-* The "Home Webgpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io
+* The "Home Webpage" of the project , describing the purpose and use cases for the software. The source is located at https://github.com/SciCatProject/scicatproject.github.io
 * The documentation proper, split into User,Operator,Ingestor and Developer manual. The source is located at https://github.com/SciCatProject/documentation . It covers all components of the software, i.e  frontend and backend. The documentation tool [honkit](https://honkit.netlify.app/) (successor of gitbook) is used.
 * The documentation of the REST API of the backend. This is generated from the OpenAPI description, which itself is generated from the model descriptions in the backend code.
 
