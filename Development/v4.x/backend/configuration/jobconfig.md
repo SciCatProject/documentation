@@ -142,6 +142,9 @@ top-level variables are availabe in the handlebars context:
 | `datasets` | `DatasetClass[]` | `{{#each datasets}}{{pid}}{{/each}}` | All datasets referenced in `job.jobParams.datasetsList`. |
 | `env` | `object` | `{{env.SECRET_TOKEN}}` | Access environmental variables |
 
+Environmental variables are particularly useful for secrets that should not be stored in
+the config file.
+
 ### Actions Configuration
 
 The following actions are built-in to SciCat and can be included in the `actions` array.
@@ -162,6 +165,7 @@ For example:
   method: GET
   headers:
     accept: application/json
+    Authorization: "Bearer {{env.ARCHIVER_AUTH_TOKEN}}",
 ```
 
 Where:
@@ -170,6 +174,9 @@ Where:
 - `method` (optional): The HTTP method for the request, e.g. "GET", "POST".
 - `headers` (optional): An object containing HTTP headers to be included in the request.
 - `body` (optional): The body of the request, for methods like "POST" or "PUT".
+
+It is recommended that authorization tokens be stored as environmental variables rather
+than included directly in the jobConfig.yaml file.
 
 #### Validate
 
