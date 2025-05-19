@@ -17,15 +17,19 @@ then SciCat will reject any backend requests to create jobs. In this case [front
 features](../../frontend/configuration.md) for archiving (`archiveWorkflowEnabled:
 false`) and retrieval should be disabled.
 
-### Migration Notes
+## Quick-start
 
-In v3.x the `archive`, `retrieve`, and `public` jobs were hard-coded. In v4.x the job
-types can be arbitrary strings; however we recommend using the standard job names to
-avoid confusion.
+To start using jobs:
 
-Also note that some checks that were performed by default in v3.x for certain job types
-must now be configured explicitly as actions. These are included in the provided
-`jobConfig.example.yaml` file and are also noted below.
+1. Copy
+   [jobConfig.recommended.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml)
+   to `jobConfig.yaml`
+2. Update the configuration. See
+   [jobConfig.example.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml)
+   and the [Actions Configuration](#actions-configuration) section below for examples.
+3. Set `JOB_CONFIGURATION_FILE=jobConfig.yaml` in your .env file or environment
+
+## Details
 
 ### Job lifecycle
 
@@ -62,7 +66,65 @@ Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:
    ```
 
 4. Jobs may be *deleted* periodically during maintenance. This is usually not done by
-   users.
+   users. Only members of groups listed in the `DELETE_JOB_GROUPS` env variable can
+   delete jobs.
+
+### Referencing datasets
+
+Many (but not all) jobs relate to datasets. These are specified during job creation in
+the `jobParams.datasetsList` array. The array should contain objects with a `pid` string
+and a `files` array listing individual files that the job should be applied to. An empty
+`files` array indicates that the job should apply to all files.
+
+```json
+{
+  "type": ...,
+  "jobParams": {
+    "datasetsList": [
+      {
+        "pid": "12.3456...",
+        "files": []
+      }
+    ]
+  }
+}
+```
+
+### Status Codes
+
+External systems can provide updates to the user by updating the job via the REST API.
+- `statusCode` is a machine readable status code. Values can be customized for different
+  job types, but are usually single-word strings in camel-case. Some example values are
+  given below.
+- `statusMessage` is a human-readable description of the job state. This string is
+  displayed to the user.
+- `jobResultObject` is a json object with additional machine-readable state information.
+
+Newly created jobs will have `"statusCode": "jobSubmitted"` and `"statusMessage": "Job
+Submitted."`. These values can be customized using the `JOB_DEFAULT_STATUS_CODE` and
+`JOB_DEFAULT_STATUS_MESSAGE` environmental variables.
+
+Status codes can be used to implement state machine logic in an external system, such as
+an archive infrastructure. The archive system can be notified about new and updated jobs
+through *actions* (see below) which might call a URL or post to a message broker. The
+archive system then sends a `PATCH` request to update the job, triggering further
+actions. While status codes can be customized for each institute, the following statuses
+are given as examples for archive and retrieve jobs:
+
+| statusCode                | Meaning                                                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| jobSubmitted              | Freshly created job                                                                                                                              |
+| inProgress                | The archive system is working on the job                                                                                                         |
+| finishedSuccessful        | Success!                                                                                                                                         |
+| finishedWithDatasetErrors | A user error occurred relating to one or more datasets; see `datasetlifecycle.archiveStatusMessage` of any related datasets for more information |
+| finishedUnsuccessful      | A system error occurred                                                                                                                          |
+
+Additional status changes may be associated with datasets referenced in
+`jobParams.datasetsList`, for example in the `datasetlifecycle.archiveStatusMessage`
+field.
+
+It is recommended that values of `statusCode` be configured for each job type using a
+[`validate`](#validate) action (see below).
 
 ### Actions
 
@@ -73,6 +135,24 @@ that the actions may need, such as the list of datasets the job refers to.
 
 A full list of built-in actions is given below. A plugin mechanism for registering new
 actions is also planned for a future SciCat release.
+
+### Migration Notes
+
+For general information about migrating from v3.x, see [Migration](../../Migration.md).
+
+In v3.x the `archive`, `retrieve`, and `public` jobs were hard-coded. In v4.x the job
+types can be arbitrary strings; however we recommend using the standard job names to
+avoid confusion.
+
+The data transfer objects for job endpoints have changed in v4.x. We recommend migrating
+tools to use the new `/api/v4/jobs` endpoints. Old `/api/v3/Jobs` endpoints are still
+available using the old models, but may have some restrictions.
+
+<!-- TODO: Add a table mapping the old schemas to the new ones -->
+
+Also note that some checks that were performed by default in v3.x for certain job types
+must now be configured explicitly as actions. These are included in the provided
+`jobConfig.recommended.yaml` file and are also noted below.
 
 ## Configuration
 
@@ -118,6 +198,10 @@ jobs:
   section](#actions-configuration).
 - `auth` configures the roles authorized to use the endpoint for each job operation.
 - `actions` give a list of actions to run when the endpoint is called.
+
+Production configuration files may contain duplicate actions. Using yaml
+[aliases](https://yaml.org/spec/1.2.2/#alias-nodes) is recommended to avoid unneccessary
+duplication.
 
 ### Authorization
 
@@ -304,6 +388,31 @@ jobs:
               const: true
     update:
       auth: archivemanager
+```
+
+##### Example 3: Define statusCodes
+
+This example restricts the permitted statusCodes to a fixed list. This can help detect
+typos and ill-defined states.
+
+```
+jobs:
+  - jobType: archive
+    create:
+      auth: "#datasetOwner"
+      actions: ...
+    update:
+      auth: archivemanager
+      actions:
+        - actionType: validate
+          requests:
+            statusCode:
+              enum:
+                - jobSubmitted
+                - inProgress
+                - finishedSuccessful
+                - finishedWithDatasetErrors
+                - finishedUnsuccessful
 ```
 
 **Configuration**:
