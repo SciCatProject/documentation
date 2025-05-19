@@ -1,5 +1,7 @@
 # Step by Step manual to Setup SciCat without Containers
 
+> *Note*: The following instructions partain to [Scicat v3](https://github.com/SciCatProject/backend-v3)
+
 ## Setup Backend
 
 ### Mongo
@@ -31,7 +33,7 @@ Install MondoDB Shell
 
 Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed **after** the database has been created in MongoDB, i.e. after starting the backend once.
 
-Log into mongodb at the console, e.g. run 
+Log into mongodb at the console, e.g. run
 
 
 If not using Kubernetes
@@ -66,7 +68,7 @@ First you need to have node/npm installed
 npm version 6 or higher
 Node version 10 or higher
 ```
-The needed database will be created automatically when the API server starts. 
+The needed database will be created automatically when the API server starts.
 
 #### Get code
 ```
@@ -79,21 +81,22 @@ npm install
 Please note: the master branch is often quite behind the development, therefore to get all new features you may want to use the develop branch instead.
 
 #### Setup configuration
- 
-There are 5 configuration files that need to be adjusted to your situation. There are example configuration files for each of the 4 configuration files inside the server directory
+
+There are several configuration files that need to be adjusted to your situation. There are example configuration files for each of the configuration files inside the server directory
 
 1. `functionalAccounts.json` : defines the functional accounts, such as admin, ingestor etc
 2. `datasources.json` : defines the connection to the Mongo DB -sample datasources.json
 3. `providers.json` : defines the authentication source for user accounts, e.g. how to link to your local LDAP/AD server
 4. `config.local.js` : defines the API server details, API root address, your local site name and policy settings for , the PID prefix for your datasets, the type of message broker to use, the connection to an email send server etc
 5. `component-config.json`: defines the Express framework components, in particular if the *explorer* is enabled and optionally definition of the RabbitMQ topology, if used.
+6. (Optional, v4) Configure [jobs](../Development/v4.x/backend/configuration/jobconfig.md)
 
 Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.
 
 #### Note for Windows
 Create an .env file based on .env.example and  use **127.0.0.1** instead of **localhost**
 
-    MONGODB_URI="mongodb://127.0.0.1:27017/dacat" 
+    MONGODB_URI="mongodb://127.0.0.1:27017/dacat"
 
 ##### Email Notifications
 
@@ -164,7 +167,7 @@ npx ng build
 You can deploy a test server with the following command:
 
 ```
-npx ng serve 
+npx ng serve
 ```
 
 
@@ -200,11 +203,11 @@ Again, if in doubt, just leave the setting as defined in the available example e
 ### Connecting to RabbitMQ
 
 Some extra configuration needs to be done in order to get Scicat talking to RabbitMQ. The rabbitmq mechanism is used to trigger asynchronous jobs
-through the archive and retrieve methods. 
+through the archive and retrieve methods.
 
 #### Setting up RabbitMQ
-When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
-It must be set up with a user before the backend is started, otherwise the backend cannot connect. 
+When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run.
+It must be set up with a user before the backend is started, otherwise the backend cannot connect.
 It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
 A basic docker compose for rabbitmq looks like:
 ```
@@ -229,7 +232,7 @@ volumes:
 ```
 
 This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
-Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI.
 To understand more about setting up rabbitmq please see the documentation at https://www.rabbitmq.com/cli.html.
 If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.
 
@@ -248,43 +251,45 @@ Once this is done you can log into the Management Portal hosted at http://localh
 
 The backend handles the connection to rabbitMQ through the component-config.local.json file. The backend will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
 before running the backend. A basic rabbitMQ set up in the component-config.local.json file looks like the following:
-```
-"topology":{
-"connection":{
-"uri":"amqp://my-admin-user:newpassword@local-rabbitmq" # the uri of your service with your administrative user
-},
-"exchanges":[
-{
-"name":"jobs.write",
-"type":"topic",
-"persistent":true
-}
-],
-"queues":[
-{
-"name":"client.jobs.write",
-"subscribe":true
-}
-],
-"bindings":[
-{
-"exchange":"jobs.write",
-"target":"client.jobs.write",
-"keys":[
-"jobqueue"
-]
-}
-]
-}
-}
 
-``` 
-The exchange and the binding key must be named `jobs.write` and `jobqueue` respectively, the queue name can take any value. 
+```json
+{
+  "topology": {
+    "connection": {
+      # the uri of your service with your administrative user
+      "uri": "amqp://my-admin-user:newpassword@local-rabbitmq"
+    },
+    "exchanges": [
+      {
+        "name": "jobs.write",
+        "type": "topic",
+        "persistent": true
+      }
+    ],
+    "queues": [
+      {
+        "name": "client.jobs.write",
+        "subscribe": true
+      }
+    ],
+    "bindings": [
+      {
+        "exchange": "jobs.write",
+        "target": "client.jobs.write",
+        "keys": [
+          "jobqueue"
+        ]
+      }
+    ]
+  }
+}
+```
+
+The exchange and the binding key must be named `jobs.write` and `jobqueue` respectively, the queue name can take any value.
 The backend expects an exchange called `jobs.write` to publish jobs messages to bound with that key.
 
 #### Use in Practice
-If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
+If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you
 could generate two queues bound to the `jobs.write` exchange. However these would be bound with the same key that
 could cause cross talk. RabbitMQ allows you to set up any number of virtual hosts within the same server therefore it is
 best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bindings set as in the component-config.local.json file above.
-
