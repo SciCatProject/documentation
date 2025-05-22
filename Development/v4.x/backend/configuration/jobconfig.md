@@ -220,16 +220,27 @@ Template strings use [Handlebars](https://handlebarsjs.com/) syntax. The followi
 top-level variables are availabe in the handlebars context:
 
 {% raw %}
-| Top-level variable | Type | Examples | Description |
-|---|---|---|---|
-| `request` | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body |
-| `job` | `JobClass` | `{{job.id}}` | The job, as stored in the database. Not available for validate actions. |
-| `datasets` | `DatasetClass[]` | `{{#each datasets}}{{pid}}{{/each}}` | All datasets referenced in `job.jobParams.datasetsList`. |
-| `env` | `object` | `{{env.SECRET_TOKEN}}` | Access environmental variables |
+| Top-level variable | Type                                 | Examples                                       | Description                                                             |
+| ------------------ | ------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body                                                       |
+| `job`              | `JobClass`                           | `{{job.id}}`                                   | The job, as stored in the database. Not available for validate actions. |
+| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{pid}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
+| `env`              | `object`                             | `{{env.SECRET_TOKEN}}`                         | Access environmental variables                                          |
 {% endraw %}
 
 Environmental variables are particularly useful for secrets that should not be stored in
 the config file.
+
+Not all variables may be available at all times. Actions run either before job is saved
+to the database (`validate` phase) or after (`performJob` phase). The following table
+indicates what values can be expected in the context during each phase.
+
+| Operation | Phase      | request        | job                          | datasets         |
+| --------- | ---------- | -------------- | ---------------------------- | ---------------- |
+| create    | validate   | `CreateJobDto` | *undefined*                  | `DatasetClass[]` |
+| create    | performJob | `CreateJobDto` | `JobClass`                   | `DatasetClass[]` |
+| update    | validate   | `UpdateJobDto` | `JobClass` (previous values) | `DatasetClass[]` |
+| update    | performJob | `UpdateJobDto` | `JobClass` (updated values)  | `DatasetClass[]` |
 
 ### Actions Configuration
 
@@ -545,7 +556,7 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
 
 ```yaml
 - actionType: switch
-  scope: request | datasets
+  phase: validate | performJob | all
   property: some.property
   cases:
   - match: exact value match
@@ -560,14 +571,18 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
 
 - `property` (required) Name of a variable to test against. This is specified as a
   JSONPath+ spec; the most common case is a simple dot-delimited list of keys.
-- `scope` (required) Determines where the property is looked up. The following values
-  are supported:
-  - `request`: Read properties from the job request body (validation phase) or the job
-    as stored in the database (perform phase).
-  - `datasets`: Valid only for `create` jobs, properties will be read from the dataset
-    referenced in `jobParams.datasetList`. If multiple datasets are listed, all should
-    resolve to a single value; otherwise the job will return a 400 error.
-- cases: one or more conditions to match the property against. Conditions are tested in
+  Properties are selected from the same context used for templates; see
+  [templates](#templates) above for a description of the values available
+- `phase` (required) Determines which phases the switch statement runs. Some properties
+  may be unavailable in some phases (see [templates](#templates)), requiring limiting
+  when the switch statement is evaluated. Actions listed within the `cases` section will
+  also be run only in the phase listed here.
+  - `validate`: Evaluated before the request is accepted and written to the database;
+    useful for `validate` actions.
+  - `performJob`: Evaluated after the request is written to the database; most actions
+    run in this phase.
+  - `all`: Evaluate the switch condition in both phases
+- `cases`: one or more conditions to match the property against. Conditions are tested in
   order. No "fall through" behavior is implemented; this can be approximated using yaml
   anchors and aliases if needed. The following types of conditions are available:
   - `match`: match the property against a string or literal value. This use javascript
@@ -578,6 +593,12 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
   - `schema`: Match the property against a JSON schema.
   - If no condition is included then the case will always match. This is useful for
     adding a terminal 'default' condition (eg with an `error` action).
+
+Some JSON paths may return multiple values. For instance, accessing dataset properties
+should use array paths such as `datasets[*].storageLocation`. If multiple unique values
+are returned then the request will return a 400 error. If the property doesn't match
+any values then a value of `undefined` will be used, which can be handled by a default
+case.
 
 **Examples**:
 
@@ -592,32 +613,22 @@ to different statusCodes (this case could also be handled with handlebars templa
       auth: archiveManager
       actions:
         - actionType: switch
-          scope: request
-          property: statusCode
+          phase: performJob
+          property: job.statusCode
           cases:
             - match: finishedSuccessful
               actions:
               - actionType: email
-                to: {{contactEmail}}
-                subject: "[SciCat] Your {{type}} job was successful!"
+                to: {{job.contactEmail}}
+                subject: "[SciCat] Your {{job.type}} job was successful!"
                 bodyTemplateFile: retrieve-success.html
             - actions:
               - actionType: email
-                to: {{contactEmail}}
-                subject: "[SciCat] Your {{type}} job has state {{statusCode}}"
+                to: {{job.contactEmail}}
+                subject: "[SciCat] Your {{job.type}} job has state {{job.statusCode}}"
                 bodyTemplateFile: retrieve-failure.html
 ```
 
-**Valid properties**:
-
-Generally speaking, actions may be applied either to the request body sent by the client
-(such as the `validate` action) or to the job after it is successfully created or
-updated in the database (most actions). Currently these are implemented independently,
-meaning that, in the request scope, `property` will be matched once against the request
-body and then a second time on the updated property from the database. For instance, it
-is not possible to use a `switch` action with the job `id` property, since this is not
-available in the request body (although it may be present in the URL parameters for
-update jobs). This limitation may be relaxed in the future.
 
 #### Error
 
@@ -663,5 +674,5 @@ All arguments are optional.
   request body (aka DTO) is available as a Handlebars context. Default: ""
 - `performJob` (optional): Log message to print after the job is saved to the database.
   The updated job object is available as a Handlebars context.
-  Default: `"Performing job for {{type}}"`
+  Default: `"Performing job for {{job.type}}"`
 {% endraw %}
