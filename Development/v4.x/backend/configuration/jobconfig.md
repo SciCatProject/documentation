@@ -1,5 +1,30 @@
 # Job Configuration
 
+- [Overview](#overview)
+- [Quick-start](#quick-start)
+- [Details](#details)
+  - [Job lifecycle](#job-lifecycle)
+  - [Referencing datasets](#referencing-datasets)
+  - [Status Codes](#status-codes)
+  - [Actions](#actions)
+  - [Migration Notes](#migration-notes)
+- [Configuration](#configuration)
+  - [Configuration overview](#configuration-overview)
+  - [Authorization](#authorization)
+  - [Templates](#templates)
+  - [Actions Configuration](#actions-configuration)
+    - [URLAction](#urlaction)
+    - [Validate](#validate)
+      - [Example 1: Require extra template data](#example-1-require-extra-template-data)
+      - [Example 2: Enforce datasetLifecycle state](#example-2-enforce-datasetlifecycle-state)
+      - [Example 3: Define statusCodes](#example-3-define-statuscodes)
+    - [Email](#email)
+    - [RabbitMQ](#rabbitmq)
+    - [Switch](#switch)
+    - [Error](#error)
+    - [Log](#log)
+
+
 ## Overview
 
 The SciCat job system is used for any interactions between SciCat and external services.
@@ -22,7 +47,7 @@ false`) and retrieval should be disabled.
 To start using jobs:
 
 1. Copy
-   [jobConfig.recommended.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml)
+   [`jobConfig.recommended.yaml`](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml)
    to `jobConfig.yaml`
 2. Update the configuration. See
    [jobConfig.example.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml)
@@ -220,16 +245,43 @@ Template strings use [Handlebars](https://handlebarsjs.com/) syntax. The followi
 top-level variables are availabe in the handlebars context:
 
 {% raw %}
-| Top-level variable | Type | Examples | Description |
-|---|---|---|---|
-| `request` | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body |
-| `job` | `JobClass` | `{{job.id}}` | The job, as stored in the database. Not available for validate actions. |
-| `datasets` | `DatasetClass[]` | `{{#each datasets}}{{pid}}{{/each}}` | All datasets referenced in `job.jobParams.datasetsList`. |
-| `env` | `object` | `{{env.SECRET_TOKEN}}` | Access environmental variables |
+| Top-level variable | Type                                 | Examples                                       | Description                                                             |
+| ------------------ | ------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{{request.type}}}`<br/>`{{{request.jobParams}}}` | HTTP Request body                                                       |
+| `job`              | `JobClass`                           | `{{{job.id}}}`                                   | The job. During the validate phase this is the previous job values (if any); during the perform phase it will be the current database value. |
+| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{{pid}}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
+| `env`              | `object`                             | `{{{env.SECRET_TOKEN}}}`                         | Access environmental variables                                          |
 {% endraw %}
 
 Environmental variables are particularly useful for secrets that should not be stored in
 the config file.
+
+{% raw %}
+Most variables should use handlebars "triple-stash" (`{{{ var }}}`) to disable html
+escaping. Use double-brackets (`{{ var }}`) for HTML email bodies where special
+characters should be escaped. Templates that expect JSON should use `{{{ jsonify var
+}}}` to ensure correct quoting. In addition to the built-in handlebars functions, the
+following additional helpers are defined:
+{% endraw %}
+
+- `unwrapJSON`: convert a json object to HTML (arrays become `<ul>`, objects are formatted as key:value lines, etc)
+- `keyToWord`: convert camelCase to space-separated words
+- `eq`: test exact equality (`===`)
+- `jsonify`: Convert an object to JSON
+- `job_v3`: Convert a JobClass object to the old JobClassV3
+- `urlencode`: urlencode input
+- `base64enc`: base64enc input
+
+Not all variables may be available at all times. Actions run either before job is saved
+to the database (`validate` phase) or after (`perform` phase). The following table
+indicates what values can be expected in the context during each phase.
+
+| Operation | Phase    | request        | job                          | datasets         |
+| --------- | -------- | -------------- | ---------------------------- | ---------------- |
+| create    | validate | `CreateJobDto` | *undefined*                  | `DatasetClass[]` |
+| create    | perform  | `CreateJobDto` | `JobClass`                   | `DatasetClass[]` |
+| update    | validate | `UpdateJobDto` | `JobClass` (previous values) | `DatasetClass[]` |
+| update    | perform  | `UpdateJobDto` | `JobClass` (updated values)  | `DatasetClass[]` |
 
 ### Actions Configuration
 
@@ -247,11 +299,12 @@ For example:
 
 ```yaml
 - actionType: url
-  url: http://localhost:3000/api/v3/health?jobid={{request.id}}
+  url: http://localhost:3000/api/v3/health?jobid={{{request.id}}}
   method: GET
   headers:
     accept: application/json
-    Authorization: "Bearer {{env.ARCHIVER_AUTH_TOKEN}}",
+    Authorization: "Bearer {{{env.ARCHIVER_AUTH_TOKEN}}}",
+  body: "{{{jsonify job}}}
 ```
 
 Where:
@@ -275,8 +328,8 @@ ValidateAction is configured with a series of `<path>: <typecheck>` pairs which 
 a constraint to be validated. These can be applied to different contexts:
 
 - **`request`** - Checks the incoming request body (aka the DTO).
-- **`datasets`** - (CREATE only) requires that a list of datasets be included in
-  `jobParams.datasetList`. Checks are applied to each dataset
+- **`datasets`** - requires that a list of datasets be included in
+  `jobParams.datasetList`. Checks are applied to each dataset.
 
 Validation occurs before the job gets created in the database, while most other actions
 are performed after the job is created. This means that correctly configuring validation
@@ -284,6 +337,46 @@ is important to detect user errors early.
 
 Configuration is described in detail below. However, a few illustrative examples are
 provided first.
+
+**Configuration**:
+The config file for a validate action will look like this:
+
+```yaml
+- actionType: validate
+  request:
+    <path>: <typecheck>
+  datasets:
+    <path>: <typecheck>
+```
+
+Usually `<path>` will be a dot-delimited field in the DTO, eg. "jobParams.name".
+Technically it is a [JSONPath-Plus](https://github.com/JSONPath-Plus/JSONPath)
+expression, which is applied to the request body or dataset to extract any matching
+items. When writing a jobconfig file it may be helpful to test an expected request body
+against the [JSONPath demo](https://jsonpath-plus.github.io/JSONPath/demo/).
+
+The `<typecheck>` expression is a JSON Schema. While complicated schemas are possible,
+the combination with JSONPath makes common type checks very concise and legible.
+Here are some example `<typecheck>` expressions:
+
+```yaml
+- actionType: validate
+  request: # applies to the request body
+    jobParams.stringVal: # match simple types
+      type: string
+    jobParams.enumVal: # literal values
+      enum: ["yes", "no"]
+    jobResultObject.mustBeTrue: # enforce a value
+      const: true
+    "jobParams": # Apply external JSON Schema to all params
+      $ref: https://json.schemastore.org/schema-org-thing.json
+  dataset: # applies to all datasets
+    datasetLifecycle.archivable:
+      const: true
+```
+
+Validation will result in a `400 Bad Request` response if either the path is not found
+or if any values matching the path do not validate against the provided schema.
 
 ##### Example 1: Require extra template data
 
@@ -301,7 +394,7 @@ POST /jobs
 }
 ```
 
-In this case an `email` action would be configured using handlebars to insert the
+In this case an [`email` action](#email) would be configured using handlebars to insert the
 `jobParams.subject` value. However, a `validate` action should also be configured to
 catch errors early where the subject is not specified:
 
@@ -318,8 +411,8 @@ jobs:
             jobParams.subject:
               type: string
         - actionType: email
-          to: "{{job.contactEmail}}"
-          subject: "[SciCat] {{job.jobParams.subject}}"
+          to: "{{{job.contactEmail}}}"
+          subject: "[SciCat] {{{job.jobParams.subject}}}"
           bodyTemplate: demo_email.html
     update:
       auth: admin
@@ -415,49 +508,9 @@ jobs:
                 - finishedUnsuccessful
 ```
 
-**Configuration**:
-The config file for a validate action will look like this:
-
-```yaml
-- actionType: validate
-  request:
-    <path>: <typecheck>
-  datasets:
-    <path>: <typecheck>
-```
-
-Usually `<path>` will be a dot-delimited field in the DTO, eg. "jobParams.name".
-Technically it is a [JSONPath-Plus](https://github.com/JSONPath-Plus/JSONPath)
-expression, which is applied to the request body or dataset to extract any matching
-items. When writing a jobconfig file it may be helpful to test an expected request body
-against the [JSONPath demo](https://jsonpath-plus.github.io/JSONPath/demo/).
-
-The `<typecheck>` expression is a JSON Schema. While complicated schemas are possible,
-the combination with JSONPath makes common type checks very concise and legible.
-Here are some example `<typecheck>` expressions:
-
-```yaml
-- actionType: validate
-  request: # applies to the request body
-    jobParams.stringVal: # match simple types
-      type: string
-    jobParams.enumVal: # literal values
-      enum: ["yes", "no"]
-    jobResultObject.mustBeTrue: # enforce a value
-      const: true
-    "jobParams": # Apply external JSON Schema to all params
-      $ref: https://json.schemastore.org/schema-org-thing.json
-  dataset: # applies to all datasets
-    datasetLifecycle.archivable:
-      const: true
-```
-
-Validation will result in a `400 Bad Request` response if either the path is not found
-or if any values matching the path do not validate against the provided schema.
-
 #### Email
 
-The `Email` action responds to a Job event by sending an email.
+The `email` action responds to a Job event by sending an email.
 
 **Configuration**:
 The *Mail service* must first be configured through environmental variables, as described in the [configuration](../configuration.md).
@@ -475,9 +528,9 @@ Example:
 
 ```yaml
 - actionType: email
-  to: "{{job.contactEmail}}"
+  to: "{{{job.contactEmail}}}"
   from: "sender@example.com",
-  subject: "[SciCat] Your {{job.type}} job was submitted successfully."
+  subject: "[SciCat] Your {{{job.type}}} job was submitted successfully."
   bodyTemplateFile: "path/to/job-template-file.html"
 ```
 
@@ -499,7 +552,7 @@ You can create your own template for the email's body, which should be a valid h
 </head>
   <body>
     <p>
-      Your {{job.type}} job with id {{job.id}} has been submitted ...
+      Your {{{job.type}}} job with id {{{job.id}}} has been submitted ...
     </p>
   </body>
 </html>
@@ -545,7 +598,7 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
 
 ```yaml
 - actionType: switch
-  scope: request | datasets
+  phase: validate | perform | all
   property: some.property
   cases:
   - match: exact value match
@@ -560,14 +613,18 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
 
 - `property` (required) Name of a variable to test against. This is specified as a
   JSONPath+ spec; the most common case is a simple dot-delimited list of keys.
-- `scope` (required) Determines where the property is looked up. The following values
-  are supported:
-  - `request`: Read properties from the job request body (validation phase) or the job
-    as stored in the database (perform phase).
-  - `datasets`: Valid only for `create` jobs, properties will be read from the dataset
-    referenced in `jobParams.datasetList`. If multiple datasets are listed, all should
-    resolve to a single value; otherwise the job will return a 400 error.
-- cases: one or more conditions to match the property against. Conditions are tested in
+  Properties are selected from the same context used for templates; see
+  [templates](#templates) above for a description of the values available
+- `phase` (required) Determines which phases the switch statement runs. Some properties
+  may be unavailable in some phases (see [templates](#templates)), requiring limiting
+  when the switch statement is evaluated. Actions listed within the `cases` section will
+  also be run only in the phase listed here.
+  - `validate`: Evaluated before the request is accepted and written to the database;
+    useful for `validate` actions.
+  - `perform`: Evaluated after the request is written to the database; most actions
+    run in this phase.
+  - `all`: Evaluate the switch condition in both phases
+- `cases`: one or more conditions to match the property against. Conditions are tested in
   order. No "fall through" behavior is implemented; this can be approximated using yaml
   anchors and aliases if needed. The following types of conditions are available:
   - `match`: match the property against a string or literal value. This use javascript
@@ -579,9 +636,15 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
   - If no condition is included then the case will always match. This is useful for
     adding a terminal 'default' condition (eg with an `error` action).
 
+Some JSON paths may return multiple values. For instance, accessing dataset properties
+should use array paths such as `datasets[*].storageLocation`. If multiple unique values
+are returned then the request will return a 400 error. If the property doesn't match
+any values then a value of `undefined` will be used, which can be handled by a default
+case.
+
 **Examples**:
 
-Switch can be used as a simple if statement. For instance, it could be used to respond
+Switch can be used as a simple 'if' statement. For instance, it could be used to respond
 to different statusCodes (this case could also be handled with handlebars templates):
 
 ```yaml
@@ -592,32 +655,21 @@ to different statusCodes (this case could also be handled with handlebars templa
       auth: archiveManager
       actions:
         - actionType: switch
-          scope: request
-          property: statusCode
+          phase: perform
+          property: job.statusCode
           cases:
             - match: finishedSuccessful
               actions:
               - actionType: email
-                to: {{contactEmail}}
-                subject: "[SciCat] Your {{type}} job was successful!"
+                to: {{{job.contactEmail}}}
+                subject: "[SciCat] Your {{{job.type}}} job was successful!"
                 bodyTemplateFile: retrieve-success.html
             - actions:
               - actionType: email
-                to: {{contactEmail}}
-                subject: "[SciCat] Your {{type}} job has state {{statusCode}}"
+                to: {{{job.contactEmail}}}
+                subject: "[SciCat] Your {{{job.type}}} job has state {{{job.statusCode}}}"
                 bodyTemplateFile: retrieve-failure.html
 ```
-
-**Valid properties**:
-
-Generally speaking, actions may be applied either to the request body sent by the client
-(such as the `validate` action) or to the job after it is successfully created or
-updated in the database (most actions). Currently these are implemented independently,
-meaning that, in the request scope, `property` will be matched once against the request
-body and then a second time on the updated property from the database. For instance, it
-is not possible to use a `switch` action with the job `id` property, since this is not
-available in the request body (although it may be present in the URL parameters for
-update jobs). This limitation may be relaxed in the future.
 
 #### Error
 
@@ -641,7 +693,7 @@ database changes.
 #### Log
 
 This is a dummy action, useful for debugging. It adds a log entry when executed.
-Usually the entry is added after the job request has been processed (`performJob`),
+Usually the entry is added after the job request has been processed (`perform`),
 but it can also be configured to log messages during initialization or when validating
 an incoming job.
 
@@ -651,7 +703,7 @@ an incoming job.
 - actionType: log
   init: "Job initialized with params {{{ jsonify this }}}"
   validate: "Request body received: {{{ jsonify this }}}"
-  performJob: "Job saved: {{{ jsonify this }}}"
+  perform: "Job saved: {{{ jsonify this }}}"
 ```
 
 All arguments are optional.
@@ -661,7 +713,7 @@ All arguments are optional.
   section from jobConfig.yaml is available as a Handlebars context. Default: ""
 - `validate` (optional): Log message to print when the job request is received. The
   request body (aka DTO) is available as a Handlebars context. Default: ""
-- `performJob` (optional): Log message to print after the job is saved to the database.
+- `perform` (optional): Log message to print after the job is saved to the database.
   The updated job object is available as a Handlebars context.
-  Default: `"Performing job for {{type}}"`
+  Default: `"Performing job for {{{job.type}}}"`
 {% endraw %}
