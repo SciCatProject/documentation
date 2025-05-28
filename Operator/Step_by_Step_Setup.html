@@ -1055,6 +1055,9 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="step-by-step-manual-to-setup-scicat-without-containers">Step by Step manual to Setup SciCat without Containers</h1>
+<blockquote>
+<p><em>Note</em>: The following instructions partain to <a href="https://github.com/SciCatProject/backend-v3" target="_blank">Scicat v3</a></p>
+</blockquote>
 <h2 id="setup-backend">Setup Backend</h2>
 <h3 id="mongo">Mongo</h3>
 <p>The first part is to setup a Mongo DB, if not yet existing. You will need at least version 3.4 . In the simplest case a simple</p>
@@ -1070,7 +1073,7 @@
 <pre><code>choco install mongodb-shell
 </code></pre><h4 id="hint-to-add-full-text-indexing">Hint to add full text indexing</h4>
 <p>Mongo DB needs to work with Indices to speed up the queries. All of these index definitions are created automatically, with one exception. This exception is described here: the following command must be executed <strong>after</strong> the database has been created in MongoDB, i.e. after starting the backend once.</p>
-<p>Log into mongodb at the console, e.g. run </p>
+<p>Log into mongodb at the console, e.g. run</p>
 <p>If not using Kubernetes</p>
 <pre><code>mongo dacat
 </code></pre><p>in Windows cmd or powershell</p>
@@ -1086,7 +1089,7 @@
 <p>First you need to have node/npm installed</p>
 <pre><code>npm version 6 or higher
 Node version 10 or higher
-</code></pre><p>The needed database will be created automatically when the API server starts. </p>
+</code></pre><p>The needed database will be created automatically when the API server starts.</p>
 <h4 id="get-code">Get code</h4>
 <pre><code>git clone https://github.com/SciCatProject/backend.git
 cd backend
@@ -1094,18 +1097,19 @@ git checkout master # (or develop)
 npm install
 </code></pre><p>Please note: the master branch is often quite behind the development, therefore to get all new features you may want to use the develop branch instead.</p>
 <h4 id="setup-configuration">Setup configuration</h4>
-<p>There are 5 configuration files that need to be adjusted to your situation. There are example configuration files for each of the 4 configuration files inside the server directory</p>
+<p>There are several configuration files that need to be adjusted to your situation. There are example configuration files for each of the configuration files inside the server directory</p>
 <ol>
 <li><code>functionalAccounts.json</code> : defines the functional accounts, such as admin, ingestor etc</li>
 <li><code>datasources.json</code> : defines the connection to the Mongo DB -sample datasources.json</li>
 <li><code>providers.json</code> : defines the authentication source for user accounts, e.g. how to link to your local LDAP/AD server</li>
 <li><code>config.local.js</code> : defines the API server details, API root address, your local site name and policy settings for , the PID prefix for your datasets, the type of message broker to use, the connection to an email send server etc</li>
 <li><code>component-config.json</code>: defines the Express framework components, in particular if the <em>explorer</em> is enabled and optionally definition of the RabbitMQ topology, if used.</li>
+<li>(Optional, v4) Configure <a href="../Development/v4.x/backend/configuration/jobconfig.html">jobs</a></li>
 </ol>
 <p>Adjusting these settings to your infrastructure should be straight forward. In case you do not understand a setting just leave it at its default.</p>
 <h4 id="note-for-windows">Note for Windows</h4>
 <p>Create an .env file based on .env.example and  use <strong>127.0.0.1</strong> instead of <strong>localhost</strong></p>
-<pre><code>MONGODB_URI="mongodb://127.0.0.1:27017/dacat" 
+<pre><code>MONGODB_URI="mongodb://127.0.0.1:27017/dacat"
 </code></pre><h5 id="email-notifications">Email Notifications</h5>
 <p>When jobs have been submitted successfully, the <code>node-mailer</code> package can send an email to the user that initiated.
 The details are loaded into <code>server/config.local.js</code> and the following block provides an example:</p>
@@ -1160,10 +1164,10 @@ Again, if in doubt, just leave the setting as defined in the available example e
 <h2 id="optional-extras">Optional Extras</h2>
 <h3 id="connecting-to-rabbitmq">Connecting to RabbitMQ</h3>
 <p>Some extra configuration needs to be done in order to get Scicat talking to RabbitMQ. The rabbitmq mechanism is used to trigger asynchronous jobs
-through the archive and retrieve methods. </p>
+through the archive and retrieve methods.</p>
 <h4 id="setting-up-rabbitmq">Setting up RabbitMQ</h4>
-<p>When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run. 
-It must be set up with a user before the backend is started, otherwise the backend cannot connect. 
+<p>When using RabbitMQ with Scicat it needs to be configured initially, before the rest of the Scicat services are run.
+It must be set up with a user before the backend is started, otherwise the backend cannot connect.
 It is easy to set up a local rabbitmq server as a separate service before starting Scicat through docker compose.
 A basic docker compose for rabbitmq looks like:</p>
 <pre><code>version: "3.8"
@@ -1184,7 +1188,7 @@ volumes:
     rabbitmq_data:
       driver: local
 </code></pre><p>This set up gives you both a rabbitmq service and a Management Portal which can be useful for debugging.
-Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI. 
+Before connecting to the backend or the Management Portal a user with administration privileges needs to be configured manually which can be done via CLI.
 To understand more about setting up rabbitmq please see the documentation at <a href="https://www.rabbitmq.com/cli.html" target="_blank">https://www.rabbitmq.com/cli.html</a>.
 If you have followed the set up with docker, the following commands can be executed in the docker container to set up initial users and the management portal.</p>
 <pre><code># To add the management plugin
@@ -1198,38 +1202,41 @@ rabbitmqctl set_permissions -p / &lt;username&gt; '.*' '.*' '.*'
 <h4 id="connecting-scicat-to-rabbitmq">Connecting Scicat to RabbitMQ</h4>
 <p>The backend handles the connection to rabbitMQ through the component-config.local.json file. The backend will set up all the relative queues and exchanges in  a running service, but the service must contain a user with administrative privileges
 before running the backend. A basic rabbitMQ set up in the component-config.local.json file looks like the following:</p>
-<pre><code>"topology":{
-"connection":{
-"uri":"amqp://my-admin-user:newpassword@local-rabbitmq" # the uri of your service with your administrative user
-},
-"exchanges":[
-{
-"name":"jobs.write",
-"type":"topic",
-"persistent":true
+<pre><code class="lang-json">{
+  <span class="hljs-string">"topology"</span>: {
+    <span class="hljs-string">"connection"</span>: {
+      # the uri <span class="hljs-keyword">of</span> your service <span class="hljs-keyword">with</span> your administrative user
+      <span class="hljs-string">"uri"</span>: <span class="hljs-string">"amqp://my-admin-user:newpassword@local-rabbitmq"</span>
+    },
+    <span class="hljs-string">"exchanges"</span>: [
+      {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"jobs.write"</span>,
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"topic"</span>,
+        <span class="hljs-string">"persistent"</span>: <span class="hljs-literal">true</span>
+      }
+    ],
+    <span class="hljs-string">"queues"</span>: [
+      {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"client.jobs.write"</span>,
+        <span class="hljs-string">"subscribe"</span>: <span class="hljs-literal">true</span>
+      }
+    ],
+    <span class="hljs-string">"bindings"</span>: [
+      {
+        <span class="hljs-string">"exchange"</span>: <span class="hljs-string">"jobs.write"</span>,
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"client.jobs.write"</span>,
+        <span class="hljs-string">"keys"</span>: [
+          <span class="hljs-string">"jobqueue"</span>
+        ]
+      }
+    ]
+  }
 }
-],
-"queues":[
-{
-"name":"client.jobs.write",
-"subscribe":true
-}
-],
-"bindings":[
-{
-"exchange":"jobs.write",
-"target":"client.jobs.write",
-"keys":[
-"jobqueue"
-]
-}
-]
-}
-}
-</code></pre><p>The exchange and the binding key must be named <code>jobs.write</code> and <code>jobqueue</code> respectively, the queue name can take any value. 
+</code></pre>
+<p>The exchange and the binding key must be named <code>jobs.write</code> and <code>jobqueue</code> respectively, the queue name can take any value.
 The backend expects an exchange called <code>jobs.write</code> to publish jobs messages to bound with that key.</p>
 <h4 id="use-in-practice">Use in Practice</h4>
-<p>If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you 
+<p>If you wish to have two Scicat services connecting to the same RabbitMQ server (e.g. scicat-dev and scicat-prod) you
 could generate two queues bound to the <code>jobs.write</code> exchange. However these would be bound with the same key that
 could cause cross talk. RabbitMQ allows you to set up any number of virtual hosts within the same server therefore it is
 best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bindings set as in the component-config.local.json file above.</p>
@@ -1276,7 +1283,7 @@ best to set up two vhosts (e.g. dev and prod) with the exchange, queues and bind
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2025-05-14T12:46:07.897Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-14T12:46:14.546Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Step by Step instruction","level":"1.3.1","depth":2,"next":{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},"previous":{"title":"Operator Guide","level":"1.3","depth":1,"path":"Operator/README.md","ref":"Operator/README.md","articles":[{"title":"Step by Step instruction","level":"1.3.1","depth":2,"path":"Operator/Step_by_Step_Setup.md","ref":"Operator/Step_by_Step_Setup.md","articles":[]},{"title":"Deploy with Docker Compose","level":"1.3.2","depth":2,"path":"Operator/Step_by_Step_Setup_Docker.md","ref":"Operator/Step_by_Step_Setup_Docker.md","articles":[]},{"title":"Deploy with Kubernetes","level":"1.3.3","depth":2,"path":"Operator/Step_by_Step_Setup_Kubernetes.md","ref":"Operator/Step_by_Step_Setup_Kubernetes.md","articles":[]},{"title":"Deploy Zip Service","level":"1.3.4","depth":2,"path":"Operator/Step_by_Step_Setup_Zip_Service.md","ref":"Operator/Step_by_Step_Setup_Zip_Service.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Operator/Step_by_Step_Setup.md","mtime":"2025-05-28T10:37:48.568Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-28T10:37:52.583Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

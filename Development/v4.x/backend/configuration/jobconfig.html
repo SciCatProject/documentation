@@ -1069,13 +1069,18 @@ management features then you may not need any job types. If no job types are con
 then SciCat will reject any backend requests to create jobs. In this case <a href="../../frontend/configuration.html">frontend
 features</a> for archiving (<code>archiveWorkflowEnabled:
 false</code>) and retrieval should be disabled.</p>
-<h3 id="migration-notes">Migration Notes</h3>
-<p>In v3.x the <code>archive</code>, <code>retrieve</code>, and <code>public</code> jobs were hard-coded. In v4.x the job
-types can be arbitrary strings; however we recommend using the standard job names to
-avoid confusion.</p>
-<p>Also note that some checks that were performed by default in v3.x for certain job types
-must now be configured explicitly as actions. These are included in the provided
-<code>jobConfig.example.yaml</code> file and are also noted below.</p>
+<h2 id="quick-start">Quick-start</h2>
+<p>To start using jobs:</p>
+<ol>
+<li>Copy
+<a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml" target="_blank">jobConfig.recommended.yaml</a>
+to <code>jobConfig.yaml</code></li>
+<li>Update the configuration. See
+<a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml" target="_blank">jobConfig.example.yaml</a>
+and the <a href="#actions-configuration">Actions Configuration</a> section below for examples.</li>
+<li>Set <code>JOB_CONFIGURATION_FILE=jobConfig.yaml</code> in your .env file or environment</li>
+</ol>
+<h2 id="details">Details</h2>
 <h3 id="job-lifecycle">Job lifecycle</h3>
 <p>Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:</p>
 <ol>
@@ -1105,9 +1110,81 @@ used by facility services to update the job status and provide feedback.</p>
 </code></pre>
 </li>
 <li><p>Jobs may be <em>deleted</em> periodically during maintenance. This is usually not done by
-users.</p>
+users. Only members of groups listed in the <code>DELETE_JOB_GROUPS</code> env variable can
+delete jobs.</p>
 </li>
 </ol>
+<h3 id="referencing-datasets">Referencing datasets</h3>
+<p>Many (but not all) jobs relate to datasets. These are specified during job creation in
+the <code>jobParams.datasetsList</code> array. The array should contain objects with a <code>pid</code> string
+and a <code>files</code> array listing individual files that the job should be applied to. An empty
+<code>files</code> array indicates that the job should apply to all files.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">"type"</span>: ...,
+  <span class="hljs-string">"jobParams"</span>: {
+    <span class="hljs-string">"datasetsList"</span>: [
+      {
+        <span class="hljs-string">"pid"</span>: <span class="hljs-string">"12.3456..."</span>,
+        <span class="hljs-string">"files"</span>: []
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="status-codes">Status Codes</h3>
+<p>External systems can provide updates to the user by updating the job via the REST API.</p>
+<ul>
+<li><code>statusCode</code> is a machine readable status code. Values can be customized for different
+job types, but are usually single-word strings in camel-case. Some example values are
+given below.</li>
+<li><code>statusMessage</code> is a human-readable description of the job state. This string is
+displayed to the user.</li>
+<li><code>jobResultObject</code> is a json object with additional machine-readable state information.</li>
+</ul>
+<p>Newly created jobs will have <code>"statusCode": "jobSubmitted"</code> and <code>"statusMessage": "Job
+Submitted."</code>. These values can be customized using the <code>JOB_DEFAULT_STATUS_CODE</code> and
+<code>JOB_DEFAULT_STATUS_MESSAGE</code> environmental variables.</p>
+<p>Status codes can be used to implement state machine logic in an external system, such as
+an archive infrastructure. The archive system can be notified about new and updated jobs
+through <em>actions</em> (see below) which might call a URL or post to a message broker. The
+archive system then sends a <code>PATCH</code> request to update the job, triggering further
+actions. While status codes can be customized for each institute, the following statuses
+are given as examples for archive and retrieve jobs:</p>
+<table>
+<thead>
+<tr>
+<th>statusCode</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jobSubmitted</td>
+<td>Freshly created job</td>
+</tr>
+<tr>
+<td>inProgress</td>
+<td>The archive system is working on the job</td>
+</tr>
+<tr>
+<td>finishedSuccessful</td>
+<td>Success!</td>
+</tr>
+<tr>
+<td>finishedWithDatasetErrors</td>
+<td>A user error occurred relating to one or more datasets; see <code>datasetlifecycle.archiveStatusMessage</code> of any related datasets for more information</td>
+</tr>
+<tr>
+<td>finishedUnsuccessful</td>
+<td>A system error occurred</td>
+</tr>
+</tbody>
+</table>
+<p>Additional status changes may be associated with datasets referenced in
+<code>jobParams.datasetsList</code>, for example in the <code>datasetlifecycle.archiveStatusMessage</code>
+field.</p>
+<p>It is recommended that values of <code>statusCode</code> be configured for each job type using a
+<a href="#validate"><code>validate</code></a> action (see below).</p>
 <h3 id="actions">Actions</h3>
 <p>After <em>create</em> and <em>update</em> stages, a series of actions can be performed by SciCat. This
 can be things like sending an email, posting a message to a message broker, or calling
@@ -1115,6 +1192,18 @@ an API. The <code>jobParams</code> and <code>jobResultObject</code> are used to 
 that the actions may need, such as the list of datasets the job refers to.</p>
 <p>A full list of built-in actions is given below. A plugin mechanism for registering new
 actions is also planned for a future SciCat release.</p>
+<h3 id="migration-notes">Migration Notes</h3>
+<p>For general information about migrating from v3.x, see <a href="../../Migration.html">Migration</a>.</p>
+<p>In v3.x the <code>archive</code>, <code>retrieve</code>, and <code>public</code> jobs were hard-coded. In v4.x the job
+types can be arbitrary strings; however we recommend using the standard job names to
+avoid confusion.</p>
+<p>The data transfer objects for job endpoints have changed in v4.x. We recommend migrating
+tools to use the new <code>/api/v4/jobs</code> endpoints. Old <code>/api/v3/Jobs</code> endpoints are still
+available using the old models, but may have some restrictions.</p>
+<!-- TODO: Add a table mapping the old schemas to the new ones -->
+<p>Also note that some checks that were performed by default in v3.x for certain job types
+must now be configured explicitly as actions. These are included in the provided
+<code>jobConfig.recommended.yaml</code> file and are also noted below.</p>
 <h2 id="configuration">Configuration</h2>
 <p>In SciCat v3.x, a limited number of jobs were hard-coded into the code base. This was
 changed in v4.x to allow each site to configure their own set of jobs and customize
@@ -1154,6 +1243,9 @@ section</a>.</li>
 <li><code>auth</code> configures the roles authorized to use the endpoint for each job operation.</li>
 <li><code>actions</code> give a list of actions to run when the endpoint is called.</li>
 </ul>
+<p>Production configuration files may contain duplicate actions. Using yaml
+<a href="https://yaml.org/spec/1.2.2/#alias-nodes" target="_blank">aliases</a> is recommended to avoid unneccessary
+duplication.</p>
 <h3 id="authorization">Authorization</h3>
 <p>Values for <code>auth</code> are described in <a href="../authorization/authorization_jobs.html">JobsAuthorization</a>.
 Some authorization values may require certain information to be passed in the request body;
@@ -1334,7 +1426,27 @@ jobs:</p>
     <span class="hljs-attr">update:</span>
       <span class="hljs-attr">auth:</span> <span class="hljs-string">archivemanager</span>
 </code></pre>
-<p><strong>Configuration</strong>:
+<h5 id="example-3-define-statuscodes">Example 3: Define statusCodes</h5>
+<p>This example restricts the permitted statusCodes to a fixed list. This can help detect
+typos and ill-defined states.</p>
+<pre><code>jobs:
+  - jobType: archive
+    create:
+      auth: "#datasetOwner"
+      actions: ...
+    update:
+      auth: archivemanager
+      actions:
+        - actionType: validate
+          requests:
+            statusCode:
+              enum:
+                - jobSubmitted
+                - inProgress
+                - finishedSuccessful
+                - finishedWithDatasetErrors
+                - finishedUnsuccessful
+</code></pre><p><strong>Configuration</strong>:
 The config file for a validate action will look like this:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
   <span class="hljs-attr">request:</span>
@@ -1585,7 +1697,7 @@ Default: <code>"Performing job for {{type}}"</code></li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-14T12:46:07.879Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-14T12:46:14.546Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-28T10:37:48.550Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-28T10:37:52.583Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

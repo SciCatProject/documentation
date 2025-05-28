@@ -1054,7 +1054,10 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="migrating-from-the-old-scicat-backend">Migrating from the old SciCat Backend</h2>
+                                <h1 id="migrating-from-the-old-scicat-backend">Migrating from the old SciCat Backend</h1>
+<p>SciCat v4.x is a major rewrite from <a href="https://github.com/SciCatProject/backend-v3" target="_blank">v3.x</a>. The backend has been rewritten in typescript. It uses NestJS rather than Loopback 3 for the API, and includes a large number of new features. Version 3 is now considered deprecated and will receive only maintenance updates.</p>
+<p>This document is intended to help users of backend-v3 migrate to v4. It also describes major breaking changes between the two versions that will need to be updated in scicat clients or scripts.</p>
+<h2 id="database-changes">Database changes</h2>
 <p>Where the <a href="https://github.com/SciCatProject/backend" target="_blank">current SciCat Backend</a> accepts id fields in the database named <code>pid</code>, <code>doi</code>, or similar, this implementation requires there to be an id field of the form <code>_id</code> on every document. It is therefore necessary to run a database migration script towards MongoDB instance from a place where you have access to it and can install <code>migrate-mongo</code> package.</p>
 <p>All database <a href="https://github.com/SciCatProject/scicat-backend-next/tree/master/migrations" target="_blank">migration scripts</a> are located in the <a href="https://github.com/SciCatProject/scicat-backend-next/tree/master/migrations" target="_blank">migrations</a> folder.</p>
 <ul>
@@ -1066,6 +1069,20 @@
 <p>if <code>migrate-mongo</code> is installed globally at the location where you want to run it from or if it is locally installed just run</p>
 <pre><code class="lang-sh">./node_modules/migrate-mongo/bin/migrate-mongo.js up
 </code></pre>
+<h2 id="api-changes">API changes</h2>
+<h3 id="base-url">Base URL</h3>
+<p>The scicat API was previously served at <code>/api/v3</code>. Many of the endpoints are backwards
+compatible and are still served at the same address. However, several schemas have added
+non-backwards-compabible features (eg. <code>Datasets</code>, <code>Attachements</code>, and <code>Jobs</code>). For
+these it is recommended to access the new <code>/api/v4</code> endpoints. Old <code>/api/v3</code> endpoints
+are still available for backwards compatibility, but will be removed in a future
+version.</p>
+<!-- TODO: provide more details about the updated DTOs -->
+<h3 id="authorization">Authorization</h3>
+<p>Version 3 endpoints were authenticated by including an <code>access_token</code> query parameter in
+the URL. Following best practices, this has been changed to use the HTTP <code>Authorization:
+Bearer</code> header to pass the access token. All scicat clients must be updated for this
+change, even those using the otherwise backwards-compatible <code>/api/v3</code> endpoints.</p>
 <h2 id="migration-documentation-and-nestjs-resources">Migration documentation and NestJs resources</h2>
 <p>Following are the post that I found useful working on the migration:</p>
 <ul>
@@ -1073,7 +1090,7 @@
 <li>Validation:<ul>
 <li><a href="https://docs.nestjs.com/techniques/validation" target="_blank">Official documentation</a></li>
 <li><a href="https://dev.to/avantar/custom-validation-with-database-in-nestjs-gao" target="_blank">Custom validation with datasbase in NestJs</a></li>
-<li><a href="https://dev.to/avantar/validating-nested-objects-with-class-validator-in-nestjs-1gn8" target="_blank">Validating nested objects with class-validator in NestJs</a> </li>
+<li><a href="https://dev.to/avantar/validating-nested-objects-with-class-validator-in-nestjs-1gn8" target="_blank">Validating nested objects with class-validator in NestJs</a></li>
 <li><a href="https://dev.to/avantar/validating-numeric-query-parameters-in-nestjs-gk9" target="_blank">Validating numeric query parameters in NestJS</a></li>
 <li><a href="https://dev.to/avantar/injecting-request-object-to-a-custom-validation-class-in-nestjs-5dal" target="_blank">Injecting request object to a custom validation class in NestJS</a></li>
 </ul>
@@ -1130,7 +1147,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Migration v3.x to v4.x","level":"1.5.2.11","depth":3,"next":{"title":"Documentation","level":"1.5.3","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},"previous":{"title":"Frontend","level":"1.5.2.10.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/Migration.md","mtime":"2025-05-14T12:46:07.879Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-14T12:46:14.546Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Migration v3.x to v4.x","level":"1.5.2.11","depth":3,"next":{"title":"Documentation","level":"1.5.3","depth":2,"path":"Development/Documentation.md","ref":"Development/Documentation.md","articles":[]},"previous":{"title":"Frontend","level":"1.5.2.10.2","depth":4,"path":"Development/v4.x/frontend/testing.md","ref":"Development/v4.x/frontend/testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/Migration.md","mtime":"2025-05-28T10:37:48.550Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-28T10:37:52.583Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
