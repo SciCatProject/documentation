@@ -1,4 +1,4 @@
-# 1100-1190: Jobs
+# 1100-1200: Jobs
 
 Jobs test that the functionalities for creating, updating, deleting and retrieving jobs are working correctly.
 
@@ -41,6 +41,7 @@ Tests use their own job configuration file `config/jobconfig.yaml`. This file de
 File `Jobs.js` performs tests with job configurations mimicking a real configuration, such as "archive/retrieve/public". Test suite 1115 additionally tests if entered job parameters are valid.
 Other jobs' test files are separated into distinct ones based on the authorization value for "_create_" entry in the job configuration file and test if specific user is authorized to do the CRUD operations.
 Not all files test PATCH and DELETE methods, as these would be redundant.
+
 
 ### 1110: Jobs: Test New Job Model: possible real configurations
 
@@ -286,6 +287,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0420 | Access jobs as a User3 | GET | /api/v4/Jobs/ | user3 | 200 | ```SuccessfulGetStatusCode``` |
 | 0430 | Access jobs as a User5.1 | GET | /api/v4/Jobs/ | user51 | 200 | ```SuccessfulGetStatusCode``` |
 
+
 ### 1160: Jobs: Test New Job Model Authorization for public_access jobs type
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
@@ -330,8 +332,6 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0180 | Add a Status update to a job as a user from CREATE_JOB_PRIVILEGED_GROUPS for his group's in '#jobAdmin' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByGroup1} | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0190 | Add a Status update to a job as a normal user  for his/her job in '#jobAdmin' configuration, which should be forbidden | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser51} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0200 |  Access jobs as user5.1 | GET | /api/v4/Jobs | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
-
-
 
 
 ### 1180: Jobs: Test New Job Model Authorization for group_access type: configuration set to a specific group - @group5
@@ -430,6 +430,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0370 | Fullquery jobs as a user from ADMIN_GROUPS that were created by User5.2 | GET | /api/v4/Jobs/fullquery?createdBy=user5.2 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0380 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v4/Jobs/fullfacet?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 
+
 ### 1200: Jobs: Test Backwards Compatibility
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
@@ -439,19 +440,19 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0030 | Add via /api/v3 a new job without datasetList, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0040 | Add via /api/v3 a new job ignoring datasetList from jobParams, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0050 | Add via /api/v3 an anonymous job as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0060 | Get via /api/v4 the anonymous job as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0060 | Get via /api/v4 the job as a user from ADMIN_GROUPS, which now belongs to that logged in admin user | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0070 | Get via /api/v3 the anonymous job as user5.1, which should fail | GET | /api/v3/Jobs/${encodedJobOwnedByAdmin} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0080 | Get via /api/v4 the anonymous job as user5.1, which should fail | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0090 | Add via /api/v3 a new job with emailJobInitiator for user5.11, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs |admin |  ```EntryCreatedStatusCode ``` |
+| 0090 | Add via /api/v3 a new job with emailJobInitiator for user5.1 in #datasetOwner auth, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode ``` |
 | 0100 | Get via /api/v4 the job added for user5.1, as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0110 | Get via /api/v4 the job added for user5.1, as user5.1, which should fail because ownerUser does not exist | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
-| 0120 | Get via /api/v3 the job added for user5.1, as user5.1, which should fail because ownerUser does not exist | GET | /api/v3/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0110 | Get via /api/v4 the job added for user5.1, as user5.1, which passes because group5 was added to ownerGroup | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0120 | Get via /api/v3 the job added for user5.1, as user5.1, which passes because group5 was added to ownerGroup | GET | /api/v3/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0130 | Add via /api/v3 a new job with a complete dto for user5.1 and other contactEmail, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0140 | Get via /api/v4 the job added for user5.1, as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0150 | Get via /api/v4 the job added for user5.1, as user5.1 | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0160 | Get via /api/v3 the job added for user5.1, as user5.1 | GET | /api/v3/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
-| 0170 | Add via /api/v3 a new job without specifying username for user5.1, as user5.1, which should fail | POST | /api/v3/Jobs |  user51 | 400 | ```BadRequestStatusCode``` |
-| 0180 | Add via /api/v3 a new job specifying only emailJobInitiator for user5.1, as user5.1, which should fail | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0170 | Add via /api/v3 a new job without specifying username for user5.1, as user5.1, which passes because of logged in user | POST | /api/v3/Jobs |  user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0180 | Add via /api/v3 a new job specifying only emailJobInitiator for user5.1, as user5.1, which passes because of logged in user | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0190 | Add via /api/v3 a new job with complete dto for user5.1, as user5.1 | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0200 | Get via /api/v4 the job added for user5.1, as user5.1 | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0210 | Get via /api/v3 the job added for user5.1, as user5.1 | GET | /api/v3/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
@@ -467,11 +468,13 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0310 | Fullfacet via /api/v3 jobs that were created by user5.1, as a user from ADMIN_GROUPS | GET | /api/v3/Jobs/fullfacet?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0320 | Delete via /api/v3 a job created by admin, as a user from ADMIN_GROUPS | DELETE | /api/v3/Jobs/${encodedJobOwnedByAdmin} | admin |  200 | ```SuccessfulDeleteStatusCode``` |
 | 0330 | Get via /api/v3 all accessible jobs as a user from ADMIN_GROUPS, which should be one less than before, proving that delete works | GET | /api/v3/Jobs/ | admin | 200 | ```SuccessfulGetStatusCode``` |
-| 0340 | Add via /api/v3 an anonymous job as user5.1, which should fail | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
-| 0350 | Add via /api/v3 an anonymous job as user51, providing another contactEmail, which should fail | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
+| 0340 | Add via /api/v3 a job while logged in as user5.1 | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0350 | Get via /api/v4 the job created by logged in user5.1 | GET | /api/v4/Jobs | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0360 | Add via /api/v3 a job for another user, as user5.1, which should fail | POST | /api/v3/Jobs | user5.1 | 400 | ```BadRequestStatusCode``` |
 | 0370 | Add a new job as anonymous user with all published datasets | POST | /api/v3/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0380 | Get via /api/v4 the anonymous job as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobAnonymous} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0390 | Get via /api/v3 the anonymous job as user5.1, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0400 | Get via /api/v3 the anonymous job as the normal user in its contactEmail, which should fail | GET | /api/v3/Jobs/${encodedJobAnonymous} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0410 | Get via /api/v3 the anonymous job as a user in CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 200 | ```SuccessfulGetStatusCode``` |
+| 0420 | Add via /api/v3 a new job for user5.1, as user5.1 in #datasetAccess auth | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
+| 0430 | Get via /api/v4 the previously added job, as user5.1 | GET | /api/v3/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
