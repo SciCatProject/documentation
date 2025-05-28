@@ -222,25 +222,41 @@ top-level variables are availabe in the handlebars context:
 {% raw %}
 | Top-level variable | Type                                 | Examples                                       | Description                                                             |
 | ------------------ | ------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{request.type}}`<br/>`{{request.jobParams}}` | HTTP Request body                                                       |
-| `job`              | `JobClass`                           | `{{job.id}}`                                   | The job, as stored in the database. Not available for validate actions. |
-| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{pid}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
-| `env`              | `object`                             | `{{env.SECRET_TOKEN}}`                         | Access environmental variables                                          |
+| `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{{request.type}}}`<br/>`{{{request.jobParams}}}` | HTTP Request body                                                       |
+| `job`              | `JobClass`                           | `{{{job.id}}}`                                   | The job, as stored in the database. Not available for validate actions. |
+| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{{pid}}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
+| `env`              | `object`                             | `{{{env.SECRET_TOKEN}}}`                         | Access environmental variables                                          |
 {% endraw %}
 
 Environmental variables are particularly useful for secrets that should not be stored in
 the config file.
 
+{% raw %}
+Most variables should use handlebars "triple-stash" (`{{{ var }}}`) to disable html
+escaping. Use double-brackets (`{{ var }}`) for HTML email bodies where special
+characters should be escaped. Templates that expect JSON should use `{{{ jsonify var
+}}}` to ensure correct quoting. In addition to the built-in handlebars functions, the
+following additional helpers are defined:
+{% endraw %}
+
+- `unwrapJSON`: convert a json object to HTML (arrays become `<ul>`, objects are formatted as key:value lines, etc)
+- `keyToWord`: convert camelCase to space-separated words
+- `eq`: test exact equality (`===`)
+- `jsonify`: Convert an object to JSON
+- `job_v3`: Convert a JobClass object to the old JobClassV3
+- `urlencode`: urlencode input
+- `base64enc`: base64enc input
+
 Not all variables may be available at all times. Actions run either before job is saved
-to the database (`validate` phase) or after (`performJob` phase). The following table
+to the database (`validate` phase) or after (`perform` phase). The following table
 indicates what values can be expected in the context during each phase.
 
-| Operation | Phase      | request        | job                          | datasets         |
-| --------- | ---------- | -------------- | ---------------------------- | ---------------- |
-| create    | validate   | `CreateJobDto` | *undefined*                  | `DatasetClass[]` |
-| create    | performJob | `CreateJobDto` | `JobClass`                   | `DatasetClass[]` |
-| update    | validate   | `UpdateJobDto` | `JobClass` (previous values) | `DatasetClass[]` |
-| update    | performJob | `UpdateJobDto` | `JobClass` (updated values)  | `DatasetClass[]` |
+| Operation | Phase    | request        | job                          | datasets         |
+| --------- | -------- | -------------- | ---------------------------- | ---------------- |
+| create    | validate | `CreateJobDto` | *undefined*                  | `DatasetClass[]` |
+| create    | perform  | `CreateJobDto` | `JobClass`                   | `DatasetClass[]` |
+| update    | validate | `UpdateJobDto` | `JobClass` (previous values) | `DatasetClass[]` |
+| update    | perform  | `UpdateJobDto` | `JobClass` (updated values)  | `DatasetClass[]` |
 
 ### Actions Configuration
 
@@ -258,11 +274,12 @@ For example:
 
 ```yaml
 - actionType: url
-  url: http://localhost:3000/api/v3/health?jobid={{request.id}}
+  url: http://localhost:3000/api/v3/health?jobid={{{request.id}}}
   method: GET
   headers:
     accept: application/json
-    Authorization: "Bearer {{env.ARCHIVER_AUTH_TOKEN}}",
+    Authorization: "Bearer {{{env.ARCHIVER_AUTH_TOKEN}}}",
+  body: "{{{jsonify job}}}
 ```
 
 Where:
@@ -329,8 +346,8 @@ jobs:
             jobParams.subject:
               type: string
         - actionType: email
-          to: "{{job.contactEmail}}"
-          subject: "[SciCat] {{job.jobParams.subject}}"
+          to: "{{{job.contactEmail}}}"
+          subject: "[SciCat] {{{job.jobParams.subject}}}"
           bodyTemplate: demo_email.html
     update:
       auth: admin
@@ -486,9 +503,9 @@ Example:
 
 ```yaml
 - actionType: email
-  to: "{{job.contactEmail}}"
+  to: "{{{job.contactEmail}}}"
   from: "sender@example.com",
-  subject: "[SciCat] Your {{job.type}} job was submitted successfully."
+  subject: "[SciCat] Your {{{job.type}}} job was submitted successfully."
   bodyTemplateFile: "path/to/job-template-file.html"
 ```
 
@@ -510,7 +527,7 @@ You can create your own template for the email's body, which should be a valid h
 </head>
   <body>
     <p>
-      Your {{job.type}} job with id {{job.id}} has been submitted ...
+      Your {{{job.type}}} job with id {{{job.id}}} has been submitted ...
     </p>
   </body>
 </html>
@@ -556,7 +573,7 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
 
 ```yaml
 - actionType: switch
-  phase: validate | performJob | all
+  phase: validate | perform | all
   property: some.property
   cases:
   - match: exact value match
@@ -579,7 +596,7 @@ The action is added to the `actions` section of a job in `jobConfig.yaml` as fol
   also be run only in the phase listed here.
   - `validate`: Evaluated before the request is accepted and written to the database;
     useful for `validate` actions.
-  - `performJob`: Evaluated after the request is written to the database; most actions
+  - `perform`: Evaluated after the request is written to the database; most actions
     run in this phase.
   - `all`: Evaluate the switch condition in both phases
 - `cases`: one or more conditions to match the property against. Conditions are tested in
@@ -602,7 +619,7 @@ case.
 
 **Examples**:
 
-Switch can be used as a simple if statement. For instance, it could be used to respond
+Switch can be used as a simple 'if' statement. For instance, it could be used to respond
 to different statusCodes (this case could also be handled with handlebars templates):
 
 ```yaml
@@ -613,22 +630,21 @@ to different statusCodes (this case could also be handled with handlebars templa
       auth: archiveManager
       actions:
         - actionType: switch
-          phase: performJob
+          phase: perform
           property: job.statusCode
           cases:
             - match: finishedSuccessful
               actions:
               - actionType: email
-                to: {{job.contactEmail}}
-                subject: "[SciCat] Your {{job.type}} job was successful!"
+                to: {{{job.contactEmail}}}
+                subject: "[SciCat] Your {{{job.type}}} job was successful!"
                 bodyTemplateFile: retrieve-success.html
             - actions:
               - actionType: email
-                to: {{job.contactEmail}}
-                subject: "[SciCat] Your {{job.type}} job has state {{job.statusCode}}"
+                to: {{{job.contactEmail}}}
+                subject: "[SciCat] Your {{{job.type}}} job has state {{{job.statusCode}}}"
                 bodyTemplateFile: retrieve-failure.html
 ```
-
 
 #### Error
 
@@ -652,7 +668,7 @@ database changes.
 #### Log
 
 This is a dummy action, useful for debugging. It adds a log entry when executed.
-Usually the entry is added after the job request has been processed (`performJob`),
+Usually the entry is added after the job request has been processed (`perform`),
 but it can also be configured to log messages during initialization or when validating
 an incoming job.
 
@@ -662,7 +678,7 @@ an incoming job.
 - actionType: log
   init: "Job initialized with params {{{ jsonify this }}}"
   validate: "Request body received: {{{ jsonify this }}}"
-  performJob: "Job saved: {{{ jsonify this }}}"
+  perform: "Job saved: {{{ jsonify this }}}"
 ```
 
 All arguments are optional.
@@ -672,7 +688,7 @@ All arguments are optional.
   section from jobConfig.yaml is available as a Handlebars context. Default: ""
 - `validate` (optional): Log message to print when the job request is received. The
   request body (aka DTO) is available as a Handlebars context. Default: ""
-- `performJob` (optional): Log message to print after the job is saved to the database.
+- `perform` (optional): Log message to print after the job is saved to the database.
   The updated job object is available as a Handlebars context.
-  Default: `"Performing job for {{job.type}}"`
+  Default: `"Performing job for {{{job.type}}}"`
 {% endraw %}
