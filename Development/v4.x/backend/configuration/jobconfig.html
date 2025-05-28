@@ -1055,6 +1055,39 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="job-configuration">Job Configuration</h1>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#quick-start">Quick-start</a></li>
+<li><a href="#details">Details</a><ul>
+<li><a href="#job-lifecycle">Job lifecycle</a></li>
+<li><a href="#referencing-datasets">Referencing datasets</a></li>
+<li><a href="#status-codes">Status Codes</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#migration-notes">Migration Notes</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#configuration-overview">Configuration overview</a></li>
+<li><a href="#authorization">Authorization</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#actions-configuration">Actions Configuration</a><ul>
+<li><a href="#urlaction">URLAction</a></li>
+<li><a href="#validate">Validate</a><ul>
+<li><a href="#example-1-require-extra-template-data">Example 1: Require extra template data</a></li>
+<li><a href="#example-2-enforce-datasetlifecycle-state">Example 2: Enforce datasetLifecycle state</a></li>
+<li><a href="#example-3-define-statuscodes">Example 3: Define statusCodes</a></li>
+</ul>
+</li>
+<li><a href="#email">Email</a></li>
+<li><a href="#rabbitmq">RabbitMQ</a></li>
+<li><a href="#switch">Switch</a></li>
+<li><a href="#error">Error</a></li>
+<li><a href="#log">Log</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="overview">Overview</h2>
 <p>The SciCat job system is used for any interactions between SciCat and external services.</p>
 <p>Example jobs include:</p>
@@ -1073,7 +1106,7 @@ false</code>) and retrieval should be disabled.</p>
 <p>To start using jobs:</p>
 <ol>
 <li>Copy
-<a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml" target="_blank">jobConfig.recommended.yaml</a>
+<a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml" target="_blank"><code>jobConfig.recommended.yaml</code></a>
 to <code>jobConfig.yaml</code></li>
 <li>Update the configuration. See
 <a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml" target="_blank">jobConfig.example.yaml</a>
@@ -1272,31 +1305,89 @@ top-level variables are availabe in the handlebars context:</p>
 <tr>
 <td><code>request</code></td>
 <td><code>CreateJobDto</code> or<br></br><code>UpdateJobDto</code></td>
-<td><code>{{request.type}}</code><br></br><code>{{request.jobParams}}</code></td>
+<td><code>{{{request.type}}}</code><br></br><code>{{{request.jobParams}}}</code></td>
 <td>HTTP Request body</td>
 </tr>
 <tr>
 <td><code>job</code></td>
 <td><code>JobClass</code></td>
-<td><code>{{job.id}}</code></td>
-<td>The job, as stored in the database. Not available for validate actions.</td>
+<td><code>{{{job.id}}}</code></td>
+<td>The job. During the validate phase this is the previous job values (if any); during the perform phase it will be the current database value.</td>
 </tr>
 <tr>
 <td><code>datasets</code></td>
 <td><code>DatasetClass[]</code></td>
-<td><code>{{#each datasets}}{{pid}}{{/each}}</code></td>
-<td>All datasets referenced in <code>job.jobParams.datasetsList</code>.</td>
+<td><code>{{#each datasets}}{{{pid}}}{{/each}}</code></td>
+<td>Array of all datasets referenced in <code>job.jobParams.datasetsList</code>.</td>
 </tr>
 <tr>
 <td><code>env</code></td>
 <td><code>object</code></td>
-<td><code>{{env.SECRET_TOKEN}}</code></td>
+<td><code>{{{env.SECRET_TOKEN}}}</code></td>
 <td>Access environmental variables</td>
 </tr>
 </tbody>
 </table>
 <p>Environmental variables are particularly useful for secrets that should not be stored in
 the config file.</p>
+<p>Most variables should use handlebars "triple-stash" (<code>{{{ var }}}</code>) to disable html
+escaping. Use double-brackets (<code>{{ var }}</code>) for HTML email bodies where special
+characters should be escaped. Templates that expect JSON should use <code>{{{ jsonify var
+}}}</code> to ensure correct quoting. In addition to the built-in handlebars functions, the
+following additional helpers are defined:</p>
+<ul>
+<li><code>unwrapJSON</code>: convert a json object to HTML (arrays become <code>&lt;ul&gt;</code>, objects are formatted as key:value lines, etc)</li>
+<li><code>keyToWord</code>: convert camelCase to space-separated words</li>
+<li><code>eq</code>: test exact equality (<code>===</code>)</li>
+<li><code>jsonify</code>: Convert an object to JSON</li>
+<li><code>job_v3</code>: Convert a JobClass object to the old JobClassV3</li>
+<li><code>urlencode</code>: urlencode input</li>
+<li><code>base64enc</code>: base64enc input</li>
+</ul>
+<p>Not all variables may be available at all times. Actions run either before job is saved
+to the database (<code>validate</code> phase) or after (<code>perform</code> phase). The following table
+indicates what values can be expected in the context during each phase.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Phase</th>
+<th>request</th>
+<th>job</th>
+<th>datasets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>validate</td>
+<td><code>CreateJobDto</code></td>
+<td><em>undefined</em></td>
+<td><code>DatasetClass[]</code></td>
+</tr>
+<tr>
+<td>create</td>
+<td>perform</td>
+<td><code>CreateJobDto</code></td>
+<td><code>JobClass</code></td>
+<td><code>DatasetClass[]</code></td>
+</tr>
+<tr>
+<td>update</td>
+<td>validate</td>
+<td><code>UpdateJobDto</code></td>
+<td><code>JobClass</code> (previous values)</td>
+<td><code>DatasetClass[]</code></td>
+</tr>
+<tr>
+<td>update</td>
+<td>perform</td>
+<td><code>UpdateJobDto</code></td>
+<td><code>JobClass</code> (updated values)</td>
+<td><code>DatasetClass[]</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="actions-configuration">Actions Configuration</h3>
 <p>The following actions are built-in to SciCat and can be included in the <code>actions</code> array.</p>
 <h4 id="urlaction">URLAction</h4>
@@ -1306,12 +1397,13 @@ The <em>URL action</em>, per job stage (<em>create</em>, <em>update</em>) if def
 <code>jobConfig.yaml</code>. It supports templating, by extracting the values from the job schema.</p>
 <p>For example:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">url</span>
-  <span class="hljs-attr">url:</span> <span class="hljs-string">http://localhost:3000/api/v3/health?jobid={{request.id}}</span>
+  <span class="hljs-attr">url:</span> <span class="hljs-string">http://localhost:3000/api/v3/health?jobid={{{request.id}}}</span>
   <span class="hljs-attr">method:</span> <span class="hljs-string">GET</span>
   <span class="hljs-attr">headers:</span>
     <span class="hljs-attr">accept:</span> <span class="hljs-string">application/json</span>
-    <span class="hljs-attr">Authorization:</span> <span class="hljs-string">"Bearer <span class="hljs-template-variable">{{env.ARCHIVER_AUTH_TOKEN}}</span>"</span><span class="hljs-string">,</span>
-</code></pre>
+    <span class="hljs-attr">Authorization:</span> <span class="hljs-string">"Bearer <span class="hljs-template-variable">{{{env.ARCHIVER_AUTH_TOKEN}}</span>}"</span><span class="hljs-string">,</span>
+  <span class="hljs-attr">body:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{{jsonify job}}</span>}
+</span></code></pre>
 <p>Where:</p>
 <ul>
 <li><code>url</code> (required): The URL for the request.This can include template variables.</li>
@@ -1330,14 +1422,46 @@ with this action.</p>
 a constraint to be validated. These can be applied to different contexts:</p>
 <ul>
 <li><strong><code>request</code></strong> - Checks the incoming request body (aka the DTO).</li>
-<li><strong><code>datasets</code></strong> - (CREATE only) requires that a list of datasets be included in
-<code>jobParams.datasetList</code>. Checks are applied to each dataset</li>
+<li><strong><code>datasets</code></strong> - requires that a list of datasets be included in
+<code>jobParams.datasetList</code>. Checks are applied to each dataset.</li>
 </ul>
 <p>Validation occurs before the job gets created in the database, while most other actions
 are performed after the job is created. This means that correctly configuring validation
 is important to detect user errors early.</p>
 <p>Configuration is described in detail below. However, a few illustrative examples are
 provided first.</p>
+<p><strong>Configuration</strong>:
+The config file for a validate action will look like this:</p>
+<pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+  <span class="hljs-attr">request:</span>
+    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
+  <span class="hljs-attr">datasets:</span>
+    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
+</code></pre>
+<p>Usually <code>&lt;path&gt;</code> will be a dot-delimited field in the DTO, eg. "jobParams.name".
+Technically it is a <a href="https://github.com/JSONPath-Plus/JSONPath" target="_blank">JSONPath-Plus</a>
+expression, which is applied to the request body or dataset to extract any matching
+items. When writing a jobconfig file it may be helpful to test an expected request body
+against the <a href="https://jsonpath-plus.github.io/JSONPath/demo/" target="_blank">JSONPath demo</a>.</p>
+<p>The <code>&lt;typecheck&gt;</code> expression is a JSON Schema. While complicated schemas are possible,
+the combination with JSONPath makes common type checks very concise and legible.
+Here are some example <code>&lt;typecheck&gt;</code> expressions:</p>
+<pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
+  <span class="hljs-attr">request:</span> <span class="hljs-comment"># applies to the request body</span>
+    <span class="hljs-attr">jobParams.stringVal:</span> <span class="hljs-comment"># match simple types</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+    <span class="hljs-attr">jobParams.enumVal:</span> <span class="hljs-comment"># literal values</span>
+      <span class="hljs-attr">enum:</span> [<span class="hljs-string">"yes"</span>, <span class="hljs-string">"no"</span>]
+    <span class="hljs-attr">jobResultObject.mustBeTrue:</span> <span class="hljs-comment"># enforce a value</span>
+      <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">"jobParams":</span> <span class="hljs-comment"># Apply external JSON Schema to all params</span>
+      <span class="hljs-string">$ref:</span> <span class="hljs-string">https://json.schemastore.org/schema-org-thing.json</span>
+  <span class="hljs-attr">dataset:</span> <span class="hljs-comment"># applies to all datasets</span>
+    <span class="hljs-attr">datasetLifecycle.archivable:</span>
+      <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>Validation will result in a <code>400 Bad Request</code> response if either the path is not found
+or if any values matching the path do not validate against the provided schema.</p>
 <h5 id="example-1-require-extra-template-data">Example 1: Require extra template data</h5>
 <p>Consider a case where you want to pass a value from the request body through to other
 actions. For example, you want to allow the requestor to specify the subject of an email
@@ -1350,7 +1474,7 @@ to be sent in the request body like this:</p>
   }
 }
 </code></pre>
-<p>In this case an <code>email</code> action would be configured using handlebars to insert the
+<p>In this case an <a href="#email"><code>email</code> action</a> would be configured using handlebars to insert the
 <code>jobParams.subject</code> value. However, a <code>validate</code> action should also be configured to
 catch errors early where the subject is not specified:</p>
 <p><code>jobConfig.yaml</code>:</p>
@@ -1364,8 +1488,8 @@ catch errors early where the subject is not specified:</p>
             <span class="hljs-attr">jobParams.subject:</span>
               <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
         <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-          <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{job.contactEmail}}</span>"</span>
-          <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] <span class="hljs-template-variable">{{job.jobParams.subject}}</span>"</span>
+          <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{{job.contactEmail}}</span>}"</span>
+          <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] <span class="hljs-template-variable">{{{job.jobParams.subject}}</span>}"</span>
           <span class="hljs-attr">bodyTemplate:</span> <span class="hljs-string">demo_email.html</span>
     <span class="hljs-attr">update:</span>
       <span class="hljs-attr">auth:</span> <span class="hljs-string">admin</span>
@@ -1446,40 +1570,8 @@ typos and ill-defined states.</p>
                 - finishedSuccessful
                 - finishedWithDatasetErrors
                 - finishedUnsuccessful
-</code></pre><p><strong>Configuration</strong>:
-The config file for a validate action will look like this:</p>
-<pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
-  <span class="hljs-attr">request:</span>
-    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
-  <span class="hljs-attr">datasets:</span>
-    <span class="hljs-string">&lt;path&gt;:</span> <span class="hljs-string">&lt;typecheck&gt;</span>
-</code></pre>
-<p>Usually <code>&lt;path&gt;</code> will be a dot-delimited field in the DTO, eg. "jobParams.name".
-Technically it is a <a href="https://github.com/JSONPath-Plus/JSONPath" target="_blank">JSONPath-Plus</a>
-expression, which is applied to the request body or dataset to extract any matching
-items. When writing a jobconfig file it may be helpful to test an expected request body
-against the <a href="https://jsonpath-plus.github.io/JSONPath/demo/" target="_blank">JSONPath demo</a>.</p>
-<p>The <code>&lt;typecheck&gt;</code> expression is a JSON Schema. While complicated schemas are possible,
-the combination with JSONPath makes common type checks very concise and legible.
-Here are some example <code>&lt;typecheck&gt;</code> expressions:</p>
-<pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">validate</span>
-  <span class="hljs-attr">request:</span> <span class="hljs-comment"># applies to the request body</span>
-    <span class="hljs-attr">jobParams.stringVal:</span> <span class="hljs-comment"># match simple types</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
-    <span class="hljs-attr">jobParams.enumVal:</span> <span class="hljs-comment"># literal values</span>
-      <span class="hljs-attr">enum:</span> [<span class="hljs-string">"yes"</span>, <span class="hljs-string">"no"</span>]
-    <span class="hljs-attr">jobResultObject.mustBeTrue:</span> <span class="hljs-comment"># enforce a value</span>
-      <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">"jobParams":</span> <span class="hljs-comment"># Apply external JSON Schema to all params</span>
-      <span class="hljs-string">$ref:</span> <span class="hljs-string">https://json.schemastore.org/schema-org-thing.json</span>
-  <span class="hljs-attr">dataset:</span> <span class="hljs-comment"># applies to all datasets</span>
-    <span class="hljs-attr">datasetLifecycle.archivable:</span>
-      <span class="hljs-attr">const:</span> <span class="hljs-literal">true</span>
-</code></pre>
-<p>Validation will result in a <code>400 Bad Request</code> response if either the path is not found
-or if any values matching the path do not validate against the provided schema.</p>
-<h4 id="email">Email</h4>
-<p>The <code>Email</code> action responds to a Job event by sending an email.</p>
+</code></pre><h4 id="email">Email</h4>
+<p>The <code>email</code> action responds to a Job event by sending an email.</p>
 <p><strong>Configuration</strong>:
 The <em>Mail service</em> must first be configured through environmental variables, as described in the <a href="../configuration.html">configuration</a>.
 There you can define the <code>EMAIL_TYPE</code>, which can be either <code>smtp</code> or <code>ms365</code>, along with the type's respective configuration values.
@@ -1492,9 +1584,9 @@ Upon instantiation, the service will create the configured transporter, ready to
 It supports templating, by extracting the values from the job schema.</p>
 <p>Example:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-  <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{job.contactEmail}}</span>"</span>
+  <span class="hljs-attr">to:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{{job.contactEmail}}</span>}"</span>
   <span class="hljs-attr">from:</span> <span class="hljs-string">"sender@example.com"</span><span class="hljs-string">,</span>
-  <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{job.type}}</span> job was submitted successfully."</span>
+  <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{{job.type}}</span>} job was submitted successfully."</span>
   <span class="hljs-attr">bodyTemplateFile:</span> <span class="hljs-string">"path/to/job-template-file.html"</span>
 </code></pre>
 <p>Where:</p>
@@ -1513,7 +1605,7 @@ It supports templating, by extracting the values from the job schema.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-      Your {{job.type}} job with id {{job.id}} has been submitted ...
+      Your {{{job.type}}} job with id {{{job.id}}} has been submitted ...
     <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
@@ -1546,7 +1638,7 @@ sub-actions that will be performed conditionally.</p>
 <p><strong>Configuration</strong>:
 The action is added to the <code>actions</code> section of a job in <code>jobConfig.yaml</code> as follows:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">switch</span>
-  <span class="hljs-attr">scope:</span> <span class="hljs-string">request</span> <span class="hljs-string">|</span> <span class="hljs-string">datasets</span>
+  <span class="hljs-attr">phase:</span> <span class="hljs-string">validate</span> <span class="hljs-string">|</span> <span class="hljs-string">perform</span> <span class="hljs-string">|</span> <span class="hljs-string">all</span>
   <span class="hljs-attr">property:</span> <span class="hljs-string">some.property</span>
   <span class="hljs-attr">cases:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">match:</span> <span class="hljs-string">exact</span> <span class="hljs-string">value</span> <span class="hljs-string">match</span>
@@ -1560,17 +1652,21 @@ The action is added to the <code>actions</code> section of a job in <code>jobCon
 </code></pre>
 <ul>
 <li><code>property</code> (required) Name of a variable to test against. This is specified as a
-JSONPath+ spec; the most common case is a simple dot-delimited list of keys.</li>
-<li><code>scope</code> (required) Determines where the property is looked up. The following values
-are supported:<ul>
-<li><code>request</code>: Read properties from the job request body (validation phase) or the job
-as stored in the database (perform phase).</li>
-<li><code>datasets</code>: Valid only for <code>create</code> jobs, properties will be read from the dataset
-referenced in <code>jobParams.datasetList</code>. If multiple datasets are listed, all should
-resolve to a single value; otherwise the job will return a 400 error.</li>
+JSONPath+ spec; the most common case is a simple dot-delimited list of keys.
+Properties are selected from the same context used for templates; see
+<a href="#templates">templates</a> above for a description of the values available</li>
+<li><code>phase</code> (required) Determines which phases the switch statement runs. Some properties
+may be unavailable in some phases (see <a href="#templates">templates</a>), requiring limiting
+when the switch statement is evaluated. Actions listed within the <code>cases</code> section will
+also be run only in the phase listed here.<ul>
+<li><code>validate</code>: Evaluated before the request is accepted and written to the database;
+useful for <code>validate</code> actions.</li>
+<li><code>perform</code>: Evaluated after the request is written to the database; most actions
+run in this phase.</li>
+<li><code>all</code>: Evaluate the switch condition in both phases</li>
 </ul>
 </li>
-<li>cases: one or more conditions to match the property against. Conditions are tested in
+<li><code>cases</code>: one or more conditions to match the property against. Conditions are tested in
 order. No "fall through" behavior is implemented; this can be approximated using yaml
 anchors and aliases if needed. The following types of conditions are available:<ul>
 <li><code>match</code>: match the property against a string or literal value. This use javascript
@@ -1584,8 +1680,13 @@ adding a terminal 'default' condition (eg with an <code>error</code> action).</l
 </ul>
 </li>
 </ul>
+<p>Some JSON paths may return multiple values. For instance, accessing dataset properties
+should use array paths such as <code>datasets[*].storageLocation</code>. If multiple unique values
+are returned then the request will return a 400 error. If the property doesn't match
+any values then a value of <code>undefined</code> will be used, which can be handled by a default
+case.</p>
 <p><strong>Examples</strong>:</p>
-<p>Switch can be used as a simple if statement. For instance, it could be used to respond
+<p>Switch can be used as a simple 'if' statement. For instance, it could be used to respond
 to different statusCodes (this case could also be handled with handlebars templates):</p>
 <pre><code class="lang-yaml">  <span class="hljs-bullet">-</span> <span class="hljs-attr">jobType:</span> <span class="hljs-string">retrieve</span>
     <span class="hljs-attr">create:</span>
@@ -1594,30 +1695,21 @@ to different statusCodes (this case could also be handled with handlebars templa
       <span class="hljs-attr">auth:</span> <span class="hljs-string">archiveManager</span>
       <span class="hljs-attr">actions:</span>
         <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">switch</span>
-          <span class="hljs-attr">scope:</span> <span class="hljs-string">request</span>
-          <span class="hljs-attr">property:</span> <span class="hljs-string">statusCode</span>
+          <span class="hljs-attr">phase:</span> <span class="hljs-string">perform</span>
+          <span class="hljs-attr">property:</span> <span class="hljs-string">job.statusCode</span>
           <span class="hljs-attr">cases:</span>
             <span class="hljs-bullet">-</span> <span class="hljs-attr">match:</span> <span class="hljs-string">finishedSuccessful</span>
               <span class="hljs-attr">actions:</span>
               <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-                <span class="hljs-attr">to:</span> {{<span class="hljs-string">contactEmail</span>}}
-                <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{type}}</span> job was successful!"</span>
+                <span class="hljs-attr">to:</span> {{{<span class="hljs-string">job.contactEmail</span>}}}
+                <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{{job.type}}</span>} job was successful!"</span>
                 <span class="hljs-attr">bodyTemplateFile:</span> <span class="hljs-string">retrieve-success.html</span>
             <span class="hljs-bullet">-</span> <span class="hljs-attr">actions:</span>
               <span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">email</span>
-                <span class="hljs-attr">to:</span> {{<span class="hljs-string">contactEmail</span>}}
-                <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{type}}</span> job has state <span class="hljs-template-variable">{{statusCode}}</span>"</span>
+                <span class="hljs-attr">to:</span> {{{<span class="hljs-string">job.contactEmail</span>}}}
+                <span class="hljs-attr">subject:</span> <span class="hljs-string">"[SciCat] Your <span class="hljs-template-variable">{{{job.type}}</span>} job has state <span class="hljs-template-variable">{{{job.statusCode}}</span>}"</span>
                 <span class="hljs-attr">bodyTemplateFile:</span> <span class="hljs-string">retrieve-failure.html</span>
 </code></pre>
-<p><strong>Valid properties</strong>:</p>
-<p>Generally speaking, actions may be applied either to the request body sent by the client
-(such as the <code>validate</code> action) or to the job after it is successfully created or
-updated in the database (most actions). Currently these are implemented independently,
-meaning that, in the request scope, <code>property</code> will be matched once against the request
-body and then a second time on the updated property from the database. For instance, it
-is not possible to use a <code>switch</code> action with the job <code>id</code> property, since this is not
-available in the request body (although it may be present in the URL parameters for
-update jobs). This limitation may be relaxed in the future.</p>
 <h4 id="error">Error</h4>
 <p>Throw a custom HTTP error. This can be useful for testing or in combination with a
 <code>switch</code> action to detect error conditions. The error is thrown before making any
@@ -1635,14 +1727,14 @@ request body as a context.</li>
 </ul>
 <h4 id="log">Log</h4>
 <p>This is a dummy action, useful for debugging. It adds a log entry when executed.
-Usually the entry is added after the job request has been processed (<code>performJob</code>),
+Usually the entry is added after the job request has been processed (<code>perform</code>),
 but it can also be configured to log messages during initialization or when validating
 an incoming job.</p>
 <p><strong>Configuration</strong>:</p>
 <pre><code class="lang-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">actionType:</span> <span class="hljs-string">log</span>
   <span class="hljs-attr">init:</span> <span class="hljs-string">"Job initialized with params <span class="hljs-template-variable">{{{ jsonify this }}</span>}"</span>
   <span class="hljs-attr">validate:</span> <span class="hljs-string">"Request body received: <span class="hljs-template-variable">{{{ jsonify this }}</span>}"</span>
-  <span class="hljs-attr">performJob:</span> <span class="hljs-string">"Job saved: <span class="hljs-template-variable">{{{ jsonify this }}</span>}"</span>
+  <span class="hljs-attr">perform:</span> <span class="hljs-string">"Job saved: <span class="hljs-template-variable">{{{ jsonify this }}</span>}"</span>
 </code></pre>
 <p>All arguments are optional.</p>
 <ul>
@@ -1650,9 +1742,9 @@ an incoming job.</p>
 section from jobConfig.yaml is available as a Handlebars context. Default: ""</li>
 <li><code>validate</code> (optional): Log message to print when the job request is received. The
 request body (aka DTO) is available as a Handlebars context. Default: ""</li>
-<li><code>performJob</code> (optional): Log message to print after the job is saved to the database.
+<li><code>perform</code> (optional): Log message to print after the job is saved to the database.
 The updated job object is available as a Handlebars context.
-Default: <code>"Performing job for {{type}}"</code></li>
+Default: <code>"Performing job for {{{job.type}}}"</code></li>
 </ul>
 
                                 
@@ -1697,7 +1789,7 @@ Default: <code>"Performing job for {{type}}"</code></li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-28T10:37:48.550Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-28T10:37:52.583Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"next":{"title":"Authorization","level":"1.5.2.6.2","depth":4,"path":"Development/v4.x/backend/authorization.md","ref":"Development/v4.x/backend/authorization.md","articles":[{"title":"Datasets","level":"1.5.2.6.2.1","depth":5,"path":"Development/v4.x/backend/authorization/authorization_datasets.md","ref":"Development/v4.x/backend/authorization/authorization_datasets.md","articles":[]},{"title":"OrigDatablocks","level":"1.5.2.6.2.2","depth":5,"path":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","ref":"Development/v4.x/backend/authorization/authorization_origdatablocks.md","articles":[]},{"title":"Proposals","level":"1.5.2.6.2.3","depth":5,"path":"Development/v4.x/backend/authorization/authorization_proposals.md","ref":"Development/v4.x/backend/authorization/authorization_proposals.md","articles":[]},{"title":"Jobs","level":"1.5.2.6.2.4","depth":5,"path":"Development/v4.x/backend/authorization/authorization_jobs.md","ref":"Development/v4.x/backend/authorization/authorization_jobs.md","articles":[]},{"title":"Instruments","level":"1.5.2.6.2.5","depth":5,"path":"Development/v4.x/backend/authorization/authorization_instruments.md","ref":"Development/v4.x/backend/authorization/authorization_instruments.md","articles":[]},{"title":"Users","level":"1.5.2.6.2.6","depth":5,"path":"Development/v4.x/backend/authorization/authorization_users.md","ref":"Development/v4.x/backend/authorization/authorization_users.md","articles":[]},{"title":"Samples","level":"1.5.2.6.2.7","depth":5,"path":"Development/v4.x/backend/authorization/authorization_samples.md","ref":"Development/v4.x/backend/authorization/authorization_samples.md","articles":[]}]},"previous":{"title":"Backend","level":"1.5.2.6.1","depth":4,"path":"Development/v4.x/backend/configuration.md","ref":"Development/v4.x/backend/configuration.md","articles":[{"title":"Jobs","level":"1.5.2.6.1.1","depth":5,"path":"Development/v4.x/backend/configuration/jobconfig.md","ref":"Development/v4.x/backend/configuration/jobconfig.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["chapter-fold","mermaid-gb3"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"chapter-fold":{},"mermaid-gb3":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SciCat Documentation","gitbook":"*"},"file":{"path":"Development/v4.x/backend/configuration/jobconfig.md","mtime":"2025-05-28T11:18:52.026Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2025-05-28T11:18:56.173Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>
