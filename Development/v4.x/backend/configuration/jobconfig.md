@@ -1,5 +1,30 @@
 # Job Configuration
 
+- [Overview](#overview)
+- [Quick-start](#quick-start)
+- [Details](#details)
+  - [Job lifecycle](#job-lifecycle)
+  - [Referencing datasets](#referencing-datasets)
+  - [Status Codes](#status-codes)
+  - [Actions](#actions)
+  - [Migration Notes](#migration-notes)
+- [Configuration](#configuration)
+  - [Configuration overview](#configuration-overview)
+  - [Authorization](#authorization)
+  - [Templates](#templates)
+  - [Actions Configuration](#actions-configuration)
+    - [URLAction](#urlaction)
+    - [Validate](#validate)
+      - [Example 1: Require extra template data](#example-1-require-extra-template-data)
+      - [Example 2: Enforce datasetLifecycle state](#example-2-enforce-datasetlifecycle-state)
+      - [Example 3: Define statusCodes](#example-3-define-statuscodes)
+    - [Email](#email)
+    - [RabbitMQ](#rabbitmq)
+    - [Switch](#switch)
+    - [Error](#error)
+    - [Log](#log)
+
+
 ## Overview
 
 The SciCat job system is used for any interactions between SciCat and external services.
@@ -22,7 +47,7 @@ false`) and retrieval should be disabled.
 To start using jobs:
 
 1. Copy
-   [jobConfig.recommended.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml)
+   [`jobConfig.recommended.yaml`](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.recommended.yaml)
    to `jobConfig.yaml`
 2. Update the configuration. See
    [jobConfig.example.yaml](https://github.com/SciCatProject/scicat-backend-next/blob/master/jobConfig.example.yaml)
@@ -223,7 +248,7 @@ top-level variables are availabe in the handlebars context:
 | Top-level variable | Type                                 | Examples                                       | Description                                                             |
 | ------------------ | ------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{{request.type}}}`<br/>`{{{request.jobParams}}}` | HTTP Request body                                                       |
-| `job`              | `JobClass`                           | `{{{job.id}}}`                                   | The job, as stored in the database. Not available for validate actions. |
+| `job`              | `JobClass`                           | `{{{job.id}}}`                                   | The job. During the validate phase this is the previous job values (if any); during the perform phase it will be the current database value. |
 | `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{{pid}}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
 | `env`              | `object`                             | `{{{env.SECRET_TOKEN}}}`                         | Access environmental variables                                          |
 {% endraw %}
@@ -303,8 +328,8 @@ ValidateAction is configured with a series of `<path>: <typecheck>` pairs which 
 a constraint to be validated. These can be applied to different contexts:
 
 - **`request`** - Checks the incoming request body (aka the DTO).
-- **`datasets`** - (CREATE only) requires that a list of datasets be included in
-  `jobParams.datasetList`. Checks are applied to each dataset
+- **`datasets`** - requires that a list of datasets be included in
+  `jobParams.datasetList`. Checks are applied to each dataset.
 
 Validation occurs before the job gets created in the database, while most other actions
 are performed after the job is created. This means that correctly configuring validation
@@ -312,6 +337,46 @@ is important to detect user errors early.
 
 Configuration is described in detail below. However, a few illustrative examples are
 provided first.
+
+**Configuration**:
+The config file for a validate action will look like this:
+
+```yaml
+- actionType: validate
+  request:
+    <path>: <typecheck>
+  datasets:
+    <path>: <typecheck>
+```
+
+Usually `<path>` will be a dot-delimited field in the DTO, eg. "jobParams.name".
+Technically it is a [JSONPath-Plus](https://github.com/JSONPath-Plus/JSONPath)
+expression, which is applied to the request body or dataset to extract any matching
+items. When writing a jobconfig file it may be helpful to test an expected request body
+against the [JSONPath demo](https://jsonpath-plus.github.io/JSONPath/demo/).
+
+The `<typecheck>` expression is a JSON Schema. While complicated schemas are possible,
+the combination with JSONPath makes common type checks very concise and legible.
+Here are some example `<typecheck>` expressions:
+
+```yaml
+- actionType: validate
+  request: # applies to the request body
+    jobParams.stringVal: # match simple types
+      type: string
+    jobParams.enumVal: # literal values
+      enum: ["yes", "no"]
+    jobResultObject.mustBeTrue: # enforce a value
+      const: true
+    "jobParams": # Apply external JSON Schema to all params
+      $ref: https://json.schemastore.org/schema-org-thing.json
+  dataset: # applies to all datasets
+    datasetLifecycle.archivable:
+      const: true
+```
+
+Validation will result in a `400 Bad Request` response if either the path is not found
+or if any values matching the path do not validate against the provided schema.
 
 ##### Example 1: Require extra template data
 
@@ -329,7 +394,7 @@ POST /jobs
 }
 ```
 
-In this case an `email` action would be configured using handlebars to insert the
+In this case an [`email` action](#email) would be configured using handlebars to insert the
 `jobParams.subject` value. However, a `validate` action should also be configured to
 catch errors early where the subject is not specified:
 
@@ -443,49 +508,9 @@ jobs:
                 - finishedUnsuccessful
 ```
 
-**Configuration**:
-The config file for a validate action will look like this:
-
-```yaml
-- actionType: validate
-  request:
-    <path>: <typecheck>
-  datasets:
-    <path>: <typecheck>
-```
-
-Usually `<path>` will be a dot-delimited field in the DTO, eg. "jobParams.name".
-Technically it is a [JSONPath-Plus](https://github.com/JSONPath-Plus/JSONPath)
-expression, which is applied to the request body or dataset to extract any matching
-items. When writing a jobconfig file it may be helpful to test an expected request body
-against the [JSONPath demo](https://jsonpath-plus.github.io/JSONPath/demo/).
-
-The `<typecheck>` expression is a JSON Schema. While complicated schemas are possible,
-the combination with JSONPath makes common type checks very concise and legible.
-Here are some example `<typecheck>` expressions:
-
-```yaml
-- actionType: validate
-  request: # applies to the request body
-    jobParams.stringVal: # match simple types
-      type: string
-    jobParams.enumVal: # literal values
-      enum: ["yes", "no"]
-    jobResultObject.mustBeTrue: # enforce a value
-      const: true
-    "jobParams": # Apply external JSON Schema to all params
-      $ref: https://json.schemastore.org/schema-org-thing.json
-  dataset: # applies to all datasets
-    datasetLifecycle.archivable:
-      const: true
-```
-
-Validation will result in a `400 Bad Request` response if either the path is not found
-or if any values matching the path do not validate against the provided schema.
-
 #### Email
 
-The `Email` action responds to a Job event by sending an email.
+The `email` action responds to a Job event by sending an email.
 
 **Configuration**:
 The *Mail service* must first be configured through environmental variables, as described in the [configuration](../configuration.md).
