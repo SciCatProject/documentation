@@ -1,12 +1,11 @@
 # Configuration
 
-- [Configuration](#configuration)
-  - [SciCat Frontend](#scicat-frontend)
-  - [SciCat Backend](#scicat-backend)
-    - [Dotenv config](#dotenv-config)
-      - [Minimal Backend Config Example](#minimal-backend-config-example)
-      - [Full Backend Config Example](#full-backend-config-example)
-    - [DOI Config](#doi-config)
+- [SciCat Frontend](#scicat-frontend)
+- [SciCat Backend](#scicat-backend)
+  - [Dotenv config](#dotenv-config)
+    - [Minimal Backend Config Example](#minimal-backend-config-example)
+    - [Full Backend Config Example](#full-backend-config-example)
+  - [DOI Config](#doi-config)
 
 ## SciCat Frontend
 
