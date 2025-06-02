@@ -2,7 +2,9 @@
 
 - [SciCat Frontend](#scicat-frontend)
 - [SciCat Backend](#scicat-backend)
-  - [Dotenv Config](#dotenv-config)
+  - [Dotenv config](#dotenv-config)
+    - [Minimal Backend Config Example](#minimal-backend-config-example)
+    - [Full Backend Config Example](#full-backend-config-example)
   - [DOI Config](#doi-config)
 
 ## SciCat Frontend
@@ -197,6 +199,10 @@ Valid environment variables for the .env file. See .env.example for examples val
 ## Jobs
 
   JOB_CONFIGURATION_FILE [string] Optional Configuration file for job actions. If omitted, the jobs subsystem is inactive. Example: "jobConfig.yaml"
+
+  JOB_DEFAULT_STATUS_CODE [string] Optional Default statusCode for new jobs. Default value: "jobSubmitted"
+
+  JOB_DEFAULT_STATUS_MESSAGE [string] Optional Default statusMessage for new jobs. Default value: "Job submitted."
 
   CREATE_JOB_PRIVILEGED_GROUPS [string] Optional Comma separated list of groups with permission to create any job. Example: "group1,group2". For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
 

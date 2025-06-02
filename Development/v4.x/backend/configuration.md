@@ -87,12 +87,25 @@ _src/config/configuration.ts_
   _example_: "group1,group2,group3,..."
 
 - DELETE\_JOB\_GROUPS:
-  list of non admin groups that are allowed to delete jobs for groups
-  they do not belong to. If set to "#all", all users can delete a job belonging to
-  any group.
+  groups that are allowed to delete jobs. If set to "#all", all users can delete a job
+  belonging to any group.
   _default_: ""
   _format_: comma separated list of strings. Leading and trailing spaces are trimmed
   _example_: "group1,group2,group3,..."
+
+- CREATE\_JOB\_PRIVILEGED\_GROUPS:
+  Comma separated list of groups with permission to create any job.
+  For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
+  _default_: ""
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _example_: "archivemanager,jobmanager"
+
+- UPDATE\_JOB\_PRIVILEGED\_GROUPS:
+  Comma separated list of groups with permission to update any job.
+  For more details check: [Jobs Authorization](authorization/authorization_jobs.md)
+  _default_: ""
+  _format_: comma separated list of strings. Leading and trailing spaces are trimmed
+  _example_: "archivemanager,jobmanager"
 
 - ACCESS\_GROUPS\_STATIC\_VALUES:
   List of groups assigned by default to all users. Used in the vanilla implementation
@@ -476,4 +489,14 @@ _src/config/configuration.ts_
   Configuration file for [job actions](configuration/jobconfig.md).
   If omitted, the jobs subsystem is inactive.
   _default_: "jobConfig.yaml", optional.
+  _format_: string
+
+- JOB\_DEFAULT\_STATUS\_CODE:
+  Default statusCode for new jobs
+  _default_: "jobSubmitted", optional.
+  _format_: string
+
+- JOB\_DEFAULT\_STATUS\_MESSAGE
+  Default statusMessage for new jobs
+  _default_: "Job submitted.", optional.
   _format_: string
