@@ -37,6 +37,7 @@
     - [Testing Frontend](Development/v3.x/Testing.md)
     - [Contributing](Development/v3.x/Contributing.md)
     - [Git Flow Workflow](Development/v3.x/Development_Methods.md)
+    - [Documentation](Development/v3.x/Documentation.md)
   - [v4.x](Development/v4.x/README.md)
     - [Overview](Development/v4.x/overview.md)
     - [Backend Overview](Development/v4.x/backend_overview.md)
