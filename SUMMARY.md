@@ -59,6 +59,8 @@
     - [Theming](Development/v4.x/Theming.md)
     - [Login and Accounts](Development/v4.x/Login.md)
     - [OIDC Integration](Development/v4.x/OIDC.md)
+      - [Frontend](Development/v4.x/configuration_oidc.md)
+      - [Backend](Development/v4.x/backend/configuration_oidc.md)
     - [Testing](Development/v4.x/testing.md)
       - [Backend](Development/v4.x/backend/testing_backend.md)
         - [Instrument](Development/v4.x/backend/testing/instrument.md)
