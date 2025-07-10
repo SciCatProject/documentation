@@ -128,6 +128,7 @@ frontend/src/assets/config.json:
   "shoppingCartEnabled": true,  // Enable/disable the Dataset cart used for bulk actions.
   "shoppingCartOnHeader": true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
   "tableSciDataEnabled": true  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
+  "supportEmail": "scicat-help@facility.eu" // Optional. If set, adds a card in /help page with support email in the message.
 }
 
 ```
