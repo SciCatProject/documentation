@@ -81,7 +81,7 @@ graph LR;
 | HTTP method | Endpoint | Endpoint Authentication | Anonymous | Authenticated User | Proposals Groups | Admin Groups | Delete Groups | Notes |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | 
 | POST | Proposals | _ProposalCreate_ | __no__ | __no__ | Any<br>_ProposalCreateAny_ | Any<br>_ProposalCreateAny_ | __no__ |  |
-| GET | Proposals | _ProposalRead_ | Public<br/>_ProposalReadManyPublic_ | Has Access<br/>_ProposalReadManyAccess_ | Has Access<br/>_ProposalReadManyAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
+| GET | Proposals | _ProposalRead_ | Public<br/>_ProposalReadManyPublic_ | Has Access<br/>_ProposalReadManyAccess_ | Any<br/>_ProposalReadAny_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
 | GET | Proposals/fullquery | _ProposalRead_ | Public<br/>_ProposalReadManyPublic_ | Has Access<br/>_ProposalReadManyAccess_ | Has Access<br/>_ProposalReadManyAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
 | GET | Proposals/fullfacet | _ProposalRead_ | Public<br/>_ProposalReadManyPublic_ | Has Access<br/>_ProposalReadManyAccess_ | Has Access<br/>_ProposalReadManyAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
 | GET | Proposals/_pid_ | _ProposalRead_ | Public<br/>_ProposalReadOnePublic_ | Has Access<br/>_ProposalReadOneAccess_ | Has Access<br/>_ProposalReadOneAccess_ | Any<br/>_ProposalReadAny_ |  __no__  |  |
