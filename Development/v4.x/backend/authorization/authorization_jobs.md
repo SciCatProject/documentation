@@ -51,6 +51,7 @@ graph LR;
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | POST | Jobs | _JobCreate_ | _JobCreateConfiguration_ | _JobCreateConfiguration_ | Any<br>_JobsCreateOwner_ | __no__ | Any<br>_JobsCreateAny_ | __no__ |
 | GET | Jobs | _JobReadMany_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
+| GET | Jobs/datasetDetails | _JobReadMany_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
 | GET | Jobs/_jid_ | _JobReadOne_ | __no__ | Has Access<br>_JobReadAccess_ | Has Access<br>_JobReadAccess_ |  __no__  | Any<br>_JobReadAny_ | __no__ |
 | PATCH | Jobs/_jid_  | _JobUpdate_ | __no__ | _JobUpdateConfiguration_ | __no__ | Owner<br>_JobUpdateOwner_ | Any<br>_JobUpdateAny_ | __no__ |
 | DELETE | Jobs/_jid_ | _JobDelete_ | __no__ | __no__ | __no__ | __no__ | __no__ | __no__ |

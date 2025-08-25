@@ -308,6 +308,21 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0140 | Add a new job as anonymous user in '#datasetPublic' configuration with all published datasets | POST | /api/v4/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as anonymous user in '#datasetPublic' configuration with one unpublished dataset, which should be forbidden | POST | /api/v4/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 
+### 1165: Jobs test filters and access
+
+| Test Number | Description | HTTP Method | Endpoint | Filter | Authenticated User | Expected Request Status | Expected Request Code |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0010 | Access jobs as a user from ADMIN_GROUPS with wrong include query | GET | /api/v4/Jobs | {"include":["datasets","datasets.datablocks"]}| | admin | 400 | ```BadRequestStatusCode``` |
+| 0020 | Access jobs and dataset details as a user from ADMIN_GROUPS with include query, which is not allowed | GET | /api/v4/Jobs/datasetDetails?filter=${encodedJobOwnedByGroup1} | admin | 400 | ```BadRequestStatusCode``` |
+| 0030 | Access jobs as a user from ADMIN_GROUPS with a correct include query and fields query | GET | /api/v4/Jobs | {"include":["datasets"],"fields":["id","type","datasets.pid","datasets.keywords"]} | {"include":["datasets","datasets.datablocks"]} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0040 | Access jobs as a user from ADMIN_GROUPS with where filter| GET | /api/v4/Jobs | {"where":{"ownerGroup":"group1"},"include":["datasets"],"fields":["id","type","ownerGroup","datasets.pid","datasets.keywords"]} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0050 | Access jobs as a user from ADMIN_GROUPS with an include filter specified as all | GET | /api/v4/Jobs | {"include":["all"],"fields":["id","type","datasets.pid","datasets.keywords"]} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0060 | Access jobs datasetDetails as a user from ADMIN_GROUPS with no fields query that should return all properties of JobClass | GET | /api/v4/Jobs/datasetDetails | | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0070 | Access jobs and datasetDetails, information should be returned based on correct access | GET | /api/v4/Jobs/datasetDetails | |  user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0080 | Access jobs and datasetDetails, apply fields filter | GET | /api/v4/Jobs/datasetDetails | {"fields":["id","datasetDetails.pid","datasetDetails.datablocks._id","datasetDetails.datablocks.size","datasetDetails.origdatablocks._id","datasetDetails.origdatablocks.chkAlg"]} | user1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0090 | Access jobs, datasets and instruments, that should be returned based on correct access | GET | /api/v4/Jobs/datasetDetails | | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+| 0100 | Access jobs, datasets and instruments, that should be returned based on correct access | GET | /api/v4/Jobs/datasetDetails | | user3 | 200 | ```SuccessfulGetStatusCode``` |
+| 0110 | Access jobs, datasets and instruments, that should be returned based on correct access | GET | /api/v4/Jobs/datasetDetails | | adminIngestor | 200 | ```SuccessfulGetStatusCode``` |
 
 ### 1170: Jobs: Test New Job Model Authorization for job_admin jobs type
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
@@ -431,7 +446,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0380 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v4/Jobs/fullfacet?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 
 
-### 1200: Jobs: Test Backwards Compatibility
+### 1191: Jobs: Test Backwards Compatibility
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -478,3 +493,12 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0410 | Get via /api/v3 the anonymous job as a user in CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 200 | ```SuccessfulGetStatusCode``` |
 | 0420 | Add via /api/v3 a new job for user5.1, as user5.1 in #datasetAccess auth | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0430 | Get via /api/v4 the previously added job, as user5.1 | GET | /api/v3/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+
+
+### 1192: Jobs: Test datasetDetails backwards Compatibility
+
+| Test Number | Description | HTTP Method | Endpoint | Filter | Authenticated User | Expected Request Status | Expected Request Code |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0010 | Get job and details on dataset for specific jobID and including information on datasets and datablocks as a user from ADMIN_GROUP with v4 endpoint | GET | /api/v4/Jobs/datasetDetails | {"where":{"id":${encodedJob}},"fields":["datasetDetails.pid","datasetDetails.owner","datasetDetails.contactEmail","datasetDetails.sourceFolder","datasetDetails.type","datasetDetails.classification","datasetDetails.ownerGroup","datasetDetails.datasetlifecycle","datasetDetails.datablocks.archiveId","datasetDetails.datablocks.size","datasetDetails.datablocks._id"]} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0020 | Should return dataset details from V3 endpoint for a specific job and include datablocks information as a user from ADMIN_GROUP | GET | /api/v3/Jobs/datasetDetails | jobId=${encodedJob}&datasetFields={"pid":true,"sourceFolder":true,"sourceFolderHost":true,"contactEmail":true,"owner":true,"ownerGroup":true,"classification":true,"type":true,"datasetlifecycle":true,"createdBy":true}&include={"relation":"datablocks"}&includeFields={"_id":true,"archiveId":true,"size":true,"datasetId":true} | admin | 200 | ```SuccessfulGetStatusCode``` |
+| 0030 | Should return dataset details from V3 endpoint for a specific job and include no further information as a user from ADMIN_GROUP | GET | /api/v4/Jobs/datasetDetails | jobId=${encodedJob}&datasetFields={"pid":true,"sourceFolder":true,"contactEmail":true,"owner":true,"ownerGroup":true,"classification":true,"type":true,"datasetlifecycle":true,"createdBy":true} | admin | 200 | ```SuccessfulGetStatusCode``` |
