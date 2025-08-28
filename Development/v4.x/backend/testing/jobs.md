@@ -218,7 +218,6 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0130 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for different ownerUser and ownerGroup for #datasetAccess, which should be forbidden | POST | /api.v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0140 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for different ownerUser and no ownerGroup for #datasetAccess | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for different ownerUser and no ownerGroup for #datasetAccess, which should be forbidden | POST | /api.v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
-
 | 0160 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user in #datasetAccess with published datasets | POST | /api.v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0170 | Add a new job as user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user in #datasetAccess with one unpublished dataset, which should be forbidden | POST | /api.v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0180 | Add a new job as a normal user for himself/herself in '#datasetAccess' configuration with access to datasets | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
@@ -260,7 +259,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0150 | Add a new job as a normal user for himself/herself in '#datasetOwner' configuration with datasets not owned by his/her group, which should be forbidden | POST | /api/v4/Jobs | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0160 | Add a new job as a user from ADMIN_GROUPS for group2 and user1 in '#datasetOwner' configuration | POST | /api/v4/Jobs| admin | 200 | ```EntryCreatedStatusCode``` |
 | 0170 | Add a new job as a user from ADMIN_GROUPS for group1 and user2 in '#datasetOwner' configuration | POST | /api/v4/Jobs | admin | 200 | ```EntryCreatedStatusCode``` |
-| 0180 | , where the user is not an owner of some of these datasets, which should be forbidden | POST | /api/v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
+| 0180 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#datasetOwner' configuration, where the user is not an owner of some of these datasets, which should be forbidden | POST | /api/v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0190 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#datasetOwner' configuration, where the user is owner of these datasets | POST | /api/v4/Jobs | user1 | 200 | ```EntryCreatedStatusCode``` |
 | 0200 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for group1 and user3 in '#datasetOwner' configuration, which should be forbidden | POST | /api/v4/Jobs | user1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0210 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for anonymous user in '#datasetOwner' configuration, which should be forbidden | POST | /api/v4/Jobs | user1 | 401 | ```CreationUnauthorizedStatusCode``` |
@@ -308,6 +307,181 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0140 | Add a new job as anonymous user in '#datasetPublic' configuration with all published datasets | POST | /api/v4/Jobs | unauthenticated | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as anonymous user in '#datasetPublic' configuration with one unpublished dataset, which should be forbidden | POST | /api/v4/Jobs | unauthenticated | 403 | ```AccessForbiddenStatusCode``` |
 
+### 1165: Jobs test filters and access
+
+<table>
+  <tr>
+    <th>Test Number</th>
+    <th>Description</th>
+    <th>HTTP Method</th>
+    <th>Endpoint</th>
+    <th>Filter</th>
+    <th>Authenticated User</th>
+    <th>Expected Request Status</th>
+    <th>Expected Request Code</th>
+  </tr>
+  <tr>
+    <td>0010</td>
+    <td>Access jobs as a user from ADMIN_GROUPS with wrong include query</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs</td>
+    <td>
+<pre><code>{
+  "include": ["datasets", "datasets.datablocks"]
+}</code></pre>
+    </td>
+    <td>admin</td>
+    <td>400</td>
+    <td><code>BadRequestStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0020</td>
+    <td>Access jobs and dataset details as a user from ADMIN_GROUPS with include query, which is not allowed</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td>
+<pre><code>{
+  "include": ["datasets", "datasets.datablocks"]
+}</code></pre>
+    </td>
+    <td>admin</td>
+    <td>400</td>
+    <td><code>BadRequestStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0030</td>
+    <td>Access jobs as a user from ADMIN_GROUPS with a correct include query and fields query</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs</td>
+    <td>
+<pre><code>{
+  "include": ["datasets"],
+  "fields": [
+    "id",
+    "type",
+    "datasets.pid",
+    "datasets.keywords"
+  ]
+}</code></pre>
+    </td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0040</td>
+    <td>Access jobs as a user from ADMIN_GROUPS with where filter</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs</td>
+    <td>
+<pre><code>{
+  "where": {"ownerGroup": "group1"},
+  "include": ["datasets"],
+  "fields": [
+    "id",
+    "type",
+    "ownerGroup",
+    "datasets.pid",
+    "datasets.keywords"
+  ]
+}</code></pre>
+    </td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0050</td>
+    <td>Access jobs as a user from ADMIN_GROUPS with an include filter specified as all</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs</td>
+    <td>
+<pre><code>{
+  "include": ["all"],
+  "fields": [
+    "id",
+    "type",
+    "datasets.pid",
+    "datasets.keywords"
+  ]
+}</code></pre>
+    </td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0060</td>
+    <td>Access jobs datasetDetails as a user from ADMIN_GROUPS with no fields query that should return all properties of JobClass</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td></td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0070</td>
+    <td>Access jobs and datasetDetails, information should be returned based on correct access</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td></td>
+    <td>user1</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0080</td>
+    <td>Access jobs and datasetDetails, apply fields filter</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td>
+<pre><code>{
+  "fields": [
+    "id",
+    "datasetDetails.pid",
+    "datasetDetails.datablocks._id",
+    "datasetDetails.datablocks.size",
+    "datasetDetails.origdatablocks._id",
+    "datasetDetails.origdatablocks.chkAlg"
+  ]
+}</code></pre>
+    </td>
+    <td>user1</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0090</td>
+    <td>Access jobs, datasets and instruments, that should be returned based on correct access</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td></td>
+    <td>user5.1</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0100</td>
+    <td>Access jobs, datasets and instruments, that should be returned based on correct access</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td></td>
+    <td>user3</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0110</td>
+    <td>Access jobs, datasets and instruments, that should be returned based on correct access</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td></td>
+    <td>adminIngestor</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+</table>
 
 ### 1170: Jobs: Test New Job Model Authorization for job_admin jobs type
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
@@ -316,13 +490,13 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0020 | Add dataset 2 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
 | 0030 | Add dataset 3 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
 | 0040 | Add a new job as a user from ADMIN_GROUPS for himself/herself in '#jobAdmin' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0050 | Add a new job as a user from ADMIN_GROUPS for another user in '#jobAdmin' configuration  POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
-| 0060 | Add a new job as a user from ADMIN_GROUPS for another group in '#jobAdmin' configuration  POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0050 | Add a new job as a user from ADMIN_GROUPS for another user in '#jobAdmin' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0060 | Add a new job as a user from ADMIN_GROUPS for another group in '#jobAdmin' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0070 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#jobAdmin' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0080 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#jobAdmin' configuration with dataset owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0090 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#jobAdmin' configuration with only one of two datasets owned by his/her group | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#jobAdmin' configuration  POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0110 | Add a new job as a normal user for himself/herself in '#jobAdmin' configuration with datasets owned by his/her group, which should be forbidden  POST | /api/v4/Jobs | user51 | 403 | ```AccessForbiddenStatusCode``` |
+| 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for another user in '#jobAdmin' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0110 | Add a new job as a normal user for himself/herself in '#jobAdmin' configuration with datasets owned by his/her group, which should be forbidden | POST | /api/v4/Jobs | user51 | 403 | ```AccessForbiddenStatusCode``` |
 | 0120 | Add a new job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for himself/herself in '#jobAdmin' configuration with datasets owned by his/her group, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0130 | Add a status update to a job as a user from ADMIN_GROUPS for his/her job in '#jobAdmin' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByAdmin} | Admin | 200 | ```SuccessfulPatchStatusCode``` |
 | 0140 | Add a Status update to a job as a user from ADMIN_GROUPS for another group's job in '#jobAdmin' configuration | PATCH | /api/v4/Jobs/${encodedJobOwnedByUser1} | Admin | 200 | ```SuccessfulPatchStatusCode``` |
@@ -349,7 +523,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0090 | Add a new job as a user from ADMIN_GROUPS for anonymous user in '#@group5' configuration | POST | /api/v4/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
 | 0100 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for his/her own group in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0110 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user 5.1 in '#@group5' configuration | POST | /api/v4/Jobs | user1 | 201 | ```EntryCreatedStatusCode``` |
-| 0120 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user 4 in '#@group5' configuration | POST | /api/v4/Jobs/ user1 | 201 | ```EntryCreatedStatusCode``` |
+| 0120 | Add a new job as a user from CREATE_JOB_PRIVILEGED_GROUPS for user 4 in '#@group5' configuration | POST | /api/v4/Jobs/ | user1 | 201 | ```EntryCreatedStatusCode``` |
 | 0130 | Add a new job as a user from UPDATE_JOB_PRIVILEGED_GROUPS for user 5.1 in '#@group5' configuration, which should be forbidden | POST | /api/v4/Jobs | user3 | 403 | ```AccessForbiddenStatusCode``` |
 | 0140 | Add a new job as a user 5.1 for himself/herself in '#@group5' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0150 | Add a new job as a user 5.1 for another user in his/her group in '#@group5' configuration | POST | /api/v4/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
@@ -431,7 +605,7 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0380 | Fullfacet jobs as a user from ADMIN_GROUPS that were created by User5.1 | GET | /api/v4/Jobs/fullfacet?createdBy=user5.1 | admin | 200 | ```SuccessfulGetStatusCode``` |
 
 
-### 1200: Jobs: Test Backwards Compatibility
+### 1191: Jobs: Test Backwards Compatibility
 
 | Test Number | Description | HTTP Method | Endpoint | Authenticated User | Expected Request Status | Expected Request Code |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -478,3 +652,102 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0410 | Get via /api/v3 the anonymous job as a user in CREATE_JOB_PRIVILEGED_GROUPS | GET | /api/v3/Jobs/${encodedJobAnonymous} | user2 | 200 | ```SuccessfulGetStatusCode``` |
 | 0420 | Add via /api/v3 a new job for user5.1, as user5.1 in #datasetAccess auth | POST | /api/v3/Jobs | user5.1 | 201 | ```EntryCreatedStatusCode``` |
 | 0430 | Get via /api/v4 the previously added job, as user5.1 | GET | /api/v3/Jobs/${encodedJobOwnedByUser51} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
+
+
+### 1192: Jobs: Test datasetDetails backwards Compatibility
+
+<table>
+  <tr>
+    <th>Test Number</th>
+    <th>Description</th>
+    <th>HTTP Method</th>
+    <th>Endpoint</th>
+    <th>Filter</th>
+    <th>Authenticated User</th>
+    <th>Expected Request Status</th>
+    <th>Expected Request Code</th>
+  </tr>
+  <tr>
+  <td>0010</td>
+  <td>Get job and details on dataset for specific jobID and including information on datasets and datablocks as a user from ADMIN_GROUP with v4 endpoint</td>
+  <td>GET</td>
+  <td>/api/v4/Jobs/datasetDetails</td>
+  <td>
+<pre><code>{
+  "where": {"id": "${encodedJob}"},
+  "fields": [
+    "datasetDetails.pid",
+    "datasetDetails.owner",
+    "datasetDetails.contactEmail",
+    "datasetDetails.sourceFolder",
+    "datasetDetails.type",
+    "datasetDetails.classification",
+    "datasetDetails.ownerGroup",
+    "datasetDetails.datasetlifecycle",
+    "datasetDetails.datablocks.archiveId",
+    "datasetDetails.datablocks.size",
+    "datasetDetails.datablocks._id"
+  ]
+}</code></pre>
+  </td>
+  <td>admin</td>
+  <td>200</td>
+  <td><code>SuccessfulGetStatusCode</code></td>
+</tr>
+  <tr>
+    <td>0020</td>
+    <td>Should return dataset details from V3 endpoint for a specific job and include datablocks information as a user from ADMIN_GROUP</td>
+    <td>GET</td>
+    <td>/api/v3/Jobs/datasetDetails</td>
+  <td>
+<pre><code>{
+    jobId=${encodedJob}&
+    datasetFields={
+    "pid": true,
+    "sourceFolder": true,
+    "sourceFolderHost": true,
+    "contactEmail": true,
+    "owner": true,
+    "ownerGroup": true,
+    "classification": true,
+    "type": true,
+    "datasetlifecycle": true,
+    "createdBy": true
+    }&include={
+        "relation":"datablocks"
+    }&includeFields={
+    "_id": true,
+    "archiveId": true,
+    "size": true,
+    "datasetId": true
+}</code></pre>
+  </td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+  <tr>
+    <td>0030</td>
+    <td>Should return dataset details from V3 endpoint for a specific job and include no further information as a user from ADMIN_GROUP</td>
+    <td>GET</td>
+    <td>/api/v4/Jobs/datasetDetails</td>
+    <td>
+<pre><code>{
+    jobId=${encodedJob}&
+    datasetFields={
+    "pid": true,
+    "sourceFolder": true,
+    "contactEmail": true,
+    "owner": true,
+    "ownerGroup": true,
+    "classification": true,
+    "type": true,
+    "datasetlifecycle": true,
+    "createdBy": true
+}</code></pre>
+  </td>
+    <td>admin</td>
+    <td>200</td>
+    <td><code>SuccessfulGetStatusCode</code></td>
+  </tr>
+</table>
