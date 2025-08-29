@@ -97,7 +97,7 @@ Jobs follow a standard Create-Read-Update-Delete (CRUD) lifecycle:
 ### Referencing datasets
 
 Many (but not all) jobs relate to datasets. These are specified during job creation in
-the `jobParams.datasetsList` array. The array should contain objects with a `pid` string
+the `jobParams.datasetList` array. The array should contain objects with a `pid` string
 and a `files` array listing individual files that the job should be applied to. An empty
 `files` array indicates that the job should apply to all files.
 
@@ -105,7 +105,7 @@ and a `files` array listing individual files that the job should be applied to. 
 {
   "type": ...,
   "jobParams": {
-    "datasetsList": [
+    "datasetList": [
       {
         "pid": "12.3456...",
         "files": []
@@ -145,7 +145,7 @@ are given as examples for archive and retrieve jobs:
 | finishedUnsuccessful      | A system error occurred                                                                                                                          |
 
 Additional status changes may be associated with datasets referenced in
-`jobParams.datasetsList`, for example in the `datasetlifecycle.archiveStatusMessage`
+`jobParams.datasetList`, for example in the `datasetlifecycle.archiveStatusMessage`
 field.
 
 It is recommended that values of `statusCode` be configured for each job type using a
@@ -249,7 +249,7 @@ top-level variables are availabe in the handlebars context:
 | ------------------ | ------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`          | `CreateJobDto` or<br/>`UpdateJobDto` | `{{{request.type}}}`<br/>`{{{request.jobParams}}}` | HTTP Request body                                                       |
 | `job`              | `JobClass`                           | `{{{job.id}}}`                                   | The job. During the validate phase this is the previous job values (if any); during the perform phase it will be the current database value. |
-| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{{pid}}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetsList`.       |
+| `datasets`         | `DatasetClass[]`                     | `{{#each datasets}}{{{pid}}}{{/each}}`           | Array of all datasets referenced in `job.jobParams.datasetList`.        |
 | `env`              | `object`                             | `{{{env.SECRET_TOKEN}}}`                         | Access environmental variables                                          |
 {% endraw %}
 
