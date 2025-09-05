@@ -618,6 +618,8 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | 0070 | Get via /api/v3 the anonymous job as user5.1, which should fail | GET | /api/v3/Jobs/${encodedJobOwnedByAdmin} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0080 | Get via /api/v4 the anonymous job as user5.1, which should fail | GET | /api/v4/Jobs/${encodedJobOwnedByAdmin} | user5.1 | 403 | ```AccessForbiddenStatusCode``` |
 | 0090 | Add via /api/v3 a new job with emailJobInitiator for user5.1 in #datasetOwner auth, as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode ``` |
+| 0093 | Add via /api/v3 a new job with with files matching origs | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
+| 0096 | Add via /api/v3 a new job with with files non matching origs | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0100 | Get via /api/v4 the job added for user5.1, as a user from ADMIN_GROUPS | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | admin | 200 | ```SuccessfulGetStatusCode``` |
 | 0110 | Get via /api/v4 the job added for user5.1, as user5.1, which passes because group5 was added to ownerGroup | GET | /api/v4/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
 | 0120 | Get via /api/v3 the job added for user5.1, as user5.1, which passes because group5 was added to ownerGroup | GET | /api/v3/Jobs/${encodedJobOwnedByGroup5} | user5.1 | 200 | ```SuccessfulGetStatusCode``` |
