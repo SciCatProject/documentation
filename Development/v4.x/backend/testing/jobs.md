@@ -611,6 +611,8 @@ Not all files test PATCH and DELETE methods, as these would be redundant.
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | 0010 | Add dataset 1 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
 | 0020 | Add dataset 2 as Admin Ingestor | POST | /api/v3/Datasets | adminIngestor | 201 | ```EntryCreatedStatusCode``` |
+| 0021 | Add via /api/v3 a new job with invalid type, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
+| 0022 | Add via /api/v3 a new job without type, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0030 | Add via /api/v3 a new job without datasetList, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0040 | Add via /api/v3 a new job ignoring datasetList from jobParams, as a user from ADMIN_GROUPS, which should fail | POST | /api/v3/Jobs | admin | 400 | ```BadRequestStatusCode``` |
 | 0050 | Add via /api/v3 an anonymous job as a user from ADMIN_GROUPS | POST | /api/v3/Jobs | admin | 201 | ```EntryCreatedStatusCode``` |
