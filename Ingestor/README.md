@@ -42,7 +42,4 @@ There should now be a dataset in your mongoDB instance.
 
 For site specific examples see the following links:
 * [ESS](IngesManual_ESS.md)
-* [PSI](ingestManual.md)
-
-
-#
+* [PSI](ingestManual.md) In future to move to https://data-catalog-services.pages.psi.ch
