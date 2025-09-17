@@ -5,6 +5,10 @@ Pyscicat is python client for working with the SciCat API, which provides an eas
 
 For an example of the full workflow, please see the `pyscicat.ipynb` Jupyter notebook in SciCat live: https://github.com/SciCatProject/scicatlive/blob/main/services/jupyter/config/notebooks/pyscicat.ipynb. This includes how to authenticate, create a dataset, add datablocks and upload an attachement.
 
+# Site Specific Examples
 
+For site specific examples see the following links:
+* [ESS](IngesManual_ESS.md)
+* [PSI]
 
 
