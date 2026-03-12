@@ -127,8 +127,10 @@ frontend/src/assets/config.json:
   "shareEnabled": true,  // Enable/disable workflow for sharing Datasets with other users using their email address.
   "shoppingCartEnabled": true,  // Enable/disable the Dataset cart used for bulk actions.
   "shoppingCartOnHeader": true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
-  "tableSciDataEnabled": true  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
-  "supportEmail": "scicat-help@facility.eu" // Optional. If set, adds a card in /help page with support email in the message.
+  "tableSciDataEnabled": true,  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
+  "supportEmail": "scicat-help@facility.eu", // Optional. If set, adds a card in /help page with support email in the message.
+  "statusBannerMessage": "Some SciCat update to be displayed on the dismissible banner", // Optional
+  "statusBannerCode": "INFO" // Optional, "WARN" or "INFO" - affects the styling of statusBannerMessage, defaults to INFO
 }
 
 ```
