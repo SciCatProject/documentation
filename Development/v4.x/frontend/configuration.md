@@ -129,8 +129,8 @@ frontend/src/assets/config.json:
   "shoppingCartOnHeader": true,  // Toggle Dataset cart placement, either on header or to the left on the Datasets Dashboard.
   "tableSciDataEnabled": true,  // Enable/disable Scientific Metadata table view on details pages. If disabled, Scientific Metadata is displayed as raw JSON.
   "supportEmail": "scicat-help@facility.eu", // Optional. If set, adds a card in /help page with support email in the message.
-  "statusBannerMessage": "Some SciCat update to be displayed on the dismissible banner", // Optional - statusBannerCode must be set for it to take effect
-  "statusBannerCode": "INFO" // Optional, "WARN" or "INFO" - affects the styling of status banner
+  "statusBannerMessage": "Some SciCat update to be displayed on the dismissible banner", // Optional
+  "statusBannerCode": "INFO" // Optional, "WARN" or "INFO" - affects the styling of statusBannerMessage, defaults to INFO
 }
 
 ```
